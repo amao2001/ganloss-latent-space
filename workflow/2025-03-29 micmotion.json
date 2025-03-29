@@ -1,0 +1,1036 @@
+{
+  "id": "4aa1a6c9-40a5-4003-b84a-f1ef569f156a",
+  "revision": 0,
+  "last_node_id": 59,
+  "last_link_id": 152,
+  "nodes": [
+    {
+      "id": 9,
+      "type": "GetImageSizeAndCount",
+      "pos": [
+        825,
+        518
+      ],
+      "size": [
+        210,
+        86
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 112
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            148
+          ]
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "shape": 3,
+          "type": "INT"
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "shape": 3,
+          "type": "INT"
+        },
+        {
+          "label": "count",
+          "name": "count",
+          "shape": 3,
+          "type": "INT"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetImageSizeAndCount"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 42,
+      "type": "MimicMotionGetPoses",
+      "pos": [
+        327,
+        702
+      ],
+      "size": [
+        330,
+        126
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "ref_image",
+          "name": "ref_image",
+          "type": "IMAGE",
+          "link": 110
+        },
+        {
+          "label": "pose_images",
+          "name": "pose_images",
+          "type": "IMAGE",
+          "link": 111
+        }
+      ],
+      "outputs": [
+        {
+          "label": "poses_with_ref",
+          "name": "poses_with_ref",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            112,
+            114
+          ]
+        },
+        {
+          "label": "pose_images",
+          "name": "pose_images",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 1,
+          "links": [
+            138
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MimicMotionGetPoses"
+      },
+      "widgets_values": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "id": 17,
+      "type": "ImageConcatMulti",
+      "pos": [
+        1644,
+        830
+      ],
+      "size": [
+        210,
+        190
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image_1",
+          "name": "image_1",
+          "type": "IMAGE",
+          "link": 95
+        },
+        {
+          "label": "image_2",
+          "name": "image_2",
+          "type": "IMAGE",
+          "link": 137
+        },
+        {
+          "label": "image_3",
+          "name": "image_3",
+          "type": "IMAGE",
+          "link": 138
+        },
+        {
+          "label": "image_4",
+          "name": "image_4",
+          "type": "IMAGE",
+          "link": 151
+        }
+      ],
+      "outputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            93
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        4,
+        "right",
+        false,
+        null
+      ]
+    },
+    {
+      "id": 37,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        678,
+        897
+      ],
+      "size": [
+        440,
+        998.6666870117188
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 114
+        },
+        {
+          "label": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO"
+        },
+        {
+          "label": "meta_batch",
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager"
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Filenames",
+          "name": "Filenames",
+          "shape": 3,
+          "type": "VHS_FILENAMES"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 8,
+        "loop_count": 0,
+        "filename_prefix": "MimicPose",
+        "format": "image/webp",
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "paused": false,
+          "hidden": false,
+          "params": {
+            "filename": "MimicPose_00001_csufy_1742888538.webp",
+            "format": "image/webp",
+            "subfolder": "",
+            "type": "temp",
+            "frame_rate": 8
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        -393,
+        311
+      ],
+      "size": [
+        213.0849151611328,
+        410.70074462890625
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            61
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "shape": 3,
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "b523c75156cebfd91b70b309faf7cc07b4a8f4cf9fc63c9bbeb481a7e858af9f.png",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 58,
+      "type": "MimicMotionDecode",
+      "pos": [
+        1466,
+        396
+      ],
+      "size": [
+        255.466796875,
+        78
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "mimic_pipeline",
+          "name": "mimic_pipeline",
+          "type": "MIMICPIPE",
+          "link": 150
+        },
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 149
+        }
+      ],
+      "outputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            151,
+            152
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MimicMotionDecode"
+      },
+      "widgets_values": [
+        4
+      ]
+    },
+    {
+      "id": 59,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        2236.0732421875,
+        1051.94921875
+      ],
+      "size": [
+        998.4291381835938,
+        2063.4296875
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 152
+        },
+        {
+          "label": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO"
+        },
+        {
+          "label": "meta_batch",
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager"
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Filenames",
+          "name": "Filenames",
+          "shape": 3,
+          "type": "VHS_FILENAMES"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 12,
+        "loop_count": 0,
+        "filename_prefix": "MimicMotion",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "paused": false,
+          "hidden": false,
+          "params": {
+            "filename": "MimicMotion_00001_vfeux_1742888897.mp4",
+            "format": "video/h264-mp4",
+            "subfolder": "",
+            "type": "output",
+            "frame_rate": 12
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": "DownloadAndLoadMimicMotionModel",
+      "pos": [
+        658,
+        230
+      ],
+      "size": [
+        404.8147277832031,
+        89.03937530517578
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "mimic_pipeline",
+          "name": "mimic_pipeline",
+          "shape": 3,
+          "type": "MIMICPIPE",
+          "links": [
+            146,
+            150
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DownloadAndLoadMimicMotionModel"
+      },
+      "widgets_values": [
+        "MimicMotionMergedUnet_1-0-fp16.safetensors",
+        "fp16"
+      ]
+    },
+    {
+      "id": 35,
+      "type": "ImageResizeKJ",
+      "pos": [
+        -75,
+        781
+      ],
+      "size": [
+        315,
+        266
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 86
+        },
+        {
+          "label": "get_image_size",
+          "name": "get_image_size",
+          "shape": 7,
+          "type": "IMAGE"
+        },
+        {
+          "label": "width_input",
+          "name": "width_input",
+          "type": "INT",
+          "widget": {
+            "name": "width_input"
+          },
+          "link": 88
+        },
+        {
+          "label": "height_input",
+          "name": "height_input",
+          "type": "INT",
+          "widget": {
+            "name": "height_input"
+          },
+          "link": 89
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            111,
+            137
+          ]
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "shape": 3,
+          "type": "INT"
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "shape": 3,
+          "type": "INT"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageResizeKJ"
+      },
+      "widgets_values": [
+        576,
+        1024,
+        "lanczos",
+        false,
+        64,
+        0,
+        0,
+        "disabled"
+      ]
+    },
+    {
+      "id": 28,
+      "type": "ImageResizeKJ",
+      "pos": [
+        -71,
+        481
+      ],
+      "size": [
+        315,
+        266
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 61
+        },
+        {
+          "label": "get_image_size",
+          "name": "get_image_size",
+          "shape": 7,
+          "type": "IMAGE"
+        },
+        {
+          "label": "width_input",
+          "name": "width_input",
+          "type": "INT",
+          "widget": {
+            "name": "width_input"
+          }
+        },
+        {
+          "label": "height_input",
+          "name": "height_input",
+          "type": "INT",
+          "widget": {
+            "name": "height_input"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            95,
+            110,
+            147
+          ]
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "shape": 3,
+          "type": "INT",
+          "slot_index": 1,
+          "links": [
+            88
+          ]
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "shape": 3,
+          "type": "INT",
+          "slot_index": 2,
+          "links": [
+            89
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageResizeKJ"
+      },
+      "widgets_values": [
+        576,
+        1024,
+        "lanczos",
+        false,
+        64,
+        0,
+        0,
+        "center"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "VHS_LoadVideo",
+      "pos": [
+        -402,
+        787
+      ],
+      "size": [
+        247.455078125,
+        680.3645629882812
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "meta_batch",
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager"
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            86
+          ]
+        },
+        {
+          "label": "frame_count",
+          "name": "frame_count",
+          "shape": 3,
+          "type": "INT"
+        },
+        {
+          "label": "audio",
+          "name": "audio",
+          "shape": 3,
+          "type": "AUDIO"
+        },
+        {
+          "label": "video_info",
+          "name": "video_info",
+          "shape": 3,
+          "type": "VHS_VIDEOINFO"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_LoadVideo"
+      },
+      "widgets_values": {
+        "video": "pose1.mp4",
+        "force_rate": 0,
+        "force_size": "Disabled",
+        "custom_width": 512,
+        "custom_height": 512,
+        "frame_load_cap": 128,
+        "skip_first_frames": 0,
+        "select_every_nth": 2,
+        "choose video to upload": "image",
+        "videopreview": {
+          "paused": false,
+          "hidden": false,
+          "params": {
+            "force_rate": 0,
+            "filename": "pose1.mp4",
+            "select_every_nth": 2,
+            "frame_load_cap": 128,
+            "format": "video/mp4",
+            "skip_first_frames": 0,
+            "type": "input"
+          }
+        }
+      }
+    },
+    {
+      "id": 57,
+      "type": "MimicMotionSampler",
+      "pos": [
+        1101,
+        419
+      ],
+      "size": [
+        315,
+        430
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "mimic_pipeline",
+          "name": "mimic_pipeline",
+          "type": "MIMICPIPE",
+          "link": 146
+        },
+        {
+          "label": "ref_image",
+          "name": "ref_image",
+          "type": "IMAGE",
+          "link": 147
+        },
+        {
+          "label": "pose_images",
+          "name": "pose_images",
+          "type": "IMAGE",
+          "link": 148
+        },
+        {
+          "label": "optional_scheduler",
+          "name": "optional_scheduler",
+          "shape": 7,
+          "type": "DIFFUSERS_SCHEDULER"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "samples",
+          "name": "samples",
+          "shape": 3,
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            149
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MimicMotionSampler"
+      },
+      "widgets_values": [
+        20,
+        2,
+        2,
+        42,
+        "fixed",
+        15,
+        0,
+        16,
+        6,
+        false,
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 16,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        2280.87548828125,
+        -759.1851806640625
+      ],
+      "size": [
+        2926.19384765625,
+        1615.6417236328125
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 93
+        },
+        {
+          "label": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO"
+        },
+        {
+          "label": "meta_batch",
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager"
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Filenames",
+          "name": "Filenames",
+          "shape": 3,
+          "type": "VHS_FILENAMES"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 12,
+        "loop_count": 0,
+        "filename_prefix": "MimicMotion",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "paused": false,
+          "hidden": false,
+          "params": {
+            "filename": "MimicMotion_00001_exquq_1742888908.mp4",
+            "format": "video/h264-mp4",
+            "subfolder": "",
+            "type": "temp",
+            "frame_rate": 12
+          }
+        }
+      }
+    }
+  ],
+  "links": [
+    [
+      61,
+      3,
+      0,
+      28,
+      0,
+      "IMAGE"
+    ],
+    [
+      86,
+      5,
+      0,
+      35,
+      0,
+      "IMAGE"
+    ],
+    [
+      88,
+      28,
+      1,
+      35,
+      2,
+      "INT"
+    ],
+    [
+      89,
+      28,
+      2,
+      35,
+      3,
+      "INT"
+    ],
+    [
+      93,
+      17,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      95,
+      28,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      110,
+      28,
+      0,
+      42,
+      0,
+      "IMAGE"
+    ],
+    [
+      111,
+      35,
+      0,
+      42,
+      1,
+      "IMAGE"
+    ],
+    [
+      112,
+      42,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      114,
+      42,
+      0,
+      37,
+      0,
+      "IMAGE"
+    ],
+    [
+      137,
+      35,
+      0,
+      17,
+      1,
+      "IMAGE"
+    ],
+    [
+      138,
+      42,
+      1,
+      17,
+      2,
+      "IMAGE"
+    ],
+    [
+      146,
+      2,
+      0,
+      57,
+      0,
+      "MIMICPIPE"
+    ],
+    [
+      147,
+      28,
+      0,
+      57,
+      1,
+      "IMAGE"
+    ],
+    [
+      148,
+      9,
+      0,
+      57,
+      2,
+      "IMAGE"
+    ],
+    [
+      149,
+      57,
+      0,
+      58,
+      1,
+      "LATENT"
+    ],
+    [
+      150,
+      2,
+      0,
+      58,
+      0,
+      "MIMICPIPE"
+    ],
+    [
+      151,
+      58,
+      0,
+      17,
+      3,
+      "IMAGE"
+    ],
+    [
+      152,
+      58,
+      0,
+      59,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.1,
+      "offset": [
+        4066.539612811497,
+        2370.941962049127
+      ]
+    },
+    "ue_links": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ]
+  },
+  "version": 0.4
+}
