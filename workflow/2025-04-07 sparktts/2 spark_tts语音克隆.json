@@ -1,0 +1,150 @@
+{
+  "id": "814c0eec-d586-4522-841e-ae24749ede2f",
+  "revision": 0,
+  "last_node_id": 6,
+  "last_link_id": 5,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "SparkTTS_VoiceClone",
+      "pos": [
+        1725.8568115234375,
+        1852.2161865234375
+      ],
+      "size": [
+        479.4296569824219,
+        271.69232177734375
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "reference_audio",
+          "type": "AUDIO",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "Comfyui-Spark-TTS",
+        "ver": "4c53873ba1d5d990abcc0f1e6724ada95b10d4ba",
+        "Node name for S&R": "SparkTTS_VoiceClone"
+      },
+      "widgets_values": [
+        "一个男人，只要他能抽烟喝酒有度，不沾染赌博，没有高利贷，不出去放纵自己，他就已经比大多数男性优秀了。",
+        "你知道吗？人工智能，就像是我们生活中的一个无形伙伴。他不声不响的走进了我们的世界，改变了我们的工作生活甚至思维方式。他让我们看到了很多可能性，也让我们意识到，未来的生活，可能比我们想象的还要复杂和美好。",
+        3000,
+        ""
+      ]
+    },
+    {
+      "id": 2,
+      "type": "LoadAudio",
+      "pos": [
+        1362.6390380859375,
+        1850.204833984375
+      ],
+      "size": [
+        315,
+        136
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "陈鲁豫.WAV",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 6,
+      "type": "PreviewAudio",
+      "pos": [
+        2287.922119140625,
+        1842.826904296875
+      ],
+      "size": [
+        315,
+        88
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 5
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": [
+        ""
+      ]
+    }
+  ],
+  "links": [
+    [
+      4,
+      2,
+      0,
+      1,
+      0,
+      "AUDIO"
+    ],
+    [
+      5,
+      1,
+      0,
+      6,
+      0,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.1918176537729552,
+      "offset": [
+        -1295.3530196650331,
+        -1665.7087286795381
+      ]
+    },
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
