@@ -1,0 +1,161 @@
+{
+  "id": "94f63437-149c-4a66-a915-0601f5b39d83",
+  "revision": 0,
+  "last_node_id": 12,
+  "last_link_id": 6,
+  "nodes": [
+    {
+      "id": 4,
+      "type": "SaveImage",
+      "pos": [
+        858.3121337890625,
+        147.43594360351562
+      ],
+      "size": [
+        408.1993103027344,
+        428.00006103515625
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 2
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 11,
+      "type": "Text Multiline",
+      "pos": [
+        -165.3765411376953,
+        187.12037658691406
+      ],
+      "size": [
+        493.828125,
+        219.8695526123047
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "STRING",
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Text Multiline"
+      },
+      "widgets_values": [
+        "A captivating photograph captures an East Asian man and woman locked in a tender gaze, their connection radiating outwards. The woman, with her long, flowing black hair and gentle features, looks up at the man with a serene expression. Her eyes sparkle with affection as she gazes into his. She wears a simple yet elegant cream dress that complements her soft beauty. The man, tall and handsome with short, neatly styled hair, looks down at her with an intense and loving gaze. His eyes are filled with warmth and adoration as he meets her gaze. He is dressed in a dark, tailored suit, suggesting a sophisticated yet approachable demeanor. They are positioned intimately close, the background softly blurred to emphasize their connection. The lighting is gentle and warm, highlighting the emotions in their eyes and the palpable intimacy of the moment. The scene exudes quiet love, deep affection, and a timeless romance, capturing a moment of profound connection and mutual adoration."
+      ]
+    },
+    {
+      "id": 1,
+      "type": "HiDreamSampler",
+      "pos": [
+        420.2946472167969,
+        159.72752380371094
+      ],
+      "size": [
+        400,
+        280
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HiDreamSampler"
+      },
+      "widgets_values": [
+        "dev-nf4",
+        "A captivating photograph captures an East Asian man and woman locked in a tender gaze, their connection radiating outwards. The woman, with her long, flowing black hair and gentle features, looks up at the man with a serene expression. Her eyes sparkle with affection as she gazes into his. She wears a simple yet elegant cream dress that complements her soft beauty. The man, tall and handsome with short, neatly styled hair, looks down at her with an intense and loving gaze. His eyes are filled with warmth and adoration as he meets her gaze. He is dressed in a dark, tailored suit, suggesting a sophisticated yet approachable demeanor. They are positioned intimately close, the background softly blurred to emphasize their connection. The lighting is gentle and warm, highlighting the emotions in their eyes and the palpable intimacy of the moment. The scene exudes quiet love, deep affection, and a timeless romance, capturing a moment of profound connection and mutual adoration.",
+        "1360 × 768 (Landscape)",
+        734103658393971,
+        "randomize",
+        -1,
+        -1,
+        0,
+        0
+      ]
+    }
+  ],
+  "links": [
+    [
+      2,
+      1,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      6,
+      11,
+      0,
+      1,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6588450000000083,
+      "offset": [
+        406.7995501211956,
+        22.591889894941446
+      ]
+    },
+    "ue_links": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
