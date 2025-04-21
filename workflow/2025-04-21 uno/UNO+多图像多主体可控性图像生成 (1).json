@@ -1,0 +1,1830 @@
+{
+  "id": "64cccacd-f1a1-48e4-b705-6cdea9015023",
+  "revision": 0,
+  "last_node_id": 57,
+  "last_link_id": 128,
+  "nodes": [
+    {
+      "id": 19,
+      "type": "SaveImage",
+      "pos": [
+        1464.9661865234375,
+        -180.92120361328125
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 27
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 36,
+      "type": "ImpactMakeImageBatch",
+      "pos": [
+        601.00146484375,
+        448.42236328125
+      ],
+      "size": [
+        210,
+        86
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image3",
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 81
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 82
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": 83
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            72
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImpactMakeImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 25,
+      "type": "SaveImage",
+      "pos": [
+        1472.021728515625,
+        340.04803466796875
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 46
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 45,
+      "type": "ImpactMakeImageBatch",
+      "pos": [
+        599.0125122070312,
+        1002.3943481445312
+      ],
+      "size": [
+        210,
+        86
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image3",
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 88
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 92
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": 93
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            87
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImpactMakeImageBatch"
+      }
+    },
+    {
+      "id": 24,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        1081.74853515625,
+        341.95477294921875
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 42
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 43
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 44
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 72
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            46
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "A woman wears a blue tank top and black shorts",
+        704,
+        704,
+        4,
+        25,
+        511,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 15,
+      "type": "Note",
+      "pos": [
+        719.238525390625,
+        -601.2376098632812
+      ],
+      "size": [
+        535.7589721679688,
+        123.34651947021484
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "https://github.com/HM-RunningHub/ComfyUI_RH_UNO"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 1,
+      "type": "RunningHub_UNO_Loadmodel",
+      "pos": [
+        559.8682250976562,
+        -456.21185302734375
+      ],
+      "size": [
+        261.57318115234375,
+        98
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "links": [
+            22,
+            42,
+            84,
+            103,
+            107,
+            111
+          ]
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "links": [
+            23,
+            43,
+            85,
+            104,
+            108,
+            112
+          ]
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "links": [
+            24,
+            44,
+            86,
+            105,
+            109,
+            113
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Loadmodel"
+      },
+      "widgets_values": [
+        "flux-dev-fp8"
+      ]
+    },
+    {
+      "id": 37,
+      "type": "ImpactMakeImageBatch",
+      "pos": [
+        602.0596923828125,
+        -140.489013671875
+      ],
+      "size": [
+        210,
+        86
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image1",
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 76
+        },
+        {
+          "label": "image2",
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 77
+        },
+        {
+          "label": "image3",
+          "name": "image3",
+          "type": "IMAGE",
+          "link": 78
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            75
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImpactMakeImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 47,
+      "type": "SaveImage",
+      "pos": [
+        2865.51806640625,
+        -150.36045837402344
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 94
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 49,
+      "type": "SaveImage",
+      "pos": [
+        2872.573486328125,
+        370.6087951660156
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 98
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 51,
+      "type": "SaveImage",
+      "pos": [
+        2870.585205078125,
+        924.5802001953125
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 102
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 53,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        2482.30029296875,
+        372.5154724121094
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 107
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 108
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 109
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 110
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            98
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "A woman wears a blue tank top and black shorts",
+        704,
+        704,
+        4,
+        25,
+        460,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 54,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        2480.3115234375,
+        926.4868774414062
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 111
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 112
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 113
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 114
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            102
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "A woman wears the dress and holds a bag",
+        704,
+        704,
+        4,
+        25,
+        1711,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "LoadImage",
+      "pos": [
+        103.33767700195312,
+        -278.1590576171875
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            35,
+            76,
+            81,
+            88,
+            118
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "b137ccf84f152e70d3a053b52c481cfdde287a1d0746a5066dd448ac88dfc358.png",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 55,
+      "type": "ImpactMakeImageBatch",
+      "pos": [
+        2166.610595703125,
+        -29.636180877685547
+      ],
+      "size": [
+        210,
+        86
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image2",
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 120
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 121
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": 122
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            106
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImpactMakeImageBatch"
+      }
+    },
+    {
+      "id": 35,
+      "type": "LoadImage",
+      "pos": [
+        137.9200897216797,
+        560.319580078125
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            78,
+            122
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "03ab568e7de29d74a3ab846f2cebb3d4762f3f8cd16b23cc60493097414dab9e.jpg",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 48,
+      "type": "ImpactMakeImageBatch",
+      "pos": [
+        2111.00341796875,
+        522.6425170898438
+      ],
+      "size": [
+        210,
+        86
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 123
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 124
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": 125
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            110
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImpactMakeImageBatch"
+      }
+    },
+    {
+      "id": 38,
+      "type": "LoadImage",
+      "pos": [
+        -279.8649597167969,
+        143.67471313476562
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            79,
+            82,
+            96,
+            124
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "02eefd371cef347113da220c93c56870f2bf5cf5a410a4da924cfe4be65eff47.jpg",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 39,
+      "type": "LoadImage",
+      "pos": [
+        -276.4325866699219,
+        573.7896728515625
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            83,
+            90,
+            125
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "269239f47a4f75e916ffe03336074cb2ba86e2b5aa2d82f857dd5e9cb9e87614.jpg",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 50,
+      "type": "ImpactMakeImageBatch",
+      "pos": [
+        2174.366943359375,
+        1118.072998046875
+      ],
+      "size": [
+        210,
+        86
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 126
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 127
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": 128
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            114
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImpactMakeImageBatch"
+      }
+    },
+    {
+      "id": 40,
+      "type": "LoadImage",
+      "pos": [
+        -714.8388671875,
+        141.9516143798828
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            92,
+            100,
+            127
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "706167c9fbac09520d7a9010db5707d1d652bcec2045d78e079d81e6b5c1eea5.jpg",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 41,
+      "type": "LoadImage",
+      "pos": [
+        -717.2730712890625,
+        564.2442626953125
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            93,
+            128
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "58878d526a85b5bc61a2b671bfcf03c3ae7ee6997860eb493cdbabaee2ba4b7e.jpg",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 57,
+      "type": "PreviewImage",
+      "pos": [
+        2535.54541015625,
+        -546.6770629882812
+      ],
+      "size": [
+        210,
+        246
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 119
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 56,
+      "type": "AutoCropFaces",
+      "pos": [
+        2073.3466796875,
+        -553.3788452148438
+      ],
+      "size": [
+        315,
+        198
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 118
+        }
+      ],
+      "outputs": [
+        {
+          "label": "face",
+          "name": "face",
+          "type": "IMAGE",
+          "links": [
+            119,
+            120,
+            123,
+            126
+          ]
+        },
+        {
+          "label": "output_1",
+          "name": "output_1",
+          "type": "CROP_DATA",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AutoCropFaces"
+      },
+      "widgets_values": [
+        5,
+        1.2000000000000002,
+        0.45,
+        0,
+        1,
+        "1:1"
+      ]
+    },
+    {
+      "id": 18,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        1087.3607177734375,
+        -170.6016082763672
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 22
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 23
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 24
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 75
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            27
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "the woman is wearing a white blouse and a blue skirt",
+        704,
+        704,
+        4,
+        25,
+        1754,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 52,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        2487.91259765625,
+        -140.04086303710938
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 103
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 104
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 105
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 106
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            94
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "the woman is wearing a white blouse and a blue skirt",
+        704,
+        704,
+        4,
+        25,
+        444,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 34,
+      "type": "LoadImage",
+      "pos": [
+        138.7466278076172,
+        120.61674499511719
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            74,
+            77,
+            116,
+            121
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "eec2c728e33f418a13744d40a2f0bc2dfcd902ff319d4f65e4600e99b214c61e.jpg",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 44,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        1079.759765625,
+        895.9268188476562
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 84
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 85
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 86
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 87
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            91
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "A woman wears the dress and holds a bag",
+        704,
+        704,
+        4,
+        25,
+        1250,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 46,
+      "type": "SaveImage",
+      "pos": [
+        1470.033447265625,
+        894.0200805664062
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 91
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    }
+  ],
+  "links": [
+    [
+      22,
+      1,
+      0,
+      18,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      23,
+      1,
+      1,
+      18,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      24,
+      1,
+      2,
+      18,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      27,
+      18,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      35,
+      9,
+      0,
+      22,
+      0,
+      "IMAGE"
+    ],
+    [
+      42,
+      1,
+      0,
+      24,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      43,
+      1,
+      1,
+      24,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      44,
+      1,
+      2,
+      24,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      46,
+      24,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ],
+    [
+      72,
+      36,
+      0,
+      24,
+      3,
+      "IMAGE"
+    ],
+    [
+      74,
+      34,
+      0,
+      37,
+      0,
+      "IMAGE"
+    ],
+    [
+      75,
+      37,
+      0,
+      18,
+      3,
+      "IMAGE"
+    ],
+    [
+      76,
+      9,
+      0,
+      37,
+      0,
+      "IMAGE"
+    ],
+    [
+      77,
+      34,
+      0,
+      37,
+      1,
+      "IMAGE"
+    ],
+    [
+      78,
+      35,
+      0,
+      37,
+      2,
+      "IMAGE"
+    ],
+    [
+      79,
+      38,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      81,
+      9,
+      0,
+      36,
+      0,
+      "IMAGE"
+    ],
+    [
+      82,
+      38,
+      0,
+      36,
+      1,
+      "IMAGE"
+    ],
+    [
+      83,
+      39,
+      0,
+      36,
+      2,
+      "IMAGE"
+    ],
+    [
+      84,
+      1,
+      0,
+      44,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      85,
+      1,
+      1,
+      44,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      86,
+      1,
+      2,
+      44,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      87,
+      45,
+      0,
+      44,
+      3,
+      "IMAGE"
+    ],
+    [
+      88,
+      9,
+      0,
+      45,
+      0,
+      "IMAGE"
+    ],
+    [
+      90,
+      39,
+      0,
+      45,
+      1,
+      "IMAGE"
+    ],
+    [
+      91,
+      44,
+      0,
+      46,
+      0,
+      "IMAGE"
+    ],
+    [
+      92,
+      40,
+      0,
+      45,
+      1,
+      "IMAGE"
+    ],
+    [
+      93,
+      41,
+      0,
+      45,
+      2,
+      "IMAGE"
+    ],
+    [
+      94,
+      52,
+      0,
+      47,
+      0,
+      "IMAGE"
+    ],
+    [
+      96,
+      38,
+      0,
+      48,
+      0,
+      "IMAGE"
+    ],
+    [
+      98,
+      53,
+      0,
+      49,
+      0,
+      "IMAGE"
+    ],
+    [
+      100,
+      40,
+      0,
+      50,
+      0,
+      "IMAGE"
+    ],
+    [
+      102,
+      54,
+      0,
+      51,
+      0,
+      "IMAGE"
+    ],
+    [
+      103,
+      1,
+      0,
+      52,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      104,
+      1,
+      1,
+      52,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      105,
+      1,
+      2,
+      52,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      106,
+      55,
+      0,
+      52,
+      3,
+      "IMAGE"
+    ],
+    [
+      107,
+      1,
+      0,
+      53,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      108,
+      1,
+      1,
+      53,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      109,
+      1,
+      2,
+      53,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      110,
+      48,
+      0,
+      53,
+      3,
+      "IMAGE"
+    ],
+    [
+      111,
+      1,
+      0,
+      54,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      112,
+      1,
+      1,
+      54,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      113,
+      1,
+      2,
+      54,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      114,
+      50,
+      0,
+      54,
+      3,
+      "IMAGE"
+    ],
+    [
+      116,
+      34,
+      0,
+      55,
+      0,
+      "IMAGE"
+    ],
+    [
+      118,
+      9,
+      0,
+      56,
+      0,
+      "IMAGE"
+    ],
+    [
+      119,
+      56,
+      0,
+      57,
+      0,
+      "IMAGE"
+    ],
+    [
+      120,
+      56,
+      0,
+      55,
+      0,
+      "IMAGE"
+    ],
+    [
+      121,
+      34,
+      0,
+      55,
+      1,
+      "IMAGE"
+    ],
+    [
+      122,
+      35,
+      0,
+      55,
+      2,
+      "IMAGE"
+    ],
+    [
+      123,
+      56,
+      0,
+      48,
+      0,
+      "IMAGE"
+    ],
+    [
+      124,
+      38,
+      0,
+      48,
+      1,
+      "IMAGE"
+    ],
+    [
+      125,
+      39,
+      0,
+      48,
+      2,
+      "IMAGE"
+    ],
+    [
+      126,
+      56,
+      0,
+      50,
+      0,
+      "IMAGE"
+    ],
+    [
+      127,
+      40,
+      0,
+      50,
+      1,
+      "IMAGE"
+    ],
+    [
+      128,
+      41,
+      0,
+      50,
+      2,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.5445000000000076,
+      "offset": [
+        -1657.7132177376425,
+        -467.622110615362
+      ]
+    },
+    "ue_links": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

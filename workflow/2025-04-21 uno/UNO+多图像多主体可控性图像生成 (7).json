@@ -1,0 +1,519 @@
+{
+  "id": "64cccacd-f1a1-48e4-b705-6cdea9015023",
+  "revision": 0,
+  "last_node_id": 19,
+  "last_link_id": 27,
+  "nodes": [
+    {
+      "id": 15,
+      "type": "Note",
+      "pos": [
+        682.669921875,
+        -452.81085205078125
+      ],
+      "size": [
+        535.7589721679688,
+        123.34651947021484
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "https://github.com/HM-RunningHub/ComfyUI_RH_UNO"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 9,
+      "type": "LoadImage",
+      "pos": [
+        145.4656524658203,
+        -263.5954284667969
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            13,
+            21
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "ec2ed6550b1442904c95b7212df1cd8041b7835a9e5a4358552342f9f9804470.jpg",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 16,
+      "type": "LoadImage",
+      "pos": [
+        158.54627990722656,
+        126.05126953125
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            20
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "b137ccf84f152e70d3a053b52c481cfdde287a1d0746a5066dd448ac88dfc358.png",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 17,
+      "type": "ImpactMakeImageBatch",
+      "pos": [
+        584.512451171875,
+        107.08645629882812
+      ],
+      "size": [
+        210,
+        66
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image1",
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 20
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 21
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            26
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImpactMakeImageBatch"
+      }
+    },
+    {
+      "id": 14,
+      "type": "SaveImage",
+      "pos": [
+        1542.6173095703125,
+        -252.69485473632812
+      ],
+      "size": [
+        450.46661376953125,
+        473.8503112792969
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 18
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 19,
+      "type": "SaveImage",
+      "pos": [
+        1528.604736328125,
+        319.8799743652344
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 27
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 1,
+      "type": "RunningHub_UNO_Loadmodel",
+      "pos": [
+        566.3474731445312,
+        -240.27139282226562
+      ],
+      "size": [
+        261.57318115234375,
+        98
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "links": [
+            9,
+            22
+          ]
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "links": [
+            10,
+            23
+          ]
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "links": [
+            11,
+            24
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Loadmodel"
+      },
+      "widgets_values": [
+        "flux-dev-fp8"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        1077.3826904296875,
+        -227.9193115234375
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 9
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 10
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 11
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "a beautiful woman hold a can ",
+        704,
+        704,
+        4,
+        25,
+        1988,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 18,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        1082.2747802734375,
+        250.04258728027344
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 22
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 23
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 24
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 26
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            27
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "a beautiful woman hold a can ",
+        704,
+        704,
+        4,
+        25,
+        1780,
+        "randomize",
+        "d"
+      ]
+    }
+  ],
+  "links": [
+    [
+      9,
+      1,
+      0,
+      7,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      10,
+      1,
+      1,
+      7,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      11,
+      1,
+      2,
+      7,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      13,
+      9,
+      0,
+      7,
+      3,
+      "IMAGE"
+    ],
+    [
+      18,
+      7,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      20,
+      16,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      21,
+      9,
+      0,
+      17,
+      1,
+      "IMAGE"
+    ],
+    [
+      22,
+      1,
+      0,
+      18,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      23,
+      1,
+      1,
+      18,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      24,
+      1,
+      2,
+      18,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      26,
+      17,
+      0,
+      18,
+      3,
+      "IMAGE"
+    ],
+    [
+      27,
+      18,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.4950000000000063,
+      "offset": [
+        125.01880502308741,
+        512.7594285527009
+      ]
+    },
+    "ue_links": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

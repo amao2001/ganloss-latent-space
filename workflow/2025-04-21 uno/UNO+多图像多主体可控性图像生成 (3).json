@@ -1,0 +1,1025 @@
+{
+  "id": "64cccacd-f1a1-48e4-b705-6cdea9015023",
+  "revision": 0,
+  "last_node_id": 34,
+  "last_link_id": 69,
+  "nodes": [
+    {
+      "id": 15,
+      "type": "Note",
+      "pos": [
+        682.669921875,
+        -452.81085205078125
+      ],
+      "size": [
+        535.7589721679688,
+        123.34651947021484
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "https://github.com/HM-RunningHub/ComfyUI_RH_UNO"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 1,
+      "type": "RunningHub_UNO_Loadmodel",
+      "pos": [
+        555.5661010742188,
+        -241.10072326660156
+      ],
+      "size": [
+        261.57318115234375,
+        98
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "links": [
+            22,
+            42,
+            47,
+            54,
+            58,
+            63
+          ]
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "links": [
+            23,
+            43,
+            48,
+            55,
+            59,
+            64
+          ]
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "links": [
+            24,
+            44,
+            49,
+            56,
+            60,
+            65
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Loadmodel"
+      },
+      "widgets_values": [
+        "flux-dev-fp8"
+      ]
+    },
+    {
+      "id": 25,
+      "type": "SaveImage",
+      "pos": [
+        1470.243896484375,
+        347.1590881347656
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 46
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 19,
+      "type": "SaveImage",
+      "pos": [
+        1464.9661865234375,
+        -177.68887329101562
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 27
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 18,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        1087.3607177734375,
+        -170.6016082763672
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 22
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 23
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 24
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 67
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            27
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "Ghibli style, a woman",
+        704,
+        704,
+        4,
+        25,
+        357,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 24,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        1081.74853515625,
+        341.95477294921875
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 42
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 43
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 44
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 68
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            46
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "Comic style, a woman",
+        704,
+        704,
+        4,
+        25,
+        1091,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 27,
+      "type": "SaveImage",
+      "pos": [
+        1463.8848876953125,
+        885.465576171875
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 51
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 26,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        1075.3895263671875,
+        880.2612915039062
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 47
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 48
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 49
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 69
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            51
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "3D cartoon style, a woman",
+        704,
+        704,
+        4,
+        25,
+        704,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 28,
+      "type": "SaveImage",
+      "pos": [
+        2671.2763671875,
+        373.03094482421875
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 52
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 29,
+      "type": "SaveImage",
+      "pos": [
+        2665.998779296875,
+        -151.81723022460938
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 53
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 31,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        2282.781005859375,
+        367.82672119140625
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 58
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 59
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 60
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 61
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            52
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "Comic style, a woman",
+        704,
+        704,
+        4,
+        25,
+        1424,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 32,
+      "type": "SaveImage",
+      "pos": [
+        2664.91748046875,
+        911.3381958007812
+      ],
+      "size": [
+        472.1728515625,
+        445.01361083984375
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 62
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 33,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        2276.422119140625,
+        906.1339721679688
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 63
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 64
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 65
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 66
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            62
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "3D cartoon style, a woman",
+        704,
+        704,
+        4,
+        25,
+        1148,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 34,
+      "type": "LoadImage",
+      "pos": [
+        141.00082397460938,
+        162.5921630859375
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            67,
+            68,
+            69
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "fda797a9fd3e5b8911eeddc308534ae4c5975854a48e3ced1176627030e11c96.jpg",
+        "image",
+        ""
+      ]
+    },
+    {
+      "id": 30,
+      "type": "RunningHub_UNO_Sampler",
+      "pos": [
+        2288.393310546875,
+        -144.73001098632812
+      ],
+      "size": [
+        313.62725830078125,
+        336.97332763671875
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "uno_model",
+          "name": "uno_model",
+          "type": "UNO_MODEL",
+          "link": 54
+        },
+        {
+          "label": "uno_clip",
+          "name": "uno_clip",
+          "type": "UNO_CLIP",
+          "link": 55
+        },
+        {
+          "label": "uno_vae",
+          "name": "uno_vae",
+          "type": "UNO_VAE",
+          "link": 56
+        },
+        {
+          "label": "ref_images",
+          "name": "ref_images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 57
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_out",
+          "name": "image_out",
+          "type": "IMAGE",
+          "links": [
+            53
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHub_UNO_Sampler"
+      },
+      "widgets_values": [
+        "Ghibli style, a woman",
+        704,
+        704,
+        4,
+        25,
+        1944,
+        "randomize",
+        "d"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "LoadImage",
+      "pos": [
+        131.30230712890625,
+        -271.7056579589844
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            35,
+            57,
+            61,
+            66
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "b137ccf84f152e70d3a053b52c481cfdde287a1d0746a5066dd448ac88dfc358.png",
+        "image",
+        ""
+      ]
+    }
+  ],
+  "links": [
+    [
+      22,
+      1,
+      0,
+      18,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      23,
+      1,
+      1,
+      18,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      24,
+      1,
+      2,
+      18,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      27,
+      18,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      35,
+      9,
+      0,
+      22,
+      0,
+      "IMAGE"
+    ],
+    [
+      42,
+      1,
+      0,
+      24,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      43,
+      1,
+      1,
+      24,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      44,
+      1,
+      2,
+      24,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      46,
+      24,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ],
+    [
+      47,
+      1,
+      0,
+      26,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      48,
+      1,
+      1,
+      26,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      49,
+      1,
+      2,
+      26,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      51,
+      26,
+      0,
+      27,
+      0,
+      "IMAGE"
+    ],
+    [
+      52,
+      31,
+      0,
+      28,
+      0,
+      "IMAGE"
+    ],
+    [
+      53,
+      30,
+      0,
+      29,
+      0,
+      "IMAGE"
+    ],
+    [
+      54,
+      1,
+      0,
+      30,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      55,
+      1,
+      1,
+      30,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      56,
+      1,
+      2,
+      30,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      57,
+      9,
+      0,
+      30,
+      3,
+      "IMAGE"
+    ],
+    [
+      58,
+      1,
+      0,
+      31,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      59,
+      1,
+      1,
+      31,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      60,
+      1,
+      2,
+      31,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      61,
+      9,
+      0,
+      31,
+      3,
+      "IMAGE"
+    ],
+    [
+      62,
+      33,
+      0,
+      32,
+      0,
+      "IMAGE"
+    ],
+    [
+      63,
+      1,
+      0,
+      33,
+      0,
+      "UNO_MODEL"
+    ],
+    [
+      64,
+      1,
+      1,
+      33,
+      1,
+      "UNO_CLIP"
+    ],
+    [
+      65,
+      1,
+      2,
+      33,
+      2,
+      "UNO_VAE"
+    ],
+    [
+      66,
+      9,
+      0,
+      33,
+      3,
+      "IMAGE"
+    ],
+    [
+      67,
+      34,
+      0,
+      18,
+      3,
+      "IMAGE"
+    ],
+    [
+      68,
+      34,
+      0,
+      24,
+      3,
+      "IMAGE"
+    ],
+    [
+      69,
+      34,
+      0,
+      26,
+      3,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.3719008264462862,
+      "offset": [
+        -73.39204314263395,
+        367.3790533011387
+      ]
+    },
+    "ue_links": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
