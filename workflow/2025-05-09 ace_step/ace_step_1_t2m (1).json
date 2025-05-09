@@ -1,0 +1,480 @@
+{
+  "id": "88ac5dad-efd7-40bb-84fe-fbaefdee1fa9",
+  "revision": 0,
+  "last_node_id": 48,
+  "last_link_id": 112,
+  "nodes": [
+    {
+      "id": 18,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        1370,
+        100
+      ],
+      "size": [
+        150.93612670898438,
+        46
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 101
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 83
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            26
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32",
+        "Node name for S&R": "VAEDecodeAudio"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 3,
+      "type": "KSampler",
+      "pos": [
+        1040,
+        90
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 112
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 110
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 109
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 23
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            101
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        380649534964281,
+        "randomize",
+        50,
+        4,
+        "res_multistep",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 45,
+      "type": "ModelSamplingSD3",
+      "pos": [
+        715.2496948242188,
+        -31.243383407592773
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 111
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            112
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32",
+        "Node name for S&R": "ModelSamplingSD3"
+      },
+      "widgets_values": [
+        4.000000000000001
+      ]
+    },
+    {
+      "id": 48,
+      "type": "MarkdownNote",
+      "pos": [
+        -360.0564270019531,
+        45.08247375488281
+      ],
+      "size": [
+        499.296875,
+        571.3455200195312
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "About ACE Step",
+      "properties": {},
+      "widgets_values": [
+        "[Tutorial](http://docs.comfy.org/tutorials/audio/ace-step/ace-step-v1) | [教程](http://docs.comfy.org/zh-CN/tutorials/audio/ace-step/ace-step-v1)\n\n\n### Model Download\n\nDownload the following model and save it to the **ComfyUI/models/checkpoints** folder.\n[ace_step_v1_3.5b.safetensors](https://huggingface.co/Comfy-Org/ACE-Step_ComfyUI_repackaged/blob/main/all_in_one/ace_step_v1_3.5b.safetensors)\n\n\n### Multilingual Support\n\nCurrently, ACE-Step V1 supports multiple languages. When running, the ACE-Step model will obtain the English letters after the conversion of the corresponding different languages, and then generate music.\n\nHowever, currently in ComfyUI, we have not fully implemented the conversion from multiple languages to English letters (Japanese has been implemented at present). Therefore, if you need to use multiple languages for relevant music generation, you need to first convert the corresponding language into English letters, and then input the abbreviation of the corresponding language code at the beginning of the corresponding `lyrics`.\n\nFor example, Chinese `[zh]`, Japanese `[ja]`, Korean `[ko]`, etc.\nFor example:\n```\n[zh]ni hao\n[ja]kon ni chi wa\n[ko]an nyeong\n```\n\n---\n\n### 模型下载\n\n下载下面的模型并保存到 **ComfyUI/models/checkpoints** 文件夹下\n[ace_step_v1_3.5b.safetensors](https://huggingface.co/Comfy-Org/ACE-Step_ComfyUI_repackaged/blob/main/all_in_one/ace_step_v1_3.5b.safetensors)\n\n\n### 多语言支持\n\n目前 ACE-Step V1 是支持多语言的，运行是 ACE-Step 模型会获取到对应的不同语言转换后的英文字母，然后进行音乐生成。\n\n但目前在 ComfyUI 中我们并没有完全实现多语言到英文字母的转换（目前日文已经实现），所以如果你需要使用多语言来进行相关的音乐生成，你需要首先将对应的语言转换成英文字母，然后在对应 `lyrics` 开头输入对应语言代码的缩写。\n\n比如中文`[zh]` 日语 `[ja]` 韩语 `[ko]` 等\n比如：\n```\n[zh]ni hao\n[ja]kon ni chi wa\n[ko]an nyeong\n```"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 40,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        179.5068359375,
+        87.76739501953125
+      ],
+      "size": [
+        375,
+        98
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            111
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            80
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            83
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32",
+        "Node name for S&R": "CheckpointLoaderSimple",
+        "models": [
+          {
+            "name": "ace_step_v1_3.5b.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/ACE-Step_ComfyUI_repackaged/resolve/main/all_in_one/ace_step_v1_3.5b.safetensors?download=true",
+            "directory": "checkpoints"
+          }
+        ]
+      },
+      "widgets_values": [
+        "ace_step_v1_3.5b.safetensors"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 44,
+      "type": "ConditioningZeroOut",
+      "pos": [
+        788.4486083984375,
+        493.64544677734375
+      ],
+      "size": [
+        197.712890625,
+        26
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 108
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            109
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32",
+        "Node name for S&R": "ConditioningZeroOut"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 14,
+      "type": "TextEncodeAceStepAudio",
+      "pos": [
+        581.5770874023438,
+        82.79544830322266
+      ],
+      "size": [
+        440.83544921875,
+        334.80902099609375
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 80
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            108,
+            110
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32",
+        "Node name for S&R": "TextEncodeAceStepAudio"
+      },
+      "widgets_values": [
+        "Zhongguofeng (中国风), C-Pop Ballad, Traditional Elements Integration, Piano, Erhu (二胡), Guzheng (古筝), Strings (Orchestral), Acoustic Guitar, Drums (subtle, often with traditional percussion hints), Bass, Approx. 68-72 BPM, Melodic, Romantic, Nostalgic, Elegant, Poetic, Flowing, Tender, Bittersweet.",
+        "[Verse]\n[zh] sù pēi gōu lè chū qīng huā bǐ fēng nóng zhuǎn dàn\n[zh] píng shēn miáo huì de mǔ dān yī rú nǐ chū zhuāng\n[zh] rǎn rǎn tán xiāng tòu guò chuāng xīn shì wǒ liǎo rán\n[zh] xuān zhǐ shàng zǒu bǐ zhì cǐ gē yī bàn\n\n[Verse 2]\n[zh] yòu sè xuàn rǎn shì nǚ tú yùn wèi bèi sī cáng\n[zh] ér nǐ yān rán de yī xiào rú hán bāo dài fàng\n[zh] nǐ de měi yī lǚ piāo sàn\n[zh] qù dào wǒ qù bù liǎo de dì fāng\n\n[Chorus]\n[zh] tiān qīng sè děng yān yǔ ér wǒ zài děng nǐ\n[zh] chuī yān niǎo niǎo shēng qǐ gé jiāng qiān wàn lǐ\n[zh] zài píng dǐ shū hàn lì fǎng qián cháo de piāo yì\n[zh] jiù dāng wǒ wèi yù jiàn nǐ fú bǐ\n",
+        1
+      ]
+    },
+    {
+      "id": 19,
+      "type": "SaveAudio",
+      "pos": [
+        1539,
+        100
+      ],
+      "size": [
+        375.57366943359375,
+        112
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 26
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32",
+        "Node name for S&R": "SaveAudio"
+      },
+      "widgets_values": [
+        "audio/ComfyUI"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "EmptyAceStepLatentAudio",
+      "pos": [
+        718.5327758789062,
+        594.5892944335938
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            23
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32",
+        "Node name for S&R": "EmptyAceStepLatentAudio"
+      },
+      "widgets_values": [
+        60,
+        1
+      ]
+    }
+  ],
+  "links": [
+    [
+      23,
+      17,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      26,
+      18,
+      0,
+      19,
+      0,
+      "AUDIO"
+    ],
+    [
+      80,
+      40,
+      1,
+      14,
+      0,
+      "CLIP"
+    ],
+    [
+      83,
+      40,
+      2,
+      18,
+      1,
+      "VAE"
+    ],
+    [
+      101,
+      3,
+      0,
+      18,
+      0,
+      "LATENT"
+    ],
+    [
+      108,
+      14,
+      0,
+      44,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      109,
+      44,
+      0,
+      3,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      110,
+      14,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      111,
+      40,
+      0,
+      45,
+      0,
+      "MODEL"
+    ],
+    [
+      112,
+      45,
+      0,
+      3,
+      0,
+      "MODEL"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Load model here",
+      "bounding": [
+        169.5068359375,
+        14.167394638061523,
+        395,
+        181.60000610351562
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.18.9",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
