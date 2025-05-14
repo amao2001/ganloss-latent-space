@@ -1,0 +1,1355 @@
+{
+  "id": "375d80a1-243c-4d09-940d-8c43e89bff5d",
+  "revision": 0,
+  "last_node_id": 77,
+  "last_link_id": 130,
+  "nodes": [
+    {
+      "id": 52,
+      "type": "TextEncodeHunyuanVideo_ImageToVideo",
+      "pos": [
+        -438.11871337890625,
+        615.8597412109375
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 68
+        },
+        {
+          "label": "clip_vision_output",
+          "name": "clip_vision_output",
+          "type": "CLIP_VISION_OUTPUT",
+          "link": 99
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            123
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextEncodeHunyuanVideo_ImageToVideo",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32"
+      },
+      "widgets_values": [
+        "Aerial view, aerial view, overexposed, low quality, deformation, a poor composition, bad hands, bad teeth, bad eyes, bad limbs, distortion, blurring, text, subtitles, static, picture, black border.",
+        2
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 55,
+      "type": "CLIPVisionEncode",
+      "pos": [
+        -873.7920532226562,
+        599.5802001953125
+      ],
+      "size": [
+        290.390625,
+        78
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "clip_vision",
+          "name": "clip_vision",
+          "type": "CLIP_VISION",
+          "link": 71
+        },
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 130
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CLIP_VISION_OUTPUT",
+          "name": "CLIP_VISION_OUTPUT",
+          "type": "CLIP_VISION_OUTPUT",
+          "links": [
+            70,
+            99
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPVisionEncode",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32"
+      },
+      "widgets_values": [
+        "center"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 5,
+      "type": "HyVideoDecode",
+      "pos": [
+        793.4453125,
+        -485.1999816894531
+      ],
+      "size": [
+        345.4285888671875,
+        198
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 6
+        },
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 92
+        }
+      ],
+      "outputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            115
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyVideoDecode",
+        "cnr_id": "comfyui-hunyuanvideowrapper",
+        "ver": "83f0bbb8694cf92e994189b045270aab4e5029b5"
+      },
+      "widgets_values": [
+        true,
+        64,
+        256,
+        true,
+        0,
+        false
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 71,
+      "type": "ImageConcatMulti",
+      "pos": [
+        811.453369140625,
+        -166.67758178710938
+      ],
+      "size": [
+        270,
+        150
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image_1",
+          "name": "image_1",
+          "type": "IMAGE",
+          "link": 115
+        },
+        {
+          "label": "image_2",
+          "name": "image_2",
+          "type": "IMAGE",
+          "link": 116
+        }
+      ],
+      "outputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            117
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "bec42252c690c1b5b2064b5a6732ad11cc452759"
+      },
+      "widgets_values": [
+        2,
+        "left",
+        false,
+        null
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 74,
+      "type": "HyVideoTextEmbedBridge",
+      "pos": [
+        74.34894561767578,
+        491.8094177246094
+      ],
+      "size": [
+        270.8462829589844,
+        174
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 122
+        },
+        {
+          "label": "negative",
+          "name": "negative",
+          "shape": 7,
+          "type": "CONDITIONING",
+          "link": 123
+        }
+      ],
+      "outputs": [
+        {
+          "label": "hyvid_embeds",
+          "name": "hyvid_embeds",
+          "type": "HYVIDEMBEDS",
+          "links": [
+            124
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyVideoTextEmbedBridge",
+        "cnr_id": "comfyui-hunyuanvideowrapper",
+        "ver": "83f0bbb8694cf92e994189b045270aab4e5029b5"
+      },
+      "widgets_values": [
+        7.500000000000002,
+        0,
+        1,
+        false,
+        true
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 72,
+      "type": "HyVideoTorchCompileSettings",
+      "pos": [
+        -1294.8038330078125,
+        -669.2941284179688
+      ],
+      "size": [
+        339.3355407714844,
+        274
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "torch_compile_args",
+          "name": "torch_compile_args",
+          "type": "COMPILEARGS",
+          "links": [
+            125
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyVideoTorchCompileSettings",
+        "cnr_id": "comfyui-hunyuanvideowrapper",
+        "ver": "83f0bbb8694cf92e994189b045270aab4e5029b5"
+      },
+      "widgets_values": [
+        "inductor",
+        false,
+        "default",
+        false,
+        64,
+        true,
+        true,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "id": 60,
+      "type": "HyVideoBlockSwap",
+      "pos": [
+        -1302.4384765625,
+        -313.755615234375
+      ],
+      "size": [
+        292.091796875,
+        130
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "block_swap_args",
+          "name": "block_swap_args",
+          "type": "BLOCKSWAPARGS",
+          "links": [
+            120
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyVideoBlockSwap",
+        "cnr_id": "comfyui-hunyuanvideowrapper",
+        "ver": "83f0bbb8694cf92e994189b045270aab4e5029b5"
+      },
+      "widgets_values": [
+        20,
+        0,
+        false,
+        false
+      ]
+    },
+    {
+      "id": 70,
+      "type": "HyVideoTeaCache",
+      "pos": [
+        418.9670104980469,
+        -601.5409545898438
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "teacache_args",
+          "name": "teacache_args",
+          "type": "TEACACHEARGS",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyVideoTeaCache",
+        "cnr_id": "comfyui-hunyuanvideowrapper",
+        "ver": "83f0bbb8694cf92e994189b045270aab4e5029b5"
+      },
+      "widgets_values": [
+        0.10000000000000002,
+        "offload_device",
+        0,
+        -1
+      ]
+    },
+    {
+      "id": 1,
+      "type": "HyVideoModelLoader",
+      "pos": [
+        -648.7919311523438,
+        -308.3239440917969
+      ],
+      "size": [
+        426.1773986816406,
+        242
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "compile_args",
+          "name": "compile_args",
+          "shape": 7,
+          "type": "COMPILEARGS",
+          "link": 125
+        },
+        {
+          "label": "block_swap_args",
+          "name": "block_swap_args",
+          "shape": 7,
+          "type": "BLOCKSWAPARGS",
+          "link": 120
+        },
+        {
+          "label": "lora",
+          "name": "lora",
+          "shape": 7,
+          "type": "HYVIDLORA"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "HYVIDEOMODEL",
+          "slot_index": 0,
+          "links": [
+            89
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyVideoModelLoader",
+        "cnr_id": "comfyui-hunyuanvideowrapper",
+        "ver": "83f0bbb8694cf92e994189b045270aab4e5029b5"
+      },
+      "widgets_values": [
+        "Hyvid/hunyuan_video_custom_720p_fp8_scaled.safetensors",
+        "bf16",
+        "fp8_scaled",
+        "offload_device",
+        "sageattn",
+        false,
+        true
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 7,
+      "type": "HyVideoVAELoader",
+      "pos": [
+        -538.066650390625,
+        -494.4666442871094
+      ],
+      "size": [
+        379.166748046875,
+        82
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "compile_args",
+          "name": "compile_args",
+          "shape": 7,
+          "type": "COMPILEARGS"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            6,
+            52
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyVideoVAELoader",
+        "cnr_id": "comfyui-hunyuanvideowrapper",
+        "ver": "83f0bbb8694cf92e994189b045270aab4e5029b5"
+      },
+      "widgets_values": [
+        "hyvid/hunyuan_video_vae_bf16.safetensors",
+        "bf16"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 56,
+      "type": "CLIPVisionLoader",
+      "pos": [
+        -1208.8525390625,
+        606.8401489257812
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "CLIP_VISION",
+          "name": "CLIP_VISION",
+          "type": "CLIP_VISION",
+          "links": [
+            71
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPVisionLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32"
+      },
+      "widgets_values": [
+        "llava_llama3_vision.safetensors"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 54,
+      "type": "DualCLIPLoader",
+      "pos": [
+        -871.9588012695312,
+        408.6937255859375
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            68,
+            69
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DualCLIPLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32"
+      },
+      "widgets_values": [
+        "clip_l.safetensors",
+        "llava_llama3_fp8_scaled.safetensors",
+        "hunyuan_video",
+        "default"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 34,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1212.7611083984375,
+        -519.9891357421875
+      ],
+      "size": [
+        1520.818115234375,
+        1098.4090576171875
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 117
+        },
+        {
+          "label": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO"
+        },
+        {
+          "label": "meta_batch",
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager"
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Filenames",
+          "name": "Filenames",
+          "type": "VHS_FILENAMES"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine",
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "0a75c7958fe320efcb052f1d9f8451fd20c730a8"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "HunyuanVideoCustom_wrapper",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "paused": false,
+          "hidden": false,
+          "params": {
+            "filename": "HunyuanVideoCustom_wrapper_00013_ffeju_1747188025.mp4",
+            "workflow": "HunyuanVideoCustom_wrapper_00013.png",
+            "fullpath": "/data/ComfyUI/personal/445aa9a89d7fa5567450f91c998092da/output/HunyuanVideoCustom_wrapper_00013.mp4",
+            "format": "video/h264-mp4",
+            "subfolder": "",
+            "type": "output",
+            "frame_rate": 24
+          },
+          "muted": false
+        }
+      }
+    },
+    {
+      "id": 41,
+      "type": "HyVideoEncode",
+      "pos": [
+        -72.073486328125,
+        -222.92352294921875
+      ],
+      "size": [
+        320.08203125,
+        222
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 52
+        },
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 129
+        }
+      ],
+      "outputs": [
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "links": [
+            91
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyVideoEncode",
+        "cnr_id": "comfyui-hunyuanvideowrapper",
+        "ver": "83f0bbb8694cf92e994189b045270aab4e5029b5"
+      },
+      "widgets_values": [
+        false,
+        64,
+        256,
+        true,
+        0,
+        1,
+        "sample"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 75,
+      "type": "PreviewImage",
+      "pos": [
+        -918.43896484375,
+        -149.02801513671875
+      ],
+      "size": [
+        140,
+        246
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 126
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 62,
+      "type": "HyVideoSampler",
+      "pos": [
+        421.58984375,
+        -342.9571228027344
+      ],
+      "size": [
+        299.3306579589844,
+        611.6785888671875
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "HYVIDEOMODEL",
+          "link": 89
+        },
+        {
+          "label": "hyvid_embeds",
+          "name": "hyvid_embeds",
+          "type": "HYVIDEMBEDS",
+          "link": 124
+        },
+        {
+          "label": "samples",
+          "name": "samples",
+          "shape": 7,
+          "type": "LATENT"
+        },
+        {
+          "label": "image_cond_latents",
+          "name": "image_cond_latents",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 91
+        },
+        {
+          "label": "stg_args",
+          "name": "stg_args",
+          "shape": 7,
+          "type": "STGARGS"
+        },
+        {
+          "label": "context_options",
+          "name": "context_options",
+          "shape": 7,
+          "type": "HYVIDCONTEXT"
+        },
+        {
+          "label": "feta_args",
+          "name": "feta_args",
+          "shape": 7,
+          "type": "FETAARGS"
+        },
+        {
+          "label": "teacache_args",
+          "name": "teacache_args",
+          "shape": 7,
+          "type": "TEACACHEARGS"
+        },
+        {
+          "label": "loop_args",
+          "name": "loop_args",
+          "shape": 7,
+          "type": "LOOPARGS"
+        },
+        {
+          "label": "fresca_args",
+          "name": "fresca_args",
+          "shape": 7,
+          "type": "FRESCA_ARGS"
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 113
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 114
+        },
+        {
+          "label": "slg_args",
+          "name": "slg_args",
+          "shape": 7,
+          "type": "SLGARGS"
+        },
+        {
+          "label": "mask",
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "links": [
+            92
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyVideoSampler",
+        "cnr_id": "comfyui-hunyuanvideowrapper",
+        "ver": "83f0bbb8694cf92e994189b045270aab4e5029b5"
+      },
+      "widgets_values": [
+        832,
+        480,
+        85,
+        30,
+        0,
+        13.000000000000002,
+        2,
+        "fixed",
+        true,
+        1,
+        "FlowMatchDiscreteScheduler",
+        0,
+        "dynamic"
+      ]
+    },
+    {
+      "id": 77,
+      "type": "PreviewImage",
+      "pos": [
+        -683.8797607421875,
+        24.22991371154785
+      ],
+      "size": [
+        210,
+        246
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 128
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 42,
+      "type": "LoadImage",
+      "pos": [
+        -1737.8839111328125,
+        -4.027066230773926
+      ],
+      "size": [
+        274.080078125,
+        314
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            54
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32"
+      },
+      "widgets_values": [
+        "b0af44d23c0eeb4e85fc96601f8eab128b499272751e30f2240636c5d0927aea.jpg",
+        "image",
+        ""
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 43,
+      "type": "ImageResizeKJv2",
+      "pos": [
+        -1373.7554931640625,
+        -82.13672637939453
+      ],
+      "size": [
+        270,
+        242
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 54
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            116,
+            126,
+            127
+          ]
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "links": [
+            113
+          ]
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "links": [
+            114
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageResizeKJv2",
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "bec42252c690c1b5b2064b5a6732ad11cc452759"
+      },
+      "widgets_values": [
+        640,
+        640,
+        "lanczos",
+        "pad",
+        "255,255,255",
+        "center",
+        16
+      ],
+      "color": "#2a363b",
+      "bgcolor": "#3f5159"
+    },
+    {
+      "id": 51,
+      "type": "TextEncodeHunyuanVideo_ImageToVideo",
+      "pos": [
+        -438.55877685546875,
+        341.2400207519531
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 69
+        },
+        {
+          "label": "clip_vision_output",
+          "name": "clip_vision_output",
+          "type": "CLIP_VISION_OUTPUT",
+          "link": 70
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            122
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TextEncodeHunyuanVideo_ImageToVideo",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.32"
+      },
+      "widgets_values": [
+        "一个人正在云端飞行",
+        2
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 76,
+      "type": "RMBG",
+      "pos": [
+        -1368.1668701171875,
+        217.7111358642578
+      ],
+      "size": [
+        315,
+        290
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 127
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            128,
+            129,
+            130
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK"
+        },
+        {
+          "label": "MASK_IMAGE",
+          "name": "MASK_IMAGE",
+          "type": "IMAGE"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RMBG"
+      },
+      "widgets_values": [
+        "RMBG-2.0",
+        1,
+        1024,
+        0,
+        0,
+        "white",
+        false,
+        "default",
+        false
+      ]
+    }
+  ],
+  "links": [
+    [
+      6,
+      7,
+      0,
+      5,
+      0,
+      "VAE"
+    ],
+    [
+      52,
+      7,
+      0,
+      41,
+      0,
+      "VAE"
+    ],
+    [
+      54,
+      42,
+      0,
+      43,
+      0,
+      "IMAGE"
+    ],
+    [
+      68,
+      54,
+      0,
+      52,
+      0,
+      "CLIP"
+    ],
+    [
+      69,
+      54,
+      0,
+      51,
+      0,
+      "CLIP"
+    ],
+    [
+      70,
+      55,
+      0,
+      51,
+      1,
+      "CLIP_VISION_OUTPUT"
+    ],
+    [
+      71,
+      56,
+      0,
+      55,
+      0,
+      "CLIP_VISION"
+    ],
+    [
+      89,
+      1,
+      0,
+      62,
+      0,
+      "HYVIDEOMODEL"
+    ],
+    [
+      91,
+      41,
+      0,
+      62,
+      3,
+      "LATENT"
+    ],
+    [
+      92,
+      62,
+      0,
+      5,
+      1,
+      "LATENT"
+    ],
+    [
+      99,
+      55,
+      0,
+      52,
+      1,
+      "CLIP_VISION_OUTPUT"
+    ],
+    [
+      113,
+      43,
+      1,
+      62,
+      10,
+      "INT"
+    ],
+    [
+      114,
+      43,
+      2,
+      62,
+      11,
+      "INT"
+    ],
+    [
+      115,
+      5,
+      0,
+      71,
+      0,
+      "IMAGE"
+    ],
+    [
+      116,
+      43,
+      0,
+      71,
+      1,
+      "IMAGE"
+    ],
+    [
+      117,
+      71,
+      0,
+      34,
+      0,
+      "IMAGE"
+    ],
+    [
+      120,
+      60,
+      0,
+      1,
+      1,
+      "BLOCKSWAPARGS"
+    ],
+    [
+      122,
+      51,
+      0,
+      74,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      123,
+      52,
+      0,
+      74,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      124,
+      74,
+      0,
+      62,
+      1,
+      "HYVIDEMBEDS"
+    ],
+    [
+      125,
+      72,
+      0,
+      1,
+      0,
+      "COMPILEARGS"
+    ],
+    [
+      126,
+      43,
+      0,
+      75,
+      0,
+      "IMAGE"
+    ],
+    [
+      127,
+      43,
+      0,
+      76,
+      0,
+      "IMAGE"
+    ],
+    [
+      128,
+      76,
+      0,
+      77,
+      0,
+      "IMAGE"
+    ],
+    [
+      129,
+      76,
+      0,
+      41,
+      1,
+      "IMAGE"
+    ],
+    [
+      130,
+      76,
+      0,
+      55,
+      1,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.20992832109438156,
+      "offset": [
+        2597.9387390522375,
+        1440.3821609360741
+      ]
+    },
+    "VHS_KeepIntermediate": true,
+    "VHS_MetadataImage": true,
+    "ue_links": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "VHS_latentpreviewrate": 0,
+    "frontendVersion": "1.19.4",
+    "VHS_latentpreview": false
+  },
+  "version": 0.4
+}
