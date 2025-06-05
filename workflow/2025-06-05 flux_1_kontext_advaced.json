@@ -1,0 +1,373 @@
+{
+  "id": "42d7b80d-ad02-4803-8203-d97f67774c98",
+  "revision": 0,
+  "last_node_id": 93,
+  "last_link_id": 173,
+  "nodes": [
+    {
+      "id": 86,
+      "type": "MarkdownNote",
+      "pos": [
+        -473.0570983886719,
+        831.3026733398438
+      ],
+      "size": [
+        380.9487609863281,
+        309.4496765136719
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "About API Node",
+      "properties": {},
+      "widgets_values": [
+        "[About API Node](https://docs.comfy.org/tutorials/api-nodes/overview) | [关于 API 节点](https://docs.comfy.org/zh-CN/tutorials/api-nodes/overview)\n\nTo use the API, you must be in a secure network environment:\n\n- Allows access from `127.0.0.1` or `localhost`.\n\n- Use our API Node in website services starting with `https`\n\n- Make sure you can normally connect to our API services (some regions may need a proxy).\n\n- Make sure you are logged in in the settings and that your account still has enough credits to cover the consumption of API calls.\n\n- On non-whitelisted sites or local area networks (LANs), please try to [log in using an API Key](https://docs.comfy.org/interface/user#logging-in-with-an-api-key).\n\n---\n\n要使用API，你必须处于安全的网络环境中：\n\n- 允许从`127.0.0.1`或`localhost`访问。\n- 在带有 https 开头的服务中使用我们的 API Node\n- 确保你能够正常连接我们的API服务（某些地区可能需要代理）。\n- 确保你已在设置中登录，且你的账户仍有足够的积分来支付API调用的消耗。\n- 在非白名单站点或者局域网（LAN），请尝试[使用 API Key 来登录](https://docs.comfy.org/zh-CN/interface/user#%E4%BD%BF%E7%94%A8-api-key-%E8%BF%9B%E8%A1%8C%E7%99%BB%E5%BD%95)\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 88,
+      "type": "MarkdownNote",
+      "pos": [
+        -465.5143127441406,
+        1198.7117919921875
+      ],
+      "size": [
+        383.78765869140625,
+        273.2510070800781
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Flux Kontext Prompt Techniques",
+      "properties": {},
+      "widgets_values": [
+        "### 1. Basic Modifications\n- Simple and direct: `\"Change the car color to red\"`\n- Maintain style: `\"Change to daytime while maintaining the same style of the painting\"`\n\n### 2. Style Transfer\n**Principles:**\n- Clearly name style: `\"Transform to Bauhaus art style\"`\n- Describe characteristics: `\"Transform to oil painting with visible brushstrokes, thick paint texture\"`\n- Preserve composition: `\"Change to Bauhaus style while maintaining the original composition\"`\n\n### 3. Character Consistency\n**Framework:**\n- Specific description: `\"The woman with short black hair\"` instead of \"she\"\n- Preserve features: `\"while maintaining the same facial features, hairstyle, and expression\"`\n- Step-by-step modifications: Change background first, then actions\n\n### 4. Text Editing\n- Use quotes: `\"Replace 'joy' with 'BFL'\"`\n- Maintain format: `\"Replace text while maintaining the same font style\"`\n\n## Common Problem Solutions\n\n### Character Changes Too Much\n❌ Wrong: `\"Transform the person into a Viking\"`\n✅ Correct: `\"Change the clothes to be a viking warrior while preserving facial features\"`\n\n### Composition Position Changes\n❌ Wrong: `\"Put him on a beach\"`\n✅ Correct: `\"Change the background to a beach while keeping the person in the exact same position, scale, and pose\"`\n\n### Style Application Inaccuracy\n❌ Wrong: `\"Make it a sketch\"`\n✅ Correct: `\"Convert to pencil sketch with natural graphite lines, cross-hatching, and visible paper texture\"`\n\n## Core Principles\n\n1. **Be Specific and Clear** - Use precise descriptions, avoid vague terms\n2. **Step-by-step Editing** - Break complex modifications into multiple simple steps\n3. **Explicit Preservation** - State what should remain unchanged\n4. **Verb Selection** - Use \"change\", \"replace\" rather than \"transform\"\n\n## Best Practice Templates\n\n**Object Modification:**\n`\"Change [object] to [new state], keep [content to preserve] unchanged\"`\n\n**Style Transfer:**\n`\"Transform to [specific style], while maintaining [composition/character/other] unchanged\"`\n\n**Background Replacement:**\n`\"Change the background to [new background], keep the subject in the exact same position and pose\"`\n\n**Text Editing:**\n`\"Replace '[original text]' with '[new text]', maintain the same font style\"`\n\n> **Remember:** The more specific, the better. Kontext excels at understanding detailed instructions and maintaining consistency. "
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 87,
+      "type": "MarkdownNote",
+      "pos": [
+        -465.3617248535156,
+        1526.167236328125
+      ],
+      "size": [
+        376.663330078125,
+        279.697265625
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Flux Kontext 提示词技巧",
+      "properties": {},
+      "widgets_values": [
+        "使用英文\n\n### 1. 基础修改\n- 简单直接：`\"Change the car color to red\"`\n- 保持风格：`\"Change to daytime while maintaining the same style of the painting\"`\n\n### 2. 风格转换\n**原则：**\n- 明确命名风格：`\"Transform to Bauhaus art style\"`\n- 描述特征：`\"Transform to oil painting with visible brushstrokes, thick paint texture\"`\n- 保留构图：`\"Change to Bauhaus style while maintaining the original composition\"`\n\n### 3. 角色一致性\n**框架：**\n- 具体描述：`\"The woman with short black hair\"`而非`\"她\"`\n- 保留特征：`\"while maintaining the same facial features, hairstyle, and expression\"`\n- 分步修改：先改背景，再改动作\n\n### 4. 文本编辑\n- 使用引号：`\"Replace 'joy' with 'BFL'\"`\n- 保持格式：`\"Replace text while maintaining the same font style\"`\n\n## 常见问题解决\n\n### 角色变化过大\n❌ 错误：`\"Transform the person into a Viking\"`\n✅ 正确：`\"Change the clothes to be a viking warrior while preserving facial features\"`\n\n### 构图位置改变\n❌ 错误：`\"Put him on a beach\"`\n✅ 正确：`\"Change the background to a beach while keeping the person in the exact same position, scale, and pose\"`\n\n### 风格应用不准确\n❌ 错误：`\"Make it a sketch\"`\n✅ 正确：`\"Convert to pencil sketch with natural graphite lines, cross-hatching, and visible paper texture\"`\n\n## 核心原则\n\n1. **具体明确** - 使用精确描述，避免模糊词汇\n2. **分步编辑** - 复杂修改分为多个简单步骤\n3. **明确保留** - 说明哪些要保持不变\n4. **动词选择** - 用\"更改\"、\"替换\"而非\"转换\"\n\n## 最佳实践模板\n\n**对象修改：**\n`\"Change [object] to [new state], keep [content to preserve] unchanged\"`\n\n**风格转换：**\n`\"Transform to [specific style], while maintaining [composition/character/other] unchanged\"`\n\n**背景替换：**\n`\"Change the background to [new background], keep the subject in the exact same position and pose\"`\n\n**文本编辑：**\n`\"Replace '[original text]' with '[new text]', maintain the same font style\"`\n\n> **记住：** 越具体越好，Kontext 擅长理解详细指令并保持一致性。"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 91,
+      "type": "ImageStitch",
+      "pos": [
+        260.4533996582031,
+        922.5553588867188
+      ],
+      "size": [
+        270,
+        150
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 170
+        },
+        {
+          "name": "image2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 171
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            172,
+            173
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.39",
+        "Node name for S&R": "ImageStitch"
+      },
+      "widgets_values": [
+        "right",
+        true,
+        0,
+        "white"
+      ]
+    },
+    {
+      "id": 93,
+      "type": "PreviewImage",
+      "pos": [
+        321.18798828125,
+        1165.091796875
+      ],
+      "size": [
+        140,
+        246
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 172
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.39",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 92,
+      "type": "LoadImage",
+      "pos": [
+        -25.217008590698242,
+        1283.6964111328125
+      ],
+      "size": [
+        274.080078125,
+        314.00006103515625
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            171
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.39",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "GsN6sYTXgAAK-44.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 85,
+      "type": "SaveImage",
+      "pos": [
+        972.9732055664062,
+        919.4292602539062
+      ],
+      "size": [
+        378.90966796875,
+        717.0651245117188
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 169
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.39",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 84,
+      "type": "LoadImage",
+      "pos": [
+        -32.37870788574219,
+        917.6920776367188
+      ],
+      "size": [
+        274.080078125,
+        314.00006103515625
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            170
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.39",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "GsN6sWvXwAAf0Kj.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 83,
+      "type": "FluxKontextProImageNode",
+      "pos": [
+        546.9044799804688,
+        916.6815185546875
+      ],
+      "size": [
+        395.2944030761719,
+        323.6419372558594
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 173
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            169
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FluxKontextProImageNode"
+      },
+      "widgets_values": [
+        "the woman carrying  a pink backpack is walking on summer lush mountain top",
+        "9:16",
+        3,
+        50,
+        548181802047112,
+        "randomize",
+        false,
+        "Result URL: https://delivery-us1.bfl.ai/results/ca/506095829a2404/829a2404b7ff425b9720e53eda983d78/sample.png?se=2025-06-05T01%3A31%3A47Z&sp=r&sv=2024-11-04&sr=b&rsct=image/png&sig=jH1FkJnpjWRNlre7iRWF1sW/7G6HRbePOHQHGZQ40%2B8%3D"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      169,
+      83,
+      0,
+      85,
+      0,
+      "IMAGE"
+    ],
+    [
+      170,
+      84,
+      0,
+      91,
+      0,
+      "IMAGE"
+    ],
+    [
+      171,
+      92,
+      0,
+      91,
+      1,
+      "IMAGE"
+    ],
+    [
+      172,
+      91,
+      0,
+      93,
+      0,
+      "IMAGE"
+    ],
+    [
+      173,
+      91,
+      0,
+      83,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8410876132931416,
+      "offset": [
+        407.6063543207241,
+        -709.1002925916875
+      ]
+    },
+    "frontendVersion": "1.21.6",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
