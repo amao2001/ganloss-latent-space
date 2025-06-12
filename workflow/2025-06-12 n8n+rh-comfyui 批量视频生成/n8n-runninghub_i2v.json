@@ -1,0 +1,469 @@
+{
+  "name": "runninghub-i2v",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        -40
+      ],
+      "id": "a175d802-9f57-4827-a41a-5f3882cd450c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4f699975-b0b0-45b6-8705-37e327593c51",
+              "name": "apikey",
+              "value": "yourapikey",
+              "type": "string"
+            },
+            {
+              "id": "33227226-5931-4864-ab31-f064adcbbc36",
+              "name": "workflowid",
+              "value": "yourworkflowid",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -200,
+        -40
+      ],
+      "id": "bb88eeca-a0ee-4170-8347-ff99f7e544f2",
+      "name": "config"
+    },
+    {
+      "parameters": {
+        "fileSelector": "=E:/n8nimg/*.jpg",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        20,
+        -40
+      ],
+      "id": "16f8d331-683f-46a4-93e6-6f4644d6f71e",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.runninghub.cn/task/openapi/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Host",
+              "value": "www.runninghub.cn"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "apiKey",
+              "value": "={{ $('config').item.json.apikey }}"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        320,
+        -40
+      ],
+      "id": "dd21dd24-c50c-4ac0-9880-57173dba7c70",
+      "name": "upload"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.runninghub.cn/task/openapi/create",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Host",
+              "value": "www.runninghub.cn"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"apiKey\": \"{{ $('config').item.json.apikey }}\",\n  \"workflowId\": \"{{ $('config').item.json.workflowid }}\",\n  \"nodeInfoList\": [\n    {\n      \"nodeId\": \"21\",\n      \"fieldName\": \"image\",\n      \"fieldValue\": \"{{ $json.data.fileName }}\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        -40
+      ],
+      "id": "9eeb05ce-54db-4798-91c4-04cb0c0d53e9",
+      "name": "startworflow"
+    },
+    {
+      "parameters": {
+        "amount": 4,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        680,
+        -40
+      ],
+      "id": "d5ffc170-63a3-43e4-947b-bff04424f89e",
+      "name": "Wait",
+      "webhookId": "c5ef0cfb-a750-4d5a-a89a-6d36ab0ffd58"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.runninghub.cn/task/openapi/status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Host",
+              "value": "www.runninghub.cn"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "apiKey",
+              "value": "={{ $('config').item.json.apikey }}"
+            },
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        860,
+        -40
+      ],
+      "id": "c0f1fbdb-6f51-4701-ba83-1cad24cd1a3d",
+      "name": "checkstatus"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7a0ba0b6-b4fe-4ca4-a51d-5eb723ce2b1b",
+              "leftValue": "={{ $json.data }}",
+              "rightValue": "SUCCESS",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1080,
+        -40
+      ],
+      "id": "74981bd3-18a0-41c7-9af4-0916db8df2a0",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1300,
+        60
+      ],
+      "id": "4373707d-9dc1-4fa0-9f1d-c66b0be6c613",
+      "name": "Wait1",
+      "webhookId": "36bafead-008a-4845-9d0b-9027ae0fbba9"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.runninghub.cn/task/openapi/outputs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Host",
+              "value": "www.runninghub.cn"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "apiKey",
+              "value": "={{ $('config').item.json.apikey }}"
+            },
+            {
+              "name": "taskId",
+              "value": "={{ $('startworflow').item.json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1420,
+        -60
+      ],
+      "id": "f998813d-0399-4192-8bfc-2e550f990cb4",
+      "name": "getresult"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.data[0].fileUrl }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1640,
+        -60
+      ],
+      "id": "bbc98c05-8a8b-48ec-ba90-5c435de36560",
+      "name": "download"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=E:/n8nvideos/{{ $json.data[0].fileUrl.split('/').pop() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        -60
+      ],
+      "id": "8ec67a4e-c2f1-4fd8-9829-9ecac8042869",
+      "name": "Read/Write Files from Disk1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        160,
+        -140
+      ],
+      "id": "b6cc5102-235b-497f-a745-8da52015f77a",
+      "name": "Loop Over Items"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "config": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload": {
+      "main": [
+        [
+          {
+            "node": "startworflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "startworflow": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "checkstatus",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "checkstatus": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "getresult",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "checkstatus",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getresult": {
+      "main": [
+        [
+          {
+            "node": "download",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "upload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4cdeb603-268f-4f6d-9c02-44cb81714de4",
+  "meta": {
+    "instanceId": "dbb557eb5ae3510a5898c9511ff91e6c09ed7d9e7db118480047d8fe9edfc877"
+  },
+  "id": "GI2kF9ZkatuM2cgW",
+  "tags": []
+}
