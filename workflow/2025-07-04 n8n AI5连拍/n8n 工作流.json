@@ -1,0 +1,1073 @@
+{
+  "name": "kontext 生成图片",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        -480
+      ],
+      "id": "d04480a6-8daa-4c77-af4a-9f8d93f1e482",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "设计一个女人的五连拍的5个动作，主要集中在手和表情。\n请严格遵守以下所有要求：\n1.  **数量**：必须正好生成五个姿势。\n2.  **多样性**：避免姿势间的相似性。\n3.  **独立性**：只描述人物的姿势，无需描述环境，人物衣服，已经外貌等其他特征\n4.  **输出语言**：所有的姿势描述都必须使用英文。\n5.  **核心格式**：每一个姿势描述都必须以 \"make the woman\" 开头。\n6.  **最终输出格式**：用英文输出，每行1句，不要有额外输出",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -660,
+        -60
+      ],
+      "id": "cc867bfb-a648-4b9f-8f72-5f4c96ee60f5",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        80
+      ],
+      "id": "bac6038d-43e3-4389-aaf5-83970f8c2bc3",
+      "name": "DeepSeek Chat Model",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "7ZogtRErkiEw3xTv",
+          "name": "DeepSeek account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "693c0f06-876f-4270-adc6-6a3810055bc8",
+              "name": "output",
+              "value": "={{ $json.output.split('\\n') }}",
+              "type": "array"
+            },
+            {
+              "id": "2ea43980-3f58-498c-ae68-3b65a9640a2a",
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -340,
+        -60
+      ],
+      "id": "b742e91e-e68e-4dcf-a703-cd380058e27f",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -60
+      ],
+      "id": "24cc8aed-1c34-41fa-a2d7-664f0ac9eb5a",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        0,
+        -60
+      ],
+      "id": "e0d85d7e-1244-47f5-ad64-b0c27e2da6b2",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "content": "## 生成提示词",
+        "height": 400,
+        "width": 1060,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -720,
+        -180
+      ],
+      "typeVersion": 1,
+      "id": "81013074-0460-46ff-b71b-5868f6c564f7",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 加载图片\n",
+        "height": 260,
+        "width": 1040
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -720,
+        -540
+      ],
+      "typeVersion": 1,
+      "id": "0980de1b-884b-48d3-b207-33f0e84b5a65",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e7fb3cd4-5591-4fcd-91e7-145c17683881",
+              "name": "json_workflow",
+              "value": "={\n  \"6\": {\n    \"inputs\": {\n      \"text\": \"{{ $json.output }}\",\n      \"clip\": [\n        \"38\",\n        0\n      ]\n    },\n    \"class_type\": \"CLIPTextEncode\",\n    \"_meta\": {\n      \"title\": \"CLIP Text Encode (Positive Prompt)\"\n    }\n  },\n  \"8\": {\n    \"inputs\": {\n      \"samples\": [\n        \"31\",\n        0\n      ],\n      \"vae\": [\n        \"39\",\n        0\n      ]\n    },\n    \"class_type\": \"VAEDecode\",\n    \"_meta\": {\n      \"title\": \"VAE Decode\"\n    }\n  },\n  \"31\": {\n    \"inputs\": {\n      \"seed\": 752811174988137,\n      \"steps\": 20,\n      \"cfg\": 1,\n      \"sampler_name\": \"euler\",\n      \"scheduler\": \"simple\",\n      \"denoise\": 1,\n      \"model\": [\n        \"37\",\n        0\n      ],\n      \"positive\": [\n        \"35\",\n        0\n      ],\n      \"negative\": [\n        \"135\",\n        0\n      ],\n      \"latent_image\": [\n        \"124\",\n        0\n      ]\n    },\n    \"class_type\": \"KSampler\",\n    \"_meta\": {\n      \"title\": \"KSampler\"\n    }\n  },\n  \"35\": {\n    \"inputs\": {\n      \"guidance\": 2.5,\n      \"conditioning\": [\n        \"177\",\n        0\n      ]\n    },\n    \"class_type\": \"FluxGuidance\",\n    \"_meta\": {\n      \"title\": \"FluxGuidance\"\n    }\n  },\n  \"37\": {\n    \"inputs\": {\n      \"unet_name\": \"flux1-dev-kontext_fp8_scaled.safetensors\",\n      \"weight_dtype\": \"default\"\n    },\n    \"class_type\": \"UNETLoader\",\n    \"_meta\": {\n      \"title\": \"Load Diffusion Model\"\n    }\n  },\n  \"38\": {\n    \"inputs\": {\n      \"clip_name1\": \"clip_l.safetensors\",\n      \"clip_name2\": \"t5xxl_fp8_e4m3fn_scaled.safetensors\",\n      \"type\": \"flux\",\n      \"device\": \"default\"\n    },\n    \"class_type\": \"DualCLIPLoader\",\n    \"_meta\": {\n      \"title\": \"DualCLIPLoader\"\n    }\n  },\n  \"39\": {\n    \"inputs\": {\n      \"vae_name\": \"ae.safetensors\"\n    },\n    \"class_type\": \"VAELoader\",\n    \"_meta\": {\n      \"title\": \"Load VAE\"\n    }\n  },\n  \"42\": {\n    \"inputs\": {\n      \"image\": [\n        \"189\",\n        0\n      ]\n    },\n    \"class_type\": \"FluxKontextImageScale\",\n    \"_meta\": {\n      \"title\": \"FluxKontextImageScale\"\n    }\n  },\n  \"124\": {\n    \"inputs\": {\n      \"pixels\": [\n        \"42\",\n        0\n      ],\n      \"vae\": [\n        \"39\",\n        0\n      ]\n    },\n    \"class_type\": \"VAEEncode\",\n    \"_meta\": {\n      \"title\": \"VAE Encode\"\n    }\n  },\n  \"135\": {\n    \"inputs\": {\n      \"conditioning\": [\n        \"6\",\n        0\n      ]\n    },\n    \"class_type\": \"ConditioningZeroOut\",\n    \"_meta\": {\n      \"title\": \"ConditioningZeroOut\"\n    }\n  },\n  \"136\": {\n    \"inputs\": {\n      \"filename_prefix\": \"ComfyUI\",\n      \"images\": [\n        \"8\",\n        0\n      ]\n    },\n    \"class_type\": \"SaveImage\",\n    \"_meta\": {\n      \"title\": \"Save Image\"\n    }\n  },\n  \"177\": {\n    \"inputs\": {\n      \"conditioning\": [\n        \"6\",\n        0\n      ],\n      \"latent\": [\n        \"124\",\n        0\n      ]\n    },\n    \"class_type\": \"ReferenceLatent\",\n    \"_meta\": {\n      \"title\": \"ReferenceLatent\"\n    }\n  },\n  \"189\": {\n    \"inputs\": {\n      \"image\": \"{{ $('uploadimage').item.json.name }}\"\n    },\n    \"class_type\": \"LoadImage\",\n    \"_meta\": {\n      \"title\": \"Load Image\"\n    }\n  }\n}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -660,
+        320
+      ],
+      "id": "0d36b07f-0cf7-48d3-ab18-c73c73977b07",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e9c9ee4d-8763-4c87-935e-c6e7c6dc21a8",
+              "name": "comfyui_baseurl",
+              "value": "http://192.168.3.113:8188/",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -480,
+        -480
+      ],
+      "id": "11d874d1-c068-4291-9d04-9edc6833ddd7",
+      "name": "base_config"
+    },
+    {
+      "parameters": {
+        "fileSelector": "E:\\\\n8nimg\\\\2025-06-24\\\\girl.jpg",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        -480
+      ],
+      "id": "f3a20356-1d47-4b67-9933-6f456f522460",
+      "name": "loadrawimg"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('base_config').item.json.comfyui_baseurl }}upload/image",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -40,
+        -480
+      ],
+      "id": "de2e24be-aa11-47b8-babd-a2a620e17c07",
+      "name": "uploadimage"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -280,
+        320
+      ],
+      "id": "1e7ecbc4-ff08-480f-a609-afdd9239452e",
+      "name": "Wait",
+      "webhookId": "3ce2a198-110c-431e-a514-bf20ad31c715"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d26298fb-e4a1-447f-9ee4-ed459963298b",
+              "leftValue": "={{ $('query_status').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        100,
+        320
+      ],
+      "id": "0fbe9ccc-e5e4-49e2-b66e-8ab4691c3a71",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        280,
+        480
+      ],
+      "id": "cd6fb245-2ac6-4c2e-ab44-f6ba48b83c93",
+      "name": "Wait1",
+      "webhookId": "c81a9082-0212-4fec-a882-313a65240319"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('base_config').item.json.comfyui_baseurl }}prompt ",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "prompt",
+              "value": "={{ $json.json_workflow }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -460,
+        320
+      ],
+      "id": "04d99dbb-e69c-45ca-a83f-a79166da515a",
+      "name": "comfyui_kontext"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('base_config').item.json.comfyui_baseurl }}history/{{ $('comfyui_kontext').item.json.prompt_id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -100,
+        320
+      ],
+      "id": "64937f3d-9e1a-448e-ab3d-daad2ba62904",
+      "name": "query_status"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=E:/n8nvideos/2025-06-24/{{ $json[$('comfyui_kontext').item.json.prompt_id].outputs[\"136\"].images[0].filename }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        420,
+        320
+      ],
+      "id": "7de15b08-ab39-44d4-94bf-08fe661ca37e",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('base_config').item.json.comfyui_baseurl }}view?filename={{ $('query_status').item.json[$('comfyui_kontext').item.json.prompt_id].outputs[\"136\"].images[0].filename }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        320
+      ],
+      "id": "73807b1b-6caf-4590-b73e-aaf7204f2956",
+      "name": "downloadimage"
+    },
+    {
+      "parameters": {
+        "content": "## 生成图片",
+        "height": 460,
+        "width": 1400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -720,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "07e5e4f1-3bf6-4efe-9e1b-f753d9322568",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const result = []\nfor (let i = 0; i < $input.all().length - 1; i++) {\n  const pair = [$input.all()[i], $input.all()[i+1]];\n  result.push(pair)\n}\nreturn [{\n  json: {\n    processedArray: result\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        60
+      ],
+      "id": "8b0b83f6-22c7-4870-83b9-dd30906f7fcd",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('base_config1').item.json.comfyui_baseurl }}upload/image",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1800,
+        60
+      ],
+      "id": "d2e1e5b6-eea1-49ab-b233-279cd394e158",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6417c30f-5a6d-4d3e-aea6-1c98fe43635e",
+              "name": "i2vworkflow_json_str",
+              "value": "={\n  \"1\": {\n    \"inputs\": {\n      \"model\": \"wan-kijia\\\\\\\\Wan2_1-T2V-14B_fp8_e4m3fn.safetensors\",\n      \"base_precision\": \"fp16\",\n      \"quantization\": \"fp8_e4m3fn\",\n      \"load_device\": \"offload_device\",\n      \"attention_mode\": \"sageattn\",\n      \"block_swap_args\": [\n        \"51\",\n        0\n      ],\n      \"lora\": [\n        \"130\",\n        0\n      ],\n      \"vace_model\": [\n        \"55\",\n        0\n      ]\n    },\n    \"class_type\": \"WanVideoModelLoader\",\n    \"_meta\": {\n      \"title\": \"WanVideo Model Loader\"\n    }\n  },\n  \"2\": {\n    \"inputs\": {\n      \"model_name\": \"wan-kijia\\\\\\\\umt5-xxl-enc-bf16.safetensors\",\n      \"precision\": \"bf16\",\n      \"load_device\": \"offload_device\",\n      \"quantization\": \"disabled\"\n    },\n    \"class_type\": \"LoadWanVideoT5TextEncoder\",\n    \"_meta\": {\n      \"title\": \"Load WanVideo T5 TextEncoder\"\n    }\n  },\n  \"3\": {\n    \"inputs\": {\n      \"model_name\": \"wan-kijia\\\\\\\\Wan2_1_VAE_bf16.safetensors\",\n      \"precision\": \"bf16\"\n    },\n    \"class_type\": \"WanVideoVAELoader\",\n    \"_meta\": {\n      \"title\": \"WanVideo VAE Loader\"\n    }\n  },\n  \"4\": {\n    \"inputs\": {\n      \"steps\": 8,\n      \"cfg\": 1.0000000000000002,\n      \"shift\": 5.000000000000001,\n      \"seed\": 278403218069430,\n      \"force_offload\": true,\n      \"scheduler\": \"lcm\",\n      \"riflex_freq_index\": 0,\n      \"denoise_strength\": 1,\n      \"batched_cfg\": \"\",\n      \"rope_function\": \"comfy\",\n      \"model\": [\n        \"1\",\n        0\n      ],\n      \"image_embeds\": [\n        \"7\",\n        0\n      ],\n      \"text_embeds\": [\n        \"6\",\n        0\n      ],\n      \"slg_args\": [\n        \"58\",\n        0\n      ],\n      \"experimental_args\": [\n        \"56\",\n        0\n      ]\n    },\n    \"class_type\": \"WanVideoSampler\",\n    \"_meta\": {\n      \"title\": \"WanVideo Sampler\"\n    }\n  },\n  \"6\": {\n    \"inputs\": {\n      \"positive_prompt\": \"\",\n      \"negative_prompt\": \"色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走\",\n      \"force_offload\": true,\n      \"t5\": [\n        \"2\",\n        0\n      ]\n    },\n    \"class_type\": \"WanVideoTextEncode\",\n    \"_meta\": {\n      \"title\": \"WanVideo TextEncode\"\n    }\n  },\n  \"7\": {\n    \"inputs\": {\n      \"width\": [\n        \"112\",\n        0\n      ],\n      \"height\": [\n        \"113\",\n        0\n      ],\n      \"num_frames\": [\n        \"114\",\n        0\n      ],\n      \"strength\": 1.0000000000000002,\n      \"vace_start_percent\": 0,\n      \"vace_end_percent\": 1,\n      \"tiled_vae\": false,\n      \"vae\": [\n        \"3\",\n        0\n      ],\n      \"input_frames\": [\n        \"105\",\n        0\n      ],\n      \"ref_images\": [\n        \"108\",\n        0\n      ],\n      \"input_masks\": [\n        \"105\",\n        1\n      ]\n    },\n    \"class_type\": \"WanVideoVACEEncode\",\n    \"_meta\": {\n      \"title\": \"WanVideo VACE Encode\"\n    }\n  },\n  \"29\": {\n    \"inputs\": {\n      \"enable_vae_tiling\": false,\n      \"tile_x\": 272,\n      \"tile_y\": 272,\n      \"tile_stride_x\": 144,\n      \"tile_stride_y\": 128,\n      \"vae\": [\n        \"3\",\n        0\n      ],\n      \"samples\": [\n        \"4\",\n        0\n      ]\n    },\n    \"class_type\": \"WanVideoDecode\",\n    \"_meta\": {\n      \"title\": \"WanVideo Decode\"\n    }\n  },\n  \"30\": {\n    \"inputs\": {\n      \"frame_rate\": 16,\n      \"loop_count\": 0,\n      \"filename_prefix\": \"AnimateDiff\",\n      \"format\": \"video/h264-mp4\",\n      \"pix_fmt\": \"yuv420p\",\n      \"crf\": 19,\n      \"save_metadata\": true,\n      \"trim_to_audio\": false,\n      \"pingpong\": false,\n      \"save_output\": true,\n      \"images\": [\n        \"29\",\n        0\n      ]\n    },\n    \"class_type\": \"VHS_VideoCombine\",\n    \"_meta\": {\n      \"title\": \"Video Combine 🎥🅥🅗🅢\"\n    }\n  },\n  \"51\": {\n    \"inputs\": {\n      \"blocks_to_swap\": 30,\n      \"offload_img_emb\": false,\n      \"offload_txt_emb\": false,\n      \"use_non_blocking\": true,\n      \"vace_blocks_to_swap\": 15\n    },\n    \"class_type\": \"WanVideoBlockSwap\",\n    \"_meta\": {\n      \"title\": \"WanVideo BlockSwap\"\n    }\n  },\n  \"55\": {\n    \"inputs\": {\n      \"vace_model\": \"Wan2_1-VACE_module_14B_fp8_e4m3fn.safetensors\"\n    },\n    \"class_type\": \"WanVideoVACEModelSelect\",\n    \"_meta\": {\n      \"title\": \"WanVideo VACE Model Select\"\n    }\n  },\n  \"56\": {\n    \"inputs\": {\n      \"video_attention_split_steps\": \"\",\n      \"cfg_zero_star\": true,\n      \"use_zero_init\": false,\n      \"zero_star_steps\": 0,\n      \"use_fresca\": false,\n      \"fresca_scale_low\": 1,\n      \"fresca_scale_high\": 1.25,\n      \"fresca_freq_cutoff\": 20\n    },\n    \"class_type\": \"WanVideoExperimentalArgs\",\n    \"_meta\": {\n      \"title\": \"WanVideo Experimental Args\"\n    }\n  },\n  \"58\": {\n    \"inputs\": {\n      \"blocks\": \"9,10\",\n      \"start_percent\": 0.20000000000000004,\n      \"end_percent\": 0.5000000000000001\n    },\n    \"class_type\": \"WanVideoSLG\",\n    \"_meta\": {\n      \"title\": \"WanVideo SLG\"\n    }\n  },\n  \"105\": {\n    \"inputs\": {\n      \"num_frames\": [\n        \"114\",\n        0\n      ],\n      \"empty_frame_level\": 0.5,\n      \"start_image\": [\n        \"108\",\n        0\n      ],\n      \"end_image\": [\n        \"132\",\n        0\n      ]\n    },\n    \"class_type\": \"WanVideoVACEStartToEndFrame\",\n    \"_meta\": {\n      \"title\": \"WanVideo VACE Start To End Frame\"\n    }\n  },\n  \"106\": {\n    \"inputs\": {\n      \"image\": \"{{ $json['0'].json.name }}\"\n    },\n    \"class_type\": \"LoadImage\",\n    \"_meta\": {\n      \"title\": \"startimage\"\n    }\n  },\n  \"108\": {\n    \"inputs\": {\n      \"width\": [\n        \"112\",\n        0\n      ],\n      \"height\": [\n        \"113\",\n        0\n      ],\n      \"upscale_method\": \"lanczos\",\n      \"keep_proportion\": \"crop\",\n      \"pad_color\": \"0, 0, 0\",\n      \"crop_position\": \"center\",\n      \"divisible_by\": 2,\n      \"image\": [\n        \"106\",\n        0\n      ]\n    },\n    \"class_type\": \"ImageResizeKJv2\",\n    \"_meta\": {\n      \"title\": \"Resize Image v2\"\n    }\n  },\n  \"112\": {\n    \"inputs\": {\n      \"value\": 480\n    },\n    \"class_type\": \"INTConstant\",\n    \"_meta\": {\n      \"title\": \"INT Constant\"\n    }\n  },\n  \"113\": {\n    \"inputs\": {\n      \"value\": 832\n    },\n    \"class_type\": \"INTConstant\",\n    \"_meta\": {\n      \"title\": \"INT Constant\"\n    }\n  },\n  \"114\": {\n    \"inputs\": {\n      \"value\": 49\n    },\n    \"class_type\": \"INTConstant\",\n    \"_meta\": {\n      \"title\": \"INT Constant\"\n    }\n  },\n  \"130\": {\n    \"inputs\": {\n      \"lora\": \"Wan21_T2V_14B_lightx2v_cfg_step_distill_lora_rank32.safetensors\",\n      \"strength\": 1,\n      \"low_mem_load\": false\n    },\n    \"class_type\": \"WanVideoLoraSelect\",\n    \"_meta\": {\n      \"title\": \"WanVideo Lora Select\"\n    }\n  },\n  \"131\": {\n    \"inputs\": {\n      \"image\": \"{{ $json['1'].json.name }}\"\n    },\n    \"class_type\": \"LoadImage\",\n    \"_meta\": {\n      \"title\": \"endimage\"\n    }\n  },\n  \"132\": {\n    \"inputs\": {\n      \"width\": [\n        \"112\",\n        0\n      ],\n      \"height\": [\n        \"113\",\n        0\n      ],\n      \"upscale_method\": \"lanczos\",\n      \"keep_proportion\": \"crop\",\n      \"pad_color\": \"0, 0, 0\",\n      \"crop_position\": \"center\",\n      \"divisible_by\": 2,\n      \"image\": [\n        \"131\",\n        0\n      ]\n    },\n    \"class_type\": \"ImageResizeKJv2\",\n    \"_meta\": {\n      \"title\": \"Resize Image v2\"\n    }\n  }\n}",
+              "type": "object"
+            },
+            {
+              "id": "307cc9cd-dc6f-48e7-9885-0b0a8cc34f9f",
+              "name": "comfyui_baseurl",
+              "value": "http://192.168.3.113:8188/",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1380,
+        380
+      ],
+      "id": "d7d4cfae-ecb2-466b-8c7d-9ca20ae9c459",
+      "name": "setworkflow"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e9c9ee4d-8763-4c87-935e-c6e7c6dc21a8",
+              "name": "comfyui_baseurl",
+              "value": "http://192.168.3.113:8188/",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1360,
+        60
+      ],
+      "id": "33e6d86f-2668-4123-b9eb-c98623c9f653",
+      "name": "base_config1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.comfyui_baseurl }}prompt",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "prompt",
+              "value": "={{ $json.i2vworkflow_json_str }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1620,
+        380
+      ],
+      "id": "7274608a-dec9-4924-afe1-784ebf414662",
+      "name": "comfyui_i2v"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=E:/n8nvideos/2025-06-28/{{ $json[$('comfyui_i2v').item.json.prompt_id].outputs[\"30\"].gifs[0].filename }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        380
+      ],
+      "id": "a19f5880-b2d5-4ef1-bfb4-a35a7dcdb4a4",
+      "name": "Read/Write Files from Disk1"
+    },
+    {
+      "parameters": {
+        "fileSelector": "=E:/n8nvideos/2025-06-24/*.png",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        60
+      ],
+      "id": "2571ce14-e067-4c5b-b5ef-53854b38be66",
+      "name": "Read/Write Files from Disk2"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "processedArray",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        60
+      ],
+      "id": "f88ae4bf-390f-4daf-8471-cea885c34a05",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1140,
+        360
+      ],
+      "id": "89f6132d-4594-4505-8ad8-d232802e3353",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "content": "## 上传图片 ",
+        "height": 260,
+        "width": 1300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1100,
+        -20
+      ],
+      "typeVersion": 1,
+      "id": "65a12afc-d154-4700-a68b-c0bfdf9d08bd",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d26298fb-e4a1-447f-9ee4-ed459963298b",
+              "leftValue": "={{ $('query_status1').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2240,
+        380
+      ],
+      "id": "ce0c4a9e-dda0-49ed-a1e9-490b5a5d03a5",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2420,
+        540
+      ],
+      "id": "258af1b5-47c6-498d-97a9-77e15e3444c8",
+      "name": "Wait2",
+      "webhookId": "c81a9082-0212-4fec-a882-313a65240319"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('setworkflow').item.json.comfyui_baseurl }}history/{{ $('comfyui_i2v').item.json.prompt_id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2040,
+        380
+      ],
+      "id": "6f90adbc-5ac5-4ed4-a956-ffe77757094f",
+      "name": "query_status1"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('setworkflow').item.json.comfyui_baseurl }}view?filename={{ $('query_status1').item.json[$('comfyui_i2v').item.json.prompt_id].outputs[\"30\"].gifs[0].filename }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2400,
+        380
+      ],
+      "id": "ce9d02da-c803-4d2d-9432-dd5d4b71208b",
+      "name": "downloadimage1"
+    },
+    {
+      "parameters": {
+        "amount": 190
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1860,
+        380
+      ],
+      "id": "c4c77482-0b1f-47ec-ad80-54dce7560aec",
+      "name": "Wait3",
+      "webhookId": "3ce2a198-110c-431e-a514-bf20ad31c715"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        720,
+        20
+      ],
+      "id": "0dd96df8-e565-418c-a92b-497a1a6c9c03",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "content": "## 生成视频",
+        "height": 460,
+        "width": 1640,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1080,
+        300
+      ],
+      "typeVersion": 1,
+      "id": "95b70294-11c6-4a0b-b166-0d32e29731e7",
+      "name": "Sticky Note4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "base_config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "base_config": {
+      "main": [
+        [
+          {
+            "node": "loadrawimg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "loadrawimg": {
+      "main": [
+        [
+          {
+            "node": "uploadimage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "uploadimage": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "query_status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "downloadimage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "query_status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "comfyui_kontext",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "comfyui_kontext": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "query_status": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "downloadimage": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setworkflow": {
+      "main": [
+        [
+          {
+            "node": "comfyui_i2v",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "base_config1": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "comfyui_i2v": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "setworkflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "downloadimage1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "query_status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "query_status1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "downloadimage1": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "query_status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "base_config1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b9c80bfd-56ec-4e05-a640-81de0f487a58",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dbb557eb5ae3510a5898c9511ff91e6c09ed7d9e7db118480047d8fe9edfc877"
+  },
+  "id": "sPjlXAa8ggUezTCG",
+  "tags": []
+}
