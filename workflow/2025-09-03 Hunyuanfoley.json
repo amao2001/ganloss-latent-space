@@ -1,0 +1,595 @@
+{
+  "id": "752ba914-2e2c-4248-b12b-8c55b8f7a865",
+  "revision": 0,
+  "last_node_id": 14,
+  "last_link_id": 28,
+  "nodes": [
+    {
+      "id": 2,
+      "type": "VHS_LoadVideo",
+      "pos": [
+        -319.6053466796875,
+        54.02029037475586
+      ],
+      "size": [
+        410,
+        549
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            8,
+            23
+          ]
+        },
+        {
+          "name": "frame_count",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        },
+        {
+          "name": "video_info",
+          "type": "VHS_VIDEOINFO",
+          "slot_index": 3,
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "1.7.4",
+        "Node name for S&R": "VHS_LoadVideo"
+      },
+      "widgets_values": {
+        "video": "AnimateDiff_00001_yuusq_1756808477.mp4",
+        "force_rate": 24,
+        "custom_width": 0,
+        "custom_height": 0,
+        "frame_load_cap": 0,
+        "skip_first_frames": 0,
+        "select_every_nth": 1,
+        "format": "AnimateDiff",
+        "choose video to upload": "image",
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00001_yuusq_1756808477.mp4",
+            "type": "input",
+            "format": "video/mp4",
+            "force_rate": 24,
+            "custom_width": 0,
+            "custom_height": 0,
+            "frame_load_cap": 0,
+            "skip_first_frames": 0,
+            "select_every_nth": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": "VHS_VideoInfo",
+      "pos": [
+        165.6194610595703,
+        20.971920013427734
+      ],
+      "size": [
+        260,
+        206
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video_info",
+          "type": "VHS_VIDEOINFO",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "source_fps🟨",
+          "type": "FLOAT",
+          "links": null
+        },
+        {
+          "name": "source_frame_count🟨",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "source_duration🟨",
+          "type": "FLOAT",
+          "links": [
+            26
+          ]
+        },
+        {
+          "name": "source_width🟨",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "source_height🟨",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "loaded_fps🟦",
+          "type": "FLOAT",
+          "links": [
+            27,
+            28
+          ]
+        },
+        {
+          "name": "loaded_frame_count🟦",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "loaded_duration🟦",
+          "type": "FLOAT",
+          "links": null
+        },
+        {
+          "name": "loaded_width🟦",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "loaded_height🟦",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "1.7.4",
+        "Node name for S&R": "VHS_VideoInfo"
+      },
+      "widgets_values": {}
+    },
+    {
+      "id": 5,
+      "type": "PreviewAudio",
+      "pos": [
+        1038.4400634765625,
+        -260.4157409667969
+      ],
+      "size": [
+        300,
+        88
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 25
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.52",
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 6,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1027.1097412109375,
+        -112.38322448730469
+      ],
+      "size": [
+        650,
+        711.4615478515625
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 8
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 24
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        },
+        {
+          "name": "frame_rate",
+          "type": "FLOAT",
+          "widget": {
+            "name": "frame_rate"
+          },
+          "link": 28
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "1.7.4",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "HunyuanFoley",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "HunyuanFoley_00013-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "HunyuanFoley_00013.png",
+            "fullpath": "D:\\ComfyUI\\output\\HunyuanFoley_00013-audio.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 10,
+      "type": "HunyuanModelLoader",
+      "pos": [
+        -307.2701416015625,
+        -299.93536376953125
+      ],
+      "size": [
+        408.1220397949219,
+        106
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "HUNYUAN_MODEL",
+          "type": "HUNYUAN_MODEL",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "Comfyui-HunyuanFoley",
+        "ver": "ca2cf7ab353d41fe4b515382d4ce459da5a83da7",
+        "Node name for S&R": "HunyuanModelLoader",
+        "aux_id": "aistudynow/Comfyui_HunyuanFoley"
+      },
+      "widgets_values": [
+        "hunyuanvideo_foley.pth",
+        "bf16",
+        "fp8_e4m3fn"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "HunyuanDependenciesLoader",
+      "pos": [
+        -313.1123352050781,
+        -113.78512573242188
+      ],
+      "size": [
+        414.236572265625,
+        104.12643432617188
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "HUNYUAN_DEPS",
+          "type": "HUNYUAN_DEPS",
+          "links": [
+            22
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "Comfyui-HunyuanFoley",
+        "ver": "ca2cf7ab353d41fe4b515382d4ce459da5a83da7",
+        "Node name for S&R": "HunyuanDependenciesLoader",
+        "aux_id": "aistudynow/Comfyui_HunyuanFoley"
+      },
+      "widgets_values": [
+        "vae_128d_48k.pth",
+        "synchformer_state_dict.pth"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "HunyuanFoleyTorchCompile",
+      "pos": [
+        156.4814910888672,
+        -259.5658264160156
+      ],
+      "size": [
+        299.0859375,
+        154
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "hunyuan_model",
+          "type": "HUNYUAN_MODEL",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "HUNYUAN_MODEL",
+          "type": "HUNYUAN_MODEL",
+          "links": [
+            21
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "Comfyui-HunyuanFoley",
+        "ver": "ca2cf7ab353d41fe4b515382d4ce459da5a83da7",
+        "Node name for S&R": "HunyuanFoleyTorchCompile",
+        "aux_id": "aistudynow/Comfyui_HunyuanFoley"
+      },
+      "widgets_values": [
+        "inductor",
+        false,
+        "default",
+        false,
+        64
+      ]
+    },
+    {
+      "id": 14,
+      "type": "HunyuanFoleySampler",
+      "pos": [
+        525.57275390625,
+        -244.79351806640625
+      ],
+      "size": [
+        468.2758483886719,
+        461.2183837890625
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "hunyuan_model",
+          "type": "HUNYUAN_MODEL",
+          "link": 21
+        },
+        {
+          "name": "hunyuan_deps",
+          "type": "HUNYUAN_DEPS",
+          "link": 22
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 23
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "widget": {
+            "name": "fps"
+          },
+          "link": 27
+        },
+        {
+          "name": "duration",
+          "type": "FLOAT",
+          "widget": {
+            "name": "duration"
+          },
+          "link": 26
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            24,
+            25
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "Comfyui-HunyuanFoley",
+        "ver": "ca2cf7ab353d41fe4b515382d4ce459da5a83da7",
+        "Node name for S&R": "HunyuanFoleySampler",
+        "aux_id": "aistudynow/Comfyui_HunyuanFoley"
+      },
+      "widgets_values": [
+        24,
+        5,
+        "Two female warriors are locked in a fight to the death. Their weapons clash, the crowd roars, and torches crackle.",
+        "noisy",
+        4.5,
+        50,
+        "euler",
+        1,
+        557708157637699,
+        "randomize",
+        true
+      ]
+    }
+  ],
+  "links": [
+    [
+      4,
+      2,
+      3,
+      3,
+      0,
+      "VHS_VIDEOINFO"
+    ],
+    [
+      8,
+      2,
+      0,
+      6,
+      0,
+      "IMAGE"
+    ],
+    [
+      15,
+      10,
+      0,
+      12,
+      0,
+      "HUNYUAN_MODEL"
+    ],
+    [
+      21,
+      12,
+      0,
+      14,
+      0,
+      "HUNYUAN_MODEL"
+    ],
+    [
+      22,
+      11,
+      0,
+      14,
+      1,
+      "HUNYUAN_DEPS"
+    ],
+    [
+      23,
+      2,
+      0,
+      14,
+      2,
+      "IMAGE"
+    ],
+    [
+      24,
+      14,
+      0,
+      6,
+      1,
+      "AUDIO"
+    ],
+    [
+      25,
+      14,
+      0,
+      5,
+      0,
+      "AUDIO"
+    ],
+    [
+      26,
+      3,
+      2,
+      14,
+      4,
+      "FLOAT"
+    ],
+    [
+      27,
+      3,
+      5,
+      14,
+      3,
+      "FLOAT"
+    ],
+    [
+      28,
+      3,
+      5,
+      6,
+      4,
+      "FLOAT"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.4058614207824712,
+      "offset": [
+        835.8292432583958,
+        817.2520875716729
+      ]
+    },
+    "frontendVersion": "1.25.11",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
