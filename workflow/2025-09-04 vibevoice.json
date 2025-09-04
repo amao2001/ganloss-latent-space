@@ -1,0 +1,383 @@
+{
+  "id": "eda3b893-df99-453d-9995-0308ccb91e3c",
+  "revision": 0,
+  "last_node_id": 19,
+  "last_link_id": 13,
+  "nodes": [
+    {
+      "id": 17,
+      "type": "PreviewAudio",
+      "pos": [
+        1728.388916015625,
+        187.4069061279297
+      ],
+      "size": [
+        270,
+        88
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 9
+        },
+        {
+          "label": "audioUI",
+          "name": "audioUI",
+          "type": "AUDIO_UI",
+          "widget": {
+            "name": "audioUI"
+          }
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewAudio",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 19,
+      "type": "LoadAudio",
+      "pos": [
+        650.9016723632812,
+        210.75205993652344
+      ],
+      "size": [
+        274.080078125,
+        136
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "COMBO",
+          "widget": {
+            "name": "audio"
+          }
+        },
+        {
+          "label": "audioUI",
+          "name": "audioUI",
+          "type": "AUDIO_UI",
+          "widget": {
+            "name": "audioUI"
+          }
+        },
+        {
+          "label": "upload",
+          "name": "upload",
+          "type": "AUDIOUPLOAD",
+          "widget": {
+            "name": "upload"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "AUDIO",
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadAudio",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "0f1888cee4e824e70faae9fffca6ec46f531d73a3dd0d21f926fb7a150d2094c.wav",
+        null,
+        null
+      ]
+    },
+    {
+      "id": 15,
+      "type": "LoadAudio",
+      "pos": [
+        654.1891479492188,
+        402.4651794433594
+      ],
+      "size": [
+        274.080078125,
+        136
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "COMBO",
+          "widget": {
+            "name": "audio"
+          }
+        },
+        {
+          "label": "audioUI",
+          "name": "audioUI",
+          "type": "AUDIO_UI",
+          "widget": {
+            "name": "audioUI"
+          }
+        },
+        {
+          "label": "upload",
+          "name": "upload",
+          "type": "AUDIOUPLOAD",
+          "widget": {
+            "name": "upload"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "AUDIO",
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadAudio",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "a3935e39adcbe9c96fb95ef385a2c9abde973fd4a6bf5cffc3c702db728f8a02.wav",
+        null,
+        null
+      ]
+    },
+    {
+      "id": 14,
+      "type": "VibeVoiceTTS",
+      "pos": [
+        998.6034545898438,
+        188.15029907226562
+      ],
+      "size": [
+        693.5736083984375,
+        667.2072143554688
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "speaker_1_voice",
+          "name": "speaker_1_voice",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 13
+        },
+        {
+          "label": "speaker_2_voice",
+          "name": "speaker_2_voice",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 12
+        },
+        {
+          "label": "speaker_3_voice",
+          "name": "speaker_3_voice",
+          "shape": 7,
+          "type": "AUDIO"
+        },
+        {
+          "label": "speaker_4_voice",
+          "name": "speaker_4_voice",
+          "shape": 7,
+          "type": "AUDIO"
+        },
+        {
+          "label": "model_name",
+          "name": "model_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "model_name"
+          }
+        },
+        {
+          "label": "text",
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          }
+        },
+        {
+          "label": "quantize_llm_4bit",
+          "name": "quantize_llm_4bit",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "quantize_llm_4bit"
+          }
+        },
+        {
+          "label": "attention_mode",
+          "name": "attention_mode",
+          "type": "COMBO",
+          "widget": {
+            "name": "attention_mode"
+          }
+        },
+        {
+          "label": "cfg_scale",
+          "name": "cfg_scale",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg_scale"
+          }
+        },
+        {
+          "label": "inference_steps",
+          "name": "inference_steps",
+          "type": "INT",
+          "widget": {
+            "name": "inference_steps"
+          }
+        },
+        {
+          "label": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          }
+        },
+        {
+          "label": "do_sample",
+          "name": "do_sample",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "do_sample"
+          }
+        },
+        {
+          "label": "temperature",
+          "name": "temperature",
+          "type": "FLOAT",
+          "widget": {
+            "name": "temperature"
+          }
+        },
+        {
+          "label": "top_p",
+          "name": "top_p",
+          "type": "FLOAT",
+          "widget": {
+            "name": "top_p"
+          }
+        },
+        {
+          "label": "top_k",
+          "name": "top_k",
+          "type": "INT",
+          "widget": {
+            "name": "top_k"
+          }
+        },
+        {
+          "label": "force_offload",
+          "name": "force_offload",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "force_offload"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "AUDIO",
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VibeVoiceTTS",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "VibeVoice-1.5B",
+        "Speaker 1: 不是，我真的不明白，我们为什么还要讨论这个话题？答案已经很明显了啊！薯条才是快餐界的绝对王者，毫无疑问！你想想看，那种外表金黄酥脆，内里柔软绵密的完美口感，咬下去“咔嚓”一声……那是艺术！而且薯条的包容性有多强？它可以搭配番茄酱、蛋黄酱、芝士酱，甚至是冰淇淋！炸鸡能做到吗？它太霸道，太单一了！\nSpeaker 2: 哇，等一下。艺术？你管一根美化过的土豆条叫‘艺术’？太荒谬了。炸鸡才是真正的杰作。它是一种完整的感官体验。你有酥脆的外皮，里面是多汁鲜嫩的鸡肉，还有香料和草药混合出的复杂风味……它是一顿正餐！分量十足！薯条不过是个配菜。它们只是开场表演。炸鸡才是主菜，是压轴大戏。薯条需要酱料才变得有趣；而一块完美的炸鸡，除了它本身什么都不需要。",
+        false,
+        "sdpa",
+        1.3,
+        10,
+        997573396881122,
+        "randomize",
+        true,
+        0.95,
+        0.95,
+        0,
+        true
+      ]
+    }
+  ],
+  "links": [
+    [
+      9,
+      14,
+      0,
+      17,
+      0,
+      "AUDIO"
+    ],
+    [
+      12,
+      15,
+      0,
+      14,
+      1,
+      "AUDIO"
+    ],
+    [
+      13,
+      19,
+      0,
+      14,
+      0,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "links_added_by_ue": [],
+    "ue_links": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "ds": {
+      "scale": 0.7247295000000004,
+      "offset": [
+        -521.2987689588484,
+        -157.7868852140482
+      ]
+    },
+    "frontendVersion": "1.23.0",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
