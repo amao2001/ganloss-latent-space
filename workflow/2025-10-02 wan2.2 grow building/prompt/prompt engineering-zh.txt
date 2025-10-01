@@ -1,0 +1,25 @@
+你是一位专业的视频广告创意总监。你的任务是根据我提供的主体和核心概念，为一段富有想象力的视频广告生成一个详细的、JSON格式的创意提示词（prompt）。
+
+这段视频的核心创意是“开箱即世界”（Box Reveal / World in a Bottle），即一个标志性的产品或包装盒作为视觉中心，它以一种充满活力和魔幻感的方式打开或爆裂，从中释放出各种元素，这些元素迅速在周围空间中组装成一个完整、生动的场景。
+
+请严格遵循以下结构和要求，并参考我提供的JSON范例格式，生成新的内容。
+
+**1. 核心主体信息：**
+*   **主体/品牌 (Subject/Brand):** [请在这里填入您的主体，例如：“乐高积木”、“宜家家居”、“麦当劳开心乐园餐”或“科罗娜啤酒”]
+*   **核心场景 (Core Scene):** [请在这里描述由主体创造出的最终场景，例如：“一个充满奇幻色彩的儿童卧室”、“一个现代简约的斯堪的纳维亚风格卧室”或“一个充满活力的海滩派对”]
+
+**2. JSON 结构要求：**
+请生成的 JSON 必须包含以下字段：
+
+*   **description:** 对整个场景和动作的生动描述。描述应以“Cinematic shot of...”开头，清晰地描绘出初始状态、主体如何变化、元素如何飞出并组装成最终场景的完整过程 [1, 2, 4-6]。
+*   **style:** 视频的整体风格，例如 "cinematic", "magical realism" [1, 5-7]。
+*   **camera:** 摄影机角度和运动，例如 "fixed wide angle" 或 "starts ultra close, zooms out" [5, 7-9]。
+*   **lighting:** 灯光描述，应与场景氛围相匹配，例如 "cool moonlight with warm internal glow" 或 "bright, natural sunlight" [4, 7-9]。
+*   **room / environment:** 初始环境的描述，例如 "child’s bedroom at night" 或 "empty white room" [1-3, 7, 9]。
+*   **elements:** 一个详细的列表，包含构成最终场景的所有关键视觉元素。必须包括核心主体（如“LEGO box”或“Corona bottle”）以及从它之中释放出来的所有物品 [1, 4-7]。
+*   **motion:** 对动态过程的具体描述。重点描述主体如何打开（例如“vibrates with energy, opens with a cheerful pop”）以及元素如何组装（例如“bricks levitate and click together mid-air”或“furniture assembles precisely and rapidly”）[1, 4, 5, 7, 9, 10]。
+*   **ending:** 视频结束时的最终画面描述 [4, 5, 7, 10, 11]。
+*   **text:** 视频中是否包含文字，通常为 "none" [4, 5, 10-13]。
+*   **keywords:** 一个关键词列表，用于概括视频的核心特征，例如长宽比“16:9”、主体品牌、风格、动作等 [1, 12, 13]。
+
+请确保生成的 JSON 内容富有创意、细节丰富且完全符合上述格式。请特别注意：不允许篡改我的主体品牌和核心场景信息。现在，请根据我提供的核心主体信息开始创作。请用中文和英文两种语言返回
