@@ -1,0 +1,730 @@
+{
+  "id": "41460a90-14ea-468c-a130-645d5b75b3d9",
+  "revision": 0,
+  "last_node_id": 20,
+  "last_link_id": 24,
+  "nodes": [
+    {
+      "id": 10,
+      "type": "Note",
+      "pos": [
+        11437.56640625,
+        9216.5634765625
+      ],
+      "size": [
+        298.9935607910156,
+        119.54122924804688
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.2.2",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "3- Select attentiom method. Leave auto if unsure."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 14,
+      "type": "OviLatentDecoder",
+      "pos": [
+        11892.005859375,
+        9458.962890625
+      ],
+      "size": [
+        216.5081329345703,
+        66
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "components",
+          "type": "OVI_ENGINE",
+          "link": 8
+        },
+        {
+          "name": "video_latents",
+          "type": "OVI_VIDEO_LATENTS",
+          "link": 6
+        },
+        {
+          "name": "audio_latents",
+          "type": "OVI_AUDIO_LATENTS",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            9
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "snicolast/ComfyUI-Ovi",
+        "ver": "a5b84a611ce5c46c12a5e41114805d9c683db7fb",
+        "Node name for S&R": "OviLatentDecoder",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.2.2"
+        }
+      },
+      "widgets_values": [],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 9,
+      "type": "Note",
+      "pos": [
+        11077.2314453125,
+        9115.9697265625
+      ],
+      "size": [
+        309.14959716796875,
+        205.62564086914062
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.2.2",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "2- Select Text CLIP encoder and Wan Vae 2.2:\n\nVAE: wan2_2_vae.safetensors\nCLIP: umt5-xxl-enc-bf16.safetensors\n\nFor Low VRAM:\n\nCLIP: umt5-xxl-enc-fp8_e4m3fn.safetensors\n\nNote: Do Not use scaled versions. Please read readme for links."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 1,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        12208.5927734375,
+        9458.3583984375
+      ],
+      "size": [
+        495.8619689941406,
+        593.606201171875
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 9
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 10
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "1.7.7",
+        "Node name for S&R": "VHS_VideoCombine",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.2.2"
+        }
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "OVI",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": false,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "OVI_00004-audio.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "OVI_00004.png",
+            "fullpath": "/ComfyUI/temp/OVI_00004-audio.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": "Note",
+      "pos": [
+        10684.1318359375,
+        9191.3974609375
+      ],
+      "size": [
+        298.9935607910156,
+        119.54122924804688
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.2.2",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "1- Select base precission. \nBF16 - +32 Gb VRAM\nFP8 - 24 Gb VRAM \n\n(you can try with less VRAM, but not guaranteed it will work)."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 13,
+      "type": "Note",
+      "pos": [
+        10664.88671875,
+        10114.5341796875
+      ],
+      "size": [
+        361.1945495605469,
+        171.3753662109375
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.2.2",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "4- Optional: Connect an image to use i2v. If not connected, generator will fallback to t2v."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 11,
+      "type": "Note",
+      "pos": [
+        12243.0947265625,
+        9267.3876953125
+      ],
+      "size": [
+        398.2041320800781,
+        105.85700988769531
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.2.2",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "6- I am using VHS Combine from ComfyUI-VideoHelpers for final video + audio."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 18,
+      "type": "OviWanComponentLoader",
+      "pos": [
+        10993.623046875,
+        9383.654296875
+      ],
+      "size": [
+        345.1524963378906,
+        101.06668853759766
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "engine",
+          "type": "OVI_ENGINE",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "components",
+          "type": "OVI_ENGINE",
+          "links": [
+            17
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "snicolast/ComfyUI-Ovi",
+        "ver": "1e11db113dbab4a43f7a4783c6fb6c1a01cd661d",
+        "Node name for S&R": "OviWanComponentLoader"
+      },
+      "widgets_values": [
+        "wan2.2_vae.safetensors",
+        "umt5-xxl-enc-fp8_e4m3fn.safetensors"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "OviEngineLoader",
+      "pos": [
+        10704.84765625,
+        9371.8359375
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "engine",
+          "type": "OVI_ENGINE",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "snicolast/ComfyUI-Ovi",
+        "ver": "1e11db113dbab4a43f7a4783c6fb6c1a01cd661d",
+        "Node name for S&R": "OviEngineLoader"
+      },
+      "widgets_values": [
+        "Ovi-11B-fp8.safetensors",
+        true,
+        0
+      ]
+    },
+    {
+      "id": 19,
+      "type": "OviAttentionSelector",
+      "pos": [
+        11365.4814453125,
+        9396.9287109375
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "components",
+          "type": "OVI_ENGINE",
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "components",
+          "type": "OVI_ENGINE",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "snicolast/ComfyUI-Ovi",
+        "ver": "1e11db113dbab4a43f7a4783c6fb6c1a01cd661d",
+        "Node name for S&R": "OviAttentionSelector"
+      },
+      "widgets_values": [
+        "sage_attn"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "Note",
+      "pos": [
+        11366.7119140625,
+        10200.0078125
+      ],
+      "size": [
+        361.1945495605469,
+        171.3753662109375
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.2.2",
+          "input_ue_unconnectable": {}
+        }
+      },
+      "widgets_values": [
+        "5- Prompt + gen options. Default is from original repo. \n\nTry 20-25 steps. This means faster generation but less quality.\nFor better quality: 50 steps recommended.\n\nUse negative prompts to help the model understand what you do NOT want. :)"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 4,
+      "type": "LoadImage",
+      "pos": [
+        10460.2666015625,
+        9617.048828125
+      ],
+      "size": [
+        380.31866455078125,
+        437.37384033203125
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            21
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.62",
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.2.2"
+        }
+      },
+      "widgets_values": [
+        "ComfyUI_00001_usxgx_1760089314.png",
+        "image"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "ImageResizeKJv2",
+      "pos": [
+        10890.900390625,
+        9611.228515625
+      ],
+      "size": [
+        270,
+        336
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 21
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            24
+          ]
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "a6b867b63a29ca48ddb15c589e17a9f2d8530d57",
+        "Node name for S&R": "ImageResizeKJv2"
+      },
+      "widgets_values": [
+        960,
+        512,
+        "nearest-exact",
+        "crop",
+        "0, 0, 0",
+        "center",
+        2,
+        "cpu",
+        "<tr><td>Output: </td><td><b>1</b> x <b>960</b> x <b>512 | 5.62MB</b></td></tr>"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "OviVideoGenerator",
+      "pos": [
+        11324.9423828125,
+        9540.7373046875
+      ],
+      "size": [
+        411.1184387207031,
+        590.1102294921875
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "components",
+          "type": "OVI_ENGINE",
+          "link": 18
+        },
+        {
+          "name": "first_frame_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video_latents",
+          "type": "OVI_VIDEO_LATENTS",
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "audio_latents",
+          "type": "OVI_AUDIO_LATENTS",
+          "links": [
+            7
+          ]
+        },
+        {
+          "name": "components",
+          "type": "OVI_ENGINE",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "snicolast/ComfyUI-Ovi",
+        "ver": "343b8fc4b56bcc1a8297cd7a31306a9751a19992",
+        "Node name for S&R": "OviVideoGenerator",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.2.2"
+        }
+      },
+      "widgets_values": [
+        "the woman is singing <S>hello everyone<E>",
+        512,
+        960,
+        527132,
+        "randomize",
+        "unipc",
+        20,
+        5,
+        4,
+        3,
+        11,
+        "",
+        ""
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    }
+  ],
+  "links": [
+    [
+      6,
+      5,
+      0,
+      14,
+      1,
+      "OVI_VIDEO_LATENTS"
+    ],
+    [
+      7,
+      5,
+      1,
+      14,
+      2,
+      "OVI_AUDIO_LATENTS"
+    ],
+    [
+      8,
+      5,
+      2,
+      14,
+      0,
+      "OVI_ENGINE"
+    ],
+    [
+      9,
+      14,
+      0,
+      1,
+      0,
+      "IMAGE"
+    ],
+    [
+      10,
+      14,
+      1,
+      1,
+      1,
+      "AUDIO"
+    ],
+    [
+      15,
+      17,
+      0,
+      18,
+      0,
+      "OVI_ENGINE"
+    ],
+    [
+      17,
+      18,
+      0,
+      19,
+      0,
+      "OVI_ENGINE"
+    ],
+    [
+      18,
+      19,
+      0,
+      5,
+      0,
+      "OVI_ENGINE"
+    ],
+    [
+      21,
+      4,
+      0,
+      20,
+      0,
+      "IMAGE"
+    ],
+    [
+      24,
+      20,
+      0,
+      5,
+      1,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.45000000000001233,
+      "offset": [
+        -9944.89904124049,
+        -9167.40057389293
+      ]
+    },
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "frontendVersion": "1.27.10",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
