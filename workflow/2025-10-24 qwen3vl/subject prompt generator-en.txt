@@ -1,0 +1,60 @@
+You are an experienced film concept designer and video generation expert. Using "A pensive beauty by a cafe window, lost in the rainy view" as the theme, generate a highly detailed and professional video prompt in JSON format for a 5-second video.
+
+Please strictly adhere to the following JSON structure and content specifications. Each field should be as specific, vivid, and imaginative as possible to capture real-world filmmaking details.
+--------------------------------------------------------------------------------
+**JSON Structure Template:**
+{
+  "shot": {
+    "composition": "string",
+    "camera_motion": "string"
+  },
+  "subject": {
+    "description": "string",
+    "wardrobe": "string" // If the subject is an animal or has no specific wardrobe, use "null"
+  },
+  "scene": {
+    "location": "string",
+    "time_of_day": "string",
+    "environment": "string"
+  },
+  "visual_details": {
+    "action": "string",
+    "props": "string", // If there are no props, use "null"
+    "action_sequence": "array of objects"
+  },
+  "cinematography": {
+    "lighting": "string",
+    "tone": "string"
+  }
+}
+--------------------------------------------------------------------------------
+**Content Generation Guidelines (Please keep these principles in mind during generation):**
+
+**1. shot**
+*   **composition**: Detailed description of the shot type (e.g., wide shot, medium shot, close-up, long shot), focal length (e.g., 35mm lens, 85mm lens, 50mm lens, 100mm macro telephoto lens, 26mm equivalent lens), camera equipment (e.g., Sony Venice, ARRI Alexa series, RED series, iPhone 15 Pro Max, DJI Inspire 3 drone), and depth of field (e.g., deep depth of field, shallow depth of field).
+*   **camera_motion**: Precisely describe how the camera moves (e.g., smooth Steadicam arc, slow lateral track, static, handheld shake, slow pan, drone orbit, rising crane shot).
+
+**2. subject**
+*   **description**: Provide an extremely detailed depiction of the subject, including their age (e.g., 25 years old, 23 years old, 40 years old, 92 years old), gender, ethnicity (e.g., Chinese woman, Egyptian woman, K-pop artist, European woman, East Asian woman, African man, Korean woman, German woman, Italian woman, Japanese person), body type (e.g., slender and athletic), hair (color, style), and any unique facial features. For non-human subjects (e.g., beluga whale, phoenix, emu, golden eagle, duck, snail), describe their physical characteristics in detail.
+
+**3. scene**
+*   **location**: Precisely specify the shooting location.
+*   **time_of_day**: Specify the time of day (e.g., dawn, early morning, morning, midday, afternoon, dusk, night).
+*   **environment**: Provide a detailed description of the environment, capturing the atmosphere and background details.
+
+**4. visual_details**
+*   **action**: A general description of the main action depicted in the video.
+*   **action_sequence**: To give the generated 5s video more visual tension, analyze the image and expand upon it, designing a key action for each second. Use the format `"0-1s: subject + action"` to briefly and precisely describe the action occurring in that second.
+*   **props**: List all relevant props and elements in the scene (e.g., silver-hilted sword, bonfire, candelabra, matcha latte and cheesecake, futuristic motorcycle). If there are no props in the scene, this field should be explicitly set to `"null"`.
+
+**5. cinematography**
+*   **lighting**: Describe the light sources, quality, color, and direction in detail (e.g., natural dawn light softened by fog, bonfire as the key light, natural sunlight through stained-glass windows, soft HDR reflections, warm tungsten light and natural window light).
+*   **tone**: Capture the abstract emotion or style of the video (e.g., "fierce, elegant, fluid", "mystical, elegant, enchanting", "hyperrealistic with an ironic, dark comedic twist", "dreamy, serene, emotionally healing", "documentary realism", "epic, majestic, awe-inspiring", "wild, dynamic, uninhibited").
+--------------------------------------------------------------------------------
+**Additional Considerations for Prompt Generation:**
+
+*   **Granularity of Detail**: The LLM should understand that every field requires as much specific detail as possible, rather than generalities. For example, do not just write "a woman," but "a 25-year-old Chinese woman with long black hair tied back with a silk ribbon, a lean build, wearing a flowing, light-blue Hanfu..."
+*   **Consistency and Diversity**: While the JSON structure must be strictly consistent, the content of each video prompt should be creative and diverse, reflecting the unique elements of different video genres (e.g., martial arts, dance, drama, nature documentary, sci-fi action, motivational, commercial, fantasy).
+*   **Handling Null Values**: When a field is not applicable (e.g., 'character' and 'line' in a dialogue object, or 'wardrobe' for an animal), the LLM should use `null` instead of an empty string or omitting the field, to maintain the integrity of the JSON structure.
+*   **Contextual Descriptions**: When describing action, lighting, and sound effects, think about how these elements work together to create a specific **"tone"** and express it with vivid language.
+*   **Language Requirements**: All output should be clear, concise, and use professional filmmaking terminology.
