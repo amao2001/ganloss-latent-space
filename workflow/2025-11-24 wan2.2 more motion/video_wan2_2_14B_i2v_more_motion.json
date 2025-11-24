@@ -1,5 +1,5 @@
 {
-	"last_link_id":224,
+	"last_link_id":227,
 	"nodes":[
 		{
 			"outputs":[
@@ -43,7 +43,7 @@
 					
 				}
 			},
-			"order":53
+			"order":54
 		},
 		{
 			"outputs":[
@@ -87,7 +87,7 @@
 					
 				}
 			},
-			"order":54
+			"order":55
 		},
 		{
 			"outputs":[
@@ -186,7 +186,7 @@
 				},
 				"Node name for S&R":"ModelSamplingSD3"
 			},
-			"order":37
+			"order":38
 		},
 		{
 			"outputs":[
@@ -271,7 +271,7 @@
 					
 				}
 			},
-			"order":35
+			"order":36
 		},
 		{
 			"outputs":[
@@ -315,63 +315,7 @@
 					
 				}
 			},
-			"order":34
-		},
-		{
-			"mode":0,
-			"outputs":[
-				{
-					"name":"IMAGE",
-					"slot_index":0,
-					"links":[
-						182
-					],
-					"label":"IMAGE",
-					"type":"IMAGE",
-					"localized_name":"IMAGE"
-				}
-			],
-			"size":[
-				210,
-				46
-			],
-			"pos":[
-				1944.7801513671875,
-				-251.08189392089844
-			],
-			"widgets_values":[
-				
-			],
-			"inputs":[
-				{
-					"name":"samples",
-					"link":124,
-					"label":"samples",
-					"type":"LATENT",
-					"localized_name":"samples"
-				},
-				{
-					"name":"vae",
-					"link":160,
-					"label":"vae",
-					"type":"VAE",
-					"localized_name":"vae"
-				}
-			],
-			"flags":{
-				
-			},
-			"id":8,
-			"type":"VAEDecode",
-			"properties":{
-				"cnr_id":"comfy-core",
-				"ver":"0.3.45",
-				"widget_ue_connectable":{
-					
-				},
-				"Node name for S&R":"VAEDecode"
-			},
-			"order":55
+			"order":35
 		},
 		{
 			"outputs":[
@@ -541,7 +485,7 @@
 					
 				}
 			},
-			"order":36
+			"order":37
 		},
 		{
 			"outputs":[
@@ -719,7 +663,7 @@
 				},
 				"Node name for S&R":"WanVideoNAG"
 			},
-			"order":25
+			"order":26
 		},
 		{
 			"outputs":[
@@ -763,7 +707,7 @@
 					
 				}
 			},
-			"order":28
+			"order":29
 		},
 		{
 			"outputs":[
@@ -903,7 +847,7 @@
 				},
 				"Node name for S&R":"ModelSamplingSD3"
 			},
-			"order":24
+			"order":25
 		},
 		{
 			"outputs":[
@@ -1186,7 +1130,7 @@
 				},
 				"Node name for S&R":"KSamplerAdvanced"
 			},
-			"order":50
+			"order":51
 		},
 		{
 			"mode":0,
@@ -1345,7 +1289,7 @@
 				},
 				"Node name for S&R":"KSamplerAdvanced"
 			},
-			"order":43
+			"order":44
 		},
 		{
 			"outputs":[
@@ -1407,7 +1351,7 @@
 				},
 				"Node name for S&R":"CLIPTextEncode"
 			},
-			"order":52
+			"order":53
 		},
 		{
 			"outputs":[
@@ -1454,7 +1398,7 @@
 					
 				}
 			},
-			"order":40
+			"order":41
 		},
 		{
 			"outputs":[
@@ -1498,7 +1442,7 @@
 					
 				}
 			},
-			"order":30
+			"order":31
 		},
 		{
 			"outputs":[
@@ -1542,7 +1486,7 @@
 					
 				}
 			},
-			"order":29
+			"order":30
 		},
 		{
 			"mode":0,
@@ -1604,7 +1548,7 @@
 				},
 				"Node name for S&R":"CLIPVisionEncode"
 			},
-			"order":27
+			"order":28
 		},
 		{
 			"outputs":[
@@ -2017,7 +1961,7 @@
 				},
 				"Node name for S&R":"ImageResizeKJv2"
 			},
-			"order":31
+			"order":32
 		},
 		{
 			"mode":0,
@@ -2201,7 +2145,7 @@
 				},
 				"Node name for S&R":"CFGZeroStar"
 			},
-			"order":48
+			"order":49
 		},
 		{
 			"mode":0,
@@ -2258,7 +2202,7 @@
 				},
 				"Node name for S&R":"PathchSageAttentionKJ"
 			},
-			"order":49
+			"order":50
 		},
 		{
 			"mode":0,
@@ -2505,7 +2449,7 @@
 				},
 				"Node name for S&R":"CLIPTextEncode"
 			},
-			"order":26
+			"order":27
 		},
 		{
 			"outputs":[
@@ -2549,7 +2493,7 @@
 					
 				}
 			},
-			"order":56
+			"order":57
 		},
 		{
 			"outputs":[
@@ -2593,7 +2537,7 @@
 					
 				}
 			},
-			"order":38
+			"order":39
 		},
 		{
 			"outputs":[
@@ -2719,7 +2663,7 @@
 					
 				}
 			},
-			"order":44
+			"order":45
 		},
 		{
 			"outputs":[
@@ -2763,7 +2707,7 @@
 					
 				}
 			},
-			"order":45
+			"order":46
 		},
 		{
 			"outputs":[
@@ -2807,7 +2751,7 @@
 					
 				}
 			},
-			"order":46
+			"order":47
 		},
 		{
 			"mode":0,
@@ -2874,7 +2818,7 @@
 				},
 				"Node name for S&R":"LoraLoaderModelOnly"
 			},
-			"order":32
+			"order":33
 		},
 		{
 			"mode":0,
@@ -2941,7 +2885,7 @@
 				},
 				"Node name for S&R":"LoraLoaderModelOnly"
 			},
-			"order":33
+			"order":34
 		},
 		{
 			"mode":0,
@@ -3008,7 +2952,7 @@
 				},
 				"Node name for S&R":"LoraLoaderModelOnly"
 			},
-			"order":41
+			"order":42
 		},
 		{
 			"mode":0,
@@ -3075,7 +3019,7 @@
 				},
 				"Node name for S&R":"LoraLoaderModelOnly"
 			},
-			"order":42
+			"order":43
 		},
 		{
 			"mode":0,
@@ -3200,7 +3144,7 @@
 				},
 				"Node name for S&R":"AILab_QwenVL"
 			},
-			"order":47
+			"order":48
 		},
 		{
 			"mode":0,
@@ -3238,7 +3182,7 @@
 				},
 				"Node name for S&R":"PreviewAny"
 			},
-			"order":51
+			"order":52
 		},
 		{
 			"mode":0,
@@ -3384,7 +3328,147 @@
 				},
 				"Node name for S&R":"PainterI2V"
 			},
-			"order":39
+			"order":40
+		},
+		{
+			"mode":0,
+			"outputs":[
+				{
+					"name":"IMAGE",
+					"slot_index":0,
+					"links":[
+						226
+					],
+					"label":"IMAGE",
+					"type":"IMAGE",
+					"localized_name":"IMAGE"
+				}
+			],
+			"size":[
+				210,
+				46
+			],
+			"pos":[
+				1944.7801513671875,
+				-251.08189392089844
+			],
+			"widgets_values":[
+				
+			],
+			"inputs":[
+				{
+					"name":"samples",
+					"link":124,
+					"label":"samples",
+					"type":"LATENT",
+					"localized_name":"samples"
+				},
+				{
+					"name":"vae",
+					"link":160,
+					"label":"vae",
+					"type":"VAE",
+					"localized_name":"vae"
+				}
+			],
+			"flags":{
+				
+			},
+			"id":8,
+			"type":"VAEDecode",
+			"properties":{
+				"cnr_id":"comfy-core",
+				"ver":"0.3.45",
+				"widget_ue_connectable":{
+					
+				},
+				"Node name for S&R":"VAEDecode"
+			},
+			"order":56
+		},
+		{
+			"mode":0,
+			"outputs":[
+				{
+					"name":"image",
+					"links":[
+						227
+					],
+					"label":"image",
+					"type":"IMAGE",
+					"localized_name":"image"
+				}
+			],
+			"size":[
+				221.64907836914062,
+				126
+			],
+			"pos":[
+				1930.667236328125,
+				-61.393531799316406
+			],
+			"widgets_values":[
+				"mkl",
+				1,
+				false
+			],
+			"inputs":[
+				{
+					"name":"image_ref",
+					"link":225,
+					"label":"image_ref",
+					"type":"IMAGE",
+					"localized_name":"image_ref"
+				},
+				{
+					"name":"image_target",
+					"link":226,
+					"label":"image_target",
+					"type":"IMAGE",
+					"localized_name":"image_target"
+				},
+				{
+					"widget":{
+						"name":"method"
+					},
+					"name":"method",
+					"label":"method",
+					"type":"COMBO",
+					"localized_name":"method"
+				},
+				{
+					"widget":{
+						"name":"strength"
+					},
+					"shape":7,
+					"name":"strength",
+					"label":"strength",
+					"type":"FLOAT",
+					"localized_name":"strength"
+				},
+				{
+					"widget":{
+						"name":"multithread"
+					},
+					"shape":7,
+					"name":"multithread",
+					"label":"multithread",
+					"type":"BOOLEAN",
+					"localized_name":"multithread"
+				}
+			],
+			"flags":{
+				
+			},
+			"id":127,
+			"type":"ColorMatch",
+			"properties":{
+				"widget_ue_connectable":{
+					
+				},
+				"Node name for S&R":"ColorMatch"
+			},
+			"order":58
 		},
 		{
 			"mode":0,
@@ -3401,8 +3485,8 @@
 				1768.4056396484375
 			],
 			"pos":[
-				2243.873291015625,
-				-1002.4778442382812
+				2278.291748046875,
+				-993.8734741210938
 			],
 			"widgets_values":{
 				"save_output":true,
@@ -3435,7 +3519,7 @@
 			"inputs":[
 				{
 					"name":"images",
-					"link":182,
+					"link":227,
 					"label":"images",
 					"type":"IMAGE",
 					"localized_name":"images"
@@ -3539,7 +3623,45 @@
 				},
 				"Node name for S&R":"VHS_VideoCombine"
 			},
-			"order":57
+			"order":59
+		},
+		{
+			"outputs":[
+				{
+					"name":"IMAGE",
+					"links":[
+						225
+					],
+					"type":"IMAGE"
+				}
+			],
+			"color":"#2a363b",
+			"widgets_values":[
+				"rowimg"
+			],
+			"inputs":[
+				
+			],
+			"flags":{
+				
+			},
+			"type":"GetNode",
+			"title":"Get_rowimg",
+			"mode":0,
+			"bgcolor":"#3f5159",
+			"size":[
+				210,
+				60
+			],
+			"pos":[
+				1942.0413818359375,
+				-166.72052001953125
+			],
+			"id":128,
+			"properties":{
+				
+			},
+			"order":24
 		}
 	],
 	"extra":{
@@ -3561,10 +3683,10 @@
 		"VHS_latentpreview":false,
 		"ds":{
 			"offset":[
-				869.4582545898431,
-				1566.3141567442153
+				-1006.1884949001296,
+				1011.7094131127119
 			],
-			"scale":0.27941459537661983
+			"scale":0.5989500000000019
 		}
 	},
 	"groups":[
@@ -3846,14 +3968,6 @@
 			"CONDITIONING"
 		],
 		[
-			182,
-			8,
-			0,
-			67,
-			0,
-			"IMAGE"
-		],
-		[
 			187,
 			93,
 			0,
@@ -4068,6 +4182,30 @@
 			74,
 			0,
 			"MODEL"
+		],
+		[
+			225,
+			128,
+			0,
+			127,
+			0,
+			"IMAGE"
+		],
+		[
+			226,
+			8,
+			0,
+			127,
+			1,
+			"IMAGE"
+		],
+		[
+			227,
+			127,
+			0,
+			67,
+			0,
+			"IMAGE"
 		]
 	],
 	"id":"ec7da562-7e21-4dac-a0d2-f4441e1efd3b",
@@ -4075,6 +4213,6 @@
 		
 	},
 	"version":0.4,
-	"last_node_id":126,
+	"last_node_id":128,
 	"revision":0
 }
