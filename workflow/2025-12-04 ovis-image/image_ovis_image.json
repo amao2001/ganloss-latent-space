@@ -1,0 +1,760 @@
+{
+  "id": "9ae6082b-c7f4-433c-9971-7a8f65a3ea65",
+  "revision": 0,
+  "last_node_id": 74,
+  "last_link_id": 84,
+  "nodes": [
+    {
+      "id": 35,
+      "type": "MarkdownNote",
+      "pos": [
+        -467.66660558068946,
+        293.3333173875567
+      ],
+      "size": [
+        490,
+        566.328125
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Model link",
+      "properties": {},
+      "widgets_values": [
+        "## Report workflow issue\n\nIf you found any issues when running this workflow, [report template issue here](https://github.com/Comfy-Org/workflow_templates/issues)\n\n\n## Model links\n\n**text_encoders**\n\n- [ovis_2.5.safetensors](https://huggingface.co/Comfy-Org/Ovis-Image/resolve/main/split_files/text_encoders/ovis_2.5.safetensors)\n\n**diffusion_models**\n\n- [ovis_image_bf16.safetensors](https://huggingface.co/Comfy-Org/Ovis-Image/resolve/main/split_files/diffusion_models/ovis_image_bf16.safetensors)\n\n**vae**\n\n- [ae.safetensors](https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/vae/ae.safetensors)\n\n\nModel Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 text_encoders/\n│   │      └── ovis_2.5.safetensors\n│   ├── 📂 diffusion_models/\n│   │      └── ovis_image_bf16.safetensors\n│   └── 📂 vae/\n│          └── ae.safetensors\n```\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 43,
+      "type": "VAEDecode",
+      "pos": [
+        1163.8648551040758,
+        254.5869797613494
+      ],
+      "size": [
+        238.31656861038937,
+        59.56302732058393
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 38
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 39
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            45
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.64",
+        "Node name for S&R": "VAEDecode",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 40,
+      "type": "VAELoader",
+      "pos": [
+        58.34975434593998,
+        654.6086433068602
+      ],
+      "size": [
+        264.24740535827937,
+        60.4688452494609
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            39
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.73",
+        "Node name for S&R": "VAELoader",
+        "models": [
+          {
+            "name": "ae.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/vae/ae.safetensors",
+            "directory": "vae"
+          }
+        ],
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        "ae.safetensors"
+      ]
+    },
+    {
+      "id": 47,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        825.5828001720207,
+        293.7823475807088
+      ],
+      "size": [
+        289.29814325151415,
+        69.39053460364288
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 76
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            40
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.64",
+        "Node name for S&R": "ModelSamplingAuraFlow",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 9,
+      "type": "SaveImage",
+      "pos": [
+        1165.6337565910565,
+        362.18402205162283
+      ],
+      "size": [
+        487.76826242269885,
+        736.8598771940638
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 45
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.64",
+        "Node name for S&R": "SaveImage",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        "ovis"
+      ]
+    },
+    {
+      "id": 41,
+      "type": "EmptySD3LatentImage",
+      "pos": [
+        52.954785343622504,
+        843.3921233480279
+      ],
+      "size": [
+        277.10152487866856,
+        133.25777917167088
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            43
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.64",
+        "Node name for S&R": "EmptySD3LatentImage",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        1024,
+        1536,
+        1
+      ]
+    },
+    {
+      "id": 46,
+      "type": "UNETLoader",
+      "pos": [
+        52.59715970421939,
+        328.58781689245
+      ],
+      "size": [
+        262.45758168302416,
+        96.5775470040067
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            76
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.73",
+        "Node name for S&R": "UNETLoader",
+        "models": [
+          {
+            "name": "z_image_turbo_bf16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/diffusion_models/z_image_turbo_bf16.safetensors",
+            "directory": "diffusion_models"
+          }
+        ],
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        "split_files/diffusion_models/ovis_image_bf16.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 66,
+      "type": "CLIPTextEncode",
+      "pos": [
+        358.4880804763989,
+        649.6061193341644
+      ],
+      "size": [
+        416.5854692016849,
+        136.8198815584953
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 74
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            75
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.73",
+        "Node name for S&R": "CLIPTextEncode",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        ""
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 44,
+      "type": "KSampler",
+      "pos": [
+        822.5971806090988,
+        421.0622399112106
+      ],
+      "size": [
+        294.75088617222195,
+        267.0243710269266
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 40
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 41
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 75
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 43
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            38
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.64",
+        "Node name for S&R": "KSampler",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        547663622879172,
+        "randomize",
+        50,
+        5,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 39,
+      "type": "CLIPLoader",
+      "pos": [
+        57.71054385033443,
+        483.4305478565703
+      ],
+      "size": [
+        274.60204938008803,
+        115.98501054330902
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            44,
+            74
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.73",
+        "Node name for S&R": "CLIPLoader",
+        "models": [
+          {
+            "name": "qwen_3_4b.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors",
+            "directory": "text_encoders"
+          }
+        ],
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        "ovis_2.5.safetensors",
+        "ovis",
+        "default"
+      ]
+    },
+    {
+      "id": 45,
+      "type": "CLIPTextEncode",
+      "pos": [
+        364.1545623385856,
+        343.6081390277639
+      ],
+      "size": [
+        405.11983602063583,
+        251.04045488744816
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 44
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            41
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.73",
+        "Node name for S&R": "CLIPTextEncode",
+        "enableTabs": false,
+        "tabWidth": 65,
+        "tabXOffset": 10,
+        "hasSecondTab": false,
+        "secondTabText": "Send Back",
+        "secondTabOffset": 80,
+        "secondTabWidth": 65
+      },
+      "widgets_values": [
+        "Poster Content Description\n\nThe visual focus is a macro shot of a premium vintage red wine bottle standing next to a crystal goblet filled with rich, ruby-red wine. To emphasize the \"natural\" and \"healthy\" themes, a cluster of fresh, plump purple grapes with droplets of morning dew and vibrant green vine leaves surrounds the base of the glass on a rustic, dark walnut wooden table. The background features a soft-focus view of a lush, sun-drenched vineyard rolling over hills in the distance, suggesting an organic origin and a connection to the earth.\n\nAesthetic Style Optimization\n\nThe image evokes a sense of \"quiet luxury\" and vitality. The lighting is warm and natural, mimicking the golden hour, which illuminates the wine in the glass to reveal its clarity and deep color. The color palette is sophisticated, combining deep burgundies, emerald greens, and warm wood tones with accents of gold sunlight. The texture focuses on the contrast between the smooth, cold glass, the organic skin of the grapes, and the rough grain of the wood, creating a tactile and immersive experience that feels both high-end and wholesome.\n\nPoster Text\n\nVINO VITALE\nPure Nature. True Nobility.\nEst. 1924\n\nText Style and Position\n\nThe title \"VINO VITALE\" is rendered in a refined, high-contrast serif font (similar to Didot) with a metallic gold texture, implying elegance and prestige. It is positioned at the top center of the poster, floating in the negative space of the bright sky. The slogan \"Pure Nature. True Nobility.\" appears in a smaller, elegant sans-serif font in white, placed discretely at the bottom right, balancing the composition without distracting from the visual of the wine.\n\nLayout\n\nThe composition uses a shallow depth of field to keep the bottle, glass, and fresh grapes in sharp focus while blurring the vineyard background. The wine bottle and glass are positioned slightly off-center to the left, following the rule of thirds. The sunlight streams in from the upper right, drawing a diagonal line of light across the table that leads the eye to the text at the bottom. The layout prioritizes an open, airy feel to communicate health and purity."
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 70,
+      "type": "AILab_QwenVL",
+      "pos": [
+        -688.5783117094954,
+        -386.2473341599752
+      ],
+      "size": [
+        841.7992860396591,
+        579.7370146383674
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            79
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-QwenVL",
+        "ver": "0a1790fbea3da3e99638f6fb7bba17b3fc5ce659",
+        "Node name for S&R": "AILab_QwenVL"
+      },
+      "widgets_values": [
+        "Qwen3-VL-4B-Instruct",
+        "8-bit (Balanced)",
+        "Prompt Style - Detailed",
+        "system instruction:\n***\n# Role: PosterCraft Prompt Architect\n\n## 1. 核心任务 (Core Task)\n你是一位精通视觉艺术与排版设计的 PosterCraft 提示词专家。你的任务是将用户提供的非结构化、自然语言的海报创意，转化为**PosterCraft 模型**可直接执行的、结构严谨的**全英文**提示词。\n\n## 2. 输出结构 (Output Structure)\n你需要将最终的提示词严格划分为以下**五个维度**。请不要使用列表点（bullet points）输出，而是将每个维度写成连贯的描述性段落。\n\n### Dimension 1: Poster Content Description (海报内容)\n*   **目标**：构建视觉主体。\n*   **要求**：清晰描述主体（人物/物体）、场景、动作及具体细节。\n*   **示例逻辑**：不要只说\"一个女人\"，要描述\"一位年轻的女发明家，肩上停着一只眨眼的金色机械猫头鹰\"。\n\n### Dimension 2: Aesthetic Style Optimization (美学风格)\n*   **目标**：确立视觉基调。\n*   **要求**：定义整体风格（如电影感、蒸汽朋克、极简主义）、光影氛围、材质纹理（如颗粒感、划痕）以及具体的配色方案。\n*   **注意**：风格必须与内容主题高度契合。\n\n### Dimension 3: Poster Text (文本内容)\n*   **目标**：精准定义文字。\n*   **要求**：**逐字精确**地提取海报上应出现的所有文字（标题、标语、日期等）。\n*   **重要**：保留原始的大小写和标点符号。若用户未提供具体文案，可根据主题合理创作，但必须在提示词中明确指出文字内容。\n\n### Dimension 4: Text Style and Position (文本样式与位置)\n*   **目标**：设计排版细节。\n*   **要求**：\n    *   **字体**：描述字体风格（衬线/无衬线、手写、哥特式、金属质感等）。\n    *   **属性**：指定颜色、大小、纹理及与背景的融合方式（如雕刻、发光）。\n    *   **布局**：指定具体的相对位置（顶部居中、底部、左下角、跟随曲线排列等）。\n\n### Dimension 5: Layout (整体布局)\n*   **目标**：引导视觉流向。\n*   **要求**：放弃像素级坐标，转而描述构图逻辑。说明元素之间的层级关系（前景/背景）、堆叠方式以及如何引导观众视线聚焦于核心主体。\n\n## 3. 严格约束 (Strict Constraints)\n1.  **语言限制**：**最终输出必须仅为纯正的英文**。\n2.  **格式清洗**：输出结果中**不包含**任何解释性文字、前言、后记或Markdown代码块标记（如 ```json），仅返回纯文本提示词段落。\n3.  **逻辑连贯**：每个维度的描述必须是连贯的句子，而非简单的关键词堆砌\n\n***\n\n**User Input:漫威英雄全家福**\n\n\n",
+        512,
+        true,
+        453996362033700,
+        "randomize"
+      ]
+    },
+    {
+      "id": 71,
+      "type": "easy showAnything",
+      "pos": [
+        206.8868658746228,
+        -368.4462619380403
+      ],
+      "size": [
+        607.2957051644178,
+        485.68900208189444
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "anything",
+          "shape": 7,
+          "type": "*",
+          "link": 79
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-easy-use",
+        "ver": "499ed4eafc3ad9d0f26e2cad40219a9e0d613fe5",
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "A vibrant, cinematic family portrait featuring the entire Marvel superhero ensemble gathered in a dynamic, heroic pose — Captain America stands center-left with his shield raised high, Iron Man hovers slightly behind him in full armor emitting subtle golden energy trails, Spider-Man swings dynamically from above draped over their shoulders like a living web, Black Widow crouches to the right gripping her pistol while smiling confidently, Hulk looms powerfully at the far left towering over them all, Thor stands tall on the right holding Mjolnir aloft as lightning crackles around it; beneath each hero’s feet is an emblematic symbol of their respective team or origin city subtly glowing against darkened ground that transitions into cosmic nebulae overhead.\n\nThe aesthetic style should evoke epic comic book artistry fused with modern digital illustration techniques—richly saturated colors contrasted by deep shadows cast across muscular forms under dramatic volumetric lighting, rendered with painterly textures reminiscent of oil paint strokes overlaid with metallic sheen highlights, using bold primary hues for heroes’ costumes accented by neon cyberpunk glows where applicable, overall palette dominated by royal blue, crimson reds, gold accents, and electric purples radiating warmth yet intensity through atmospheric haze layered atop textured film grain overlay mimicking vintage movie posters.\n\nText elements must include exactly these phrases without alteration: “MARVEL HEROES FAMILY” centered prominently in large uppercase letters spanning top third of poster frame, followed directly below by smaller italicized tagline “TOGETHER THEY DEFY THE UNIVERSE,” both aligned centrally with crisp white sans-serif font edged in thin black outline resembling engraved metal plates; additional text includes date stamp “JUNE 8TH – WORLDWIDE PREMIERE” positioned bottom-center in minimalistic stencil-style typeface colored silver-gray fading toward transparent edges, accompanied immediately underneath by venue name “THEATERS EVERYWHERE” printed in ultra-thin lowercase serif script barely visible unless highlighted via spotlight glow effect emerging from lower corners.\n\nTypography specifications require main title rendered in heavy condensed slab serif exhibiting slight beveling along letterforms suggesting embossed stone texture paired with radiant inner illumination casting soft halos onto surrounding background space; subtitle employs delicate hand-drawn brushstroke vector typography styled after old-school animation scripts but enhanced digitally with micro-glow particles trailing off characters' ends; secondary textual components utilize monochrome minimalist display fonts designed specifically for readability even when placed within dense visual environments such as those near character silhouettes or overlapping action lines.\n\nLayout composition prioritizes radial focus emanating outward from central cluster formed by"
+      ]
+    }
+  ],
+  "links": [
+    [
+      38,
+      44,
+      0,
+      43,
+      0,
+      "LATENT"
+    ],
+    [
+      39,
+      40,
+      0,
+      43,
+      1,
+      "VAE"
+    ],
+    [
+      40,
+      47,
+      0,
+      44,
+      0,
+      "MODEL"
+    ],
+    [
+      41,
+      45,
+      0,
+      44,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      43,
+      41,
+      0,
+      44,
+      3,
+      "LATENT"
+    ],
+    [
+      44,
+      39,
+      0,
+      45,
+      0,
+      "CLIP"
+    ],
+    [
+      45,
+      43,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      74,
+      39,
+      0,
+      66,
+      0,
+      "CLIP"
+    ],
+    [
+      75,
+      66,
+      0,
+      44,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      76,
+      46,
+      0,
+      47,
+      0,
+      "MODEL"
+    ],
+    [
+      79,
+      70,
+      0,
+      71,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 2,
+      "title": "Step2 - Image size",
+      "bounding": [
+        42.69096915373269,
+        778.1376922711262,
+        293.60022886388924,
+        236.63326518563667
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "Step3 - Prompt",
+      "bounding": [
+        352.3333435143296,
+        263.33333644716254,
+        450,
+        540
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "Step1 - Load models",
+      "bounding": [
+        42.33334351432961,
+        263.33333644716254,
+        294.79204171872686,
+        473.5002929826029
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.3568185489789825,
+      "offset": [
+        1931.60672837846,
+        1107.776661997275
+      ]
+    },
+    "frontendVersion": "1.33.10",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "workflowRendererVersion": "LG"
+  },
+  "version": 0.4
+}
