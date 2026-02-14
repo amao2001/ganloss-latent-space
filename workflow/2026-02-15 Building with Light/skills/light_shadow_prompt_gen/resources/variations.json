@@ -1,0 +1,33 @@
+{
+  "lens_types": [
+    "24mm wide angle lens",
+    "16mm ultra-wide lens",
+    "fish-eye lens effect",
+    "panoramic perspective",
+    "architectural photography lens"
+  ],
+  "lighting_styles": [
+    "volumetric lighting",
+    "god rays",
+    "tyndall effect",
+    "chiaroscuro",
+    "sharp shafts of light",
+    "dramatic spotlight",
+    "contrast lighting",
+    "hard shadows"
+  ],
+  "atmospheres": [
+    "dusty air",
+    "hazy atmosphere",
+    "mist building up",
+    "suspended particles",
+    "thick fog",
+    "ethereal glow"
+  ],
+  "materials": {
+    "concrete": ["raw concrete", "brutalist cement", "weathered concrete", "stained grey stone"],
+    "metal": ["rusted iron", "brushed steel", "oxidized copper", "industrial metal"],
+    "wood": ["rotting timber", "polished dark wood", "ancient oak", "burnt wood"],
+    "glass": ["shattered glass", "frosted glass", "dirty windows", "reflective surfaces"]
+  }
+}
