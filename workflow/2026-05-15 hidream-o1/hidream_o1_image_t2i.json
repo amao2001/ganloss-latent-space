@@ -1,0 +1,587 @@
+{
+  "id": "fa40da5a-f7ee-4d6d-a6ee-3d85074ec02f",
+  "revision": 0,
+  "last_node_id": 154,
+  "last_link_id": 221,
+  "nodes": [
+    {
+      "id": 6,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -3358.269592008814,
+        4470.497485538871
+      ],
+      "size": [
+        478.0563491687826,
+        98
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            192
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            146,
+            150
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            147
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "checkpoints/hidream_o1_image_fp8_scaled.safetensors"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 105,
+      "type": "VAEDecode",
+      "pos": [
+        -1666.6187072427283,
+        4539.1305934482725
+      ],
+      "size": [
+        140,
+        46
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 142
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 147
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            221
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 106,
+      "type": "EmptyHiDreamO1LatentImage",
+      "pos": [
+        -2335.0450603876166,
+        4729.397664724299
+      ],
+      "size": [
+        297.56796875,
+        130
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            140
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyHiDreamO1LatentImage"
+      },
+      "widgets_values": [
+        1728,
+        2304,
+        1
+      ]
+    },
+    {
+      "id": 108,
+      "type": "SamplerCustom",
+      "pos": [
+        -1972.3788092579493,
+        4528.308450498749
+      ],
+      "size": [
+        271.125,
+        495.125
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 213
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 219
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 220
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 218
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 139
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 140
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            142
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustom"
+      },
+      "widgets_values": [
+        true,
+        839269769875760,
+        "randomize",
+        5
+      ]
+    },
+    {
+      "id": 110,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -2831.745145481925,
+        4486.9192164803635
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 146
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            219
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "An advertisement for XP Boost, a gaming hydration\ndrink, featuring a young male gamer holding a can of the product in a high-tech gaming setup. In the foreground, a young male with curly brown hair, appearing to be in his late teens or early twenties, wears a black and green gaming headset and a black t-shirt with green accents. He holds a black and green can labeled \"XP BOOST HYPER LIME\" in his hand, extending it toward the viewer. The can features a lightning bolt design and text indicating \"ZERO CRASH FORMULA\" and \"16 FL OZ (473 mL)\". The background shows a dimly lit gaming environment with a computer monitor displaying a blue circular graphic, a keyboard, and a garning chair with the XP Boost logo. The left side of the image contains large text reading \"QUEUE UP, POWER ON.\" in white and green, with smaller text below stating \"GAMING HYDRATION DRINK. ZERO CRASH FORMULA\" and \"Caffeine + electrolytes + B12, crafted for ranked nights and tournament weekends.\" Below this, a green button-like graphic reads \"LEVEL UP YOUR FOCUS.\" At the bottom, four icons represent the product's benefits: \"CLEAN ENERGY,\" \"ELECTROLYTES HYDRATION,\" \"B12 FOCUS,\" and \"ZERO CRASH.\" The overall scene is framed with neon green lightning effects at the bottom."
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 111,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -2836.019477811515,
+        4736.21822824936
+      ],
+      "size": [
+        405.7683974442598,
+        118.28100686673133
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 150
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            220
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 112,
+      "type": "BasicScheduler",
+      "pos": [
+        -2322.7041642961744,
+        4908.020854279315
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 182
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            139
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "normal",
+        28,
+        1
+      ]
+    },
+    {
+      "id": 124,
+      "type": "ModelNoiseScale",
+      "pos": [
+        -2326.8337104675165,
+        4500.034596841918
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 192
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            182,
+            213
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ModelNoiseScale"
+      },
+      "widgets_values": [
+        8
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 129,
+      "type": "MarkdownNote",
+      "pos": [
+        -3736.7873304284726,
+        4660.262868656541
+      ],
+      "size": [
+        337.8847117558721,
+        111.04510993732947
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Models:\n\n[https://huggingface.co/Comfy-Org/HiDream-O1-Image](https://huggingface.co/Comfy-Org/HiDream-O1-Image)\n\n- mxfp8 is higher quality even on unsupported hardware, on 50xx it's ~30% faster\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 131,
+      "type": "Note",
+      "pos": [
+        -3641.5999406842993,
+        4473.924577236594
+      ],
+      "size": [
+        210,
+        102.82596768939038
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "CLIP and VAE aren't real models, just placeholders to allow using with existing nodes"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 153,
+      "type": "KSamplerSelect",
+      "pos": [
+        -2317.366099424752,
+        4608.620846194227
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            218
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "euler"
+      ]
+    },
+    {
+      "id": 154,
+      "type": "SaveImage",
+      "pos": [
+        -1492.4402462422397,
+        4533.297640045698
+      ],
+      "size": [
+        274.1952941617453,
+        498.4958048343924
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 221
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    }
+  ],
+  "links": [
+    [
+      139,
+      112,
+      0,
+      108,
+      4,
+      "SIGMAS"
+    ],
+    [
+      140,
+      106,
+      0,
+      108,
+      5,
+      "LATENT"
+    ],
+    [
+      142,
+      108,
+      0,
+      105,
+      0,
+      "LATENT"
+    ],
+    [
+      146,
+      6,
+      1,
+      110,
+      0,
+      "CLIP"
+    ],
+    [
+      147,
+      6,
+      2,
+      105,
+      1,
+      "VAE"
+    ],
+    [
+      150,
+      6,
+      1,
+      111,
+      0,
+      "CLIP"
+    ],
+    [
+      182,
+      124,
+      0,
+      112,
+      0,
+      "MODEL"
+    ],
+    [
+      192,
+      6,
+      0,
+      124,
+      0,
+      "MODEL"
+    ],
+    [
+      213,
+      124,
+      0,
+      108,
+      0,
+      "MODEL"
+    ],
+    [
+      218,
+      153,
+      0,
+      108,
+      3,
+      "SAMPLER"
+    ],
+    [
+      219,
+      110,
+      0,
+      108,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      220,
+      111,
+      0,
+      108,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      221,
+      105,
+      0,
+      154,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.43.18",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "ds": {
+      "scale": 0.43056764313425167,
+      "offset": [
+        3641.403612087369,
+        -3996.992416157367
+      ]
+    }
+  },
+  "version": 0.4
+}

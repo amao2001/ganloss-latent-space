@@ -1,0 +1,973 @@
+{
+  "id": "170f96ed-9fe4-42f4-bdc8-18a3c02206eb",
+  "revision": 0,
+  "last_node_id": 162,
+  "last_link_id": 262,
+  "nodes": [
+    {
+      "id": 6,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -3364.6148291975005,
+        4470.497485538871
+      ],
+      "size": [
+        441.25699592339106,
+        98
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            192
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            146,
+            150
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            147
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "checkpoints/hidream_o1_image_fp8_scaled.safetensors"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 18,
+      "type": "LoadImage",
+      "pos": [
+        -3443.161376469146,
+        5067.667821943301
+      ],
+      "size": [
+        282.798828125,
+        314
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            240
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "unnamed (2) (1).jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 104,
+      "type": "HiDreamO1ReferenceImages",
+      "pos": [
+        -2639.1333749629152,
+        4902.951217841929
+      ],
+      "size": [
+        243.52890625,
+        166
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 141
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 151
+        },
+        {
+          "label": "image_1",
+          "name": "images.image_1",
+          "type": "IMAGE",
+          "link": 253
+        },
+        {
+          "label": "image_2",
+          "name": "images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 240
+        },
+        {
+          "label": "image_3",
+          "name": "images.image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 254
+        },
+        {
+          "label": "image_4",
+          "name": "images.image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 255
+        },
+        {
+          "label": "image_5",
+          "name": "images.image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            256
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            257
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HiDreamO1ReferenceImages"
+      },
+      "widgets_values": [],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 105,
+      "type": "VAEDecode",
+      "pos": [
+        -1445.8044337123365,
+        4456.642509995356
+      ],
+      "size": [
+        140,
+        46
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 142
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 147
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            262
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 106,
+      "type": "EmptyHiDreamO1LatentImage",
+      "pos": [
+        -2335.0450603876166,
+        4729.397664724299
+      ],
+      "size": [
+        297.56796875,
+        130
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            140
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyHiDreamO1LatentImage"
+      },
+      "widgets_values": [
+        2048,
+        2048,
+        1
+      ]
+    },
+    {
+      "id": 108,
+      "type": "SamplerCustom",
+      "pos": [
+        -1761.1491639009084,
+        4547.945423022468
+      ],
+      "size": [
+        281.27741823015185,
+        250.19885419878665
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 260
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 256
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 257
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 218
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 139
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 140
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            142
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustom"
+      },
+      "widgets_values": [
+        true,
+        339363013161966,
+        "randomize",
+        5
+      ]
+    },
+    {
+      "id": 110,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -2831.745145481925,
+        4486.9192164803635
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 146
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            141
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "there are 3 person in this image,1 man and 2 women is talking happyly"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 111,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -2836.019477811515,
+        4736.21822824936
+      ],
+      "size": [
+        405.7683974442598,
+        118.28100686673133
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 150
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            151
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 112,
+      "type": "BasicScheduler",
+      "pos": [
+        -2320.0084922349115,
+        4907.11073898007
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 182
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            139
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "simple",
+        28,
+        1
+      ]
+    },
+    {
+      "id": 124,
+      "type": "ModelNoiseScale",
+      "pos": [
+        -2326.8337104675165,
+        4500.034596841918
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 192
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            182,
+            259
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ModelNoiseScale"
+      },
+      "widgets_values": [
+        8
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 129,
+      "type": "MarkdownNote",
+      "pos": [
+        -3902.1503873715415,
+        4654.688845771278
+      ],
+      "size": [
+        337.8847117558721,
+        111.04510993732947
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Models:\n\n[https://huggingface.co/Comfy-Org/HiDream-O1-Image](https://huggingface.co/Comfy-Org/HiDream-O1-Image)\n\n- mxfp8 is higher quality even on unsupported hardware, on 50xx it's ~30% faster\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 131,
+      "type": "Note",
+      "pos": [
+        -3914.727770837684,
+        4483.214674443321
+      ],
+      "size": [
+        210,
+        102.82596768939038
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "CLIP and VAE aren't real models, just placeholders to allow using with existing nodes"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 153,
+      "type": "KSamplerSelect",
+      "pos": [
+        -2317.366099424752,
+        4608.620846194227
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            218
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "euler"
+      ]
+    },
+    {
+      "id": 154,
+      "type": "LoadImage",
+      "pos": [
+        -3139.04643753732,
+        4694.0510511170005
+      ],
+      "size": [
+        282.798828125,
+        314
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            254
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "unnamed (1) (1).jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 156,
+      "type": "LoadImage",
+      "pos": [
+        -3148.6107053086953,
+        5077.618984988464
+      ],
+      "size": [
+        282.798828125,
+        314
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            255
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "unnamed (4).jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 158,
+      "type": "LoadImage",
+      "pos": [
+        -3426.383198701452,
+        4698.852324753824
+      ],
+      "size": [
+        282.798828125,
+        314
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            253
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "unnamed (3) (1).jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 160,
+      "type": "SaveImage",
+      "pos": [
+        -1262.782003391621,
+        4445.770465961022
+      ],
+      "size": [
+        616.2659386237724,
+        862.8748896699626
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 262
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 161,
+      "type": "HiDreamO1PatchSeamSmoothing",
+      "pos": [
+        -2051.722351085208,
+        4261.711985460193
+      ],
+      "size": [
+        337.9820251464844,
+        178
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 259
+        },
+        {
+          "label": "start_percent",
+          "name": "start_percent",
+          "type": "FLOAT",
+          "widget": {
+            "name": "start_percent"
+          },
+          "link": null
+        },
+        {
+          "label": "end_percent",
+          "name": "end_percent",
+          "type": "FLOAT",
+          "widget": {
+            "name": "end_percent"
+          },
+          "link": null
+        },
+        {
+          "label": "pattern",
+          "name": "pattern",
+          "type": "COMBO",
+          "widget": {
+            "name": "pattern"
+          },
+          "link": null
+        },
+        {
+          "label": "passes",
+          "name": "passes",
+          "type": "COMBO",
+          "widget": {
+            "name": "passes"
+          },
+          "link": null
+        },
+        {
+          "label": "blend",
+          "name": "blend",
+          "type": "COMBO",
+          "widget": {
+            "name": "blend"
+          },
+          "link": null
+        },
+        {
+          "label": "strength",
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            260
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HiDreamO1PatchSeamSmoothing",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        0.8,
+        1,
+        "single_shift",
+        "ramp_2_4",
+        "median",
+        1
+      ]
+    }
+  ],
+  "links": [
+    [
+      139,
+      112,
+      0,
+      108,
+      4,
+      "SIGMAS"
+    ],
+    [
+      140,
+      106,
+      0,
+      108,
+      5,
+      "LATENT"
+    ],
+    [
+      141,
+      110,
+      0,
+      104,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      142,
+      108,
+      0,
+      105,
+      0,
+      "LATENT"
+    ],
+    [
+      146,
+      6,
+      1,
+      110,
+      0,
+      "CLIP"
+    ],
+    [
+      147,
+      6,
+      2,
+      105,
+      1,
+      "VAE"
+    ],
+    [
+      150,
+      6,
+      1,
+      111,
+      0,
+      "CLIP"
+    ],
+    [
+      151,
+      111,
+      0,
+      104,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      182,
+      124,
+      0,
+      112,
+      0,
+      "MODEL"
+    ],
+    [
+      192,
+      6,
+      0,
+      124,
+      0,
+      "MODEL"
+    ],
+    [
+      218,
+      153,
+      0,
+      108,
+      3,
+      "SAMPLER"
+    ],
+    [
+      240,
+      18,
+      0,
+      104,
+      3,
+      "IMAGE"
+    ],
+    [
+      253,
+      158,
+      0,
+      104,
+      2,
+      "IMAGE"
+    ],
+    [
+      254,
+      154,
+      0,
+      104,
+      4,
+      "IMAGE"
+    ],
+    [
+      255,
+      156,
+      0,
+      104,
+      5,
+      "IMAGE"
+    ],
+    [
+      256,
+      104,
+      0,
+      108,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      257,
+      104,
+      1,
+      108,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      259,
+      124,
+      0,
+      161,
+      0,
+      "MODEL"
+    ],
+    [
+      260,
+      161,
+      0,
+      108,
+      0,
+      "MODEL"
+    ],
+    [
+      262,
+      105,
+      0,
+      160,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.43.18",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "ds": {
+      "scale": 0.43056764313425927,
+      "offset": [
+        3867.6788044481827,
+        -4054.697239927529
+      ]
+    }
+  },
+  "version": 0.4
+}
