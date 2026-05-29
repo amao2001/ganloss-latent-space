@@ -1,0 +1,469 @@
+{
+  "id": "52b6cc9f-a7d2-4466-8767-9354a8b278ce",
+  "revision": 0,
+  "last_node_id": 47,
+  "last_link_id": 81,
+  "nodes": [
+    {
+      "id": 41,
+      "type": "MarkdownNote",
+      "pos": [
+        222.73496015695824,
+        4973.393842616154
+      ],
+      "size": [
+        316.78125,
+        88
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "[https://huggingface.co/Comfy-Org/PixelDiT](https://huggingface.co/Comfy-Org/PixelDiT)"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 2,
+      "type": "UNETLoader",
+      "pos": [
+        233.29854722578065,
+        4794.155669284799
+      ],
+      "size": [
+        412.65625,
+        108.328125
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            71
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "pixeldit_1300m_1024px_bf16.safetensors",
+        "default"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 30,
+      "type": "CLIPTextEncode",
+      "pos": [
+        617.9039158600216,
+        5227.700215063209
+      ],
+      "size": [
+        397.34375,
+        178.328125
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 55
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            73
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "low quality, worst quality, over-saturated, blurry, deformed, watermark"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 31,
+      "type": "EmptyChromaRadianceLatentImage",
+      "pos": [
+        660.8207276929676,
+        5475.199156124471
+      ],
+      "size": [
+        299.421875,
+        146.328125
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            74
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyChromaRadianceLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+    },
+    {
+      "id": 42,
+      "type": "KSampler",
+      "pos": [
+        1084.6264177663409,
+        5044.076897901358
+      ],
+      "size": [
+        270,
+        526
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 71
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 72
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 73
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 74
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            75
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        1124466155427951,
+        "randomize",
+        30,
+        4,
+        "er_sde",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 15,
+      "type": "VAEDecode",
+      "pos": [
+        1424.560886277535,
+        4959.744884239985
+      ],
+      "size": [
+        225,
+        46
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 75
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            80
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": [],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 9,
+      "type": "CLIPLoader",
+      "pos": [
+        226.52412477784114,
+        5107.448652408333
+      ],
+      "size": [
+        342.015625,
+        141.328125
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            8,
+            55
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "gemma_2_2b_it_elm_fp8_scaled.safetensors",
+        "pixeldit",
+        "default"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 47,
+      "type": "SaveImage",
+      "pos": [
+        1723.7683264591092,
+        4984.172788081128
+      ],
+      "size": [
+        562.8822919677443,
+        518.1081818732546
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 80
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [
+        611.8525035937691,
+        4969.505348982652
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            72
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "A captivating young East Asian woman, dressed in a sleek, black satin qipao adorned with intricate gold floral embroidery, strikes a dynamic and playful pose, holding both hands up near her face with fingers spread in a charming gesture, head tilted slightly with a bright, engaging smile, against a moody, dark gray studio background, captured in a medium close-up shot with a shallow depth of field to emphasize her expression and outfit texture, illuminated by soft, dramatic key lighting that highlights the sheen of the satin and the sparkle of the gold detailing, hyperdetailed, cinematic portrait photography, 8k, high fashion editorial quality."
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 16,
+      "type": "VAELoader",
+      "pos": [
+        1081.968857955153,
+        4926.518805569521
+      ],
+      "size": [
+        267.5544023608195,
+        58
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "pixel_space"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    }
+  ],
+  "links": [
+    [
+      8,
+      9,
+      0,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      14,
+      16,
+      0,
+      15,
+      1,
+      "VAE"
+    ],
+    [
+      55,
+      9,
+      0,
+      30,
+      0,
+      "CLIP"
+    ],
+    [
+      71,
+      2,
+      0,
+      42,
+      0,
+      "MODEL"
+    ],
+    [
+      72,
+      6,
+      0,
+      42,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      73,
+      30,
+      0,
+      42,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      74,
+      31,
+      0,
+      42,
+      3,
+      "LATENT"
+    ],
+    [
+      75,
+      42,
+      0,
+      15,
+      0,
+      "LATENT"
+    ],
+    [
+      80,
+      15,
+      0,
+      47,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.4987546484370765,
+      "offset": [
+        830.3981417021747,
+        -4533.057976215863
+      ]
+    },
+    "frontendVersion": "1.44.19",
+    "VHS_latentpreview": true,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": false,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
