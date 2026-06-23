@@ -1,0 +1,368 @@
+{
+  "id": "dabc6ca9-5fa6-414e-9cdd-33077930aa75",
+  "revision": 0,
+  "last_node_id": 8,
+  "last_link_id": 10,
+  "nodes": [
+    {
+      "id": 5,
+      "type": "PreviewAudio",
+      "pos": [
+        1130.9091279000945,
+        457.2727087772254
+      ],
+      "size": [
+        350,
+        100
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 5
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 4,
+      "type": "PreviewImage",
+      "pos": [
+        1120.0001109730126,
+        50
+      ],
+      "size": [
+        350,
+        350
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "outputs": [],
+      "title": "Preview Frames",
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 6,
+      "type": "CreateVideo",
+      "pos": [
+        1147.8789358428025,
+        603.6362619111032
+      ],
+      "size": [
+        300,
+        150
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 6
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "slot_index": 0,
+          "links": [
+            10
+          ]
+        }
+      ],
+      "title": "Create Video (Merge All Shots)",
+      "properties": {
+        "Node name for S&R": "CreateVideo"
+      },
+      "widgets_values": [
+        25,
+        8
+      ]
+    },
+    {
+      "id": 1,
+      "type": "JoyEcho_ModelLoader",
+      "pos": [
+        107.27270877722536,
+        65.7575896292021
+      ],
+      "size": [
+        513.6363821318653,
+        198.78792040275806
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "JOYECHO_MODEL",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JoyEcho_ModelLoader"
+      },
+      "widgets_values": [
+        "/workspace/workspace/JoyAI-Echo-release.safetensors",
+        "/workspace/workspace/gemma-3-12b",
+        "",
+        1,
+        false
+      ]
+    },
+    {
+      "id": 7,
+      "type": "SaveVideo",
+      "pos": [
+        1563.0356884591113,
+        447.3191791356648
+      ],
+      "size": [
+        742.6735554794875,
+        574.9251713527866
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 10
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveVideo"
+      },
+      "widgets_values": [
+        "joyecho/output",
+        "auto",
+        "auto"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "JoyEcho_Generate",
+      "pos": [
+        656.060532078598,
+        60.9090862852154
+      ],
+      "size": [
+        380,
+        450
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "JOYECHO_MODEL",
+          "link": 2
+        },
+        {
+          "name": "conditioning",
+          "type": "JOYECHO_COND",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            4,
+            6
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "slot_index": 1,
+          "links": [
+            5,
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "JoyEcho_Generate"
+      },
+      "widgets_values": [
+        12345,
+        "fixed",
+        121,
+        736,
+        1280,
+        25,
+        2,
+        7,
+        3,
+        true,
+        96,
+        false,
+        "joyecho/shot"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "JoyEcho_TextEncode",
+      "pos": [
+        100,
+        320
+      ],
+      "size": [
+        530,
+        500
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "JOYECHO_MODEL",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "JOYECHO_MODEL",
+          "slot_index": 0,
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "conditioning",
+          "type": "JOYECHO_COND",
+          "slot_index": 1,
+          "links": [
+            3
+          ]
+        }
+      ],
+      "title": "JoyEcho Text Encode (15 shots)",
+      "properties": {
+        "Node name for S&R": "JoyEcho_TextEncode"
+      },
+      "widgets_values": [
+        "{\n  \"prompts\": [\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. ID_A's voice is a gentle, clear young female voice with a warm, low-pacing tone, carrying a soft breathy resonance and an intimate, natural vlog-style delivery. Her expression is filled with quiet wonder and excitement. The mouth movement is clearly visible in the frame and stays naturally synchronized with the spoken line, especially on slower reflective phrases. At normal speed, ID_A holds the camera at arm's length, adjusting her angle slightly as she looks directly into the lens and begins to speak, her long hair swaying gently with her movements. In a soft, clear young female voice with quiet wonder, ID_A says, \\\"I managed to slip into the celestial realm today. The air here smells of ancient mist and peach blossoms.\\\" The shot uses realistic fantasy imagery with a soft, ethereal pastel palette, glowing light, and a serene, cinematic vlog mood. A handheld selfie medium shot keeps ID_A's face and upper torso centered, showing her natural movement and keeping the background slightly blurred. The background includes a monumental circular marble gate carved with traditional Chinese dragon reliefs, surrounded by swirling white clouds and glowing golden light. A low, resonant sound of wind chimes and the gentle rustle of silk fabric are audible. No prominent background music; the audio focus stays on speech and the ambient celestial breeze.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. Her gaze is curious and peaceful. At normal speed, ID_A turns her back to the camera, walking slowly forward along a paved jade pathway as she holds the camera high to capture the landscape, her waist-length black hair cascading down her back. The shot uses a realistic, dreamy visual style with soft volumetric lighting, jade greens and pearlescent pinks in the color palette, and a peaceful, exploratory mood. A smooth over-the-shoulder tracking shot follows ID_A's slow forward walk, maintaining a medium-close distance that emphasizes the movement of her hair and qipao. The background includes a winding path made of polished jade stones, flanked by ancient gnarled trees with pink blossoms and low-lying, glowing white fog. The soft, rhythmic sound of fabric brushing against grass and the distant ring of a Tibetan singing bowl are audible. A sparse, ethereal guzheng melody drifts softly in the background, enhancing the dreamy, exploratory atmosphere.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. ID_A's voice is a gentle, clear young female voice with a warm, low-pacing tone, carrying a soft breathy resonance and an intimate, natural vlog-style delivery. Her expression is playful and slightly mischievous. The mouth movement is clearly visible in the frame and stays naturally synchronized with the spoken line, especially on slower reflective phrases. At normal speed, ID_A brings the camera closer to her face, then tilts it down to show a large, glowing pink peach she holds in her hands, before bringing it back up and speaking with a soft smile. In a soft, clear young female voice with playful amusement, ID_A says, \\\"I am in the grand peach orchard. Look at this... someone has already taken a bite out of the largest peach.\\\" The shot uses realistic, vibrant fantasy imagery with warm peach and gold tones, sharp textures, and a lighthearted, intimate mood. A handheld selfie close-medium shot captures ID_A's face and hands, panning down briefly to focus on the peach in her palms before returning to her eyes. The background includes leafy branches of celestial peach trees heavy with ripe, glowing fruit, set against a bright, warm golden sky. The rustle of leaves, a soft breeze, and a light hollow thud of a falling peach in the distance are audible. No prominent background music; the soundscape remains minimal to keep her voice clear.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. Her gaze is contemplative and focused. At normal speed, ID_A reaches out a hand to gently touch a gnarled tree trunk, her fingers tracing the ancient mossy bark while pink blossoms drift slowly from the branches above. The shot uses highly detailed close-up imagery with warm dappled sunlight filtering through leaves, soft pastel colors, and a quiet, tactile mood. A close-up shot focuses on ID_A's hand against the bark, slowly panning up to show her calm face in profile as blossoms fall across the frame. The background includes a blurred garden of ancient peach trees, soft golden sunbeams, and swirling white cloud-dust. The gentle crackle of tree bark under her fingers and the soft rustling of falling petals are audible. A very faint, slow-tempo bamboo flute melody plays softly, enhancing the serene, oriental garden aesthetic.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. ID_A's voice is a gentle, clear young female voice with a warm, low-pacing tone, carrying a soft breathy resonance and an intimate, natural vlog-style delivery. Her expression is surprised and fascinated. The mouth movement is clearly visible in the frame and stays naturally synchronized with the spoken line, especially on slower reflective phrases. At normal speed, ID_A stands in a large hall, slowly panning the camera to show the scene behind her before returning the view to her face, raising one hand to point at the details. In a soft, clear young female voice with whispered awe, ID_A says, \\\"I have reached the Jade Pool. The feast is in complete ruins... look at these overturned wine jars.\\\" The shot uses realistic, grand interior imagery with rich gold and turquoise tones, dramatic shadows, and a chaotic yet luxurious mood. A handheld selfie medium shot captures ID_A, slowly panning around to reveal the messy room before panning back to her face. The background includes a long white jade banquet table, overturned golden wine vessels, spilled glowing orange nectar pool on the floor, and silk drapes torn in the background. The drip-drop of liquid landing on stone and the low hum of empty, hollow vessels are audible. No prominent background music; the sound design highlights the empty, ruined grandeur of the hall.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. Her face shows sudden alertness and awe. At normal speed, ID_A turns her head quickly to look over her shoulder as a gust of celestial wind sweeps through, blowing her long black hair across her face, while a bright golden flash illuminates the scene. The shot uses dynamic, high-contrast fantasy imagery with bright golden highlights and dark slate-blue shadows, creating a tense, awe-inspiring mood. A medium close-up shot captures ID_A's side profile, with a slight camera shake that mimics a reaction to the sudden gust of wind. The background includes columns of marble, swirling blue-gray storm clouds, and a distant burst of golden celestial light. A sudden, heavy whoosh of wind and the deep, resonant echo of a distant metal chime are audible. A low, dramatic guzheng trill starts and fades quickly, underlining the sudden tension.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. ID_A's voice is a gentle, clear young female voice with a warm, low-pacing tone, carrying a soft breathy resonance and an intimate, natural vlog-style delivery. Her expression is curious and quiet. The mouth movement is clearly visible in the frame and stays naturally synchronized with the spoken line, especially on slower reflective phrases. At normal speed, ID_A holds a small, round golden gourd in her palm, bringing it close to the lens to show its metallic shine, then looks up and speaks directly to the camera. In a soft, clear young female voice with a curious tone, ID_A says, \\\"I found this inside the Tushita Palace. It is one of Laozi's elixirs... it still feels warm.\\\" The shot uses realistic, atmospheric imagery with warm gold and bronze tones, soft lighting, and an intimate, mystical mood. A handheld selfie close-up focuses first on her hand holding the gourd, then pulls back slightly to frame her face and shoulders. The background includes a carved wooden lattice screen, bronze incense burners with wisps of violet smoke, and a dimly lit palace interior. The faint crackle of incense embers and a soft metallic hum from the gourd are audible. No prominent background music; the dialogue stays clean with just a low room ambience.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. Her gaze is calm and meditative. At normal speed, ID_A sits gracefully on a low wooden bench, watching a stream of violet incense smoke rise from a burner, her long hair draped over her shoulder as she slowly blinks. The shot uses a realistic, highly stylized aesthetic with deep shadows, rich purple and charcoal tones, and a quiet, meditative mood. A static medium shot frames ID_A from the side, capturing her profile and the slow rise of the smoke in the foreground. The background includes dark, polished floorboards, a distant wooden column, and dim, warm candle glows. The soft hiss of burning incense and the distant sound of dripping water are audible. A slow, deep solo guqin tone plays, resonating through the silent room.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. ID_A's voice is a gentle, clear young female voice with a warm, low-pacing tone, carrying a soft breathy resonance and an intimate, natural vlog-style delivery. Her expression is slightly anxious yet excited. The mouth movement is clearly visible in the frame and stays naturally synchronized with the spoken line, especially on slower reflective phrases. At normal speed, ID_A holds the camera close to her face, whispering into the microphone as she glances back at the bright red glow behind her, her hair trembling slightly from a low vibration. In a soft, clear young female voice with an excited whisper, ID_A says, \\\"Do you hear that? The Eight Trigrams Furnace has been knocked over. The flame is spreading.\\\" The shot uses realistic, high-contrast imagery with bright red and orange glows against dark silhouettes, creating an intense, urgent mood. A close selfie shot captures her face, with a slight shake in the camera to convey a sense of instability. The background is filled with swirling orange sparks, thick dark smoke, and the faint, glowing outline of a massive bronze furnace in the distance. A low rumble of collapsing stone and the crackle of celestial fire are audible. No prominent background music; the audio is focused on the rumbling environment and her whispered voice.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. Her gaze is transfixed and wide-eyed. At normal speed, ID_A stands still under a grand canopy, looking up at the high ceiling as a massive, elongated shadow of a staff sweeps across the stone pillars and beams above her. The shot uses dramatic, high-contrast lighting with golden dust particles, deep shadows, and an epic, mythic mood. A low-angle medium shot looks up at ID_A from below, capturing her facial reaction while keeping the grand architecture and the sweeping shadow visible in the upper frame. The background includes towering white jade pillars, a decorated ceiling with celestial patterns, and thick, low-lying fog. A heavy, metallic whooshing sound of a massive staff cutting through the air and a distant crash are audible. A single, resonant strike of a traditional bronze drum echoes, setting a powerful, epic tone.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. ID_A's voice is a gentle, clear young female voice with a warm, low-pacing tone, carrying a soft breathy resonance and an intimate, natural vlog-style delivery. Her expression is solemn and deeply moved. The mouth movement is clearly visible in the frame and stays naturally synchronized with the spoken line, especially on slower reflective phrases. At normal speed, ID_A stands on the edge of a balcony, holding the camera to frame herself against the sky, her long hair blowing wildly in the wind as she speaks with a quiet intensity. In a soft, clear young female voice with quiet intensity, ID_A says, \\\"The clouds are turning crimson. The gods cannot stop him... it is a beautiful kind of chaos.\\\" The shot uses realistic, epic fantasy imagery with a deep red and golden twilight sky, swirling clouds, and a dramatic, poetic mood. A wide-angle selfie medium shot captures ID_A, letting the vast crimson sky and wind-swept clouds dominate the frame behind her. The background includes a white marble terrace railing, endless layers of red and gold clouds, and flashes of lightning in the distance. The loud, whipping sound of wind and distant, muffled thunder are audible. No prominent background music; the sound of the wind and her voice are the main elements.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. Her face is calm, with a subtle, peaceful smile. At normal speed, ID_A closes her eyes, tilting her head up toward the golden light breaking through the clouds, her hair floating gently in the breeze as small golden sparks drift around her. The shot uses a realistic, painterly aesthetic with soft-focus backlighting, warm golden tones, and a serene, transcendent mood. A close-up shot frames her face and neck from a slight angle, focusing on the calm expression and the golden light on her skin. The background includes soft-focus clouds glowing with intense golden light and floating speckles of light. The gentle sigh of the wind and the faint, bell-like chiming of distant wind bells are audible. A low, soft flute melody swells gently, adding a sense of peaceful release.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. ID_A's voice is a gentle, clear young female voice with a warm, low-pacing tone, carrying a soft breathy resonance and an intimate, natural vlog-style delivery. Her expression is gentle and reflective. The mouth movement is clearly visible in the frame and stays naturally synchronized with the spoken line, especially on slower reflective phrases. At normal speed, ID_A extends her hand to catch a single glowing golden hair floating down from the sky, holds it up to the camera to show its brightness, and speaks with a soft smile. In a soft, clear young female voice with a reflective smile, ID_A says, \\\"He left a single golden strand behind... a reminder that the heavens can indeed be shaken.\\\" The shot uses highly detailed, realistic macro imagery with a warm golden hue, soft shadows, and a poetic, symbolic mood. A selfie medium-close shot captures her face and hand, focusing on the glowing thread in her palm before panning back to her face. The background includes a blurred marble balustrade and soft, glowing twilight clouds. A soft, high-pitched chime as the golden thread lands in her palm is audible. No prominent background music; the audio focus stays on her speech and the delicate chime.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. Her gaze is distant and serene. At normal speed, ID_A walks slowly away from the camera, heading toward a wide terrace overlooking a sea of crimson sunset clouds, her long black hair and white trousers flowing behind her in the strong breeze. The shot uses a grand, panoramic visual style with rich crimson, vermilion, and orange tones, dramatic backlighting, and a melancholic, epic mood. A wide tracking shot follows her from behind, showing her silhouette against the vast, glowing expanse of the sky. The background includes a wide marble platform, endless layers of burning crimson clouds, and the faint, glowing silhouette of a celestial palace. The deep, rushing sound of wind and the distant, muffled chime of a temple bell are audible. A slow, emotional guzheng and erhu duet plays softly, building a sense of grand, beautiful ending.\",\n    \"ID_A is a graceful young Chinese woman in her early twenties with straight, waist-length black hair, delicate features, and a slender build. ID_A wears a minimalist light-mint green modern qipao top with delicate hand-embroidered floral details and wide-leg white silk trousers. ID_A's voice is a gentle, clear young female voice with a warm, low-pacing tone, carrying a soft breathy resonance and an intimate, natural vlog-style delivery. Her expression is peaceful and nostalgic. The mouth movement is clearly visible in the frame and stays naturally synchronized with the spoken line, especially on slower reflective phrases. At normal speed, ID_A sits on a stone step, holding the camera close, looking into the lens with a soft smile as the clouds slowly settle in the background, speaking her final words. In a soft, clear young female voice with a nostalgic tone, ID_A says, \\\"The storm is passing, but the sky will never look the same. Thank you for watching my heavenly vlog.\\\" The shot uses realistic, soft-lit imagery with muted gold and warm gray tones, creating a calm, reflective, and satisfying conclusion mood. A stable handheld selfie medium shot frames her from the chest up, keeping her face clear and the background softly blurred. The background includes a quiet stone stairway, fading golden clouds, and the quiet ruins of a celestial wall. A gentle breeze, the soft rustling of her qipao, and the quiet room tone of the open sky are audible. No prominent background music; the focus is entirely on her farewell speech and the gentle, fading wind.\"\n  ]\n}",
+        false
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "JOYECHO_MODEL"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "JOYECHO_MODEL"
+    ],
+    [
+      3,
+      2,
+      1,
+      3,
+      1,
+      "JOYECHO_COND"
+    ],
+    [
+      4,
+      3,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      3,
+      1,
+      5,
+      0,
+      "AUDIO"
+    ],
+    [
+      6,
+      3,
+      0,
+      6,
+      0,
+      "IMAGE"
+    ],
+    [
+      7,
+      3,
+      1,
+      6,
+      1,
+      "AUDIO"
+    ],
+    [
+      10,
+      6,
+      0,
+      7,
+      0,
+      "VIDEO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6600000000000156,
+      "offset": [
+        96.14314803549264,
+        58.43828566376843
+      ]
+    },
+    "frontendVersion": "1.45.15"
+  },
+  "version": 0.4
+}
