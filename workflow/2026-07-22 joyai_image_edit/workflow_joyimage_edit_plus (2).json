@@ -1,0 +1,852 @@
+{
+  "id": "b2c3d4e5-f6a7-4890-91bc-def012345678",
+  "revision": 0,
+  "last_node_id": 182,
+  "last_link_id": 520,
+  "nodes": [
+    {
+      "id": 9,
+      "type": "SaveImage",
+      "pos": [
+        1265.4492262527674,
+        -492.5729837194003
+      ],
+      "size": [
+        580,
+        410
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 520
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.5.1"
+      },
+      "widgets_values": [
+        "JoyAI_ImageEditPlus"
+      ]
+    },
+    {
+      "id": 41,
+      "type": "LoadImage",
+      "pos": [
+        -885.0437281723961,
+        -495.50084541382404
+      ],
+      "size": [
+        280,
+        370
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            512,
+            513
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "Reference image 1",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.5.1"
+      },
+      "widgets_values": [
+        "exec-622875f4-acce-4822-b903-d28ab0127a08.png",
+        "image"
+      ]
+    },
+    {
+      "id": 82,
+      "type": "MarkdownNote",
+      "pos": [
+        -1816.5973035461425,
+        -399.67236113484705
+      ],
+      "size": [
+        570,
+        860
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Note: Model Links",
+      "properties": {},
+      "widgets_values": [
+        "## JoyImage Edit Plus\n\nInstruction-guided image editing workflow with up to six reference images.\n\n## Model Links\n\nRepository: [jdopensource/JoyAI-Image-Edit-Plus-ComfyUI](https://huggingface.co/jdopensource/JoyAI-Image-Edit-Plus-ComfyUI)\n\n**diffusion_models**\n\n- [joyai_image_edit_plus_bf16.safetensors](https://huggingface.co/jdopensource/JoyAI-Image-Edit-Plus-ComfyUI/resolve/main/diffusion_models/joyai_image_edit_plus_bf16.safetensors)\n- [joyai_image_edit_plus_int8_convrot.safetensors](https://huggingface.co/jdopensource/JoyAI-Image-Edit-Plus-ComfyUI/resolve/main/diffusion_models/joyai_image_edit_plus_int8_convrot.safetensors)\n\n**text_encoders**\n\n- [qwen3vl_8b_joyimage_edit_plus_bf16.safetensors](https://huggingface.co/jdopensource/JoyAI-Image-Edit-Plus-ComfyUI/resolve/main/text_encoders/qwen3vl_8b_joyimage_edit_plus_bf16.safetensors)\n- [qwen3vl_8b_joyimage_edit_plus_int8_convrot.safetensors](https://huggingface.co/jdopensource/JoyAI-Image-Edit-Plus-ComfyUI/resolve/main/text_encoders/qwen3vl_8b_joyimage_edit_plus_int8_convrot.safetensors)\n\n**vae**\n\n- [wan_2.1_vae.safetensors](https://huggingface.co/jdopensource/JoyAI-Image-Edit-Plus-ComfyUI/resolve/main/vae/wan_2.1_vae.safetensors)\n\n## Test Images\n\n- [input_0.png](https://huggingface.co/jdopensource/JoyAI-Image-Edit-Plus-Diffusers/resolve/main/examples/input_0.png)\n- [input_1.png](https://huggingface.co/jdopensource/JoyAI-Image-Edit-Plus-Diffusers/resolve/main/examples/input_1.png)\n\n## Model Storage Location\n\n```\nComfyUI/\n`-- models/\n    |-- diffusion_models/\n    |   |-- joyai_image_edit_plus_bf16.safetensors\n    |   `-- joyai_image_edit_plus_int8_convrot.safetensors\n    |-- text_encoders/\n    |   |-- qwen3vl_8b_joyimage_edit_plus_bf16.safetensors\n    |   `-- qwen3vl_8b_joyimage_edit_plus_int8_convrot.safetensors\n    `-- vae/\n        `-- wan_2.1_vae.safetensors\n```\n\n## Defaults\n\n- Output size: `1024 x 1024`\n- Sampler: `euler / simple`\n- CFG: `4.0`\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 171,
+      "type": "UNETLoader",
+      "pos": [
+        -508.47361519059007,
+        -413.2910274298005
+      ],
+      "size": [
+        400,
+        136
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            501
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.5.1"
+      },
+      "widgets_values": [
+        "joyai_image/joyai_image_edit_plus_int8_convrot.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 172,
+      "type": "CLIPLoader",
+      "pos": [
+        -508.47361519059007,
+        -213.2910274298004
+      ],
+      "size": [
+        400,
+        168
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            502,
+            503
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.5.1"
+      },
+      "widgets_values": [
+        "joyai_image/qwen3vl_8b_joyimage_edit_plus_int8_convrot.safetensors",
+        "joyimage",
+        "default"
+      ]
+    },
+    {
+      "id": 173,
+      "type": "VAELoader",
+      "pos": [
+        -508.47361519059007,
+        46.708972570199556
+      ],
+      "size": [
+        400,
+        110
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            504,
+            505,
+            506
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.5.1"
+      },
+      "widgets_values": [
+        "vae/wan_2.1_vae.safetensors"
+      ]
+    },
+    {
+      "id": 174,
+      "type": "TextEncodeJoyImageEdit",
+      "pos": [
+        -8.473615190592625,
+        -413.2910274298005
+      ],
+      "size": [
+        440,
+        360
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 502
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 504
+        },
+        {
+          "label": "image1",
+          "name": "images.image0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 512
+        },
+        {
+          "label": "image1",
+          "name": "images.image1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 515
+        },
+        {
+          "label": "image2",
+          "name": "images.image2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 517
+        },
+        {
+          "label": "image3",
+          "name": "images.image3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "image4",
+          "name": "images.image4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "image5",
+          "name": "images.image5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            507
+          ]
+        }
+      ],
+      "title": "Positive",
+      "properties": {
+        "Node name for S&R": "TextEncodeJoyImageEdit",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.50"
+      },
+      "widgets_values": [
+        "Image 1 is the edit target and the reference for the woman’s identity, face, hairstyle, body proportions, pose, arm positions, camera composition, rooftop fog-harvesting conservatory, and morning light. Image 2 is the reference for the complete replacement outfit. Image 3 is the reference for the dew-drop lantern that must be added to her left hand.\n\nChange only the light-gray sleeveless jumpsuit and original ankle boots in Image 1. Dress the woman in the complete couture outfit from Image 2: the deep mulberry cropped cape-jacket, asymmetric standing collar, copper-brown diagonally wrapped waist structure, smoke-rose asymmetric pleated skirt, narrow brushed-copper piping, and deep mulberry ankle boots. Fit the new clothes naturally to the woman’s existing body and pose. Resolve the sleeves, collar, waist, skirt, legs, and footwear with correct layering and occlusion. Do not leave any visible part of the original gray jumpsuit or original boots. Do not simplify, recolor, or redesign the outfit from Image 2.\n\nAdd the dew-drop lantern from Image 3 to the woman’s already raised left hand in Image 1. Adjust only her left fingers and wrist as little as necessary so her fingers realistically wrap around the deep mulberry leather grip; preserve the original position of her left arm and her overall pose. The lantern should hang vertically below her hand at a believable scale of approximately 30 centimeters. Preserve its complete oval brushed-brass frame, smoke-clear glass shell, two thin brass support rods, amber glass droplet, leather grip, and brass base. The lantern must not float or intersect her hand, clothing, or the floor.\n\nStrictly preserve the woman’s facial identity, apparent age, facial proportions, skin tone, hairstyle, expression, body proportions, right-hand pose, leg stance, foot positions, and gaze direction from Image 1. Strictly preserve Image 1’s square framing, camera position, perspective, concrete ribs, metal fog-collection mesh, terracotta channels, moss, wet floor, skyline, and every background element. Do not move, rebuild, extend, or redesign the environment.\n\nMake the outfit from Image 2 and the lantern from Image 3 inherit the warm upper-right sunrise light, cool skylight fill, and damp environmental reflections from Image 1. Unify scale, perspective, color temperature, sharpness, and depth of field across the person, clothing, prop, and environment. Create believable contact and natural shadows at the collar, sleeves, waist, shoe soles, and gripping hand. The final result must be a bright, dimensional, photorealistic contemporary Asian couture editorial that looks captured in a single real photograph, not a collage or fantasy illustration."
+      ]
+    },
+    {
+      "id": 175,
+      "type": "TextEncodeJoyImageEdit",
+      "pos": [
+        -5.962719245642753,
+        9.477635881852438
+      ],
+      "size": [
+        440,
+        360
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 503
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 505
+        },
+        {
+          "label": "image1",
+          "name": "images.image0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 513
+        },
+        {
+          "label": "image1",
+          "name": "images.image1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 516
+        },
+        {
+          "label": "image2",
+          "name": "images.image2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 518
+        },
+        {
+          "label": "image3",
+          "name": "images.image3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "image4",
+          "name": "images.image4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "image5",
+          "name": "images.image5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            508
+          ]
+        }
+      ],
+      "title": "Negative",
+      "properties": {
+        "Node name for S&R": "TextEncodeJoyImageEdit",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.50"
+      },
+      "widgets_values": [
+        "different person, changed face, changed hands, blue coat, dress, skirt, changed trousers, changed shoes, altered background, warped reflections, cropped body, extra objects, low detail"
+      ]
+    },
+    {
+      "id": 176,
+      "type": "EmptySD3LatentImage",
+      "pos": [
+        14.258640707199286,
+        451.85258492578384
+      ],
+      "size": [
+        320,
+        130
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            509
+          ]
+        }
+      ],
+      "title": "Output latent",
+      "properties": {
+        "Node name for S&R": "EmptySD3LatentImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.50"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ]
+    },
+    {
+      "id": 177,
+      "type": "KSampler",
+      "pos": [
+        593.614881492725,
+        -458.97092062132907
+      ],
+      "size": [
+        300,
+        474
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 514
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 507
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 508
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 509
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            510
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler",
+        "cnr_id": "comfy-core",
+        "ver": "0.5.1"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        30,
+        4,
+        "euler",
+        "normal",
+        1
+      ]
+    },
+    {
+      "id": 178,
+      "type": "VAEDecode",
+      "pos": [
+        925.5042329819837,
+        -458.9709206213292
+      ],
+      "size": [
+        230,
+        100
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 510
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 506
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            520
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode",
+        "cnr_id": "comfy-core",
+        "ver": "0.5.1"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 179,
+      "type": "CFGNorm",
+      "pos": [
+        39.300566517457646,
+        -575.6784817812552
+      ],
+      "size": [
+        280,
+        82
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 501
+        }
+      ],
+      "outputs": [
+        {
+          "name": "patched_model",
+          "type": "MODEL",
+          "links": [
+            514
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CFGNorm",
+        "cnr_id": "comfy-core",
+        "ver": "0.5.1"
+      },
+      "widgets_values": [
+        1,
+        true
+      ]
+    },
+    {
+      "id": 180,
+      "type": "LoadImage",
+      "pos": [
+        -869.2391673988078,
+        -62.05796209659358
+      ],
+      "size": [
+        280,
+        370
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            515,
+            516
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "Reference image 1",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.5.1"
+      },
+      "widgets_values": [
+        "exec-35dee0a9-7bb2-42c8-b5e4-69e47af40e24.png",
+        "image"
+      ]
+    },
+    {
+      "id": 181,
+      "type": "LoadImage",
+      "pos": [
+        -860.7253363349654,
+        408.11596317989444
+      ],
+      "size": [
+        280,
+        370
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            517,
+            518
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "Reference image 1",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.5.1"
+      },
+      "widgets_values": [
+        "exec-4d6a4fb1-edb1-42d0-8a8c-7771a4c692ac.png",
+        "image"
+      ]
+    }
+  ],
+  "links": [
+    [
+      501,
+      171,
+      0,
+      179,
+      0,
+      "MODEL"
+    ],
+    [
+      502,
+      172,
+      0,
+      174,
+      0,
+      "CLIP"
+    ],
+    [
+      503,
+      172,
+      0,
+      175,
+      0,
+      "CLIP"
+    ],
+    [
+      504,
+      173,
+      0,
+      174,
+      1,
+      "VAE"
+    ],
+    [
+      505,
+      173,
+      0,
+      175,
+      1,
+      "VAE"
+    ],
+    [
+      506,
+      173,
+      0,
+      178,
+      1,
+      "VAE"
+    ],
+    [
+      507,
+      174,
+      0,
+      177,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      508,
+      175,
+      0,
+      177,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      509,
+      176,
+      0,
+      177,
+      3,
+      "LATENT"
+    ],
+    [
+      510,
+      177,
+      0,
+      178,
+      0,
+      "LATENT"
+    ],
+    [
+      512,
+      41,
+      0,
+      174,
+      2,
+      "IMAGE"
+    ],
+    [
+      513,
+      41,
+      0,
+      175,
+      2,
+      "IMAGE"
+    ],
+    [
+      514,
+      179,
+      0,
+      177,
+      0,
+      "MODEL"
+    ],
+    [
+      515,
+      180,
+      0,
+      174,
+      3,
+      "IMAGE"
+    ],
+    [
+      516,
+      180,
+      0,
+      175,
+      3,
+      "IMAGE"
+    ],
+    [
+      517,
+      181,
+      0,
+      174,
+      4,
+      "IMAGE"
+    ],
+    [
+      518,
+      181,
+      0,
+      175,
+      4,
+      "IMAGE"
+    ],
+    [
+      520,
+      178,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Models",
+      "bounding": [
+        -538.4736151905901,
+        -533.2910274298001,
+        460,
+        720
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "Prompt",
+      "bounding": [
+        -48.47361519059276,
+        -533.2910274298001,
+        520,
+        900
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "Sample",
+      "bounding": [
+        561.8138057480957,
+        -533.2910274298001,
+        660,
+        720
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.3186308177103567,
+      "offset": [
+        2301.6602539378664,
+        1025.8776392188447
+      ]
+    },
+    "frontendVersion": "1.45.21",
+    "workflowRendererVersion": "LG",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
