@@ -1,0 +1,1685 @@
+{
+  "id": "76915793-04af-4b60-a2a2-9fd3ebbdc944",
+  "revision": 0,
+  "last_node_id": 143,
+  "last_link_id": 310,
+  "nodes": [
+    {
+      "id": 15,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -1740,
+        5640
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            34
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "person"
+      ],
+      "widgets_values_named": {
+        "text": "person"
+      }
+    },
+    {
+      "id": 14,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -2180,
+        5640
+      ],
+      "size": [
+        410,
+        110
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            33
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            15
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "models": [
+          {
+            "name": "sam3.1_multiplex_fp16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/sam3.1/resolve/main/checkpoints/sam3.1_multiplex_fp16.safetensors",
+            "directory": "checkpoints"
+          }
+        ]
+      },
+      "widgets_values": [
+        "sam3.1_multiplex_fp16.safetensors"
+      ],
+      "widgets_values_named": {
+        "ckpt_name": "sam3.1_multiplex_fp16.safetensors"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 109,
+      "type": "RTDETR_detect",
+      "pos": [
+        -1580,
+        5200
+      ],
+      "size": [
+        280,
+        140
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 232
+        },
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 305
+        }
+      ],
+      "outputs": [
+        {
+          "name": "bboxes",
+          "type": "BOUNDING_BOX",
+          "links": [
+            285
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RTDETR_detect",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        0.5,
+        "person",
+        100
+      ],
+      "widgets_values_named": {
+        "threshold": 0.5,
+        "class_name": "person",
+        "max_detections": 100
+      }
+    },
+    {
+      "id": 128,
+      "type": "SAM3DBody_FaceExpression",
+      "pos": [
+        -370,
+        5810
+      ],
+      "size": [
+        310,
+        220
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "showAdvanced": false,
+      "inputs": [
+        {
+          "name": "sam3d_body_model",
+          "type": "SAM3D_BODY_MODEL",
+          "link": 279
+        },
+        {
+          "name": "mhr_pose_data",
+          "type": "MHR_POSE_DATA",
+          "link": 287
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 307
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mhr_pose_data",
+          "type": "MHR_POSE_DATA",
+          "links": [
+            288
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAM3DBody_FaceExpression",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        1,
+        1,
+        2,
+        2,
+        0.02,
+        7
+      ],
+      "widgets_values_named": {
+        "strength": 1,
+        "mouth_strength": 1,
+        "eye_strength": 2,
+        "brow_strength": 2,
+        "input_threshold": 0.02,
+        "blendshape_smooth_window": 7
+      }
+    },
+    {
+      "id": 129,
+      "type": "SAM3DBody_Predict",
+      "pos": [
+        -730,
+        5830
+      ],
+      "size": [
+        280,
+        180
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "sam3d_body_model",
+          "type": "SAM3D_BODY_MODEL",
+          "link": 283
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 308
+        },
+        {
+          "name": "track_data",
+          "shape": 7,
+          "type": "SAM3_TRACK_DATA",
+          "link": 303
+        },
+        {
+          "name": "bboxes",
+          "shape": 7,
+          "type": "BOUNDING_BOX",
+          "link": 285
+        },
+        {
+          "name": "fov",
+          "type": "FLOAT",
+          "widget": {
+            "name": "fov"
+          },
+          "link": 286
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mhr_pose_data",
+          "type": "MHR_POSE_DATA",
+          "links": [
+            287
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAM3DBody_Predict",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        true,
+        0,
+        64
+      ],
+      "widgets_values_named": {
+        "run_hand_refinement": true,
+        "fov": 0,
+        "batch_size": 64
+      }
+    },
+    {
+      "id": 130,
+      "type": "SAM3DBody_Smooth",
+      "pos": [
+        330,
+        5790
+      ],
+      "size": [
+        330,
+        150
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mhr_pose_data",
+          "type": "MHR_POSE_DATA",
+          "link": 288
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mhr_pose_data",
+          "type": "MHR_POSE_DATA",
+          "links": [
+            290,
+            293
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAM3DBody_Smooth",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        1,
+        "gaussian",
+        7,
+        15
+      ],
+      "widgets_values_named": {
+        "strength": 1,
+        "method": "gaussian",
+        "window": 7,
+        "rotation_threshold_degrees": 15
+      }
+    },
+    {
+      "id": 126,
+      "type": "MoGeGeometryToFOV",
+      "pos": [
+        -1380,
+        6110
+      ],
+      "size": [
+        300,
+        110
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "moge_geometry",
+          "type": "MOGE_GEOMETRY",
+          "link": 271
+        }
+      ],
+      "outputs": [
+        {
+          "name": "fov",
+          "type": "FLOAT",
+          "links": [
+            286
+          ]
+        },
+        {
+          "name": "focal_pixels",
+          "type": "FLOAT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MoGeGeometryToFOV",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "vertical",
+        "degrees"
+      ],
+      "widgets_values_named": {
+        "axis": "vertical",
+        "unit": "degrees"
+      }
+    },
+    {
+      "id": 114,
+      "type": "MoGeInference",
+      "pos": [
+        -1700,
+        6110
+      ],
+      "size": [
+        270,
+        180
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "moge_model",
+          "type": "MOGE_MODEL",
+          "link": 242
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 306
+        }
+      ],
+      "outputs": [
+        {
+          "name": "moge_geometry",
+          "type": "MOGE_GEOMETRY",
+          "links": [
+            271
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MoGeInference",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        9,
+        0,
+        4,
+        true,
+        true
+      ],
+      "widgets_values_named": {
+        "resolution_level": 9,
+        "fov_x_degrees": 0,
+        "batch_size": 4,
+        "force_projection": true,
+        "apply_mask": true
+      }
+    },
+    {
+      "id": 134,
+      "type": "CreateVideo",
+      "pos": [
+        1230,
+        5320
+      ],
+      "size": [
+        270,
+        140
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 298
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "widget": {
+            "name": "fps"
+          },
+          "link": 300
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            299
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CreateVideo",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        30,
+        8,
+        "sRGB"
+      ],
+      "widgets_values_named": {
+        "fps": 30,
+        "bit_depth": 8,
+        "color_space": "sRGB"
+      }
+    },
+    {
+      "id": 86,
+      "type": "GetVideoComponents",
+      "pos": [
+        -2520,
+        5640
+      ],
+      "size": [
+        230,
+        120
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 268
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            304,
+            305,
+            306,
+            307,
+            308,
+            309
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "links": [
+            300
+          ]
+        },
+        {
+          "name": "bit_depth",
+          "type": "COMBO",
+          "links": null
+        },
+        {
+          "name": "color_space",
+          "type": "COMBO",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetVideoComponents",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      }
+    },
+    {
+      "id": 136,
+      "type": "Note",
+      "pos": [
+        -2160,
+        6230
+      ],
+      "size": [
+        340,
+        130
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "MoGe can be optionally used to detect FoV for more accurate alignment with source video."
+      ],
+      "widgets_values_named": {
+        "text": "MoGe can be optionally used to detect FoV for more accurate alignment with source video."
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 137,
+      "type": "Note",
+      "pos": [
+        -2180,
+        5810
+      ],
+      "size": [
+        410,
+        170
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "For multiple people in same clip SAM3 is practically required, otherwise optional but can improve detection"
+      ],
+      "widgets_values_named": {
+        "text": "For multiple people in same clip SAM3 is practically required, otherwise optional but can improve detection"
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 138,
+      "type": "Note",
+      "pos": [
+        -2170,
+        5370
+      ],
+      "size": [
+        340,
+        140
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "While bounding boxes are technically optional, depending on clip will improve detection accuracy drastically."
+      ],
+      "widgets_values_named": {
+        "text": "While bounding boxes are technically optional, depending on clip will improve detection accuracy drastically."
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 139,
+      "type": "Note",
+      "pos": [
+        -40,
+        5820
+      ],
+      "size": [
+        330,
+        200
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Sam3d-body does not detect face expressions, this node adds them through MediaPipe face detection."
+      ],
+      "widgets_values_named": {
+        "text": "Sam3d-body does not detect face expressions, this node adds them through MediaPipe face detection."
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 131,
+      "type": "SAM3DBody_Render",
+      "pos": [
+        810,
+        5310
+      ],
+      "size": [
+        370,
+        242
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pose_data",
+          "type": "MHR_POSE_DATA,KIMODO_POSE_DATA",
+          "link": 293
+        },
+        {
+          "name": "background",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 309
+        },
+        {
+          "name": "camera_info",
+          "shape": 7,
+          "type": "LOAD3D_CAMERA",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            298
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAM3DBody_Render",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        0,
+        0,
+        "mesh",
+        "default",
+        1,
+        0.6,
+        "full_body"
+      ],
+      "widgets_values_named": {
+        "width": 0,
+        "height": 0,
+        "render_style": "mesh",
+        "render_style.shader": "default",
+        "render_style.opacity": 1,
+        "render_style.person_palette_falloff": 0.6,
+        "render_style.region": "full_body"
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 111,
+      "type": "UNETLoader",
+      "pos": [
+        -2180,
+        5200
+      ],
+      "size": [
+        510,
+        100
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            232
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "models": [
+          {
+            "name": "rt_detr_v4-x-hgnet_fp32.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/SDPose/resolve/main/diffusion_models/rt_detr_v4-x-hgnet_fp32.safetensors",
+            "directory": "diffusion_models"
+          }
+        ]
+      },
+      "widgets_values": [
+        "rt_detr_v4-x-hgnet_fp16.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "rt_detr_v4-x-hgnet_fp16.safetensors",
+        "weight_dtype": "default"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 119,
+      "type": "SAM3DBody_Loader",
+      "pos": [
+        -740,
+        5510
+      ],
+      "size": [
+        510,
+        90
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "sam3d_body_model",
+          "type": "SAM3D_BODY_MODEL",
+          "links": [
+            274,
+            279,
+            283
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAM3DBody_Loader",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "models": [
+          {
+            "name": "sam_3d_body_dinov3_bf16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/sam-3d-body/resolve/main/detection/sam_3d_body_dinov3_bf16.safetensors",
+            "directory": "detection"
+          }
+        ]
+      },
+      "widgets_values": [
+        "sam_3d_body_dinov3_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "model_file": "sam_3d_body_dinov3_int8_convrot.safetensors"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 142,
+      "type": "MarkdownNote",
+      "pos": [
+        -4150,
+        5600
+      ],
+      "size": [
+        550,
+        930
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Note: Model Link and Input Asset",
+      "properties": {},
+      "widgets_values": [
+        "**Input Asset**\n\n- [woman_holding_water_glass.mp4](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/woman_holding_water_glass.mp4) — required workflow input (`input/woman_holding_water_glass.mp4`)\n\n\n## Model Links\n\n**checkpoints**\n\n- [sam3.1_multiplex_fp16.safetensors](https://huggingface.co/Comfy-Org/sam3.1/resolve/main/checkpoints/sam3.1_multiplex_fp16.safetensors)\n\n**detection**\n\n- [sam_3d_body_dinov3_bf16.safetensors](https://huggingface.co/Comfy-Org/sam-3d-body/resolve/main/detection/sam_3d_body_dinov3_bf16.safetensors)\n\n**geometry_estimation**\n\n- [moge_2_vitl_normal_fp16.safetensors](https://huggingface.co/Comfy-Org/MoGe/resolve/main/geometry_estimation/moge_2_vitl_normal_fp16.safetensors)\n\n**diffusion_models**\n\n- [rt_detr_v4-x-hgnet_fp32.safetensors](https://huggingface.co/Comfy-Org/SDPose/resolve/main/diffusion_models/rt_detr_v4-x-hgnet_fp32.safetensors)\n\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 checkpoints/\n│   │   └── sam3.1_multiplex_fp16.safetensors\n│   ├── 📂 detection/\n│   │   └── sam_3d_body_dinov3_bf16.safetensors\n│   ├── 📂 geometry_estimation/\n│   │   └── moge_2_vitl_normal_fp16.safetensors\n│   └── 📂 diffusion_models/\n│       └── rt_detr_v4-x-hgnet_fp32.safetensors\n```\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n"
+      ],
+      "widgets_values_named": {
+        "text": "**Input Asset**\n\n- [woman_holding_water_glass.mp4](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/woman_holding_water_glass.mp4) — required workflow input (`input/woman_holding_water_glass.mp4`)\n\n\n## Model Links\n\n**checkpoints**\n\n- [sam3.1_multiplex_fp16.safetensors](https://huggingface.co/Comfy-Org/sam3.1/resolve/main/checkpoints/sam3.1_multiplex_fp16.safetensors)\n\n**detection**\n\n- [sam_3d_body_dinov3_bf16.safetensors](https://huggingface.co/Comfy-Org/sam-3d-body/resolve/main/detection/sam_3d_body_dinov3_bf16.safetensors)\n\n**geometry_estimation**\n\n- [moge_2_vitl_normal_fp16.safetensors](https://huggingface.co/Comfy-Org/MoGe/resolve/main/geometry_estimation/moge_2_vitl_normal_fp16.safetensors)\n\n**diffusion_models**\n\n- [rt_detr_v4-x-hgnet_fp32.safetensors](https://huggingface.co/Comfy-Org/SDPose/resolve/main/diffusion_models/rt_detr_v4-x-hgnet_fp32.safetensors)\n\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 checkpoints/\n│   │   └── sam3.1_multiplex_fp16.safetensors\n│   ├── 📂 detection/\n│   │   └── sam_3d_body_dinov3_bf16.safetensors\n│   ├── 📂 geometry_estimation/\n│   │   └── moge_2_vitl_normal_fp16.safetensors\n│   └── 📂 diffusion_models/\n│       └── rt_detr_v4-x-hgnet_fp32.safetensors\n```\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n"
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 115,
+      "type": "LoadMoGeModel",
+      "pos": [
+        -2160,
+        6110
+      ],
+      "size": [
+        410,
+        70
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MOGE_MODEL",
+          "type": "MOGE_MODEL",
+          "links": [
+            242
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadMoGeModel",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "models": [
+          {
+            "name": "moge_2_vitl_normal_fp16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/MoGe/resolve/main/geometry_estimation/moge_2_vitl_normal_fp16.safetensors",
+            "directory": "geometry_estimation"
+          }
+        ]
+      },
+      "widgets_values": [
+        "moge_2_vitl_normal_fp16.safetensors"
+      ],
+      "widgets_values_named": {
+        "model_name": "moge_2_vitl_normal_fp16.safetensors"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 18,
+      "type": "SAM3_VideoTrack",
+      "pos": [
+        -1290,
+        5640
+      ],
+      "size": [
+        280,
+        240
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 304
+        },
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 33
+        },
+        {
+          "label": "initial_mask",
+          "name": "initial_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "label": "conditioning",
+          "name": "conditioning",
+          "shape": 7,
+          "type": "CONDITIONING",
+          "link": 34
+        }
+      ],
+      "outputs": [
+        {
+          "name": "track_data",
+          "type": "SAM3_TRACK_DATA",
+          "links": [
+            303,
+            310
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAM3_VideoTrack",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        0.5,
+        4,
+        1
+      ],
+      "widgets_values_named": {
+        "detection_threshold": 0.5,
+        "max_objects": 4,
+        "detect_interval": 1
+      }
+    },
+    {
+      "id": 143,
+      "type": "SAM3_TrackPreview",
+      "pos": [
+        -815.2314411098776,
+        6344.58499997339
+      ],
+      "size": [
+        270,
+        245.875
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "track_data",
+          "type": "SAM3_TRACK_DATA",
+          "link": 310
+        },
+        {
+          "name": "images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SAM3_TrackPreview"
+      },
+      "widgets_values": [
+        0.5,
+        24
+      ],
+      "widgets_values_named": {
+        "opacity": 0.5,
+        "fps": 24
+      }
+    },
+    {
+      "id": 85,
+      "type": "LoadVideo",
+      "pos": [
+        -3530,
+        5600
+      ],
+      "size": [
+        590,
+        860
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            267
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "rQHTTS7r8XVbs1fv.mp4",
+        "image"
+      ],
+      "widgets_values_named": {
+        "file": "rQHTTS7r8XVbs1fv.mp4",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 125,
+      "type": "Video Slice",
+      "pos": [
+        -2840,
+        5640
+      ],
+      "size": [
+        270,
+        120
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 267
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            268
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Video Slice",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        3,
+        5,
+        false
+      ],
+      "widgets_values_named": {
+        "start_time": 3,
+        "duration": 5,
+        "strict_duration": false
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 133,
+      "type": "Preview3D",
+      "pos": [
+        1630,
+        6060
+      ],
+      "size": [
+        1178.9081417023071,
+        746.5712348802363
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "camera_info",
+          "shape": 7,
+          "type": "LOAD3D_CAMERA",
+          "link": null
+        },
+        {
+          "name": "bg_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model_file",
+          "type": "STRING,FILE_3D_GLB,FILE_3D_GLTF,FILE_3D_FBX,FILE_3D_OBJ,FILE_3D_STL,FILE_3D_USDZ,FILE_3D",
+          "widget": {
+            "name": "model_file"
+          },
+          "link": 296
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Preview3D",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "Last Time Model File": "preview3d_a6a0c5f429bd4476a5f1ce6b7345d434.glb",
+        "Scene Config": {
+          "showGrid": true,
+          "backgroundColor": "#282828",
+          "backgroundImage": "",
+          "backgroundRenderMode": "tiled",
+          "models": [
+            {
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "quaternion": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          ]
+        },
+        "Camera Config": {
+          "cameraType": "perspective",
+          "fov": 35,
+          "state": {
+            "position": {
+              "x": 0.6158846407564738,
+              "y": 1.0193467865879688,
+              "z": 2.5716466121849555
+            },
+            "target": {
+              "x": 0.003144890069961548,
+              "y": 0.9540936648845673,
+              "z": 0.12001484259963036
+            },
+            "zoom": 1,
+            "cameraType": "perspective"
+          }
+        },
+        "Light Config": {
+          "intensity": 3,
+          "hdri": {
+            "enabled": false,
+            "hdriPath": "",
+            "showAsBackground": false,
+            "intensity": 1
+          }
+        },
+        "Model Config": {
+          "upDirection": "original",
+          "materialMode": "original",
+          "showSkeleton": false,
+          "gizmo": {
+            "enabled": false,
+            "mode": "translate",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        }
+      },
+      "widgets_values": [
+        "preview3d_a6a0c5f429bd4476a5f1ce6b7345d434.glb",
+        ""
+      ],
+      "widgets_values_named": {
+        "model_file": "preview3d_a6a0c5f429bd4476a5f1ce6b7345d434.glb",
+        "image": ""
+      }
+    },
+    {
+      "id": 127,
+      "type": "BuildPoseFile",
+      "pos": [
+        820,
+        6140
+      ],
+      "size": [
+        350,
+        246
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pose_data",
+          "type": "MHR_POSE_DATA,KIMODO_POSE_DATA",
+          "link": 290
+        },
+        {
+          "name": "sam3d_body_model",
+          "shape": 7,
+          "type": "SAM3D_BODY_MODEL",
+          "link": 274
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model_3d",
+          "type": "FILE_3D",
+          "links": [
+            296
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BuildPoseFile",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "glb",
+        "body_mesh",
+        "off",
+        "default",
+        0,
+        24,
+        "off",
+        2
+      ],
+      "widgets_values_named": {
+        "format": "glb",
+        "format.mesh_style": "body_mesh",
+        "format.mesh_style.bone_vis": "off",
+        "format.mesh_style.shader": "default",
+        "format.bone_smooth_window": 0,
+        "fps": 24,
+        "camera_translation": "off",
+        "track_index": 2
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 135,
+      "type": "SaveVideo",
+      "pos": [
+        1610.3749698404,
+        5268.125150797995
+      ],
+      "size": [
+        1201.5999742074418,
+        797.899985491686
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 299
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0"
+      },
+      "widgets_values": [
+        "video/SAM3D_body",
+        "auto",
+        "h264",
+        "auto",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "video/SAM3D_body",
+        "format": "auto",
+        "format.codec": "h264",
+        "format.codec.encoding": "auto",
+        "codec": "auto"
+      }
+    }
+  ],
+  "links": [
+    [
+      15,
+      14,
+      1,
+      15,
+      0,
+      "CLIP"
+    ],
+    [
+      33,
+      14,
+      0,
+      18,
+      1,
+      "MODEL"
+    ],
+    [
+      34,
+      15,
+      0,
+      18,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      232,
+      111,
+      0,
+      109,
+      0,
+      "MODEL"
+    ],
+    [
+      242,
+      115,
+      0,
+      114,
+      0,
+      "MOGE_MODEL"
+    ],
+    [
+      267,
+      85,
+      0,
+      125,
+      0,
+      "VIDEO"
+    ],
+    [
+      268,
+      125,
+      0,
+      86,
+      0,
+      "VIDEO"
+    ],
+    [
+      271,
+      114,
+      0,
+      126,
+      0,
+      "MOGE_GEOMETRY"
+    ],
+    [
+      274,
+      119,
+      0,
+      127,
+      1,
+      "SAM3D_BODY_MODEL"
+    ],
+    [
+      279,
+      119,
+      0,
+      128,
+      0,
+      "SAM3D_BODY_MODEL"
+    ],
+    [
+      283,
+      119,
+      0,
+      129,
+      0,
+      "SAM3D_BODY_MODEL"
+    ],
+    [
+      285,
+      109,
+      0,
+      129,
+      3,
+      "BOUNDING_BOX"
+    ],
+    [
+      286,
+      126,
+      0,
+      129,
+      4,
+      "FLOAT"
+    ],
+    [
+      287,
+      129,
+      0,
+      128,
+      1,
+      "MHR_POSE_DATA"
+    ],
+    [
+      288,
+      128,
+      0,
+      130,
+      0,
+      "MHR_POSE_DATA"
+    ],
+    [
+      290,
+      130,
+      0,
+      127,
+      0,
+      "MHR_POSE_DATA"
+    ],
+    [
+      293,
+      130,
+      0,
+      131,
+      0,
+      "MHR_POSE_DATA"
+    ],
+    [
+      296,
+      127,
+      0,
+      133,
+      2,
+      "FILE_3D"
+    ],
+    [
+      298,
+      131,
+      0,
+      134,
+      0,
+      "IMAGE"
+    ],
+    [
+      299,
+      134,
+      0,
+      135,
+      0,
+      "VIDEO"
+    ],
+    [
+      300,
+      86,
+      2,
+      134,
+      2,
+      "FLOAT"
+    ],
+    [
+      303,
+      18,
+      0,
+      129,
+      2,
+      "SAM3_TRACK_DATA"
+    ],
+    [
+      304,
+      86,
+      0,
+      18,
+      0,
+      "IMAGE"
+    ],
+    [
+      305,
+      86,
+      0,
+      109,
+      1,
+      "IMAGE"
+    ],
+    [
+      306,
+      86,
+      0,
+      114,
+      1,
+      "IMAGE"
+    ],
+    [
+      307,
+      86,
+      0,
+      128,
+      2,
+      "IMAGE"
+    ],
+    [
+      308,
+      86,
+      0,
+      129,
+      1,
+      "IMAGE"
+    ],
+    [
+      309,
+      86,
+      0,
+      131,
+      1,
+      "IMAGE"
+    ],
+    [
+      310,
+      18,
+      0,
+      143,
+      0,
+      "SAM3_TRACK_DATA"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Detect Bounding Boxes",
+      "bounding": [
+        -2190,
+        5130,
+        1230,
+        410
+      ],
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "Multiple People Detection (Optional)",
+      "bounding": [
+        -2190,
+        5570,
+        1230,
+        430
+      ],
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "Video Preprocessing",
+      "bounding": [
+        -2850,
+        5570,
+        600,
+        210
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "Get FoV",
+      "bounding": [
+        -2190,
+        6030,
+        1230,
+        350
+      ],
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "SAM 3D Body Detection",
+      "bounding": [
+        -770,
+        5400,
+        1450,
+        810
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "Detect Face Expressions",
+      "bounding": [
+        -390,
+        5750,
+        680,
+        290
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "Render Video",
+      "bounding": [
+        800,
+        5240,
+        760,
+        760
+      ],
+      "flags": {}
+    },
+    {
+      "id": 8,
+      "title": "Create 3D Animation File",
+      "bounding": [
+        800,
+        6020,
+        760,
+        560
+      ],
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.1351305709310396,
+      "offset": [
+        4861.5065372355475,
+        -3577.8336498122576
+      ]
+    },
+    "frontendVersion": "1.51.9",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

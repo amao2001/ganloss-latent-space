@@ -1,0 +1,1044 @@
+{
+  "id": "76915793-04af-4b60-a2a2-9fd3ebbdc944",
+  "revision": 0,
+  "last_node_id": 139,
+  "last_link_id": 301,
+  "nodes": [
+    {
+      "id": 86,
+      "type": "GetVideoComponents",
+      "pos": [
+        -2048.5824693807754,
+        5620.170269682101
+      ],
+      "size": [
+        225,
+        106
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 268
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            297
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": null
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "links": [
+            300
+          ]
+        },
+        {
+          "name": "bit_depth",
+          "type": "COMBO",
+          "links": null
+        },
+        {
+          "name": "color_space",
+          "type": "COMBO",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetVideoComponents"
+      }
+    },
+    {
+      "id": 136,
+      "type": "Note",
+      "pos": [
+        -878.968455256044,
+        4468.409759983445
+      ],
+      "size": [
+        330.7781280007798,
+        123.18766625265289
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "MoGe can be optinally used to detect FoV for more accurate alignment with source video."
+      ],
+      "widgets_values_named": {
+        "text": "MoGe can be optinally used to detect FoV for more accurate alignment with source video."
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 85,
+      "type": "LoadVideo",
+      "pos": [
+        -2738.2674924752923,
+        5627.34118134904
+      ],
+      "size": [
+        282.78125,
+        588.234375
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            267
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo"
+      },
+      "widgets_values": [
+        "dsIiRJfmpD8B96vB.mp4",
+        "image"
+      ],
+      "widgets_values_named": {
+        "file": "dsIiRJfmpD8B96vB.mp4",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 125,
+      "type": "Video Slice",
+      "pos": [
+        -2390.140667153237,
+        5628.005074993387
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 267
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            268
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Video Slice"
+      },
+      "widgets_values": [
+        0,
+        10,
+        false
+      ],
+      "widgets_values_named": {
+        "start_time": 0,
+        "duration": 10,
+        "strict_duration": false
+      }
+    },
+    {
+      "id": 111,
+      "type": "UNETLoader",
+      "pos": [
+        -2407.716943529416,
+        5389.602625587929
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            232
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "rt_detr_v4-x-hgnet_fp16.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "rt_detr_v4-x-hgnet_fp16.safetensors",
+        "weight_dtype": "default"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 17,
+      "type": "Reroute",
+      "pos": [
+        -1772.9795607000958,
+        5615.677504488065
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "",
+          "type": "*",
+          "link": 297
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "IMAGE",
+          "links": [
+            237,
+            284,
+            295
+          ]
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false
+      }
+    },
+    {
+      "id": 109,
+      "type": "RTDETR_detect",
+      "pos": [
+        -2052.7556169515697,
+        5378.20035666185
+      ],
+      "size": [
+        277.6265625,
+        126
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 232
+        },
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 237
+        }
+      ],
+      "outputs": [
+        {
+          "name": "bboxes",
+          "type": "BOUNDING_BOX",
+          "links": [
+            285
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RTDETR_detect"
+      },
+      "widgets_values": [
+        0.5,
+        "person",
+        100
+      ],
+      "widgets_values_named": {
+        "threshold": 0.5,
+        "class_name": "person",
+        "max_detections": 100
+      }
+    },
+    {
+      "id": 138,
+      "type": "Note",
+      "pos": [
+        -2195.324988268664,
+        5221.229352145648
+      ],
+      "size": [
+        406.1273460557668,
+        89.35895196978163
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "While bounding boxes are technically optional, depending on clip will improve detection accuracy drastically."
+      ],
+      "widgets_values_named": {
+        "text": "While bounding boxes are technically optional, depending on clip will improve detection accuracy drastically."
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 137,
+      "type": "Note",
+      "pos": [
+        -2093.1441108565227,
+        5795.6785886796015
+      ],
+      "size": [
+        406.1273460557668,
+        163.43823048556442
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "For multiple people in same clip SAM3 is practically required, otherwise optional but can improve detection"
+      ],
+      "widgets_values_named": {
+        "text": "For multiple people in same clip SAM3 is practically required, otherwise optional but can improve detection"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 119,
+      "type": "SAM3DBody_Loader",
+      "pos": [
+        -2233.4802309911856,
+        5055.7751598366385
+      ],
+      "size": [
+        454.75,
+        82
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "sam3d_body_model",
+          "type": "SAM3D_BODY_MODEL",
+          "links": [
+            274,
+            283
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAM3DBody_Loader"
+      },
+      "widgets_values": [
+        "sam_3d_body_dinov3_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "model_file": "sam_3d_body_dinov3_int8_convrot.safetensors"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 129,
+      "type": "SAM3DBody_Predict",
+      "pos": [
+        -1650.8818406100029,
+        5075.912724522666
+      ],
+      "size": [
+        272.2723902649768,
+        166.09287603394387
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "sam3d_body_model",
+          "type": "SAM3D_BODY_MODEL",
+          "link": 283
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 284
+        },
+        {
+          "name": "track_data",
+          "shape": 7,
+          "type": "SAM3_TRACK_DATA",
+          "link": null
+        },
+        {
+          "name": "bboxes",
+          "shape": 7,
+          "type": "BOUNDING_BOX",
+          "link": 285
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mhr_pose_data",
+          "type": "MHR_POSE_DATA",
+          "links": [
+            301
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAM3DBody_Predict"
+      },
+      "widgets_values": [
+        true,
+        0,
+        64
+      ],
+      "widgets_values_named": {
+        "run_hand_refinement": true,
+        "fov": 0,
+        "batch_size": 64
+      }
+    },
+    {
+      "id": 139,
+      "type": "Note",
+      "pos": [
+        -2102.4784941310727,
+        6040.643903353413
+      ],
+      "size": [
+        406.1273460557668,
+        89.35895196978163
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Sam3d-body does not detect face expressions, this node adds them through MediaPipe face detection."
+      ],
+      "widgets_values_named": {
+        "text": "Sam3d-body does not detect face expressions, this node adds them through MediaPipe face detection."
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 131,
+      "type": "SAM3DBody_Render",
+      "pos": [
+        -1281.863996416123,
+        5062.258426217554
+      ],
+      "size": [
+        364.71875,
+        266
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pose_data",
+          "type": "MHR_POSE_DATA,KIMODO_POSE_DATA",
+          "link": 293
+        },
+        {
+          "name": "background",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 295
+        },
+        {
+          "name": "camera_info",
+          "shape": 7,
+          "type": "LOAD3D_CAMERA",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            298
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAM3DBody_Render"
+      },
+      "widgets_values": [
+        0,
+        0,
+        0
+      ],
+      "widgets_values_named": {
+        "width": 0,
+        "height": 0,
+        "render_style": 0
+      }
+    },
+    {
+      "id": 134,
+      "type": "CreateVideo",
+      "pos": [
+        -828.3801775569591,
+        5072.870449299856
+      ],
+      "size": [
+        270,
+        126
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 298
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "widget": {
+            "name": "fps"
+          },
+          "link": 300
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            299
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CreateVideo"
+      },
+      "widgets_values": [
+        30,
+        8,
+        "sRGB"
+      ],
+      "widgets_values_named": {
+        "fps": 30,
+        "bit_depth": 8,
+        "color_space": "sRGB"
+      }
+    },
+    {
+      "id": 124,
+      "type": "MarkdownNote",
+      "pos": [
+        -2812.677414237028,
+        5049.5152093874085
+      ],
+      "size": [
+        495.6245915982063,
+        198.99416712431776
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Model links",
+      "properties": {},
+      "widgets_values": [
+        "## [https://huggingface.co/Comfy-Org/sam-3d-body](https://huggingface.co/Comfy-Org/sam-3d-body)\n\n## [https://huggingface.co/Comfy-Org/RT-DETR](https://huggingface.co/Comfy-Org/RT-DETR)\n\n## [https://huggingface.co/Comfy-Org/sam3.1](https://huggingface.co/Comfy-Org/sam3.1)\n\n## [https://huggingface.co/Comfy-Org/MoGe](https://huggingface.co/Comfy-Org/MoGe)\n"
+      ],
+      "widgets_values_named": {
+        "text": "## [https://huggingface.co/Comfy-Org/sam-3d-body](https://huggingface.co/Comfy-Org/sam-3d-body)\n\n## [https://huggingface.co/Comfy-Org/RT-DETR](https://huggingface.co/Comfy-Org/RT-DETR)\n\n## [https://huggingface.co/Comfy-Org/sam3.1](https://huggingface.co/Comfy-Org/sam3.1)\n\n## [https://huggingface.co/Comfy-Org/MoGe](https://huggingface.co/Comfy-Org/MoGe)\n"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 127,
+      "type": "BuildPoseFile",
+      "pos": [
+        -1655.6685985699276,
+        5548.095846617371
+      ],
+      "size": [
+        330.41796875,
+        246
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pose_data",
+          "type": "MHR_POSE_DATA,KIMODO_POSE_DATA",
+          "link": 290
+        },
+        {
+          "name": "sam3d_body_model",
+          "shape": 7,
+          "type": "SAM3D_BODY_MODEL",
+          "link": 274
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model_3d",
+          "type": "FILE_3D",
+          "links": [
+            296
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BuildPoseFile"
+      },
+      "widgets_values": [
+        "glb",
+        "body_mesh",
+        "off",
+        "default",
+        0,
+        24,
+        "off",
+        -1
+      ],
+      "widgets_values_named": {
+        "format": "glb",
+        "format.mesh_style": "body_mesh",
+        "format.mesh_style.bone_vis": "off",
+        "format.mesh_style.shader": "default",
+        "format.bone_smooth_window": 0,
+        "fps": 24,
+        "camera_translation": "off",
+        "track_index": -1
+      }
+    },
+    {
+      "id": 130,
+      "type": "SAM3DBody_Smooth",
+      "pos": [
+        -1659.7399511163119,
+        5309.554795946147
+      ],
+      "size": [
+        321.40625,
+        150
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mhr_pose_data",
+          "type": "MHR_POSE_DATA",
+          "link": 301
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mhr_pose_data",
+          "type": "MHR_POSE_DATA",
+          "links": [
+            290,
+            293
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAM3DBody_Smooth"
+      },
+      "widgets_values": [
+        1,
+        "gaussian",
+        7,
+        15
+      ],
+      "widgets_values_named": {
+        "strength": 1,
+        "method": "gaussian",
+        "window": 7,
+        "rotation_threshold_degrees": 15
+      }
+    },
+    {
+      "id": 133,
+      "type": "Preview3D",
+      "pos": [
+        -1253.5218236461517,
+        5448.49867339589
+      ],
+      "size": [
+        609.0055672685817,
+        893.8868600986971
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "camera_info",
+          "shape": 7,
+          "type": "LOAD3D_CAMERA",
+          "link": null
+        },
+        {
+          "name": "bg_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model_file",
+          "type": "STRING,FILE_3D_GLB,FILE_3D_GLTF,FILE_3D_FBX,FILE_3D_OBJ,FILE_3D_STL,FILE_3D_USDZ,FILE_3D",
+          "widget": {
+            "name": "model_file"
+          },
+          "link": 296
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Preview3D",
+        "Last Time Model File": "preview3d_eea95c1d22944c4d9c465777e0461536.glb",
+        "Scene Config": {
+          "showGrid": true,
+          "backgroundColor": "#282828",
+          "backgroundImage": "",
+          "backgroundRenderMode": "tiled",
+          "models": [
+            {
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "quaternion": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              }
+            }
+          ]
+        },
+        "Camera Config": {
+          "cameraType": "perspective",
+          "fov": 35,
+          "state": {
+            "position": {
+              "x": 1.2268281803258416,
+              "y": 2.3084504721291683,
+              "z": 6.613828079242903
+            },
+            "target": {
+              "x": 1.1755932471935183e-7,
+              "y": 0.8652506769082643,
+              "z": 0.06588105709374366
+            },
+            "zoom": 1,
+            "cameraType": "perspective"
+          }
+        },
+        "Light Config": {
+          "intensity": 2.4000000000000004,
+          "hdri": {
+            "enabled": false,
+            "hdriPath": "",
+            "showAsBackground": false,
+            "intensity": 1
+          }
+        },
+        "Model Config": {
+          "upDirection": "original",
+          "materialMode": "original",
+          "showSkeleton": false,
+          "gizmo": {
+            "enabled": false,
+            "mode": "translate",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
+            }
+          }
+        }
+      },
+      "widgets_values": [
+        "preview3d_eea95c1d22944c4d9c465777e0461536.glb",
+        ""
+      ],
+      "widgets_values_named": {
+        "model_file": "preview3d_eea95c1d22944c4d9c465777e0461536.glb",
+        "image": ""
+      }
+    },
+    {
+      "id": 135,
+      "type": "SaveVideo",
+      "pos": [
+        -483.8666828534619,
+        5068.4600646622175
+      ],
+      "size": [
+        564.0660605175035,
+        1100.784107586673
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 299
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": null
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "video/ComfyUI",
+        "auto",
+        "auto",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "video/ComfyUI",
+        "format": "auto",
+        "format.codec": "auto",
+        "codec": "auto"
+      }
+    }
+  ],
+  "links": [
+    [
+      232,
+      111,
+      0,
+      109,
+      0,
+      "MODEL"
+    ],
+    [
+      237,
+      17,
+      0,
+      109,
+      1,
+      "IMAGE"
+    ],
+    [
+      267,
+      85,
+      0,
+      125,
+      0,
+      "VIDEO"
+    ],
+    [
+      268,
+      125,
+      0,
+      86,
+      0,
+      "VIDEO"
+    ],
+    [
+      274,
+      119,
+      0,
+      127,
+      1,
+      "SAM3D_BODY_MODEL"
+    ],
+    [
+      283,
+      119,
+      0,
+      129,
+      0,
+      "SAM3D_BODY_MODEL"
+    ],
+    [
+      284,
+      17,
+      0,
+      129,
+      1,
+      "IMAGE"
+    ],
+    [
+      285,
+      109,
+      0,
+      129,
+      3,
+      "BOUNDING_BOX"
+    ],
+    [
+      290,
+      130,
+      0,
+      127,
+      0,
+      "MHR_POSE_DATA"
+    ],
+    [
+      293,
+      130,
+      0,
+      131,
+      0,
+      "MHR_POSE_DATA"
+    ],
+    [
+      295,
+      17,
+      0,
+      131,
+      1,
+      "IMAGE"
+    ],
+    [
+      296,
+      127,
+      0,
+      133,
+      2,
+      "FILE_3D"
+    ],
+    [
+      297,
+      86,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      298,
+      131,
+      0,
+      134,
+      0,
+      "IMAGE"
+    ],
+    [
+      299,
+      134,
+      0,
+      135,
+      0,
+      "VIDEO"
+    ],
+    [
+      300,
+      86,
+      2,
+      134,
+      2,
+      "FLOAT"
+    ],
+    [
+      301,
+      129,
+      0,
+      130,
+      0,
+      "MHR_POSE_DATA"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.2559399968507878,
+      "offset": [
+        3969.1314346576137,
+        -4268.349196067861
+      ]
+    },
+    "frontendVersion": "1.51.9",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
