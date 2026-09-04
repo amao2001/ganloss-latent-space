@@ -1,0 +1,1850 @@
+{
+  "id": "9073904e-7196-4258-986f-924bf341857e",
+  "revision": 0,
+  "last_node_id": 284,
+  "last_link_id": 609,
+  "nodes": [
+    {
+      "id": 262,
+      "type": "VAEDecode",
+      "pos": [
+        -3065.5506635641027,
+        3422.3786576231855
+      ],
+      "size": [
+        260,
+        50
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 532
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 558
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            543
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      }
+    },
+    {
+      "id": 265,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        -3068.5418023354064,
+        3521.4258282534897
+      ],
+      "size": [
+        260,
+        50
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 533
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 561
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            544
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecodeAudio",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      }
+    },
+    {
+      "id": 267,
+      "type": "RandomNoise",
+      "pos": [
+        -3383.0792512560156,
+        3246.376338777512
+      ],
+      "size": [
+        260,
+        90
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "NOISE",
+          "type": "NOISE",
+          "links": [
+            528
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RandomNoise",
+        "cnr_id": "comfy-core",
+        "ver": "0.28.2"
+      },
+      "widgets_values": [
+        299589024491854,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "noise_seed": 299589024491854,
+        "control_after_generate": "randomize"
+      }
+    },
+    {
+      "id": 246,
+      "type": "Note",
+      "pos": [
+        -6474.778138505791,
+        3226.5179235201945
+      ],
+      "size": [
+        510,
+        940
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "H3 MOTION CONTEXT - QUICK START",
+      "properties": {},
+      "widgets_values": [
+        "H3 MOTION CONTEXT + REFERENCE MODE - QUICK START\n\nSame chaining as the T2V setup, with reference images, video or audio\nsteering the look. Your references are kept and the continuation audio\nis added alongside them. Nothing to configure for that.\n\nNeeds H3 Motion Context from August 2026 or later. Older versions\nrefused to run reference mode and chaining together.\n\nWIRING:\nMiniMaxH3ReferenceToVideo -> H3 Motion Context -> guider / sampler\nReferences go on the reference node as usual. Motion Context sits after\nit and leaves them alone.\n\nFIRST CLIP OF A CHAIN:\n- Leave the H3 Motion Context group enabled\n- Load, Save, and Chain must stay in that group or the buttons do nothing\n- Load 0 / Save 1, then Run/Re-roll or Chain from there\n\nEVERY CLIP AFTER THAT:\n- Approve, or set Load = previous and Save = now\n- Keep the same references wired as the previous clip\n\nRetry and index handling are identical to the T2V note above:\nRun/Re-roll repeats a slot; Approve walks forward; Chain auto-approves\nfrom the current indices; Reset sets Load 0 / Save 1.\n\nSETTINGS THAT WORK (tested):\ncontext_length \"22\", audio_context_length 24.\n24 frames is exactly one second of sound, and any\nmultiple of 3 lands exactly on the audio grid.\n\nPROMPTING IS THE HARD PART HERE. Read this bit.\n\nThe pinned frames are not a suggestion. They are re-injected at every\nsampling step and the model cannot render anything else in that span.\nSo if the prompt for clip 2 opens describing something different from\nhow clip 1 ended, the model does not choose between them - it renders\nBOTH. Clip 1 ends on a close-up of one character, clip 2 opens asking\nfor a two-shot of two others, and you get three people in the frame.\n\nThe fix: open every prompt by describing how the PREVIOUS clip ended.\nSame person, same clothes, same framing, same action. Let that run for\na beat past the join, then change to whatever you actually want. The\npinned frames get a stretch of timeline that agrees with them, and the\nchange happens where nothing is pinned.\n\nGive the hold something to do - a breath, a weight shift, an eyeline\nchange. A held framing with nothing happening in it renders as a frozen\nframe and looks like the video stalled.\n\nAt 22 frames of context the pin is 0.92s, and you want a beat past that,\nso plan on the change landing around 1.5 to 2 seconds in. On a 5 second\nclip that is most of the first half. Longer clips are easier than a\nshorter hold.\n\nREFERENCES HAVE NO TIMING. Every reference conditions the whole clip.\nThere is no way to say \"this one applies from two seconds in.\" If the\noutfit, location or character changes partway through, the shot\nstructure and the description have to carry that on their own.\n\nDark Blue Headers: H3 Motion Context nodes\nGreen Headers: nodes that need a user input between clips"
+      ],
+      "widgets_values_named": {
+        "text": "H3 MOTION CONTEXT + REFERENCE MODE - QUICK START\n\nSame chaining as the T2V setup, with reference images, video or audio\nsteering the look. Your references are kept and the continuation audio\nis added alongside them. Nothing to configure for that.\n\nNeeds H3 Motion Context from August 2026 or later. Older versions\nrefused to run reference mode and chaining together.\n\nWIRING:\nMiniMaxH3ReferenceToVideo -> H3 Motion Context -> guider / sampler\nReferences go on the reference node as usual. Motion Context sits after\nit and leaves them alone.\n\nFIRST CLIP OF A CHAIN:\n- Leave the H3 Motion Context group enabled\n- Load, Save, and Chain must stay in that group or the buttons do nothing\n- Load 0 / Save 1, then Run/Re-roll or Chain from there\n\nEVERY CLIP AFTER THAT:\n- Approve, or set Load = previous and Save = now\n- Keep the same references wired as the previous clip\n\nRetry and index handling are identical to the T2V note above:\nRun/Re-roll repeats a slot; Approve walks forward; Chain auto-approves\nfrom the current indices; Reset sets Load 0 / Save 1.\n\nSETTINGS THAT WORK (tested):\ncontext_length \"22\", audio_context_length 24.\n24 frames is exactly one second of sound, and any\nmultiple of 3 lands exactly on the audio grid.\n\nPROMPTING IS THE HARD PART HERE. Read this bit.\n\nThe pinned frames are not a suggestion. They are re-injected at every\nsampling step and the model cannot render anything else in that span.\nSo if the prompt for clip 2 opens describing something different from\nhow clip 1 ended, the model does not choose between them - it renders\nBOTH. Clip 1 ends on a close-up of one character, clip 2 opens asking\nfor a two-shot of two others, and you get three people in the frame.\n\nThe fix: open every prompt by describing how the PREVIOUS clip ended.\nSame person, same clothes, same framing, same action. Let that run for\na beat past the join, then change to whatever you actually want. The\npinned frames get a stretch of timeline that agrees with them, and the\nchange happens where nothing is pinned.\n\nGive the hold something to do - a breath, a weight shift, an eyeline\nchange. A held framing with nothing happening in it renders as a frozen\nframe and looks like the video stalled.\n\nAt 22 frames of context the pin is 0.92s, and you want a beat past that,\nso plan on the change landing around 1.5 to 2 seconds in. On a 5 second\nclip that is most of the first half. Longer clips are easier than a\nshorter hold.\n\nREFERENCES HAVE NO TIMING. Every reference conditions the whole clip.\nThere is no way to say \"this one applies from two seconds in.\" If the\noutfit, location or character changes partway through, the shot\nstructure and the description have to carry that on their own.\n\nDark Blue Headers: H3 Motion Context nodes\nGreen Headers: nodes that need a user input between clips"
+      },
+      "color": "#008181",
+      "bgcolor": "rgba(24,24,27,.9)"
+    },
+    {
+      "id": 263,
+      "type": "KSamplerSelect",
+      "pos": [
+        -3379.619462571444,
+        3503.1626000843885
+      ],
+      "size": [
+        260,
+        60
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            530
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect",
+        "cnr_id": "comfy-core",
+        "ver": "0.28.2"
+      },
+      "widgets_values": [
+        "euler"
+      ],
+      "widgets_values_named": {
+        "sampler_name": "euler"
+      }
+    },
+    {
+      "id": 216,
+      "type": "PrimitiveFloat",
+      "pos": [
+        -5863.230395780583,
+        3438.871193348643
+      ],
+      "size": [
+        402.15631560630936,
+        58
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            377
+          ]
+        }
+      ],
+      "title": "Duration in Seconds",
+      "properties": {
+        "Node name for S&R": "PrimitiveFloat",
+        "cnr_id": "comfy-core",
+        "ver": "0.28.2"
+      },
+      "widgets_values": [
+        5
+      ],
+      "widgets_values_named": {
+        "value": 5
+      }
+    },
+    {
+      "id": 237,
+      "type": "MiniMaxH3MotionContext",
+      "pos": [
+        -4004.7124140499704,
+        3246.6757606949736
+      ],
+      "size": [
+        517.574993058694,
+        234.33072082115223
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 606
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 557
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": 607
+        },
+        {
+          "name": "context_frames",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "context_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": 431
+        },
+        {
+          "name": "audio_vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 560
+        },
+        {
+          "name": "context_audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "links": [
+            541
+          ]
+        },
+        {
+          "name": "trim_frames",
+          "type": "INT",
+          "links": [
+            433
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3MotionContext"
+      },
+      "widgets_values": [
+        "22",
+        24
+      ],
+      "widgets_values_named": {
+        "context_length": "22",
+        "audio_context_length": 24
+      }
+    },
+    {
+      "id": 215,
+      "type": "ComfyMathExpression",
+      "pos": [
+        -5443.436730638296,
+        3809.899221446343
+      ],
+      "size": [
+        240,
+        150
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "a",
+          "name": "values.a",
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": 377
+        },
+        {
+          "name": "values.b",
+          "shape": 7,
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": []
+        },
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            605
+          ]
+        },
+        {
+          "name": "BOOL",
+          "type": "BOOLEAN",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfyMathExpression",
+        "cnr_id": "comfy-core",
+        "ver": "0.28.2"
+      },
+      "widgets_values": [
+        "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      ],
+      "widgets_values_named": {
+        "expression": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      }
+    },
+    {
+      "id": 269,
+      "type": "MiniMaxH3SigmaShift",
+      "pos": [
+        -4726.818493864866,
+        3223.507439916276
+      ],
+      "size": [
+        277.2857421875,
+        82
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 591
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            548
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3SigmaShift"
+      },
+      "widgets_values": [
+        12,
+        3
+      ],
+      "widgets_values_named": {
+        "shift_video": 12,
+        "shift_audio": 3
+      }
+    },
+    {
+      "id": 261,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        -3064.6792931024734,
+        3243.554343985273
+      ],
+      "size": [
+        260,
+        110
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "link": 528
+        },
+        {
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 529
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 530
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 531
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 608
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            532,
+            533,
+            542
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustomAdvanced",
+        "cnr_id": "comfy-core",
+        "ver": "0.28.2"
+      }
+    },
+    {
+      "id": 268,
+      "type": "BasicGuider",
+      "pos": [
+        -3365.9012634769974,
+        3386.1359209168977
+      ],
+      "size": [
+        260,
+        60
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 548
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 541
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "links": [
+            529
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicGuider",
+        "cnr_id": "comfy-core",
+        "ver": "0.28.2"
+      }
+    },
+    {
+      "id": 264,
+      "type": "BasicScheduler",
+      "pos": [
+        -3396.153365328413,
+        3628.5229941100188
+      ],
+      "size": [
+        260,
+        110
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 554
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            531
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler",
+        "cnr_id": "comfy-core",
+        "ver": "0.28.2"
+      },
+      "widgets_values": [
+        "simple",
+        8,
+        1
+      ],
+      "widgets_values_named": {
+        "scheduler": "simple",
+        "steps": 8,
+        "denoise": 1
+      },
+      "color": "rgba(0,0,0,.8)",
+      "bgcolor": "rgba(24,24,27,.9)"
+    },
+    {
+      "id": 213,
+      "type": "MiniMaxH3MotionContextTrim",
+      "pos": [
+        -3106.624475465218,
+        3628.8720851499334
+      ],
+      "size": [
+        300,
+        130
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 543
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 544
+        },
+        {
+          "name": "trim_frames",
+          "type": "INT",
+          "widget": {
+            "name": "trim_frames"
+          },
+          "link": 433
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            594
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            595
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3MotionContextTrim"
+      },
+      "widgets_values": [
+        0,
+        24,
+        true
+      ],
+      "widgets_values_named": {
+        "trim_frames": 0,
+        "fps": 24,
+        "match_tail": true
+      },
+      "color": "#1f1f48",
+      "bgcolor": "rgba(24,24,27,.9)"
+    },
+    {
+      "id": 271,
+      "type": "UNETLoader",
+      "pos": [
+        -5429.831035471616,
+        3300.6038016100974
+      ],
+      "size": [
+        370,
+        90
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            554,
+            590
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      },
+      "widgets_values": [
+        "10Eros_Max_h3_TURBO_ref2va_beta2_int8_convrot.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "10Eros_Max_h3_TURBO_ref2va_beta2_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    {
+      "id": 273,
+      "type": "VAELoader",
+      "pos": [
+        -5420.562077015618,
+        3572.4934850599343
+      ],
+      "size": [
+        370,
+        60
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            557,
+            558,
+            597
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      },
+      "widgets_values": [
+        "minimax_h3_video_vae_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+      }
+    },
+    {
+      "id": 274,
+      "type": "VAELoader",
+      "pos": [
+        -5429.831035471616,
+        3680.6038016100974
+      ],
+      "size": [
+        370,
+        60
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            560,
+            561,
+            598
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      },
+      "widgets_values": [
+        "minimax_h3_audio_vae_fp32.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    {
+      "id": 276,
+      "type": "LoadImage",
+      "pos": [
+        -5839.148690562412,
+        3553.9504269123117
+      ],
+      "size": [
+        303.92591062505653,
+        326
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            599
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      },
+      "widgets_values": [
+        "919dd552-732c-4cf3-84a9-f1d21a47b837.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "919dd552-732c-4cf3-84a9-f1d21a47b837.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 277,
+      "type": "LoadImage",
+      "pos": [
+        -5860.990859246285,
+        4004.2189565211042
+      ],
+      "size": [
+        332.65187211376633,
+        402.62690459499936
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            581
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      },
+      "widgets_values": [
+        "2.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "2.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 250,
+      "type": "LoadImage",
+      "pos": [
+        -5437.255773510882,
+        4026.9332651087684
+      ],
+      "size": [
+        332.65187211376633,
+        402.62690459499936
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            583
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      },
+      "widgets_values": [
+        "55c2e1b7-4702-405e-8df9-2661a3f1f867.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "55c2e1b7-4702-405e-8df9-2661a3f1f867.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 280,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        -5018.258806417153,
+        3848.397500479695
+      ],
+      "size": [
+        276.4927734375,
+        106
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 583
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            609
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1,
+        1
+      ],
+      "widgets_values_named": {
+        "upscale_method": "nearest-exact",
+        "megapixels": 1,
+        "resolution_steps": 1
+      }
+    },
+    {
+      "id": 279,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        -5358.057255003465,
+        3856.2170253884774
+      ],
+      "size": [
+        276.4927734375,
+        106
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 581
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            600
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1,
+        1
+      ],
+      "widgets_values_named": {
+        "upscale_method": "nearest-exact",
+        "megapixels": 1,
+        "resolution_steps": 1
+      }
+    },
+    {
+      "id": 275,
+      "type": "PrimitiveNode",
+      "pos": [
+        -5001.825503569282,
+        3421.3782623812153
+      ],
+      "size": [
+        557.6772947049249,
+        375.39452006345755
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "links": [
+            602
+          ]
+        }
+      ],
+      "title": "prompt",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        "**subject_definitions**\n\n- `<Subject 1>`: the exact woman from `<Picture 1>`; preserve her face, dark-brown updo, silver floral ornaments, earrings, blue-gray beaded chiffon gown, age, and proportions.\n- `<Subject 2>`: the exact white tiger from `<Picture 2>`; preserve its white coat, gray stripes, ice-blue eyes, anatomy, and scale.\n- `<Subject 3>`: the exact Lushu from `<Picture 3>`; preserve its ivory horse-like body, black stripes, red facial markings, long red tail, and amber eyes.\n\n**summary**\n\nreference generation. Five-second continuous shot: `<Subject 1>` rides `<Subject 2>` left to right through a misty dawn grassland while `<Subject 3>` leaps from the tall grass and briefly runs beside them.\n\n**retention_analysis**\n\nAll three subjects are `fully_preserved` for identity, anatomy, color, clothing, and defining markings. The grassland, movement, camera, and lighting are newly generated.\n\n**detailed_description**\n\nPhotorealistic Chinese mythic cinema with pearl-gray mist, wet green grass, and soft amber sunrise. `[Shot 1]` A medium-wide lateral tracking camera moves smoothly left to right at the same speed as `<Subject 2>`, near shoulder height, showing all four tiger paws contacting the ground. `<Subject 1>` sits naturally without saddle or reins, upright with one hand lightly holding the tiger's shoulder fur. Her translucent skirt and loose hair strands respond coherently to the forward wind. The tiger advances in a heavy controlled canter; each paw compresses wet grass, flicks small droplets, and bends stems. Its shoulders roll under the fur and its tail balances the stride. In the opening beat, grass ahead ripples in a narrow line. At roughly two seconds, `<Subject 3>` springs from the midground grass beyond the tiger, lands with believable weight, and accelerates in the same direction while remaining several meters away. The woman first shifts her eyes, then turns her head toward the Lushu with quiet wonder rather than exaggerated surprise. The camera holds a stable side profile with no zoom or orbit. In the final second, the Lushu lengthens its stride and crosses close through the foreground; its red tail and disturbed wet grass fill the frame as a natural wipe. Keep exactly one woman, one tiger, and one Lushu. Prevent sliding feet, fused bodies, duplicate limbs, changing clothes, changing tiger stripes, random text, logos, subtitles, or modern objects.\n\n**overall_soundscape**\n\nSoft dawn wind through wet grass, rhythmic heavy tiger footfalls, grass brushing fur and fabric, a brief Lushu landing thump, and distant low bird calls. No dialogue.\n\n**non_diegetic_music**\n\nQuiet low guqin harmonics, distant xiao flute, and one deep frame-drum pulse begin a restrained Chinese fantasy motif; no vocals."
+      ],
+      "widgets_values_named": {
+        "value": "**subject_definitions**\n\n- `<Subject 1>`: the exact woman from `<Picture 1>`; preserve her face, dark-brown updo, silver floral ornaments, earrings, blue-gray beaded chiffon gown, age, and proportions.\n- `<Subject 2>`: the exact white tiger from `<Picture 2>`; preserve its white coat, gray stripes, ice-blue eyes, anatomy, and scale.\n- `<Subject 3>`: the exact Lushu from `<Picture 3>`; preserve its ivory horse-like body, black stripes, red facial markings, long red tail, and amber eyes.\n\n**summary**\n\nreference generation. Five-second continuous shot: `<Subject 1>` rides `<Subject 2>` left to right through a misty dawn grassland while `<Subject 3>` leaps from the tall grass and briefly runs beside them.\n\n**retention_analysis**\n\nAll three subjects are `fully_preserved` for identity, anatomy, color, clothing, and defining markings. The grassland, movement, camera, and lighting are newly generated.\n\n**detailed_description**\n\nPhotorealistic Chinese mythic cinema with pearl-gray mist, wet green grass, and soft amber sunrise. `[Shot 1]` A medium-wide lateral tracking camera moves smoothly left to right at the same speed as `<Subject 2>`, near shoulder height, showing all four tiger paws contacting the ground. `<Subject 1>` sits naturally without saddle or reins, upright with one hand lightly holding the tiger's shoulder fur. Her translucent skirt and loose hair strands respond coherently to the forward wind. The tiger advances in a heavy controlled canter; each paw compresses wet grass, flicks small droplets, and bends stems. Its shoulders roll under the fur and its tail balances the stride. In the opening beat, grass ahead ripples in a narrow line. At roughly two seconds, `<Subject 3>` springs from the midground grass beyond the tiger, lands with believable weight, and accelerates in the same direction while remaining several meters away. The woman first shifts her eyes, then turns her head toward the Lushu with quiet wonder rather than exaggerated surprise. The camera holds a stable side profile with no zoom or orbit. In the final second, the Lushu lengthens its stride and crosses close through the foreground; its red tail and disturbed wet grass fill the frame as a natural wipe. Keep exactly one woman, one tiger, and one Lushu. Prevent sliding feet, fused bodies, duplicate limbs, changing clothes, changing tiger stripes, random text, logos, subtitles, or modern objects.\n\n**overall_soundscape**\n\nSoft dawn wind through wet grass, rhythmic heavy tiger footfalls, grass brushing fur and fabric, a brief Lushu landing thump, and distant low bird calls. No dialogue.\n\n**non_diegetic_music**\n\nQuiet low guqin harmonics, distant xiao flute, and one deep frame-drum pulse begin a restrained Chinese fantasy motif; no vocals."
+      }
+    },
+    {
+      "id": 218,
+      "type": "MiniMaxH3MotionContextSaveLatent",
+      "pos": [
+        -3380.4600497949627,
+        3895.1872983655812
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": 542
+        }
+      ],
+      "outputs": [
+        {
+          "name": "latent_path",
+          "type": "STRING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3MotionContextSaveLatent"
+      },
+      "widgets_values": [
+        "h3_context/clip",
+        1
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "h3_context/clip",
+        "clip_index": 1
+      },
+      "color": "#1f1f48",
+      "bgcolor": "rgba(24,24,27,.9)"
+    },
+    {
+      "id": 257,
+      "type": "MiniMaxH3MotionContextChain",
+      "pos": [
+        -3053.7180570520754,
+        3872.71820486893
+      ],
+      "size": [
+        300,
+        100
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3MotionContextChain"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "widgets_values_named": {
+        "h3mc_chain": ""
+      },
+      "color": "#1f1f48",
+      "bgcolor": "rgba(24,24,27,.9)"
+    },
+    {
+      "id": 217,
+      "type": "ResolutionSelector",
+      "pos": [
+        -5873.960912223278,
+        3248.981706277212
+      ],
+      "size": [
+        410.5826414753965,
+        126
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "preview",
+          "shape": 7,
+          "type": "RESOLUTION_PREVIEW",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            603
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            379,
+            604
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResolutionSelector",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      },
+      "widgets_values": [
+        "16:9 (Widescreen)",
+        0.7,
+        32
+      ],
+      "widgets_values_named": {
+        "aspect_ratio": "16:9 (Widescreen)",
+        "megapixels": 0.7,
+        "multiple": 32
+      }
+    },
+    {
+      "id": 283,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        -2718.9108323656756,
+        3193.197679080021
+      ],
+      "size": [
+        1406.6811212492103,
+        1118.3784006940057
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 594
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 595
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00003-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00003.png",
+            "fullpath": "/workspace/comfyui/output/AnimateDiff_00003-audio.mp4"
+          }
+        }
+      },
+      "widgets_values_named": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00003-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00003.png",
+            "fullpath": "/workspace/comfyui/output/AnimateDiff_00003-audio.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 202,
+      "type": "MiniMaxH3MotionContextLoadLatent",
+      "pos": [
+        -4409.8436643859,
+        3877.9981861508013
+      ],
+      "size": [
+        300,
+        90
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            431
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3MotionContextLoadLatent"
+      },
+      "widgets_values": [
+        "h3_context",
+        0
+      ],
+      "widgets_values_named": {
+        "latent_path": "h3_context",
+        "clip_index": 0
+      },
+      "color": "#1f1f48",
+      "bgcolor": "rgba(24,24,27,.9)"
+    },
+    {
+      "id": 284,
+      "type": "MiniMaxH3ReferenceToVideo",
+      "pos": [
+        -4412.527241213533,
+        3238.381560929627
+      ],
+      "size": [
+        388.69432770069307,
+        404
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 596
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 597
+        },
+        {
+          "name": "audio_vae",
+          "type": "VAE",
+          "link": 598
+        },
+        {
+          "name": "ref_images.ref_image_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 599
+        },
+        {
+          "name": "ref_images.ref_image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 600
+        },
+        {
+          "name": "ref_images.ref_image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 609
+        },
+        {
+          "name": "ref_images.ref_image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "ref_videos.ref_video_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "ref_video_audios.ref_video_audio_0",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "ref_audios.ref_audio_0",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 602
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 603
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 604
+        },
+        {
+          "name": "length",
+          "type": "INT",
+          "widget": {
+            "name": "length"
+          },
+          "link": 605
+        },
+        {
+          "name": "ref_videos.ref_video_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            606
+          ]
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            607,
+            608
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3ReferenceToVideo",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      },
+      "widgets_values": [
+        "**subject_definitions**\n\n- `<Subject 1>`: the exact woman from `<Picture 1>`; preserve her face, dark-brown updo, silver floral ornaments, earrings, blue-gray beaded chiffon gown, age, and proportions.\n- `<Subject 2>`: the exact white tiger from `<Picture 2>`; preserve its white coat, gray stripes, ice-blue eyes, anatomy, and scale.\n- `<Subject 3>`: the exact Lushu from `<Picture 3>`; preserve its ivory horse-like body, black stripes, red facial markings, long red tail, and amber eyes.\n\n**summary**\n\nreference generation. Five-second continuous shot: `<Subject 1>` rides `<Subject 2>` left to right through a misty dawn grassland while `<Subject 3>` leaps from the tall grass and briefly runs beside them.\n\n**retention_analysis**\n\nAll three subjects are `fully_preserved` for identity, anatomy, color, clothing, and defining markings. The grassland, movement, camera, and lighting are newly generated.\n\n**detailed_description**\n\nPhotorealistic Chinese mythic cinema with pearl-gray mist, wet green grass, and soft amber sunrise. `[Shot 1]` A medium-wide lateral tracking camera moves smoothly left to right at the same speed as `<Subject 2>`, near shoulder height, showing all four tiger paws contacting the ground. `<Subject 1>` sits naturally without saddle or reins, upright with one hand lightly holding the tiger's shoulder fur. Her translucent skirt and loose hair strands respond coherently to the forward wind. The tiger advances in a heavy controlled canter; each paw compresses wet grass, flicks small droplets, and bends stems. Its shoulders roll under the fur and its tail balances the stride. In the opening beat, grass ahead ripples in a narrow line. At roughly two seconds, `<Subject 3>` springs from the midground grass beyond the tiger, lands with believable weight, and accelerates in the same direction while remaining several meters away. The woman first shifts her eyes, then turns her head toward the Lushu with quiet wonder rather than exaggerated surprise. The camera holds a stable side profile with no zoom or orbit. In the final second, the Lushu lengthens its stride and crosses close through the foreground; its red tail and disturbed wet grass fill the frame as a natural wipe. Keep exactly one woman, one tiger, and one Lushu. Prevent sliding feet, fused bodies, duplicate limbs, changing clothes, changing tiger stripes, random text, logos, subtitles, or modern objects.\n\n**overall_soundscape**\n\nSoft dawn wind through wet grass, rhythmic heavy tiger footfalls, grass brushing fur and fabric, a brief Lushu landing thump, and distant low bird calls. No dialogue.\n\n**non_diegetic_music**\n\nQuiet low guqin harmonics, distant xiao flute, and one deep frame-drum pulse begin a restrained Chinese fantasy motif; no vocals.",
+        1344,
+        null,
+        124,
+        "match"
+      ],
+      "widgets_values_named": {
+        "prompt": "**subject_definitions**\n\n- `<Subject 1>`: the exact woman from `<Picture 1>`; preserve her face, dark-brown updo, silver floral ornaments, earrings, blue-gray beaded chiffon gown, age, and proportions.\n- `<Subject 2>`: the exact white tiger from `<Picture 2>`; preserve its white coat, gray stripes, ice-blue eyes, anatomy, and scale.\n- `<Subject 3>`: the exact Lushu from `<Picture 3>`; preserve its ivory horse-like body, black stripes, red facial markings, long red tail, and amber eyes.\n\n**summary**\n\nreference generation. Five-second continuous shot: `<Subject 1>` rides `<Subject 2>` left to right through a misty dawn grassland while `<Subject 3>` leaps from the tall grass and briefly runs beside them.\n\n**retention_analysis**\n\nAll three subjects are `fully_preserved` for identity, anatomy, color, clothing, and defining markings. The grassland, movement, camera, and lighting are newly generated.\n\n**detailed_description**\n\nPhotorealistic Chinese mythic cinema with pearl-gray mist, wet green grass, and soft amber sunrise. `[Shot 1]` A medium-wide lateral tracking camera moves smoothly left to right at the same speed as `<Subject 2>`, near shoulder height, showing all four tiger paws contacting the ground. `<Subject 1>` sits naturally without saddle or reins, upright with one hand lightly holding the tiger's shoulder fur. Her translucent skirt and loose hair strands respond coherently to the forward wind. The tiger advances in a heavy controlled canter; each paw compresses wet grass, flicks small droplets, and bends stems. Its shoulders roll under the fur and its tail balances the stride. In the opening beat, grass ahead ripples in a narrow line. At roughly two seconds, `<Subject 3>` springs from the midground grass beyond the tiger, lands with believable weight, and accelerates in the same direction while remaining several meters away. The woman first shifts her eyes, then turns her head toward the Lushu with quiet wonder rather than exaggerated surprise. The camera holds a stable side profile with no zoom or orbit. In the final second, the Lushu lengthens its stride and crosses close through the foreground; its red tail and disturbed wet grass fill the frame as a natural wipe. Keep exactly one woman, one tiger, and one Lushu. Prevent sliding feet, fused bodies, duplicate limbs, changing clothes, changing tiger stripes, random text, logos, subtitles, or modern objects.\n\n**overall_soundscape**\n\nSoft dawn wind through wet grass, rhythmic heavy tiger footfalls, grass brushing fur and fabric, a brief Lushu landing thump, and distant low bird calls. No dialogue.\n\n**non_diegetic_music**\n\nQuiet low guqin harmonics, distant xiao flute, and one deep frame-drum pulse begin a restrained Chinese fantasy motif; no vocals.",
+        "width": 1344,
+        "height": null,
+        "length": 124,
+        "ref_image_size": "match"
+      }
+    },
+    {
+      "id": 272,
+      "type": "CLIPLoader",
+      "pos": [
+        -5429.831035471616,
+        3429.8844035882503
+      ],
+      "size": [
+        370,
+        110
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            596
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "cnr_id": "comfy-core",
+        "ver": "0.30.2"
+      },
+      "widgets_values": [
+        "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+        "minimax",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    {
+      "id": 282,
+      "type": "ModelAttentionBackend",
+      "pos": [
+        -5013.4597401415585,
+        3234.752012545881
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 590
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            591
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ModelAttentionBackend"
+      },
+      "widgets_values": [
+        "comfy kitchen attention"
+      ],
+      "widgets_values_named": {
+        "attention": "comfy kitchen attention"
+      }
+    }
+  ],
+  "links": [
+    [
+      377,
+      216,
+      0,
+      215,
+      0,
+      "FLOAT"
+    ],
+    [
+      379,
+      217,
+      1,
+      191,
+      14,
+      "INT"
+    ],
+    [
+      431,
+      202,
+      0,
+      237,
+      4,
+      "LATENT"
+    ],
+    [
+      433,
+      237,
+      1,
+      213,
+      2,
+      "INT"
+    ],
+    [
+      528,
+      267,
+      0,
+      261,
+      0,
+      "NOISE"
+    ],
+    [
+      529,
+      268,
+      0,
+      261,
+      1,
+      "GUIDER"
+    ],
+    [
+      530,
+      263,
+      0,
+      261,
+      2,
+      "SAMPLER"
+    ],
+    [
+      531,
+      264,
+      0,
+      261,
+      3,
+      "SIGMAS"
+    ],
+    [
+      532,
+      261,
+      0,
+      262,
+      0,
+      "LATENT"
+    ],
+    [
+      533,
+      261,
+      0,
+      265,
+      0,
+      "LATENT"
+    ],
+    [
+      541,
+      237,
+      0,
+      268,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      542,
+      261,
+      0,
+      218,
+      0,
+      "LATENT"
+    ],
+    [
+      543,
+      262,
+      0,
+      213,
+      0,
+      "IMAGE"
+    ],
+    [
+      544,
+      265,
+      0,
+      213,
+      1,
+      "AUDIO"
+    ],
+    [
+      548,
+      269,
+      0,
+      268,
+      0,
+      "MODEL"
+    ],
+    [
+      554,
+      271,
+      0,
+      264,
+      0,
+      "MODEL"
+    ],
+    [
+      557,
+      273,
+      0,
+      237,
+      1,
+      "VAE"
+    ],
+    [
+      558,
+      273,
+      0,
+      262,
+      1,
+      "VAE"
+    ],
+    [
+      560,
+      274,
+      0,
+      237,
+      5,
+      "VAE"
+    ],
+    [
+      561,
+      274,
+      0,
+      265,
+      1,
+      "VAE"
+    ],
+    [
+      581,
+      277,
+      0,
+      279,
+      0,
+      "IMAGE"
+    ],
+    [
+      583,
+      250,
+      0,
+      280,
+      0,
+      "IMAGE"
+    ],
+    [
+      590,
+      271,
+      0,
+      282,
+      0,
+      "MODEL"
+    ],
+    [
+      591,
+      282,
+      0,
+      269,
+      0,
+      "MODEL"
+    ],
+    [
+      594,
+      213,
+      0,
+      283,
+      0,
+      "IMAGE"
+    ],
+    [
+      595,
+      213,
+      1,
+      283,
+      1,
+      "AUDIO"
+    ],
+    [
+      596,
+      272,
+      0,
+      284,
+      0,
+      "CLIP"
+    ],
+    [
+      597,
+      273,
+      0,
+      284,
+      1,
+      "VAE"
+    ],
+    [
+      598,
+      274,
+      0,
+      284,
+      2,
+      "VAE"
+    ],
+    [
+      599,
+      276,
+      0,
+      284,
+      3,
+      "IMAGE"
+    ],
+    [
+      600,
+      279,
+      0,
+      284,
+      4,
+      "IMAGE"
+    ],
+    [
+      602,
+      275,
+      0,
+      284,
+      10,
+      "STRING"
+    ],
+    [
+      603,
+      217,
+      0,
+      284,
+      11,
+      "INT"
+    ],
+    [
+      604,
+      217,
+      1,
+      284,
+      12,
+      "INT"
+    ],
+    [
+      605,
+      215,
+      1,
+      284,
+      13,
+      "INT"
+    ],
+    [
+      606,
+      284,
+      0,
+      237,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      607,
+      284,
+      1,
+      237,
+      2,
+      "LATENT"
+    ],
+    [
+      608,
+      284,
+      1,
+      261,
+      4,
+      "LATENT"
+    ],
+    [
+      609,
+      280,
+      0,
+      284,
+      5,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 14,
+      "title": "model_load",
+      "bounding": [
+        -5439.831035471616,
+        3230.6038016100974,
+        390,
+        520
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 15,
+      "title": "motion context chain",
+      "bounding": [
+        -4433.904775122646,
+        3796.0819303586336,
+        1692.8759287792304,
+        200.291123214472
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "frontendVersion": "1.51.9",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "ds": {
+      "scale": 0.2928306480620638,
+      "offset": [
+        6362.91079825606,
+        -2581.144804317802
+      ]
+    }
+  },
+  "version": 0.4
+}
