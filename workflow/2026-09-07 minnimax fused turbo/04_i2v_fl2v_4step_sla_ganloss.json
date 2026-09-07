@@ -1,0 +1,1226 @@
+{
+  "id": "b08f7f4b-fca0-46ff-8d0d-dd325f984b0e",
+  "revision": 0,
+  "last_node_id": 902,
+  "last_link_id": 27,
+  "nodes": [
+    {
+      "id": 133,
+      "type": "PrimitiveFloat",
+      "pos": [
+        -427.4168007033841,
+        756.9740054785706
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "PrimitiveFloat",
+      "properties": {
+        "Node name for S&R": "PrimitiveFloat"
+      },
+      "widgets_values": [
+        10
+      ],
+      "widgets_values_named": {
+        "value": 10
+      }
+    },
+    {
+      "id": 127,
+      "type": "UNETLoader",
+      "pos": [
+        51.93412604807476,
+        22.779041365883266
+      ],
+      "size": [
+        400,
+        126
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            2
+          ]
+        }
+      ],
+      "title": "UNETLoader",
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "minimax_h3_fused_refdelta_r1024_turbo8_mystic07_int8_convrot.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "minimax_h3_fused_refdelta_r1024_turbo8_mystic07_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    {
+      "id": 119,
+      "type": "VAELoader",
+      "pos": [
+        54.72252598763517,
+        199.14331994622052
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            4,
+            22
+          ]
+        }
+      ],
+      "title": "VAELoader",
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "minimax_h3_video_vae_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+      }
+    },
+    {
+      "id": 120,
+      "type": "VAELoader",
+      "pos": [
+        50.78177042826597,
+        343.8149279940729
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            20
+          ]
+        }
+      ],
+      "title": "VAELoader",
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "minimax_h3_audio_vae_fp32.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    {
+      "id": 128,
+      "type": "CLIPLoader",
+      "pos": [
+        54.238573550519654,
+        484.2479519721749
+      ],
+      "size": [
+        400,
+        154
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "slot_index": 0,
+          "links": [
+            3
+          ]
+        }
+      ],
+      "title": "CLIPLoader",
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+        "minimax",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    {
+      "id": 132,
+      "type": "ComfyMathExpression",
+      "pos": [
+        54.476725299510214,
+        696.0614558467229
+      ],
+      "size": [
+        400,
+        148
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "values.a",
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": 1
+        },
+        {
+          "name": "values.b",
+          "shape": 7,
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": null
+        },
+        {
+          "name": "values",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "slot_index": 0,
+          "links": null
+        },
+        {
+          "name": "INT",
+          "type": "INT",
+          "slot_index": 1,
+          "links": [
+            8
+          ]
+        },
+        {
+          "name": "BOOL",
+          "type": "BOOLEAN",
+          "slot_index": 2,
+          "links": null
+        }
+      ],
+      "title": "ComfyMathExpression",
+      "properties": {
+        "Node name for S&R": "ComfyMathExpression"
+      },
+      "widgets_values": [
+        "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      ],
+      "widgets_values_named": {
+        "expression": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      }
+    },
+    {
+      "id": 900,
+      "type": "H3SLAAttention",
+      "pos": [
+        513.0286739961289,
+        15.946241872249999
+      ],
+      "size": [
+        400,
+        298
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            10
+          ]
+        }
+      ],
+      "title": "H3 SLA Attention 0.9/64 (their graph)",
+      "properties": {
+        "Node name for S&R": "H3SLAAttention"
+      },
+      "widgets_values": [
+        0.9,
+        "64",
+        8192,
+        0,
+        true,
+        true,
+        "0",
+        "comfy_kitchen",
+        true,
+        false,
+        "Off"
+      ],
+      "widgets_values_named": {
+        "sparsity_ratio": 0.9,
+        "block_size": "64",
+        "min_seq_len": 8192,
+        "dense_last_steps": 0,
+        "protect_audio": true,
+        "enabled": true,
+        "dense_steps": "0",
+        "dense_backend": "comfy_kitchen",
+        "disable_fp16_accum": true,
+        "stabilize_motion": false,
+        "reference_protection": "Off"
+      }
+    },
+    {
+      "id": 142,
+      "type": "MiniMaxH3SigmaShift",
+      "pos": [
+        947.4198501358595,
+        5.84937176635461
+      ],
+      "size": [
+        400,
+        150
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            11,
+            12
+          ]
+        }
+      ],
+      "title": "MiniMaxH3SigmaShift",
+      "properties": {
+        "Node name for S&R": "MiniMaxH3SigmaShift"
+      },
+      "widgets_values": [
+        12,
+        3
+      ],
+      "widgets_values_named": {
+        "shift_video": 12,
+        "shift_audio": 3
+      }
+    },
+    {
+      "id": 126,
+      "type": "BasicGuider",
+      "pos": [
+        1414.3382115615893,
+        -1.653899920682444
+      ],
+      "size": [
+        400,
+        118
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 12
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "slot_index": 0,
+          "links": [
+            15
+          ]
+        }
+      ],
+      "title": "BasicGuider",
+      "properties": {
+        "Node name for S&R": "BasicGuider"
+      }
+    },
+    {
+      "id": 124,
+      "type": "BasicScheduler",
+      "pos": [
+        1405.9726416317437,
+        163.76897710523775
+      ],
+      "size": [
+        400,
+        178
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "slot_index": 0,
+          "links": [
+            17
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "simple",
+        4,
+        1
+      ],
+      "widgets_values_named": {
+        "scheduler": "simple",
+        "steps": 4,
+        "denoise": 1
+      }
+    },
+    {
+      "id": 129,
+      "type": "RandomNoise",
+      "pos": [
+        1401.3962566096475,
+        391.1305082156133
+      ],
+      "size": [
+        400,
+        126
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "NOISE",
+          "type": "NOISE",
+          "slot_index": 0,
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RandomNoise"
+      },
+      "widgets_values": [
+        42,
+        "fixed"
+      ],
+      "widgets_values_named": {
+        "noise_seed": 42,
+        "control_after_generate": "fixed"
+      }
+    },
+    {
+      "id": 125,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        1826.9331734604664,
+        10.399831613569429
+      ],
+      "size": [
+        400,
+        190
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "link": 14
+        },
+        {
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 15
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 16
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 17
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            19,
+            21
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "slot_index": 1,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustomAdvanced"
+      }
+    },
+    {
+      "id": 135,
+      "type": "KSamplerSelect",
+      "pos": [
+        514.9478264197168,
+        359.6427493625472
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "slot_index": 0,
+          "links": [
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "res_multistep"
+      ],
+      "widgets_values_named": {
+        "sampler_name": "res_multistep"
+      }
+    },
+    {
+      "id": 131,
+      "type": "MiniMaxH3ImageToVideo",
+      "pos": [
+        952.1141177426697,
+        208.97894170723424
+      ],
+      "size": [
+        374.9032902104593,
+        329.3833965638321
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 4
+        },
+        {
+          "name": "first_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 9
+        },
+        {
+          "name": "last_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 5
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 6
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 7
+        },
+        {
+          "name": "length",
+          "type": "INT",
+          "widget": {
+            "name": "length"
+          },
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            13
+          ]
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 1,
+          "links": [
+            18
+          ]
+        }
+      ],
+      "title": "MiniMaxH3ImageToVideo",
+      "properties": {
+        "Node name for S&R": "MiniMaxH3ImageToVideo"
+      },
+      "widgets_values": [
+        "",
+        1344,
+        768,
+        124
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "width": 1344,
+        "height": 768,
+        "length": 124
+      }
+    },
+    {
+      "id": 902,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        2251.6584722617768,
+        13.446212428685952
+      ],
+      "size": [
+        611.8819341731005,
+        1413.3874815115807
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 26
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 27
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00028-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00028.png",
+            "fullpath": "/workspace/comfyui/output/AnimateDiff_00028-audio.mp4"
+          }
+        }
+      },
+      "widgets_values_named": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00028-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00028.png",
+            "fullpath": "/workspace/comfyui/output/AnimateDiff_00028-audio.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 121,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        1851.013257419621,
+        256.8987768839966
+      ],
+      "size": [
+        400,
+        118
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 19
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "slot_index": 0,
+          "links": [
+            27
+          ]
+        }
+      ],
+      "title": "VAEDecodeAudio",
+      "properties": {
+        "Node name for S&R": "VAEDecodeAudio"
+      }
+    },
+    {
+      "id": 122,
+      "type": "VAEDecode",
+      "pos": [
+        2039.166620630524,
+        261.4743047881184
+      ],
+      "size": [
+        400,
+        118
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 21
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            26
+          ]
+        }
+      ],
+      "title": "VAEDecode",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 901,
+      "type": "LoadImage",
+      "pos": [
+        -1168.1677121776884,
+        33.609368857316504
+      ],
+      "size": [
+        670.9620292054057,
+        815.0651001182644
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            9
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 1,
+          "links": null
+        }
+      ],
+      "title": "FIRST FRAME (add a second LoadImage into last_frame for FL2V)",
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "HQJ7IL1aQAABgC_.jpg",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "HQJ7IL1aQAABgC_.jpg",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 115,
+      "type": "ResolutionSelector",
+      "pos": [
+        -424.38609839029573,
+        552.4093768751379
+      ],
+      "size": [
+        400,
+        154
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "preview",
+          "shape": 7,
+          "type": "RESOLUTION_PREVIEW",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "slot_index": 0,
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "slot_index": 1,
+          "links": [
+            7
+          ]
+        }
+      ],
+      "title": "ResolutionSelector",
+      "properties": {
+        "Node name for S&R": "ResolutionSelector"
+      },
+      "widgets_values": [
+        "9:16 (Portrait Widescreen)",
+        0.7,
+        32
+      ],
+      "widgets_values_named": {
+        "aspect_ratio": "9:16 (Portrait Widescreen)",
+        "megapixels": 0.7,
+        "multiple": 32
+      }
+    },
+    {
+      "id": 1,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -426.20681323660244,
+        22.22808114223755
+      ],
+      "size": [
+        451.8528380453231,
+        471.5027637771352
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            5
+          ]
+        }
+      ],
+      "title": "PROMPT (feeds every stage)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.\nintegrated_multimodal_description:\n[Shot 1] A continuous five-second photorealistic lifestyle shot on a quiet, sunlit café street. Fully preserve the adult woman’s facial identity, hairstyle, light-blue dress, sandals, body proportions, and the original street environment from <Picture 1>. She begins in the exact pose shown in the reference, smiling warmly at the camera with her hands relaxed together in front of her. A gentle summer breeze softly moves the loose strands of her ponytail, the hem of her dress, and the nearby leaves and pink flowers. She blinks naturally, subtly tilts her head, then slowly straightens her upper body while keeping her feet planted and her hands close together. Near the end, she shifts her weight slightly onto one leg and gives the camera a brighter, relaxed smile. The camera performs a very slow, small-amplitude dolly-in from full-body framing toward a three-quarter framing, with stable eye-level composition and subtle natural handheld micro-movement. Warm sunlight flickers softly through the leaves, producing moving patches of light on the pavement and brick wall. Realistic skin texture, natural fabric physics, cinematic shallow depth of field, clean summer atmosphere. Maintain consistent facial features, anatomy, fingers, clothing construction, street geometry, café furniture, and background objects throughout. No cuts, no sudden motion, no exaggerated body movement, no talking, no lip movement, no newly appearing people, objects, signs, or text.\noverall_soundscape:\nSoft summer street ambience with distant birds, faint city sounds, leaves rustling in the breeze, and a subtle flutter of fabric. No dialogue.\nnon_diegetic_music:\nLight, warm acoustic guitar with a gentle romantic mood, mixed quietly beneath the natural ambience."
+      ],
+      "widgets_values_named": {
+        "value": "For the target video, at 0.00 seconds into the target video, <Picture 1> (from [Shot 1]) is fully referenced.\nintegrated_multimodal_description:\n[Shot 1] A continuous five-second photorealistic lifestyle shot on a quiet, sunlit café street. Fully preserve the adult woman’s facial identity, hairstyle, light-blue dress, sandals, body proportions, and the original street environment from <Picture 1>. She begins in the exact pose shown in the reference, smiling warmly at the camera with her hands relaxed together in front of her. A gentle summer breeze softly moves the loose strands of her ponytail, the hem of her dress, and the nearby leaves and pink flowers. She blinks naturally, subtly tilts her head, then slowly straightens her upper body while keeping her feet planted and her hands close together. Near the end, she shifts her weight slightly onto one leg and gives the camera a brighter, relaxed smile. The camera performs a very slow, small-amplitude dolly-in from full-body framing toward a three-quarter framing, with stable eye-level composition and subtle natural handheld micro-movement. Warm sunlight flickers softly through the leaves, producing moving patches of light on the pavement and brick wall. Realistic skin texture, natural fabric physics, cinematic shallow depth of field, clean summer atmosphere. Maintain consistent facial features, anatomy, fingers, clothing construction, street geometry, café furniture, and background objects throughout. No cuts, no sudden motion, no exaggerated body movement, no talking, no lip movement, no newly appearing people, objects, signs, or text.\noverall_soundscape:\nSoft summer street ambience with distant birds, faint city sounds, leaves rustling in the breeze, and a subtle flutter of fabric. No dialogue.\nnon_diegetic_music:\nLight, warm acoustic guitar with a gentle romantic mood, mixed quietly beneath the natural ambience."
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      133,
+      0,
+      132,
+      0,
+      "FLOAT"
+    ],
+    [
+      2,
+      127,
+      0,
+      900,
+      0,
+      "MODEL"
+    ],
+    [
+      3,
+      128,
+      0,
+      131,
+      0,
+      "CLIP"
+    ],
+    [
+      4,
+      119,
+      0,
+      131,
+      1,
+      "VAE"
+    ],
+    [
+      5,
+      1,
+      0,
+      131,
+      4,
+      "STRING"
+    ],
+    [
+      6,
+      115,
+      0,
+      131,
+      5,
+      "INT"
+    ],
+    [
+      7,
+      115,
+      1,
+      131,
+      6,
+      "INT"
+    ],
+    [
+      8,
+      132,
+      1,
+      131,
+      7,
+      "INT"
+    ],
+    [
+      9,
+      901,
+      0,
+      131,
+      2,
+      "IMAGE"
+    ],
+    [
+      10,
+      900,
+      0,
+      142,
+      0,
+      "MODEL"
+    ],
+    [
+      11,
+      142,
+      0,
+      124,
+      0,
+      "MODEL"
+    ],
+    [
+      12,
+      142,
+      0,
+      126,
+      0,
+      "MODEL"
+    ],
+    [
+      13,
+      131,
+      0,
+      126,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      14,
+      129,
+      0,
+      125,
+      0,
+      "NOISE"
+    ],
+    [
+      15,
+      126,
+      0,
+      125,
+      1,
+      "GUIDER"
+    ],
+    [
+      16,
+      135,
+      0,
+      125,
+      2,
+      "SAMPLER"
+    ],
+    [
+      17,
+      124,
+      0,
+      125,
+      3,
+      "SIGMAS"
+    ],
+    [
+      18,
+      131,
+      1,
+      125,
+      4,
+      "LATENT"
+    ],
+    [
+      19,
+      125,
+      0,
+      121,
+      0,
+      "LATENT"
+    ],
+    [
+      20,
+      120,
+      0,
+      121,
+      1,
+      "VAE"
+    ],
+    [
+      21,
+      125,
+      0,
+      122,
+      0,
+      "LATENT"
+    ],
+    [
+      22,
+      119,
+      0,
+      122,
+      1,
+      "VAE"
+    ],
+    [
+      26,
+      122,
+      0,
+      902,
+      0,
+      "IMAGE"
+    ],
+    [
+      27,
+      121,
+      0,
+      902,
+      1,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.2944393178260481,
+      "offset": [
+        1553.688967850956,
+        866.8624815499688
+      ]
+    },
+    "frontendVersion": "1.51.9",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

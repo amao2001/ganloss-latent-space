@@ -1,0 +1,1174 @@
+{
+  "id": "6541f890-531f-4ce1-b5d7-939f50dd8d69",
+  "revision": 0,
+  "last_node_id": 902,
+  "last_link_id": 27,
+  "nodes": [
+    {
+      "id": 115,
+      "type": "ResolutionSelector",
+      "pos": [
+        -424.38609839029573,
+        552.4093768751379
+      ],
+      "size": [
+        400,
+        154
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "preview",
+          "shape": 7,
+          "type": "RESOLUTION_PREVIEW",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "slot_index": 0,
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "slot_index": 1,
+          "links": [
+            7
+          ]
+        }
+      ],
+      "title": "ResolutionSelector",
+      "properties": {
+        "Node name for S&R": "ResolutionSelector"
+      },
+      "widgets_values": [
+        "16:9 (Widescreen)",
+        0.7,
+        32
+      ],
+      "widgets_values_named": {
+        "aspect_ratio": "16:9 (Widescreen)",
+        "megapixels": 0.7,
+        "multiple": 32
+      }
+    },
+    {
+      "id": 133,
+      "type": "PrimitiveFloat",
+      "pos": [
+        -427.4168007033841,
+        756.9740054785706
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "PrimitiveFloat",
+      "properties": {
+        "Node name for S&R": "PrimitiveFloat"
+      },
+      "widgets_values": [
+        10
+      ],
+      "widgets_values_named": {
+        "value": 10
+      }
+    },
+    {
+      "id": 127,
+      "type": "UNETLoader",
+      "pos": [
+        51.93412604807476,
+        22.779041365883266
+      ],
+      "size": [
+        400,
+        126
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            2
+          ]
+        }
+      ],
+      "title": "UNETLoader",
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "minimax_h3_fused_refdelta_r1024_turbo8_mystic07_int8_convrot.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "minimax_h3_fused_refdelta_r1024_turbo8_mystic07_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    {
+      "id": 119,
+      "type": "VAELoader",
+      "pos": [
+        54.72252598763517,
+        199.14331994622052
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            4,
+            22
+          ]
+        }
+      ],
+      "title": "VAELoader",
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "minimax_h3_video_vae_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+      }
+    },
+    {
+      "id": 120,
+      "type": "VAELoader",
+      "pos": [
+        50.78177042826597,
+        343.8149279940729
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            20
+          ]
+        }
+      ],
+      "title": "VAELoader",
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "minimax_h3_audio_vae_fp32.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    {
+      "id": 128,
+      "type": "CLIPLoader",
+      "pos": [
+        54.238573550519654,
+        484.2479519721749
+      ],
+      "size": [
+        400,
+        154
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "slot_index": 0,
+          "links": [
+            3
+          ]
+        }
+      ],
+      "title": "CLIPLoader",
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+        "minimax",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    {
+      "id": 132,
+      "type": "ComfyMathExpression",
+      "pos": [
+        54.476725299510214,
+        696.0614558467229
+      ],
+      "size": [
+        400,
+        148
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "values.a",
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": 1
+        },
+        {
+          "name": "values.b",
+          "shape": 7,
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": null
+        },
+        {
+          "name": "values",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "slot_index": 0,
+          "links": null
+        },
+        {
+          "name": "INT",
+          "type": "INT",
+          "slot_index": 1,
+          "links": [
+            8
+          ]
+        },
+        {
+          "name": "BOOL",
+          "type": "BOOLEAN",
+          "slot_index": 2,
+          "links": null
+        }
+      ],
+      "title": "ComfyMathExpression",
+      "properties": {
+        "Node name for S&R": "ComfyMathExpression"
+      },
+      "widgets_values": [
+        "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      ],
+      "widgets_values_named": {
+        "expression": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      }
+    },
+    {
+      "id": 900,
+      "type": "H3SLAAttention",
+      "pos": [
+        513.0286739961289,
+        15.946241872249999
+      ],
+      "size": [
+        400,
+        298
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            10
+          ]
+        }
+      ],
+      "title": "H3 SLA Attention 0.9/64 (their graph)",
+      "properties": {
+        "Node name for S&R": "H3SLAAttention"
+      },
+      "widgets_values": [
+        0.9,
+        "64",
+        8192,
+        0,
+        true,
+        true,
+        "0",
+        "comfy_kitchen",
+        true,
+        false,
+        "Off"
+      ],
+      "widgets_values_named": {
+        "sparsity_ratio": 0.9,
+        "block_size": "64",
+        "min_seq_len": 8192,
+        "dense_last_steps": 0,
+        "protect_audio": true,
+        "enabled": true,
+        "dense_steps": "0",
+        "dense_backend": "comfy_kitchen",
+        "disable_fp16_accum": true,
+        "stabilize_motion": false,
+        "reference_protection": "Off"
+      }
+    },
+    {
+      "id": 142,
+      "type": "MiniMaxH3SigmaShift",
+      "pos": [
+        947.4198501358595,
+        5.84937176635461
+      ],
+      "size": [
+        400,
+        150
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            11,
+            12
+          ]
+        }
+      ],
+      "title": "MiniMaxH3SigmaShift",
+      "properties": {
+        "Node name for S&R": "MiniMaxH3SigmaShift"
+      },
+      "widgets_values": [
+        12,
+        3
+      ],
+      "widgets_values_named": {
+        "shift_video": 12,
+        "shift_audio": 3
+      }
+    },
+    {
+      "id": 126,
+      "type": "BasicGuider",
+      "pos": [
+        1414.3382115615893,
+        -1.653899920682444
+      ],
+      "size": [
+        400,
+        118
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 12
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "slot_index": 0,
+          "links": [
+            15
+          ]
+        }
+      ],
+      "title": "BasicGuider",
+      "properties": {
+        "Node name for S&R": "BasicGuider"
+      }
+    },
+    {
+      "id": 124,
+      "type": "BasicScheduler",
+      "pos": [
+        1405.9726416317437,
+        163.76897710523775
+      ],
+      "size": [
+        400,
+        178
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "slot_index": 0,
+          "links": [
+            17
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "simple",
+        4,
+        1
+      ],
+      "widgets_values_named": {
+        "scheduler": "simple",
+        "steps": 4,
+        "denoise": 1
+      }
+    },
+    {
+      "id": 125,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        1826.9331734604664,
+        10.399831613569429
+      ],
+      "size": [
+        400,
+        190
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "link": 14
+        },
+        {
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 15
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 16
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 17
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            19,
+            21
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "slot_index": 1,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustomAdvanced"
+      }
+    },
+    {
+      "id": 135,
+      "type": "KSamplerSelect",
+      "pos": [
+        514.9478264197168,
+        359.6427493625472
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "slot_index": 0,
+          "links": [
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "res_multistep"
+      ],
+      "widgets_values_named": {
+        "sampler_name": "res_multistep"
+      }
+    },
+    {
+      "id": 131,
+      "type": "MiniMaxH3ImageToVideo",
+      "pos": [
+        952.1141177426697,
+        208.97894170723424
+      ],
+      "size": [
+        374.9032902104593,
+        329.3833965638321
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 4
+        },
+        {
+          "name": "first_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "last_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 5
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 6
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 7
+        },
+        {
+          "name": "length",
+          "type": "INT",
+          "widget": {
+            "name": "length"
+          },
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            13
+          ]
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 1,
+          "links": [
+            18
+          ]
+        }
+      ],
+      "title": "MiniMaxH3ImageToVideo",
+      "properties": {
+        "Node name for S&R": "MiniMaxH3ImageToVideo"
+      },
+      "widgets_values": [
+        "",
+        1344,
+        768,
+        124
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "width": 1344,
+        "height": 768,
+        "length": 124
+      }
+    },
+    {
+      "id": 122,
+      "type": "VAEDecode",
+      "pos": [
+        2009.4743772315924,
+        253.45006736649435
+      ],
+      "size": [
+        400,
+        118
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 21
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            26
+          ]
+        }
+      ],
+      "title": "VAEDecode",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 902,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        2251.6584722617768,
+        13.446212428685952
+      ],
+      "size": [
+        611.8819341731005,
+        676.8232967628336
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 26
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 27
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00026-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00026.png",
+            "fullpath": "/workspace/comfyui/output/AnimateDiff_00026-audio.mp4"
+          }
+        }
+      },
+      "widgets_values_named": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00026-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00026.png",
+            "fullpath": "/workspace/comfyui/output/AnimateDiff_00026-audio.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 129,
+      "type": "RandomNoise",
+      "pos": [
+        1401.3962566096475,
+        391.1305082156133
+      ],
+      "size": [
+        400,
+        126
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "NOISE",
+          "type": "NOISE",
+          "slot_index": 0,
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RandomNoise"
+      },
+      "widgets_values": [
+        994943585721370,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "noise_seed": 994943585721370,
+        "control_after_generate": "randomize"
+      }
+    },
+    {
+      "id": 121,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        1829.1990061435638,
+        253.41137079913082
+      ],
+      "size": [
+        400,
+        118
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 19
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "slot_index": 0,
+          "links": [
+            27
+          ]
+        }
+      ],
+      "title": "VAEDecodeAudio",
+      "properties": {
+        "Node name for S&R": "VAEDecodeAudio"
+      }
+    },
+    {
+      "id": 1,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -426.20681323660244,
+        22.22808114223755
+      ],
+      "size": [
+        451.8528380453231,
+        471.5027637771352
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            5
+          ]
+        }
+      ],
+      "title": "PROMPT (feeds every stage)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Visual Style and Timeline: [Shot 1] Realistic live-action cinematic\nstyle at sunrise inside a real luxury East Asian observation train traveling on\nan elevated railway through a canyon and river valley. The carriage uses warm\nwood, restrained brass details, and large glass windows. Morning light clearly\nilluminates both subject and object. An elegant East Asian female diplomat around\n25 years old sits beside the window. She has a natural mature adult face, black\nhair in a low bun, and wears the same dark-navy modern Chinese couture uniform in\nevery shot, with one clearly recognizable silver ginkgo brooch on her left chest.\nOnly one square green-jade seal with one gold tassel rests on the pale wooden\ntable.\n\nThe train enters a curve and the carriage tilts slightly in a physically realistic\nway. The jade seal therefore slides from the center of the table toward the\ncarriage doorway, with the gold tassel trailing behind. She looks up immediately\nand reaches with her right hand, but her fingertips miss the seal by only a few\ncentimeters. The seal moves over the table edge, lands on the carpet, and continues\nsliding toward the doorway. Its wooden friction changes to a lower carpet sliding\nsound after it falls.\n\n[Shot 2] At 00:01.600, the camera hard-cuts to a side medium shot and tracks left.\nShe rises from her seat and quickly follows the same jade seal along the aisle.\nHer face, low bun, dark-navy uniform, silver ginkgo brooch, and body proportions\nremain identical to Shot 1. She passes through a group of pale bead curtains\nswinging because of the train's turn. The curtains briefly occlude her face and\nupper body; her identity and clothing remain unchanged when she reappears. The\njade seal stays on the floor ahead of her, remaining square and green with one\ngold tassel that does not disappear, duplicate, or change color.\n\n[Shot 3] At 00:03.300, the shot hard-cuts to a low medium-close angle in the connection\nbetween two train carriages. The seal slides toward the edge of a narrow luggage\nbench fixed against the wall, not toward an open exterior door. She enters from\nthe left, bends down, and reaches with her right hand, catching the seal accurately\nbefore it falls onto the lower step. Contact with her palm produces one restrained\ndull impact, followed by a small swing and light metallic-fiber sound from the\ngold tassel. She immediately raises the same seal in front of her chest. Hold a\nstable medium-close view for about the final half-second, keeping her face, silver ginkgo brooch, square\ngreen-jade seal, and gold tassel clearly visible together. No dialogue, subtitles,\nlogos, watermarks, second seal, costume changes, identity changes, open exterior\ndoors, falling outside the train, or additional passengers.\n\nAudio — ambience and action sounds: Train-wheel rhythm and subtle carriage vibration continue\nthroughout. The seal produces material-correct sliding sounds on wood, carpet,\nand the luggage bench. Her footsteps move closer, the bead curtain produces one\ncontinuous contact sequence only as she passes through, and the catch produces\none dull palm impact followed by the gold tassel's light movement. Sound remains\nspatially continuous across all cuts.\n\nAudio — music: Low strings and sparse hand drums create a slow rhythm that\ngradually accelerates. The rhythm becomes slightly stronger during the second-shot\nchase and stops completely at the exact moment she catches the seal, leaving the\npalm impact clear before resolving with one warm string chord."
+      ],
+      "widgets_values_named": {
+        "value": "Visual Style and Timeline: [Shot 1] Realistic live-action cinematic\nstyle at sunrise inside a real luxury East Asian observation train traveling on\nan elevated railway through a canyon and river valley. The carriage uses warm\nwood, restrained brass details, and large glass windows. Morning light clearly\nilluminates both subject and object. An elegant East Asian female diplomat around\n25 years old sits beside the window. She has a natural mature adult face, black\nhair in a low bun, and wears the same dark-navy modern Chinese couture uniform in\nevery shot, with one clearly recognizable silver ginkgo brooch on her left chest.\nOnly one square green-jade seal with one gold tassel rests on the pale wooden\ntable.\n\nThe train enters a curve and the carriage tilts slightly in a physically realistic\nway. The jade seal therefore slides from the center of the table toward the\ncarriage doorway, with the gold tassel trailing behind. She looks up immediately\nand reaches with her right hand, but her fingertips miss the seal by only a few\ncentimeters. The seal moves over the table edge, lands on the carpet, and continues\nsliding toward the doorway. Its wooden friction changes to a lower carpet sliding\nsound after it falls.\n\n[Shot 2] At 00:01.600, the camera hard-cuts to a side medium shot and tracks left.\nShe rises from her seat and quickly follows the same jade seal along the aisle.\nHer face, low bun, dark-navy uniform, silver ginkgo brooch, and body proportions\nremain identical to Shot 1. She passes through a group of pale bead curtains\nswinging because of the train's turn. The curtains briefly occlude her face and\nupper body; her identity and clothing remain unchanged when she reappears. The\njade seal stays on the floor ahead of her, remaining square and green with one\ngold tassel that does not disappear, duplicate, or change color.\n\n[Shot 3] At 00:03.300, the shot hard-cuts to a low medium-close angle in the connection\nbetween two train carriages. The seal slides toward the edge of a narrow luggage\nbench fixed against the wall, not toward an open exterior door. She enters from\nthe left, bends down, and reaches with her right hand, catching the seal accurately\nbefore it falls onto the lower step. Contact with her palm produces one restrained\ndull impact, followed by a small swing and light metallic-fiber sound from the\ngold tassel. She immediately raises the same seal in front of her chest. Hold a\nstable medium-close view for about the final half-second, keeping her face, silver ginkgo brooch, square\ngreen-jade seal, and gold tassel clearly visible together. No dialogue, subtitles,\nlogos, watermarks, second seal, costume changes, identity changes, open exterior\ndoors, falling outside the train, or additional passengers.\n\nAudio — ambience and action sounds: Train-wheel rhythm and subtle carriage vibration continue\nthroughout. The seal produces material-correct sliding sounds on wood, carpet,\nand the luggage bench. Her footsteps move closer, the bead curtain produces one\ncontinuous contact sequence only as she passes through, and the catch produces\none dull palm impact followed by the gold tassel's light movement. Sound remains\nspatially continuous across all cuts.\n\nAudio — music: Low strings and sparse hand drums create a slow rhythm that\ngradually accelerates. The rhythm becomes slightly stronger during the second-shot\nchase and stops completely at the exact moment she catches the seal, leaving the\npalm impact clear before resolving with one warm string chord."
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      133,
+      0,
+      132,
+      0,
+      "FLOAT"
+    ],
+    [
+      2,
+      127,
+      0,
+      900,
+      0,
+      "MODEL"
+    ],
+    [
+      3,
+      128,
+      0,
+      131,
+      0,
+      "CLIP"
+    ],
+    [
+      4,
+      119,
+      0,
+      131,
+      1,
+      "VAE"
+    ],
+    [
+      5,
+      1,
+      0,
+      131,
+      4,
+      "STRING"
+    ],
+    [
+      6,
+      115,
+      0,
+      131,
+      5,
+      "INT"
+    ],
+    [
+      7,
+      115,
+      1,
+      131,
+      6,
+      "INT"
+    ],
+    [
+      8,
+      132,
+      1,
+      131,
+      7,
+      "INT"
+    ],
+    [
+      10,
+      900,
+      0,
+      142,
+      0,
+      "MODEL"
+    ],
+    [
+      11,
+      142,
+      0,
+      124,
+      0,
+      "MODEL"
+    ],
+    [
+      12,
+      142,
+      0,
+      126,
+      0,
+      "MODEL"
+    ],
+    [
+      13,
+      131,
+      0,
+      126,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      14,
+      129,
+      0,
+      125,
+      0,
+      "NOISE"
+    ],
+    [
+      15,
+      126,
+      0,
+      125,
+      1,
+      "GUIDER"
+    ],
+    [
+      16,
+      135,
+      0,
+      125,
+      2,
+      "SAMPLER"
+    ],
+    [
+      17,
+      124,
+      0,
+      125,
+      3,
+      "SIGMAS"
+    ],
+    [
+      18,
+      131,
+      1,
+      125,
+      4,
+      "LATENT"
+    ],
+    [
+      19,
+      125,
+      0,
+      121,
+      0,
+      "LATENT"
+    ],
+    [
+      20,
+      120,
+      0,
+      121,
+      1,
+      "VAE"
+    ],
+    [
+      21,
+      125,
+      0,
+      122,
+      0,
+      "LATENT"
+    ],
+    [
+      22,
+      119,
+      0,
+      122,
+      1,
+      "VAE"
+    ],
+    [
+      26,
+      122,
+      0,
+      902,
+      0,
+      "IMAGE"
+    ],
+    [
+      27,
+      121,
+      0,
+      902,
+      1,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.35627157456951825,
+      "offset": [
+        669.1023875064219,
+        688.7432348696465
+      ]
+    },
+    "frontendVersion": "1.51.9",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

@@ -1,0 +1,1257 @@
+{
+  "id": "2bd8882a-43a9-46c1-8d59-37b0fee7ff89",
+  "revision": 0,
+  "last_node_id": 903,
+  "last_link_id": 37,
+  "nodes": [
+    {
+      "id": 133,
+      "type": "PrimitiveFloat",
+      "pos": [
+        -427.4168007033841,
+        756.9740054785706
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "PrimitiveFloat",
+      "properties": {
+        "Node name for S&R": "PrimitiveFloat"
+      },
+      "widgets_values": [
+        10
+      ],
+      "widgets_values_named": {
+        "value": 10
+      }
+    },
+    {
+      "id": 127,
+      "type": "UNETLoader",
+      "pos": [
+        51.93412604807476,
+        22.779041365883266
+      ],
+      "size": [
+        400,
+        126
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            2
+          ]
+        }
+      ],
+      "title": "UNETLoader",
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "minimax_h3_fused_refdelta_r1024_turbo8_mystic07_int8_convrot.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "minimax_h3_fused_refdelta_r1024_turbo8_mystic07_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    {
+      "id": 119,
+      "type": "VAELoader",
+      "pos": [
+        54.72252598763517,
+        199.14331994622052
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            22,
+            34
+          ]
+        }
+      ],
+      "title": "VAELoader",
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "minimax_h3_video_vae_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+      }
+    },
+    {
+      "id": 128,
+      "type": "CLIPLoader",
+      "pos": [
+        54.238573550519654,
+        484.2479519721749
+      ],
+      "size": [
+        400,
+        154
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "slot_index": 0,
+          "links": [
+            33
+          ]
+        }
+      ],
+      "title": "CLIPLoader",
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+        "minimax",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    {
+      "id": 132,
+      "type": "ComfyMathExpression",
+      "pos": [
+        54.476725299510214,
+        696.0614558467229
+      ],
+      "size": [
+        400,
+        148
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "values.a",
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": 1
+        },
+        {
+          "name": "values.b",
+          "shape": 7,
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": null
+        },
+        {
+          "name": "values",
+          "type": "COMFY_AUTOGROW_V3",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "slot_index": 0,
+          "links": null
+        },
+        {
+          "name": "INT",
+          "type": "INT",
+          "slot_index": 1,
+          "links": [
+            28
+          ]
+        },
+        {
+          "name": "BOOL",
+          "type": "BOOLEAN",
+          "slot_index": 2,
+          "links": null
+        }
+      ],
+      "title": "ComfyMathExpression",
+      "properties": {
+        "Node name for S&R": "ComfyMathExpression"
+      },
+      "widgets_values": [
+        "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      ],
+      "widgets_values_named": {
+        "expression": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      }
+    },
+    {
+      "id": 900,
+      "type": "H3SLAAttention",
+      "pos": [
+        513.0286739961289,
+        15.946241872249999
+      ],
+      "size": [
+        400,
+        298
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            10
+          ]
+        }
+      ],
+      "title": "H3 SLA Attention 0.9/64 (their graph)",
+      "properties": {
+        "Node name for S&R": "H3SLAAttention"
+      },
+      "widgets_values": [
+        0.9,
+        "64",
+        8192,
+        0,
+        true,
+        true,
+        "0",
+        "comfy_kitchen",
+        true,
+        false,
+        "Off"
+      ],
+      "widgets_values_named": {
+        "sparsity_ratio": 0.9,
+        "block_size": "64",
+        "min_seq_len": 8192,
+        "dense_last_steps": 0,
+        "protect_audio": true,
+        "enabled": true,
+        "dense_steps": "0",
+        "dense_backend": "comfy_kitchen",
+        "disable_fp16_accum": true,
+        "stabilize_motion": false,
+        "reference_protection": "Off"
+      }
+    },
+    {
+      "id": 142,
+      "type": "MiniMaxH3SigmaShift",
+      "pos": [
+        947.4198501358595,
+        5.84937176635461
+      ],
+      "size": [
+        400,
+        150
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            11,
+            12
+          ]
+        }
+      ],
+      "title": "MiniMaxH3SigmaShift",
+      "properties": {
+        "Node name for S&R": "MiniMaxH3SigmaShift"
+      },
+      "widgets_values": [
+        12,
+        3
+      ],
+      "widgets_values_named": {
+        "shift_video": 12,
+        "shift_audio": 3
+      }
+    },
+    {
+      "id": 126,
+      "type": "BasicGuider",
+      "pos": [
+        1414.3382115615893,
+        -1.653899920682444
+      ],
+      "size": [
+        400,
+        118
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 12
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 36
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "slot_index": 0,
+          "links": [
+            15
+          ]
+        }
+      ],
+      "title": "BasicGuider",
+      "properties": {
+        "Node name for S&R": "BasicGuider"
+      }
+    },
+    {
+      "id": 124,
+      "type": "BasicScheduler",
+      "pos": [
+        1405.9726416317437,
+        163.76897710523775
+      ],
+      "size": [
+        400,
+        178
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "slot_index": 0,
+          "links": [
+            17
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "simple",
+        4,
+        1
+      ],
+      "widgets_values_named": {
+        "scheduler": "simple",
+        "steps": 4,
+        "denoise": 1
+      }
+    },
+    {
+      "id": 129,
+      "type": "RandomNoise",
+      "pos": [
+        1401.3962566096475,
+        391.1305082156133
+      ],
+      "size": [
+        400,
+        126
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "NOISE",
+          "type": "NOISE",
+          "slot_index": 0,
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RandomNoise"
+      },
+      "widgets_values": [
+        42,
+        "fixed"
+      ],
+      "widgets_values_named": {
+        "noise_seed": 42,
+        "control_after_generate": "fixed"
+      }
+    },
+    {
+      "id": 125,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        1826.9331734604664,
+        10.399831613569429
+      ],
+      "size": [
+        400,
+        190
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "link": 14
+        },
+        {
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 15
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 16
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 17
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 37
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            19,
+            21
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "slot_index": 1,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustomAdvanced"
+      }
+    },
+    {
+      "id": 135,
+      "type": "KSamplerSelect",
+      "pos": [
+        514.9478264197168,
+        359.6427493625472
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "slot_index": 0,
+          "links": [
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "res_multistep"
+      ],
+      "widgets_values_named": {
+        "sampler_name": "res_multistep"
+      }
+    },
+    {
+      "id": 902,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        2251.6584722617768,
+        13.446212428685952
+      ],
+      "size": [
+        611.8819341731005,
+        1145.7539112767877
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 26
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 27
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00029-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00029.png",
+            "fullpath": "/workspace/comfyui/output/AnimateDiff_00029-audio.mp4"
+          }
+        }
+      },
+      "widgets_values_named": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00029-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00029.png",
+            "fullpath": "/workspace/comfyui/output/AnimateDiff_00029-audio.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 121,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        1851.013257419621,
+        256.8987768839966
+      ],
+      "size": [
+        400,
+        118
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 19
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "slot_index": 0,
+          "links": [
+            27
+          ]
+        }
+      ],
+      "title": "VAEDecodeAudio",
+      "properties": {
+        "Node name for S&R": "VAEDecodeAudio"
+      }
+    },
+    {
+      "id": 122,
+      "type": "VAEDecode",
+      "pos": [
+        2039.166620630524,
+        261.4743047881184
+      ],
+      "size": [
+        400,
+        118
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 21
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            26
+          ]
+        }
+      ],
+      "title": "VAEDecode",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 120,
+      "type": "VAELoader",
+      "pos": [
+        50.78177042826597,
+        343.8149279940729
+      ],
+      "size": [
+        400,
+        98
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            20,
+            35
+          ]
+        }
+      ],
+      "title": "VAELoader",
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "minimax_h3_audio_vae_fp32.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    {
+      "id": 1,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -426.20681323660244,
+        22.22808114223755
+      ],
+      "size": [
+        451.8528380453231,
+        471.5027637771352
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "slot_index": 0,
+          "links": [
+            31
+          ]
+        }
+      ],
+      "title": "PROMPT (feeds every stage)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "subject_definitions:\n<Subject 1>: An adult female rising idol defined by the supplied character sheet. She has the same delicate facial features, warm brown eyes, long center-parted silver-gray wavy hair, slim proportions, gold drop earrings, white strapless cropped top with gold buttons and buckle detail, brown checked pleated mini skirt with a wide dark-brown belt, bracelets, dark-green manicure, and white high heels. Preserve her identity, hairstyle, makeup, body proportions, costume design, colors, and accessories from every viewing angle. The brown character-sheet background and white panel dividers are reference-only and must not appear in the video.\nsummary:\nreference generation — Create a 10-second cinematic idol-concert performance featuring <Subject 1> passionately singing and dancing on a large futuristic stage.\nretention_analysis:\n<Subject 1>: fully_preserved — Preserve her facial identity, silver-gray hair, makeup, physique, clothing, accessories, and overall appearance throughout every shot. Her expressions and body pose may change naturally for the performance. Add only a metallic silver wireless microphone as a performance prop. Do not transfer the character-sheet background, panel layout, white separators, or static turnaround poses into the final scene.\ndetailed_description:\nA polished, photorealistic contemporary idol-concert film with vibrant magenta, electric blue, and warm golden stage lighting. The atmosphere is youthful, exhilarating, and glamorous, with realistic skin, controlled highlights, detailed fabric movement, cinematic contrast, and energetic but readable choreography.\n[Shot 1] <Subject 1> stands alone at the center of a glossy black concert stage, facing a packed arena suggested by thousands of soft glowing light sticks in the dark background. She holds a metallic silver wireless microphone close to her mouth with her right hand. On the first powerful beat, she steps forward confidently, swings her left arm outward, and begins singing with an excited, radiant expression. Her mouth movements naturally follow the vocal melody, but no intelligible lyrics are heard. Two sweeping spotlights cross behind her while a low layer of stage haze catches the colored beams. The camera starts in a full-body frontal view and performs a fast but smooth medium-amplitude dolly-in, ending at a three-quarter view. Her silver-gray hair bounces naturally, her pleated skirt reacts realistically to each step, and her heels maintain firm contact with the stage.\n[Shot 2] At 00:03.500, the camera cuts to a medium three-quarter angle. She executes a clean two-step dance combination: a sharp side step, a controlled hip turn, then a half-spin toward the camera. She keeps the microphone securely in her right hand while her left hand traces a strong arc above her shoulder and finishes pointing toward the audience. The camera performs a quick, small-amplitude clockwise orbit around her at chest height, precisely matching the rhythm without shaking. Magenta LED columns pulse behind her, thin golden light bars sweep across the stage floor, and brief cold-spark fountains erupt at a safe distance on both sides. Her face remains clearly recognizable during the turn; her hair follows the rotation with believable weight and settles naturally.\n[Shot 3] At 00:07.000, cut to a dynamic medium close-up from slightly below eye level. She leans toward the lens while sustaining the final vocal note, takes one energetic step forward, then raises her left arm high and finishes in a triumphant star pose. The camera makes a rapid, small-amplitude push-in and stops cleanly as the music hits its final accent. A bright white backlight creates a crisp rim around her silver hair while magenta and blue beams fan outward behind her. She ends looking directly into the camera with a breathless, confident smile. Maintain stable facial identity, correct anatomy, five fingers on each hand, consistent microphone shape, continuous costume details, and coherent stage geometry. No extra limbs, duplicated performer, backup dancers, logos, subtitles, readable text, costume transformation, or facial distortion.\noverall_soundscape:\nA large indoor-arena atmosphere with distant audience cheers, rhythmic clapping, subtle footfalls on the stage, microphone handling noise, and short cold-spark crackles. Her live vocal is an energetic melodic performance without intelligible words.\nnon_diegetic_music:\nHigh-energy modern dance-pop at approximately 128 BPM, driven by punchy electronic drums, bright synthesizers, a powerful bass line, and a rising chorus. The track builds across the first seven seconds and lands on a strong final accent at 00:10.000."
+      ],
+      "widgets_values_named": {
+        "value": "subject_definitions:\n<Subject 1>: An adult female rising idol defined by the supplied character sheet. She has the same delicate facial features, warm brown eyes, long center-parted silver-gray wavy hair, slim proportions, gold drop earrings, white strapless cropped top with gold buttons and buckle detail, brown checked pleated mini skirt with a wide dark-brown belt, bracelets, dark-green manicure, and white high heels. Preserve her identity, hairstyle, makeup, body proportions, costume design, colors, and accessories from every viewing angle. The brown character-sheet background and white panel dividers are reference-only and must not appear in the video.\nsummary:\nreference generation — Create a 10-second cinematic idol-concert performance featuring <Subject 1> passionately singing and dancing on a large futuristic stage.\nretention_analysis:\n<Subject 1>: fully_preserved — Preserve her facial identity, silver-gray hair, makeup, physique, clothing, accessories, and overall appearance throughout every shot. Her expressions and body pose may change naturally for the performance. Add only a metallic silver wireless microphone as a performance prop. Do not transfer the character-sheet background, panel layout, white separators, or static turnaround poses into the final scene.\ndetailed_description:\nA polished, photorealistic contemporary idol-concert film with vibrant magenta, electric blue, and warm golden stage lighting. The atmosphere is youthful, exhilarating, and glamorous, with realistic skin, controlled highlights, detailed fabric movement, cinematic contrast, and energetic but readable choreography.\n[Shot 1] <Subject 1> stands alone at the center of a glossy black concert stage, facing a packed arena suggested by thousands of soft glowing light sticks in the dark background. She holds a metallic silver wireless microphone close to her mouth with her right hand. On the first powerful beat, she steps forward confidently, swings her left arm outward, and begins singing with an excited, radiant expression. Her mouth movements naturally follow the vocal melody, but no intelligible lyrics are heard. Two sweeping spotlights cross behind her while a low layer of stage haze catches the colored beams. The camera starts in a full-body frontal view and performs a fast but smooth medium-amplitude dolly-in, ending at a three-quarter view. Her silver-gray hair bounces naturally, her pleated skirt reacts realistically to each step, and her heels maintain firm contact with the stage.\n[Shot 2] At 00:03.500, the camera cuts to a medium three-quarter angle. She executes a clean two-step dance combination: a sharp side step, a controlled hip turn, then a half-spin toward the camera. She keeps the microphone securely in her right hand while her left hand traces a strong arc above her shoulder and finishes pointing toward the audience. The camera performs a quick, small-amplitude clockwise orbit around her at chest height, precisely matching the rhythm without shaking. Magenta LED columns pulse behind her, thin golden light bars sweep across the stage floor, and brief cold-spark fountains erupt at a safe distance on both sides. Her face remains clearly recognizable during the turn; her hair follows the rotation with believable weight and settles naturally.\n[Shot 3] At 00:07.000, cut to a dynamic medium close-up from slightly below eye level. She leans toward the lens while sustaining the final vocal note, takes one energetic step forward, then raises her left arm high and finishes in a triumphant star pose. The camera makes a rapid, small-amplitude push-in and stops cleanly as the music hits its final accent. A bright white backlight creates a crisp rim around her silver hair while magenta and blue beams fan outward behind her. She ends looking directly into the camera with a breathless, confident smile. Maintain stable facial identity, correct anatomy, five fingers on each hand, consistent microphone shape, continuous costume details, and coherent stage geometry. No extra limbs, duplicated performer, backup dancers, logos, subtitles, readable text, costume transformation, or facial distortion.\noverall_soundscape:\nA large indoor-arena atmosphere with distant audience cheers, rhythmic clapping, subtle footfalls on the stage, microphone handling noise, and short cold-spark crackles. Her live vocal is an energetic melodic performance without intelligible words.\nnon_diegetic_music:\nHigh-energy modern dance-pop at approximately 128 BPM, driven by punchy electronic drums, bright synthesizers, a powerful bass line, and a rising chorus. The track builds across the first seven seconds and lands on a strong final accent at 00:10.000."
+      }
+    },
+    {
+      "id": 115,
+      "type": "ResolutionSelector",
+      "pos": [
+        -424.38609839029573,
+        552.4093768751379
+      ],
+      "size": [
+        400,
+        154
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "preview",
+          "shape": 7,
+          "type": "RESOLUTION_PREVIEW",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "slot_index": 0,
+          "links": [
+            30
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "slot_index": 1,
+          "links": [
+            29
+          ]
+        }
+      ],
+      "title": "ResolutionSelector",
+      "properties": {
+        "Node name for S&R": "ResolutionSelector"
+      },
+      "widgets_values": [
+        "3:4 (Portrait Standard)",
+        0.7,
+        32
+      ],
+      "widgets_values_named": {
+        "aspect_ratio": "3:4 (Portrait Standard)",
+        "megapixels": 0.7,
+        "multiple": 32
+      }
+    },
+    {
+      "id": 903,
+      "type": "MiniMaxH3ReferenceToVideo",
+      "pos": [
+        940.7591215433299,
+        204.77751896926307
+      ],
+      "size": [
+        400,
+        344
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 33
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 34
+        },
+        {
+          "name": "audio_vae",
+          "type": "VAE",
+          "link": 35
+        },
+        {
+          "name": "ref_images.ref_image_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 32
+        },
+        {
+          "name": "ref_images.ref_image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "ref_videos.ref_video_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "ref_video_audios.ref_video_audio_0",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "ref_audios.ref_audio_0",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 31
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 30
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 29
+        },
+        {
+          "name": "length",
+          "type": "INT",
+          "widget": {
+            "name": "length"
+          },
+          "link": 28
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            36
+          ]
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            37
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3ReferenceToVideo"
+      },
+      "widgets_values": [
+        "",
+        1344,
+        768,
+        124,
+        "match"
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "width": 1344,
+        "height": 768,
+        "length": 124,
+        "ref_image_size": "match"
+      }
+    },
+    {
+      "id": 901,
+      "type": "LoadImage",
+      "pos": [
+        -1216.563703144562,
+        38.21852759937896
+      ],
+      "size": [
+        714.8255866792571,
+        810.0038015981755
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            32
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 1,
+          "links": null
+        }
+      ],
+      "title": "FIRST FRAME (add a second LoadImage into last_frame for FL2V)",
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "dfd25956-5f9d-4cbb-8cce-17ffb48c6c86.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "dfd25956-5f9d-4cbb-8cce-17ffb48c6c86.png",
+        "upload": "image"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      133,
+      0,
+      132,
+      0,
+      "FLOAT"
+    ],
+    [
+      2,
+      127,
+      0,
+      900,
+      0,
+      "MODEL"
+    ],
+    [
+      10,
+      900,
+      0,
+      142,
+      0,
+      "MODEL"
+    ],
+    [
+      11,
+      142,
+      0,
+      124,
+      0,
+      "MODEL"
+    ],
+    [
+      12,
+      142,
+      0,
+      126,
+      0,
+      "MODEL"
+    ],
+    [
+      14,
+      129,
+      0,
+      125,
+      0,
+      "NOISE"
+    ],
+    [
+      15,
+      126,
+      0,
+      125,
+      1,
+      "GUIDER"
+    ],
+    [
+      16,
+      135,
+      0,
+      125,
+      2,
+      "SAMPLER"
+    ],
+    [
+      17,
+      124,
+      0,
+      125,
+      3,
+      "SIGMAS"
+    ],
+    [
+      19,
+      125,
+      0,
+      121,
+      0,
+      "LATENT"
+    ],
+    [
+      20,
+      120,
+      0,
+      121,
+      1,
+      "VAE"
+    ],
+    [
+      21,
+      125,
+      0,
+      122,
+      0,
+      "LATENT"
+    ],
+    [
+      22,
+      119,
+      0,
+      122,
+      1,
+      "VAE"
+    ],
+    [
+      26,
+      122,
+      0,
+      902,
+      0,
+      "IMAGE"
+    ],
+    [
+      27,
+      121,
+      0,
+      902,
+      1,
+      "AUDIO"
+    ],
+    [
+      28,
+      132,
+      1,
+      903,
+      11,
+      "INT"
+    ],
+    [
+      29,
+      115,
+      1,
+      903,
+      10,
+      "INT"
+    ],
+    [
+      30,
+      115,
+      0,
+      903,
+      9,
+      "INT"
+    ],
+    [
+      31,
+      1,
+      0,
+      903,
+      8,
+      "STRING"
+    ],
+    [
+      32,
+      901,
+      0,
+      903,
+      3,
+      "IMAGE"
+    ],
+    [
+      33,
+      128,
+      0,
+      903,
+      0,
+      "CLIP"
+    ],
+    [
+      34,
+      119,
+      0,
+      903,
+      1,
+      "VAE"
+    ],
+    [
+      35,
+      120,
+      0,
+      903,
+      2,
+      "VAE"
+    ],
+    [
+      36,
+      903,
+      0,
+      126,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      37,
+      903,
+      1,
+      125,
+      4,
+      "LATENT"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.26767210711458916,
+      "offset": [
+        2091.776651001439,
+        853.8070733674132
+      ]
+    },
+    "frontendVersion": "1.51.9",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
