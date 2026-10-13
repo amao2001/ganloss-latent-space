@@ -1,0 +1,362 @@
+{
+  "id": "5b50c2ee-09c3-4b87-ac9a-e0dace008469",
+  "revision": 0,
+  "last_node_id": 7,
+  "last_link_id": 5,
+  "nodes": [
+    {
+      "id": 3,
+      "type": "MiniMaxH3RefModExtract",
+      "pos": [
+        3139.9277321143636,
+        729.7861719382321
+      ],
+      "size": [
+        400,
+        616
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "refs_image.ref_image_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "refs_video.ref_video_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "refs_bundle",
+          "shape": 7,
+          "type": "H3_REF_LIST",
+          "link": 1
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "av_encoder",
+          "shape": 7,
+          "type": "MINIMAX_H3_AV_ENCODER",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 4
+        },
+        {
+          "name": "mask_list",
+          "shape": 7,
+          "type": "H3_MASK_LIST",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mods",
+          "type": "H3_REF_MODS",
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "details",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3RefModExtract"
+      },
+      "widgets_values": [
+        "woman",
+        "Full Reference",
+        "identity",
+        0,
+        1024,
+        16,
+        16,
+        16,
+        0,
+        false,
+        false,
+        1,
+        10240,
+        "",
+        true,
+        "manual",
+        "character",
+        "truncate"
+      ],
+      "widgets_values_named": {
+        "name": "woman",
+        "mode": "Full Reference",
+        "concept_type": "identity",
+        "background_retention": 0,
+        "ref_resolution": 1024,
+        "pool_h": 16,
+        "pool_w": 16,
+        "latent_frames": 16,
+        "identity": 0,
+        "merge": false,
+        "motion_only": false,
+        "multiplier": 1,
+        "max_tokens": 10240,
+        "description": "",
+        "save": true,
+        "extraction_preset": "manual",
+        "subfolder": "character",
+        "budget_policy": "truncate"
+      }
+    },
+    {
+      "id": 4,
+      "type": "MiniMaxH3RefModFolderLoader",
+      "pos": [
+        2766.0646661447563,
+        770.8072795027991
+      ],
+      "size": [
+        270,
+        150
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "refs",
+          "type": "H3_REF_LIST",
+          "links": [
+            1
+          ]
+        },
+        {
+          "name": "count",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3RefModFolderLoader"
+      },
+      "widgets_values": [
+        "woman",
+        8,
+        2,
+        2112
+      ],
+      "widgets_values_named": {
+        "folder": "woman",
+        "max_items": 8,
+        "max_frames": 2,
+        "max_edge": 2112
+      }
+    },
+    {
+      "id": 5,
+      "type": "MiniMaxH3RefModInspect",
+      "pos": [
+        3583.8212807296363,
+        709.3723965446617
+      ],
+      "size": [
+        270,
+        190
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mods",
+          "type": "H3_REF_MODS",
+          "link": 2
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "details",
+          "type": "STRING",
+          "links": null
+        },
+        {
+          "name": "image_preview",
+          "type": "IMAGE",
+          "links": [
+            5
+          ]
+        },
+        {
+          "name": "audio_preview",
+          "type": "AUDIO",
+          "links": null
+        },
+        {
+          "name": "reference_map",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3RefModInspect"
+      },
+      "widgets_values": [
+        0,
+        "stored",
+        0.5,
+        "full_video"
+      ],
+      "widgets_values_named": {
+        "index": 0,
+        "preview": "stored",
+        "strength": 0.5,
+        "visual_preview": "full_video"
+      }
+    },
+    {
+      "id": 6,
+      "type": "VAELoader",
+      "pos": [
+        2756.096363360484,
+        976.741342882997
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            3,
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "minimax_h3_video_vae_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+      }
+    },
+    {
+      "id": 7,
+      "type": "PreviewImage",
+      "pos": [
+        3931.672813881715,
+        728.2621322603794
+      ],
+      "size": [
+        364.0418289942163,
+        421.6643882536913
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      4,
+      0,
+      3,
+      2,
+      "H3_REF_LIST"
+    ],
+    [
+      2,
+      3,
+      0,
+      5,
+      0,
+      "H3_REF_MODS"
+    ],
+    [
+      3,
+      6,
+      0,
+      5,
+      1,
+      "VAE"
+    ],
+    [
+      4,
+      6,
+      0,
+      3,
+      5,
+      "VAE"
+    ],
+    [
+      5,
+      5,
+      1,
+      7,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8026346165260869,
+      "offset": [
+        -2572.700996957688,
+        -549.9967724093458
+      ]
+    },
+    "frontendVersion": "1.55.14",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
