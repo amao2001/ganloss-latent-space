@@ -1,0 +1,1445 @@
+{
+  "id": "e0509a9a-53f2-4f73-b6c1-aaa1b06a8a69",
+  "revision": 0,
+  "last_node_id": 35,
+  "last_link_id": 57,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "HyperFlowINT8Loader",
+      "pos": [
+        -447.83712774583546,
+        67.79907794887738
+      ],
+      "size": [
+        380,
+        82
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            56,
+            57
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyperFlowINT8Loader",
+        "cnr_id": "comfyui-hyperflow-int8-nodes",
+        "aux_id": "BennyDaBall930/comfyui_hyperflow_int8_nodes",
+        "models": [
+          {
+            "name": "minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors",
+            "url": "https://huggingface.co/BennyDaBall/HyperFlow-H3-Flash-INT8-ComfyUI/resolve/main/minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors",
+            "directory": "diffusion_models"
+          }
+        ]
+      },
+      "widgets_values": [
+        "minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "unet_name": "minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors",
+        "patcher": "auto"
+      }
+    },
+    {
+      "id": 2,
+      "type": "CLIPLoader",
+      "pos": [
+        -460,
+        200
+      ],
+      "size": [
+        380,
+        106
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "Text encoder (type minimax)",
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "models": [
+          {
+            "name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "directory": "text_encoders"
+          }
+        ]
+      },
+      "widgets_values": [
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "minimax",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    {
+      "id": 3,
+      "type": "VAELoader",
+      "pos": [
+        -460,
+        360
+      ],
+      "size": [
+        380,
+        58
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            2,
+            15,
+            37
+          ]
+        }
+      ],
+      "title": "Video VAE",
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "models": [
+          {
+            "name": "minimax_h3_video_vae_fp16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_fp16.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": [
+        "vae/minimax_h3_sol_vae_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "vae/minimax_h3_sol_vae_int8_convrot.safetensors"
+      }
+    },
+    {
+      "id": 4,
+      "type": "VAELoader",
+      "pos": [
+        -460,
+        470
+      ],
+      "size": [
+        380,
+        58
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            3,
+            17
+          ]
+        }
+      ],
+      "title": "Audio VAE",
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "models": [
+          {
+            "name": "minimax_h3_audio_vae_fp32.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": [
+        "minimax_h3_audio_vae_fp32.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    {
+      "id": 5,
+      "type": "MiniMaxH3ReferenceToVideo",
+      "pos": [
+        387.5773208694676,
+        73.50107581687391
+      ],
+      "size": [
+        480,
+        384
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 2
+        },
+        {
+          "name": "audio_vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 3
+        },
+        {
+          "name": "ref_images.ref_image_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "ref_images.ref_image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "ref_videos.ref_video_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "ref_video_audios.ref_video_audio_0",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "ref_audios.ref_audio_0",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "ref_audios.ref_audio_1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "ref_audios.ref_audio_2",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 25
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 23
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 24
+        },
+        {
+          "name": "length",
+          "type": "INT",
+          "widget": {
+            "name": "length"
+          },
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            38,
+            39
+          ]
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            41
+          ]
+        }
+      ],
+      "title": "Prompt, size, length, references",
+      "properties": {
+        "Node name for S&R": "MiniMaxH3ReferenceToVideo"
+      },
+      "widgets_values": [
+        "subject_definitions:\n<Subject 1> is the character defined by the character sheet in <Picture 1>. The sheet provides her identity and wardrobe throughout the video.\n\nsummary:\n[reference generation] Create a 10-second photorealistic cinematic scene featuring <Subject 1> enjoying rainfall in a lush tropical garden. Follow her from behind as she walks, lifts her face and arms into the rain, then turns toward the camera. She approaches with a warm smile, reaches toward the lens, and brushes rain-soaked hair away from her forehead.\n\nretention_analysis:\n<Subject 1> (appears throughout [Shot 1]): fully_preserved - maintain the character identity and wardrobe established by <Picture 1>. Allow natural rain saturation, wet surface highlights, and fabric movement while preserving the referenced design.\n\ndetailed_description:\nA photorealistic cinematic lifestyle scene, 10 seconds, 16:9. Steady rain falls through a dense tropical garden filled with palms, broad banana leaves, ferns, scattered red flowers, and moss-covered tree trunks. A narrow wet earth path curves through the vegetation. Soft overcast daylight produces rich greens, delicate reflections, and visible rain streaks against the darker foliage. Leaves carry droplets and sway slightly under the rainfall.\n\n[Shot 1] One continuous shot with gentle handheld movement and smooth changes in viewing angle.\n\nFrom 0 to 2.5 seconds, follow <Subject 1> from behind at a medium distance as she walks slowly along the wet path. Her arms hang naturally beside her body. A mossy trunk passes near the right edge of the frame while layered foliage creates foreground parallax. She slows to a stop, lifts her chin, and begins looking upward into the rain. The camera moves gently toward a side three-quarter view.\n\nFrom 2.5 to 5 seconds, she opens both arms outward and raises them above her head in a relaxed, continuous stretch. She tilts her face upward, closes her eyes, and forms a peaceful smile, enjoying the falling water. Hold the raised-arm posture briefly. Rain beads on exposed surfaces and runs naturally downward. The camera moves a little closer, keeping her expression and raised arms readable against the green garden.\n\nFrom 5 to 7 seconds, she lowers her arms and gradually turns her face and shoulders toward the lens. Her eyes open, and the quiet smile develops into a brighter, spontaneous grin. She begins approaching the camera while maintaining direct eye contact. Keep the turn and forward movement fluid, with the mossy tree and red flowers remaining recognizable behind her.\n\nFrom 7 to 9 seconds, <Subject 1> extends her right arm toward the lens in an inviting gesture. Her hand enters the near foreground and becomes softly blurred through shallow depth of field. At the same time, she raises her left hand to her forehead and gently sweeps the wet strands backward over the top of her head. Keep the gestures distinct and anatomically clear. The framing tightens naturally as she approaches, from an upper-body view toward a face close-up.\n\nFrom 9 to 10 seconds, her left hand settles beside her head near the ear while the right arm remains extended toward the camera. She tilts her head slightly and holds warm eye contact with a relaxed, joyful smile. End close to her face, with the extended arm still visible in the lower foreground and rain continuing across the softly blurred tropical background.\n\noverall_soundscape:\nN/A\n\nnon_diegetic_music:\nN/A",
+        1344,
+        768,
+        124,
+        "match"
+      ],
+      "widgets_values_named": {
+        "prompt": "subject_definitions:\n<Subject 1> is the character defined by the character sheet in <Picture 1>. The sheet provides her identity and wardrobe throughout the video.\n\nsummary:\n[reference generation] Create a 10-second photorealistic cinematic scene featuring <Subject 1> enjoying rainfall in a lush tropical garden. Follow her from behind as she walks, lifts her face and arms into the rain, then turns toward the camera. She approaches with a warm smile, reaches toward the lens, and brushes rain-soaked hair away from her forehead.\n\nretention_analysis:\n<Subject 1> (appears throughout [Shot 1]): fully_preserved - maintain the character identity and wardrobe established by <Picture 1>. Allow natural rain saturation, wet surface highlights, and fabric movement while preserving the referenced design.\n\ndetailed_description:\nA photorealistic cinematic lifestyle scene, 10 seconds, 16:9. Steady rain falls through a dense tropical garden filled with palms, broad banana leaves, ferns, scattered red flowers, and moss-covered tree trunks. A narrow wet earth path curves through the vegetation. Soft overcast daylight produces rich greens, delicate reflections, and visible rain streaks against the darker foliage. Leaves carry droplets and sway slightly under the rainfall.\n\n[Shot 1] One continuous shot with gentle handheld movement and smooth changes in viewing angle.\n\nFrom 0 to 2.5 seconds, follow <Subject 1> from behind at a medium distance as she walks slowly along the wet path. Her arms hang naturally beside her body. A mossy trunk passes near the right edge of the frame while layered foliage creates foreground parallax. She slows to a stop, lifts her chin, and begins looking upward into the rain. The camera moves gently toward a side three-quarter view.\n\nFrom 2.5 to 5 seconds, she opens both arms outward and raises them above her head in a relaxed, continuous stretch. She tilts her face upward, closes her eyes, and forms a peaceful smile, enjoying the falling water. Hold the raised-arm posture briefly. Rain beads on exposed surfaces and runs naturally downward. The camera moves a little closer, keeping her expression and raised arms readable against the green garden.\n\nFrom 5 to 7 seconds, she lowers her arms and gradually turns her face and shoulders toward the lens. Her eyes open, and the quiet smile develops into a brighter, spontaneous grin. She begins approaching the camera while maintaining direct eye contact. Keep the turn and forward movement fluid, with the mossy tree and red flowers remaining recognizable behind her.\n\nFrom 7 to 9 seconds, <Subject 1> extends her right arm toward the lens in an inviting gesture. Her hand enters the near foreground and becomes softly blurred through shallow depth of field. At the same time, she raises her left hand to her forehead and gently sweeps the wet strands backward over the top of her head. Keep the gestures distinct and anatomically clear. The framing tightens naturally as she approaches, from an upper-body view toward a face close-up.\n\nFrom 9 to 10 seconds, her left hand settles beside her head near the ear while the right arm remains extended toward the camera. She tilts her head slightly and holds warm eye contact with a relaxed, joyful smile. End close to her face, with the extended arm still visible in the lower foreground and rain continuing across the softly blurred tropical background.\n\noverall_soundscape:\nN/A\n\nnon_diegetic_music:\nN/A",
+        "width": 1344,
+        "height": 768,
+        "length": 124,
+        "ref_image_size": "match"
+      }
+    },
+    {
+      "id": 7,
+      "type": "KSamplerSelect",
+      "pos": [
+        987.0326100816624,
+        380.6491981545339
+      ],
+      "size": [
+        278.9473505415456,
+        58
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            36
+          ]
+        }
+      ],
+      "title": "Sampler (euler)",
+      "properties": {
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "euler"
+      ],
+      "widgets_values_named": {
+        "sampler_name": "euler"
+      }
+    },
+    {
+      "id": 11,
+      "type": "VAEDecode",
+      "pos": [
+        1715.5162728715386,
+        70.18185702237203
+      ],
+      "size": [
+        300,
+        46
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 42
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            28
+          ]
+        }
+      ],
+      "title": "Decode video",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 12,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        1715.5161618985271,
+        185.81817626953116
+      ],
+      "size": [
+        300,
+        46
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 43
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            29
+          ]
+        }
+      ],
+      "title": "Decode audio",
+      "properties": {
+        "Node name for S&R": "VAEDecodeAudio"
+      }
+    },
+    {
+      "id": 20,
+      "type": "LoadImage",
+      "pos": [
+        -460,
+        650
+      ],
+      "size": [
+        380,
+        360
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "<Picture 1>",
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "HWb-7UdbwAAKM8T.jpg",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "HWb-7UdbwAAKM8T.jpg",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 22,
+      "type": "MarkdownNote",
+      "pos": [
+        68.59498464830253,
+        -1011.5690158379201
+      ],
+      "size": [
+        1400,
+        520
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Read me",
+      "properties": {},
+      "widgets_values": [
+        "## HyperFlow H3 Flash INT8: video from reference images\n\nUnofficial port: HyperFlow H3 Flash's own INT8 (convrot) transformer, converted to ComfyUI's layout and run on ComfyUI's native INT8 kernels. Not an official Video Rebirth, MiniMax or Comfy Org release.\n\nLoad your references in **<Picture 1>** and **<Picture 2>** and name them that way in the prompt. To add up to 9, connect more images to the reference node; they are `<Picture 3>`, `<Picture 4>`, ... in that order.\n\n**Custom nodes**: [ComfyUI-HyperFlow-Flash](https://github.com/Video-Rebirth/ComfyUI-HyperFlow-Flash) (official: HyperFlow Sigmas and the two-time patch) and [ComfyUI-HyperFlow-INT8](https://github.com/BennyDaBall930/comfyui_hyperflow_int8_nodes) (HyperFlow INT8 Loader), on a ComfyUI with native MiniMax-H3 and INT8 convrot support.\n\n**Model files**, in `ComfyUI/models/`:\n\n| Folder | File | From |\n|---|---|---|\n| `diffusion_models/` | `minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors` | [BennyDaBall/HyperFlow-H3-Flash-INT8-ComfyUI](https://huggingface.co/BennyDaBall/HyperFlow-H3-Flash-INT8-ComfyUI), or convert `ref2va_int8_convrot/` from [VideoRebirthAI/hyperflow-h3-flash](https://huggingface.co/VideoRebirthAI/hyperflow-h3-flash) with `convert_hyperflow_int8.py` |\n| `text_encoders/` | `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) |\n| `vae/` | `minimax_h3_video_vae_fp16.safetensors`, `minimax_h3_audio_vae_fp32.safetensors` | [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) |\n\n**Recipe**: HyperFlow INT8 Loader (`patcher: legacy`), HyperFlow Sigmas 6 steps, `euler`, Basic Guider (CFG 1, no negative prompt), 1344 x 768, 124 frames (5.2 s at 24 fps), seed 42.\n\n**Change**: the prompt, size and length (124 frames is 5.2 s at 24 fps); **Seed**; `steps` in **HyperFlow Sigmas** (4 speed, 6 default, 8 quality).\n\n**Keep**: `euler`, CFG 1, no negative prompt; `patcher: legacy` (`auto`, DynamicVRAM, is experimental).\n\n**VRAM**: the weights take about 16 GB and stay resident.\n\n**License**: the weights are a MiniMax H3 Model Derivative under the MiniMax H3 Community License Agreement (territory limits apply). Content you share publicly must be disclosed as AI-generated. Powered by MiniMax H3."
+      ],
+      "widgets_values_named": {
+        "text": "## HyperFlow H3 Flash INT8: video from reference images\n\nUnofficial port: HyperFlow H3 Flash's own INT8 (convrot) transformer, converted to ComfyUI's layout and run on ComfyUI's native INT8 kernels. Not an official Video Rebirth, MiniMax or Comfy Org release.\n\nLoad your references in **<Picture 1>** and **<Picture 2>** and name them that way in the prompt. To add up to 9, connect more images to the reference node; they are `<Picture 3>`, `<Picture 4>`, ... in that order.\n\n**Custom nodes**: [ComfyUI-HyperFlow-Flash](https://github.com/Video-Rebirth/ComfyUI-HyperFlow-Flash) (official: HyperFlow Sigmas and the two-time patch) and [ComfyUI-HyperFlow-INT8](https://github.com/BennyDaBall930/comfyui_hyperflow_int8_nodes) (HyperFlow INT8 Loader), on a ComfyUI with native MiniMax-H3 and INT8 convrot support.\n\n**Model files**, in `ComfyUI/models/`:\n\n| Folder | File | From |\n|---|---|---|\n| `diffusion_models/` | `minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors` | [BennyDaBall/HyperFlow-H3-Flash-INT8-ComfyUI](https://huggingface.co/BennyDaBall/HyperFlow-H3-Flash-INT8-ComfyUI), or convert `ref2va_int8_convrot/` from [VideoRebirthAI/hyperflow-h3-flash](https://huggingface.co/VideoRebirthAI/hyperflow-h3-flash) with `convert_hyperflow_int8.py` |\n| `text_encoders/` | `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) |\n| `vae/` | `minimax_h3_video_vae_fp16.safetensors`, `minimax_h3_audio_vae_fp32.safetensors` | [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) |\n\n**Recipe**: HyperFlow INT8 Loader (`patcher: legacy`), HyperFlow Sigmas 6 steps, `euler`, Basic Guider (CFG 1, no negative prompt), 1344 x 768, 124 frames (5.2 s at 24 fps), seed 42.\n\n**Change**: the prompt, size and length (124 frames is 5.2 s at 24 fps); **Seed**; `steps` in **HyperFlow Sigmas** (4 speed, 6 default, 8 quality).\n\n**Keep**: `euler`, CFG 1, no negative prompt; `patcher: legacy` (`auto`, DynamicVRAM, is experimental).\n\n**VRAM**: the weights take about 16 GB and stay resident.\n\n**License**: the weights are a MiniMax H3 Model Derivative under the MiniMax H3 Community License Agreement (territory limits apply). Content you share publicly must be disclosed as AI-generated. Powered by MiniMax H3."
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 23,
+      "type": "ResolutionSelector",
+      "pos": [
+        -770,
+        40
+      ],
+      "size": [
+        270,
+        150
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "aspect_ratio",
+          "name": "aspect_ratio",
+          "type": "COMBO",
+          "widget": {
+            "name": "aspect_ratio"
+          },
+          "link": null
+        },
+        {
+          "label": "megapixels",
+          "name": "megapixels",
+          "type": "FLOAT",
+          "widget": {
+            "name": "megapixels"
+          },
+          "link": null
+        },
+        {
+          "label": "multiple",
+          "name": "multiple",
+          "type": "INT",
+          "widget": {
+            "name": "multiple"
+          },
+          "link": null
+        },
+        {
+          "label": "preview",
+          "name": "preview",
+          "shape": 7,
+          "type": "RESOLUTION_PREVIEW",
+          "widget": {
+            "name": "preview"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "links": [
+            23
+          ]
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResolutionSelector",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "16:9 (Widescreen)",
+        1,
+        32
+      ],
+      "widgets_values_named": {
+        "aspect_ratio": "16:9 (Widescreen)",
+        "megapixels": 1,
+        "multiple": 32
+      }
+    },
+    {
+      "id": 24,
+      "type": "PrimitiveFloat",
+      "pos": [
+        -780,
+        240
+      ],
+      "size": [
+        270,
+        90
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "FLOAT",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "FLOAT",
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            21
+          ]
+        }
+      ],
+      "title": "Float (duration)",
+      "properties": {
+        "Node name for S&R": "PrimitiveFloat",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        10
+      ],
+      "widgets_values_named": {
+        "value": 10
+      }
+    },
+    {
+      "id": 25,
+      "type": "ComfyMathExpression",
+      "pos": [
+        -770,
+        400
+      ],
+      "size": [
+        360,
+        170
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "values.a",
+          "name": "values.a",
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": 21
+        },
+        {
+          "label": "values.b",
+          "name": "values.b",
+          "shape": 7,
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": null
+        },
+        {
+          "label": "expression",
+          "name": "expression",
+          "type": "STRING",
+          "widget": {
+            "name": "expression"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "FLOAT",
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": []
+        },
+        {
+          "label": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            22
+          ]
+        },
+        {
+          "label": "BOOL",
+          "name": "BOOL",
+          "type": "BOOLEAN",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfyMathExpression",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      ],
+      "widgets_values_named": {
+        "expression": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      }
+    },
+    {
+      "id": 26,
+      "type": "PrimitiveNode",
+      "pos": [
+        -1290,
+        30
+      ],
+      "size": [
+        500.90903542258434,
+        649.4545787464476
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "links": [
+            25
+          ]
+        }
+      ],
+      "title": "prompt",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        "subject_definitions:\n<Subject 1> is the character defined by the character sheet in <Picture 1>. The sheet provides her identity and wardrobe throughout the video.\n\nsummary:\n[reference generation] Create a 10-second photorealistic cinematic scene featuring <Subject 1> enjoying rainfall in a lush tropical garden. Follow her from behind as she walks, lifts her face and arms into the rain, then turns toward the camera. She approaches with a warm smile, reaches toward the lens, and brushes rain-soaked hair away from her forehead.\n\nretention_analysis:\n<Subject 1> (appears throughout [Shot 1]): fully_preserved - maintain the character identity and wardrobe established by <Picture 1>. Allow natural rain saturation, wet surface highlights, and fabric movement while preserving the referenced design.\n\ndetailed_description:\nA photorealistic cinematic lifestyle scene, 10 seconds, 16:9. Steady rain falls through a dense tropical garden filled with palms, broad banana leaves, ferns, scattered red flowers, and moss-covered tree trunks. A narrow wet earth path curves through the vegetation. Soft overcast daylight produces rich greens, delicate reflections, and visible rain streaks against the darker foliage. Leaves carry droplets and sway slightly under the rainfall.\n\n[Shot 1] One continuous shot with gentle handheld movement and smooth changes in viewing angle.\n\nFrom 0 to 2.5 seconds, follow <Subject 1> from behind at a medium distance as she walks slowly along the wet path. Her arms hang naturally beside her body. A mossy trunk passes near the right edge of the frame while layered foliage creates foreground parallax. She slows to a stop, lifts her chin, and begins looking upward into the rain. The camera moves gently toward a side three-quarter view.\n\nFrom 2.5 to 5 seconds, she opens both arms outward and raises them above her head in a relaxed, continuous stretch. She tilts her face upward, closes her eyes, and forms a peaceful smile, enjoying the falling water. Hold the raised-arm posture briefly. Rain beads on exposed surfaces and runs naturally downward. The camera moves a little closer, keeping her expression and raised arms readable against the green garden.\n\nFrom 5 to 7 seconds, she lowers her arms and gradually turns her face and shoulders toward the lens. Her eyes open, and the quiet smile develops into a brighter, spontaneous grin. She begins approaching the camera while maintaining direct eye contact. Keep the turn and forward movement fluid, with the mossy tree and red flowers remaining recognizable behind her.\n\nFrom 7 to 9 seconds, <Subject 1> extends her right arm toward the lens in an inviting gesture. Her hand enters the near foreground and becomes softly blurred through shallow depth of field. At the same time, she raises her left hand to her forehead and gently sweeps the wet strands backward over the top of her head. Keep the gestures distinct and anatomically clear. The framing tightens naturally as she approaches, from an upper-body view toward a face close-up.\n\nFrom 9 to 10 seconds, her left hand settles beside her head near the ear while the right arm remains extended toward the camera. She tilts her head slightly and holds warm eye contact with a relaxed, joyful smile. End close to her face, with the extended arm still visible in the lower foreground and rain continuing across the softly blurred tropical background.\n\noverall_soundscape:\nN/A\n\nnon_diegetic_music:\nN/A"
+      ],
+      "widgets_values_named": {
+        "value": "subject_definitions:\n<Subject 1> is the character defined by the character sheet in <Picture 1>. The sheet provides her identity and wardrobe throughout the video.\n\nsummary:\n[reference generation] Create a 10-second photorealistic cinematic scene featuring <Subject 1> enjoying rainfall in a lush tropical garden. Follow her from behind as she walks, lifts her face and arms into the rain, then turns toward the camera. She approaches with a warm smile, reaches toward the lens, and brushes rain-soaked hair away from her forehead.\n\nretention_analysis:\n<Subject 1> (appears throughout [Shot 1]): fully_preserved - maintain the character identity and wardrobe established by <Picture 1>. Allow natural rain saturation, wet surface highlights, and fabric movement while preserving the referenced design.\n\ndetailed_description:\nA photorealistic cinematic lifestyle scene, 10 seconds, 16:9. Steady rain falls through a dense tropical garden filled with palms, broad banana leaves, ferns, scattered red flowers, and moss-covered tree trunks. A narrow wet earth path curves through the vegetation. Soft overcast daylight produces rich greens, delicate reflections, and visible rain streaks against the darker foliage. Leaves carry droplets and sway slightly under the rainfall.\n\n[Shot 1] One continuous shot with gentle handheld movement and smooth changes in viewing angle.\n\nFrom 0 to 2.5 seconds, follow <Subject 1> from behind at a medium distance as she walks slowly along the wet path. Her arms hang naturally beside her body. A mossy trunk passes near the right edge of the frame while layered foliage creates foreground parallax. She slows to a stop, lifts her chin, and begins looking upward into the rain. The camera moves gently toward a side three-quarter view.\n\nFrom 2.5 to 5 seconds, she opens both arms outward and raises them above her head in a relaxed, continuous stretch. She tilts her face upward, closes her eyes, and forms a peaceful smile, enjoying the falling water. Hold the raised-arm posture briefly. Rain beads on exposed surfaces and runs naturally downward. The camera moves a little closer, keeping her expression and raised arms readable against the green garden.\n\nFrom 5 to 7 seconds, she lowers her arms and gradually turns her face and shoulders toward the lens. Her eyes open, and the quiet smile develops into a brighter, spontaneous grin. She begins approaching the camera while maintaining direct eye contact. Keep the turn and forward movement fluid, with the mossy tree and red flowers remaining recognizable behind her.\n\nFrom 7 to 9 seconds, <Subject 1> extends her right arm toward the lens in an inviting gesture. Her hand enters the near foreground and becomes softly blurred through shallow depth of field. At the same time, she raises her left hand to her forehead and gently sweeps the wet strands backward over the top of her head. Keep the gestures distinct and anatomically clear. The framing tightens naturally as she approaches, from an upper-body view toward a face close-up.\n\nFrom 9 to 10 seconds, her left hand settles beside her head near the ear while the right arm remains extended toward the camera. She tilts her head slightly and holds warm eye contact with a relaxed, joyful smile. End close to her face, with the extended arm still visible in the lower foreground and rain continuing across the softly blurred tropical background.\n\noverall_soundscape:\nN/A\n\nnon_diegetic_music:\nN/A"
+      }
+    },
+    {
+      "id": 28,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        2085.191416804123,
+        32.21023613437157
+      ],
+      "size": [
+        571.3998726385339,
+        655.7580684494143
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 28
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 29
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00299-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00299.png",
+            "fullpath": "/root/ComfyUI/output/AnimateDiff_00299-audio.mp4",
+            "metadata": {
+              "kind": "video",
+              "width": 1376,
+              "height": 768,
+              "duration": 10.125,
+              "fps": 24,
+              "frame_count": 243
+            }
+          }
+        }
+      },
+      "widgets_values_named": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00299-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00299.png",
+            "fullpath": "/root/ComfyUI/output/AnimateDiff_00299-audio.mp4",
+            "metadata": {
+              "kind": "video",
+              "width": 1376,
+              "height": 768,
+              "duration": 10.125,
+              "fps": 24,
+              "frame_count": 243
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 29,
+      "type": "MiniMaxH3MemoryEfficientSageAttentionPatch",
+      "pos": [
+        7.408265313089943,
+        62.27562038925697
+      ],
+      "size": [
+        320.323828125,
+        26
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 56
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            30
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3MemoryEfficientSageAttentionPatch"
+      }
+    },
+    {
+      "id": 30,
+      "type": "BlockSparseAttention",
+      "pos": [
+        -0.9915136093713175,
+        168.74078763291934
+      ],
+      "size": [
+        322.1825248041972,
+        250
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            53
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BlockSparseAttention"
+      },
+      "widgets_values": [
+        "sol-attn",
+        1.3,
+        0.2,
+        1,
+        "",
+        12288,
+        256,
+        "exact_kv_and_rows",
+        false
+      ],
+      "widgets_values_named": {
+        "selection": "sol-attn",
+        "selection.tau": 1.3,
+        "start_percent": 0.2,
+        "end_percent": 1,
+        "dense_blocks": "",
+        "min_tokens": 12288,
+        "extra_tokens": 256,
+        "sink_conditioning": "exact_kv_and_rows",
+        "verbose": false
+      }
+    },
+    {
+      "id": 31,
+      "type": "SelfLiftH3Sampler",
+      "pos": [
+        1324.2078658579387,
+        71.24443189294352
+      ],
+      "size": [
+        319.6607421875,
+        438
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 53
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 38
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 40
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 37
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 41
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 36
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 54
+        },
+        {
+          "name": "model_hires",
+          "shape": 7,
+          "type": "MODEL",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            42,
+            43
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SelfLiftH3Sampler"
+      },
+      "widgets_values": [
+        304956882077995,
+        "randomize",
+        1,
+        3,
+        0.5,
+        0,
+        0.5,
+        1,
+        "minimax_h3_latent_upscaler_3d_conv_v1_bf16.safetensors",
+        false,
+        true
+      ],
+      "widgets_values_named": {
+        "seed": 304956882077995,
+        "control_after_generate": "randomize",
+        "cfg": 1,
+        "transition_step": 3,
+        "lowres_scale": 0.5,
+        "rho": 0,
+        "w_min": 0.5,
+        "w_max": 1,
+        "upscaler_model": "minimax_h3_latent_upscaler_3d_conv_v1_bf16.safetensors",
+        "highres_tiling": false,
+        "upscaler_unload": true
+      }
+    },
+    {
+      "id": 32,
+      "type": "ConditioningZeroOut",
+      "pos": [
+        987.6408663027973,
+        139.5267629162149
+      ],
+      "size": [
+        204.134765625,
+        26
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 39
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            40
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut"
+      }
+    },
+    {
+      "id": 35,
+      "type": "BasicScheduler",
+      "pos": [
+        995.4069587152488,
+        206.89160404534206
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 57
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            54
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "beta",
+        6,
+        1
+      ],
+      "widgets_values_named": {
+        "scheduler": "beta",
+        "steps": 6,
+        "denoise": 1
+      }
+    }
+  ],
+  "links": [
+    [
+      15,
+      3,
+      0,
+      11,
+      1,
+      "VAE"
+    ],
+    [
+      17,
+      4,
+      0,
+      12,
+      1,
+      "VAE"
+    ],
+    [
+      28,
+      11,
+      0,
+      28,
+      0,
+      "IMAGE"
+    ],
+    [
+      29,
+      12,
+      0,
+      28,
+      1,
+      "AUDIO"
+    ],
+    [
+      36,
+      7,
+      0,
+      31,
+      5,
+      "SAMPLER"
+    ],
+    [
+      37,
+      3,
+      0,
+      31,
+      3,
+      "VAE"
+    ],
+    [
+      38,
+      5,
+      0,
+      31,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      39,
+      5,
+      0,
+      32,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      40,
+      32,
+      0,
+      31,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      41,
+      5,
+      1,
+      31,
+      4,
+      "LATENT"
+    ],
+    [
+      42,
+      31,
+      0,
+      11,
+      0,
+      "LATENT"
+    ],
+    [
+      43,
+      31,
+      0,
+      12,
+      0,
+      "LATENT"
+    ],
+    [
+      53,
+      30,
+      0,
+      31,
+      0,
+      "MODEL"
+    ],
+    [
+      54,
+      35,
+      0,
+      31,
+      6,
+      "SIGMAS"
+    ],
+    [
+      56,
+      1,
+      0,
+      29,
+      0,
+      "MODEL"
+    ],
+    [
+      57,
+      1,
+      0,
+      35,
+      0,
+      "MODEL"
+    ],
+    [
+      1,
+      2,
+      0,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      2,
+      3,
+      0,
+      5,
+      1,
+      "VAE"
+    ],
+    [
+      3,
+      4,
+      0,
+      5,
+      2,
+      "VAE"
+    ],
+    [
+      4,
+      20,
+      0,
+      5,
+      3,
+      "IMAGE"
+    ],
+    [
+      21,
+      24,
+      0,
+      25,
+      0,
+      "FLOAT"
+    ],
+    [
+      30,
+      29,
+      0,
+      30,
+      0,
+      "MODEL"
+    ],
+    [
+      25,
+      26,
+      0,
+      5,
+      10,
+      "STRING"
+    ],
+    [
+      23,
+      23,
+      0,
+      5,
+      11,
+      "INT"
+    ],
+    [
+      24,
+      23,
+      1,
+      5,
+      12,
+      "INT"
+    ],
+    [
+      22,
+      25,
+      1,
+      5,
+      13,
+      "INT"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "1. Models: pick your files",
+      "bounding": [
+        -480,
+        -10,
+        420,
+        557
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "2. References, in prompt order",
+      "bounding": [
+        -465.86632975169255,
+        561.8821002161011,
+        421.93597045898446,
+        464.0561920166043
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "3. Prompt (<Picture N> tags), size, length",
+      "bounding": [
+        373.334432495118,
+        -15,
+        508.38402954101593,
+        519.607985229494
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "4. Sampling: change seed and steps only",
+      "bounding": [
+        953.3344324951188,
+        -15,
+        720,
+        525
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "5. Output",
+      "bounding": [
+        1696.5454101562502,
+        -12.090870250355152,
+        940,
+        619
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "Group",
+      "bounding": [
+        -15.92020565394524,
+        -7.724379610743022,
+        353.65229909203515,
+        434.9393100857132
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8052550000000479,
+      "offset": [
+        -1302.1506367434563,
+        58.62149277275676
+      ]
+    },
+    "frontendVersion": "1.58.5",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

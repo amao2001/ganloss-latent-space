@@ -1,0 +1,1321 @@
+{
+  "id": "3ffdcdc5-b41f-4618-9b9b-26614347dde3",
+  "revision": 0,
+  "last_node_id": 30,
+  "last_link_id": 36,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "HyperFlowINT8Loader",
+      "pos": [
+        -471.806323466723,
+        52.002089624057795
+      ],
+      "size": [
+        380,
+        82
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            35,
+            36
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "HyperFlowINT8Loader",
+        "cnr_id": "comfyui-hyperflow-int8-nodes",
+        "aux_id": "BennyDaBall930/comfyui_hyperflow_int8_nodes",
+        "models": [
+          {
+            "name": "minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors",
+            "url": "https://huggingface.co/BennyDaBall/HyperFlow-H3-Flash-INT8-ComfyUI/resolve/main/minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors",
+            "directory": "diffusion_models"
+          }
+        ]
+      },
+      "widgets_values": [
+        "minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "unet_name": "minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors",
+        "patcher": "auto"
+      }
+    },
+    {
+      "id": 2,
+      "type": "CLIPLoader",
+      "pos": [
+        -460,
+        200
+      ],
+      "size": [
+        380,
+        106
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "Text encoder (type minimax)",
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "models": [
+          {
+            "name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "directory": "text_encoders"
+          }
+        ]
+      },
+      "widgets_values": [
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "minimax",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    {
+      "id": 3,
+      "type": "VAELoader",
+      "pos": [
+        -460,
+        360
+      ],
+      "size": [
+        380,
+        58
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            2,
+            15
+          ]
+        }
+      ],
+      "title": "Video VAE",
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "models": [
+          {
+            "name": "minimax_h3_video_vae_fp16.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_fp16.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": [
+        "vae/minimax_h3_sol_vae_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "vae/minimax_h3_sol_vae_int8_convrot.safetensors"
+      }
+    },
+    {
+      "id": 4,
+      "type": "VAELoader",
+      "pos": [
+        -460,
+        470
+      ],
+      "size": [
+        380,
+        58
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            3,
+            17
+          ]
+        }
+      ],
+      "title": "Audio VAE",
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "models": [
+          {
+            "name": "minimax_h3_audio_vae_fp32.safetensors",
+            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors",
+            "directory": "vae"
+          }
+        ]
+      },
+      "widgets_values": [
+        "minimax_h3_audio_vae_fp32.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    {
+      "id": 5,
+      "type": "MiniMaxH3ReferenceToVideo",
+      "pos": [
+        -12.787544120756934,
+        77.76021082663944
+      ],
+      "size": [
+        480,
+        384
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 2
+        },
+        {
+          "name": "audio_vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 3
+        },
+        {
+          "name": "ref_images.ref_image_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "ref_images.ref_image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "ref_videos.ref_video_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "ref_video_audios.ref_video_audio_0",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "ref_audios.ref_audio_0",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "ref_audios.ref_audio_1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "ref_audios.ref_audio_2",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 25
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 23
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 24
+        },
+        {
+          "name": "length",
+          "type": "INT",
+          "widget": {
+            "name": "length"
+          },
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            8
+          ]
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "title": "Prompt, size, length, references",
+      "properties": {
+        "Node name for S&R": "MiniMaxH3ReferenceToVideo"
+      },
+      "widgets_values": [
+        "subject_definitions:\n<Subject 1> is the character defined by the character sheet in <Picture 1>. The sheet provides her identity and wardrobe throughout the video.\n\nsummary:\n[reference generation] Create a 10-second photorealistic fashion-walk sequence featuring <Subject 1> approaching the camera through a busy railway-station concourse. She initially looks slightly aside with a composed expression, gradually meets the lens and smiles, then passes close to the camera and exits screen left. Finish on the station corridor with commuters continuing through the background.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): fully_preserved - consistently maintain the character identity and complete wardrobe established by <Picture 1>. Adapt the relaxed hand placement to the referenced outfit: hands inside available pockets, or resting naturally near the hips.\n\ndetailed_description:\nA photorealistic cinematic street-fashion scene, 10 seconds, 16:9 landscape framing. A busy modern railway-station concourse has polished grey floor tiles, repeating structural columns, ticket machines along one side, overhead directional signs, and rows of bright ceiling lights receding into the distance. Yellow tactile guidance strips lead through the hall. Commuters cross and walk through the background at varied distances. Use soft, even indoor lighting and natural reflections on the floor.\n\n[Shot 1] One uninterrupted tracking shot at approximately chest height, keeping vertical architectural lines stable.\n\nFrom 0 to 3 seconds, begin with a full-body frontal view of <Subject 1> walking toward the camera. She takes measured, lightly crossing steps with smooth weight transfer and relaxed shoulders. Her hands remain comfortably at pocket or hip level, following the structure of the referenced outfit. She looks slightly to one side of the lens with a calm, composed expression.\n\nThe camera retreats smoothly along the concourse, following her approach while allowing her to gain distance gradually. Keep her near the center of the wide frame and reveal the station environment on both sides. Nearby columns and ticket machines produce gentle parallax while commuters move independently behind her.\n\nFrom 3 to 6 seconds, continue the same walking rhythm as the framing tightens from full body toward a three-quarter view. She gradually brings her gaze forward, then looks directly toward the lens. Her expression begins to soften. Maintain natural foot placement, subtle torso movement, and consistent hand positions. Keep the background active without pedestrians obstructing her face.\n\nFrom 6 to 8 seconds, her restrained expression develops into a warm smile. She maintains brief eye contact while continuing forward, then lowers her gaze slightly with a relaxed, spontaneous expression. The camera slows its retreat, allowing her to approach more closely. Begin shifting her path toward screen left while keeping the station corridor visible behind her.\n\nFrom 8 to 9.5 seconds, <Subject 1> passes close beside the lens and exits through screen left. Her near shoulder and part of her body briefly fill the left foreground before clearing the image. Let the departure follow her walking trajectory naturally rather than fading or cutting her away.\n\nFrom 9.5 to 10 seconds, hold on the unobstructed station concourse. Commuters continue walking beneath the receding ceiling lights, with columns, overhead signs, and the yellow guidance strip maintaining the scene's depth. End on this active environmental view after the protagonist has fully left the frame.\n\noverall_soundscape:\nN/A\n\nnon_diegetic_music:\nN/A",
+        1344,
+        768,
+        124,
+        "match"
+      ],
+      "widgets_values_named": {
+        "prompt": "subject_definitions:\n<Subject 1> is the character defined by the character sheet in <Picture 1>. The sheet provides her identity and wardrobe throughout the video.\n\nsummary:\n[reference generation] Create a 10-second photorealistic fashion-walk sequence featuring <Subject 1> approaching the camera through a busy railway-station concourse. She initially looks slightly aside with a composed expression, gradually meets the lens and smiles, then passes close to the camera and exits screen left. Finish on the station corridor with commuters continuing through the background.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): fully_preserved - consistently maintain the character identity and complete wardrobe established by <Picture 1>. Adapt the relaxed hand placement to the referenced outfit: hands inside available pockets, or resting naturally near the hips.\n\ndetailed_description:\nA photorealistic cinematic street-fashion scene, 10 seconds, 16:9 landscape framing. A busy modern railway-station concourse has polished grey floor tiles, repeating structural columns, ticket machines along one side, overhead directional signs, and rows of bright ceiling lights receding into the distance. Yellow tactile guidance strips lead through the hall. Commuters cross and walk through the background at varied distances. Use soft, even indoor lighting and natural reflections on the floor.\n\n[Shot 1] One uninterrupted tracking shot at approximately chest height, keeping vertical architectural lines stable.\n\nFrom 0 to 3 seconds, begin with a full-body frontal view of <Subject 1> walking toward the camera. She takes measured, lightly crossing steps with smooth weight transfer and relaxed shoulders. Her hands remain comfortably at pocket or hip level, following the structure of the referenced outfit. She looks slightly to one side of the lens with a calm, composed expression.\n\nThe camera retreats smoothly along the concourse, following her approach while allowing her to gain distance gradually. Keep her near the center of the wide frame and reveal the station environment on both sides. Nearby columns and ticket machines produce gentle parallax while commuters move independently behind her.\n\nFrom 3 to 6 seconds, continue the same walking rhythm as the framing tightens from full body toward a three-quarter view. She gradually brings her gaze forward, then looks directly toward the lens. Her expression begins to soften. Maintain natural foot placement, subtle torso movement, and consistent hand positions. Keep the background active without pedestrians obstructing her face.\n\nFrom 6 to 8 seconds, her restrained expression develops into a warm smile. She maintains brief eye contact while continuing forward, then lowers her gaze slightly with a relaxed, spontaneous expression. The camera slows its retreat, allowing her to approach more closely. Begin shifting her path toward screen left while keeping the station corridor visible behind her.\n\nFrom 8 to 9.5 seconds, <Subject 1> passes close beside the lens and exits through screen left. Her near shoulder and part of her body briefly fill the left foreground before clearing the image. Let the departure follow her walking trajectory naturally rather than fading or cutting her away.\n\nFrom 9.5 to 10 seconds, hold on the unobstructed station concourse. Commuters continue walking beneath the receding ceiling lights, with columns, overhead signs, and the yellow guidance strip maintaining the scene's depth. End on this active environmental view after the protagonist has fully left the frame.\n\noverall_soundscape:\nN/A\n\nnon_diegetic_music:\nN/A",
+        "width": 1344,
+        "height": 768,
+        "length": 124,
+        "ref_image_size": "match"
+      }
+    },
+    {
+      "id": 6,
+      "type": "HyperFlowSigmas",
+      "pos": [
+        592.0782468966162,
+        64.81048601947158
+      ],
+      "size": [
+        320,
+        58
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 35
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "title": "HyperFlow Sigmas (4 / 6 / 8 steps)",
+      "properties": {
+        "Node name for S&R": "HyperFlowSigmas",
+        "cnr_id": "comfyui-hyperflow-flash",
+        "aux_id": "Video-Rebirth/ComfyUI-HyperFlow-Flash"
+      },
+      "widgets_values": [
+        6
+      ],
+      "widgets_values_named": {
+        "steps": 6
+      }
+    },
+    {
+      "id": 7,
+      "type": "KSamplerSelect",
+      "pos": [
+        590.8708389469516,
+        194.52399668497563
+      ],
+      "size": [
+        320,
+        58
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "title": "Sampler (euler)",
+      "properties": {
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "euler"
+      ],
+      "widgets_values_named": {
+        "sampler_name": "euler"
+      }
+    },
+    {
+      "id": 8,
+      "type": "RandomNoise",
+      "pos": [
+        590.4240685702379,
+        312.98638554243587
+      ],
+      "size": [
+        320,
+        82
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "NOISE",
+          "type": "NOISE",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "title": "Seed",
+      "properties": {
+        "Node name for S&R": "RandomNoise"
+      },
+      "widgets_values": [
+        42,
+        "fixed"
+      ],
+      "widgets_values_named": {
+        "noise_seed": 42,
+        "control_after_generate": "fixed"
+      }
+    },
+    {
+      "id": 9,
+      "type": "BasicGuider",
+      "pos": [
+        584.9101969056412,
+        454.89740732466385
+      ],
+      "size": [
+        320,
+        46
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 36
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "title": "Guider (CFG 1, no negative prompt)",
+      "properties": {
+        "Node name for S&R": "BasicGuider"
+      }
+    },
+    {
+      "id": 10,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        989.6968624267706,
+        61.35003300337353
+      ],
+      "size": [
+        260.3636585582394,
+        106
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "link": 9
+        },
+        {
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 10
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 11
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 12
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            14,
+            16
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": null
+        }
+      ],
+      "title": "Sampler",
+      "properties": {
+        "Node name for S&R": "SamplerCustomAdvanced"
+      }
+    },
+    {
+      "id": 11,
+      "type": "VAEDecode",
+      "pos": [
+        1315.1514078813161,
+        74.44099203213756
+      ],
+      "size": [
+        300,
+        46
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 14
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            28
+          ]
+        }
+      ],
+      "title": "Decode video",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 12,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        1315.1512969083046,
+        190.07731127929668
+      ],
+      "size": [
+        300,
+        46
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 16
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            29
+          ]
+        }
+      ],
+      "title": "Decode audio",
+      "properties": {
+        "Node name for S&R": "VAEDecodeAudio"
+      }
+    },
+    {
+      "id": 20,
+      "type": "LoadImage",
+      "pos": [
+        -460,
+        650
+      ],
+      "size": [
+        380,
+        360
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "<Picture 1>",
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "H3 Character Sheet Designer_00001_dgtxk_1793700644.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "H3 Character Sheet Designer_00001_dgtxk_1793700644.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 22,
+      "type": "MarkdownNote",
+      "pos": [
+        68.59498464830253,
+        -1011.5690158379201
+      ],
+      "size": [
+        1400,
+        520
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Read me",
+      "properties": {},
+      "widgets_values": [
+        "## HyperFlow H3 Flash INT8: video from reference images\n\nUnofficial port: HyperFlow H3 Flash's own INT8 (convrot) transformer, converted to ComfyUI's layout and run on ComfyUI's native INT8 kernels. Not an official Video Rebirth, MiniMax or Comfy Org release.\n\nLoad your references in **<Picture 1>** and **<Picture 2>** and name them that way in the prompt. To add up to 9, connect more images to the reference node; they are `<Picture 3>`, `<Picture 4>`, ... in that order.\n\n**Custom nodes**: [ComfyUI-HyperFlow-Flash](https://github.com/Video-Rebirth/ComfyUI-HyperFlow-Flash) (official: HyperFlow Sigmas and the two-time patch) and [ComfyUI-HyperFlow-INT8](https://github.com/BennyDaBall930/comfyui_hyperflow_int8_nodes) (HyperFlow INT8 Loader), on a ComfyUI with native MiniMax-H3 and INT8 convrot support.\n\n**Model files**, in `ComfyUI/models/`:\n\n| Folder | File | From |\n|---|---|---|\n| `diffusion_models/` | `minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors` | [BennyDaBall/HyperFlow-H3-Flash-INT8-ComfyUI](https://huggingface.co/BennyDaBall/HyperFlow-H3-Flash-INT8-ComfyUI), or convert `ref2va_int8_convrot/` from [VideoRebirthAI/hyperflow-h3-flash](https://huggingface.co/VideoRebirthAI/hyperflow-h3-flash) with `convert_hyperflow_int8.py` |\n| `text_encoders/` | `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) |\n| `vae/` | `minimax_h3_video_vae_fp16.safetensors`, `minimax_h3_audio_vae_fp32.safetensors` | [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) |\n\n**Recipe**: HyperFlow INT8 Loader (`patcher: legacy`), HyperFlow Sigmas 6 steps, `euler`, Basic Guider (CFG 1, no negative prompt), 1344 x 768, 124 frames (5.2 s at 24 fps), seed 42.\n\n**Change**: the prompt, size and length (124 frames is 5.2 s at 24 fps); **Seed**; `steps` in **HyperFlow Sigmas** (4 speed, 6 default, 8 quality).\n\n**Keep**: `euler`, CFG 1, no negative prompt; `patcher: legacy` (`auto`, DynamicVRAM, is experimental).\n\n**VRAM**: the weights take about 16 GB and stay resident.\n\n**License**: the weights are a MiniMax H3 Model Derivative under the MiniMax H3 Community License Agreement (territory limits apply). Content you share publicly must be disclosed as AI-generated. Powered by MiniMax H3."
+      ],
+      "widgets_values_named": {
+        "text": "## HyperFlow H3 Flash INT8: video from reference images\n\nUnofficial port: HyperFlow H3 Flash's own INT8 (convrot) transformer, converted to ComfyUI's layout and run on ComfyUI's native INT8 kernels. Not an official Video Rebirth, MiniMax or Comfy Org release.\n\nLoad your references in **<Picture 1>** and **<Picture 2>** and name them that way in the prompt. To add up to 9, connect more images to the reference node; they are `<Picture 3>`, `<Picture 4>`, ... in that order.\n\n**Custom nodes**: [ComfyUI-HyperFlow-Flash](https://github.com/Video-Rebirth/ComfyUI-HyperFlow-Flash) (official: HyperFlow Sigmas and the two-time patch) and [ComfyUI-HyperFlow-INT8](https://github.com/BennyDaBall930/comfyui_hyperflow_int8_nodes) (HyperFlow INT8 Loader), on a ComfyUI with native MiniMax-H3 and INT8 convrot support.\n\n**Model files**, in `ComfyUI/models/`:\n\n| Folder | File | From |\n|---|---|---|\n| `diffusion_models/` | `minimax_h3_ref2va_hyperflow_flash_int8_convrot.safetensors` | [BennyDaBall/HyperFlow-H3-Flash-INT8-ComfyUI](https://huggingface.co/BennyDaBall/HyperFlow-H3-Flash-INT8-ComfyUI), or convert `ref2va_int8_convrot/` from [VideoRebirthAI/hyperflow-h3-flash](https://huggingface.co/VideoRebirthAI/hyperflow-h3-flash) with `convert_hyperflow_int8.py` |\n| `text_encoders/` | `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) |\n| `vae/` | `minimax_h3_video_vae_fp16.safetensors`, `minimax_h3_audio_vae_fp32.safetensors` | [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) |\n\n**Recipe**: HyperFlow INT8 Loader (`patcher: legacy`), HyperFlow Sigmas 6 steps, `euler`, Basic Guider (CFG 1, no negative prompt), 1344 x 768, 124 frames (5.2 s at 24 fps), seed 42.\n\n**Change**: the prompt, size and length (124 frames is 5.2 s at 24 fps); **Seed**; `steps` in **HyperFlow Sigmas** (4 speed, 6 default, 8 quality).\n\n**Keep**: `euler`, CFG 1, no negative prompt; `patcher: legacy` (`auto`, DynamicVRAM, is experimental).\n\n**VRAM**: the weights take about 16 GB and stay resident.\n\n**License**: the weights are a MiniMax H3 Model Derivative under the MiniMax H3 Community License Agreement (territory limits apply). Content you share publicly must be disclosed as AI-generated. Powered by MiniMax H3."
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 23,
+      "type": "ResolutionSelector",
+      "pos": [
+        -770,
+        40
+      ],
+      "size": [
+        270,
+        150
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "aspect_ratio",
+          "name": "aspect_ratio",
+          "type": "COMBO",
+          "widget": {
+            "name": "aspect_ratio"
+          },
+          "link": null
+        },
+        {
+          "label": "megapixels",
+          "name": "megapixels",
+          "type": "FLOAT",
+          "widget": {
+            "name": "megapixels"
+          },
+          "link": null
+        },
+        {
+          "label": "multiple",
+          "name": "multiple",
+          "type": "INT",
+          "widget": {
+            "name": "multiple"
+          },
+          "link": null
+        },
+        {
+          "label": "preview",
+          "name": "preview",
+          "shape": 7,
+          "type": "RESOLUTION_PREVIEW",
+          "widget": {
+            "name": "preview"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "links": [
+            23
+          ]
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResolutionSelector",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "16:9 (Widescreen)",
+        1,
+        32
+      ],
+      "widgets_values_named": {
+        "aspect_ratio": "16:9 (Widescreen)",
+        "megapixels": 1,
+        "multiple": 32
+      }
+    },
+    {
+      "id": 24,
+      "type": "PrimitiveFloat",
+      "pos": [
+        -780,
+        240
+      ],
+      "size": [
+        270,
+        90
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "value",
+          "name": "value",
+          "type": "FLOAT",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "FLOAT",
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            21
+          ]
+        }
+      ],
+      "title": "Float (duration)",
+      "properties": {
+        "Node name for S&R": "PrimitiveFloat",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        10
+      ],
+      "widgets_values_named": {
+        "value": 10
+      }
+    },
+    {
+      "id": 25,
+      "type": "ComfyMathExpression",
+      "pos": [
+        -770,
+        400
+      ],
+      "size": [
+        360,
+        170
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "values.a",
+          "name": "values.a",
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": 21
+        },
+        {
+          "label": "values.b",
+          "name": "values.b",
+          "shape": 7,
+          "type": "FLOAT,INT,BOOLEAN",
+          "link": null
+        },
+        {
+          "label": "expression",
+          "name": "expression",
+          "type": "STRING",
+          "widget": {
+            "name": "expression"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "FLOAT",
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": []
+        },
+        {
+          "label": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            22
+          ]
+        },
+        {
+          "label": "BOOL",
+          "name": "BOOL",
+          "type": "BOOLEAN",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfyMathExpression",
+        "cnr_id": "comfy-core",
+        "ver": "0.33.0",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      ],
+      "widgets_values_named": {
+        "expression": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+      }
+    },
+    {
+      "id": 26,
+      "type": "PrimitiveNode",
+      "pos": [
+        -1290,
+        30
+      ],
+      "size": [
+        500.90903542258434,
+        649.4545787464476
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "links": [
+            25
+          ]
+        }
+      ],
+      "title": "prompt",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        "subject_definitions:\n<Subject 1> is the character defined by the character sheet in <Picture 1>. The sheet provides her identity and wardrobe throughout the video.\n\nsummary:\n[reference generation] Create a 10-second photorealistic fashion-walk sequence featuring <Subject 1> approaching the camera through a busy railway-station concourse. She initially looks slightly aside with a composed expression, gradually meets the lens and smiles, then passes close to the camera and exits screen left. Finish on the station corridor with commuters continuing through the background.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): fully_preserved - consistently maintain the character identity and complete wardrobe established by <Picture 1>. Adapt the relaxed hand placement to the referenced outfit: hands inside available pockets, or resting naturally near the hips.\n\ndetailed_description:\nA photorealistic cinematic street-fashion scene, 10 seconds, 16:9 landscape framing. A busy modern railway-station concourse has polished grey floor tiles, repeating structural columns, ticket machines along one side, overhead directional signs, and rows of bright ceiling lights receding into the distance. Yellow tactile guidance strips lead through the hall. Commuters cross and walk through the background at varied distances. Use soft, even indoor lighting and natural reflections on the floor.\n\n[Shot 1] One uninterrupted tracking shot at approximately chest height, keeping vertical architectural lines stable.\n\nFrom 0 to 3 seconds, begin with a full-body frontal view of <Subject 1> walking toward the camera. She takes measured, lightly crossing steps with smooth weight transfer and relaxed shoulders. Her hands remain comfortably at pocket or hip level, following the structure of the referenced outfit. She looks slightly to one side of the lens with a calm, composed expression.\n\nThe camera retreats smoothly along the concourse, following her approach while allowing her to gain distance gradually. Keep her near the center of the wide frame and reveal the station environment on both sides. Nearby columns and ticket machines produce gentle parallax while commuters move independently behind her.\n\nFrom 3 to 6 seconds, continue the same walking rhythm as the framing tightens from full body toward a three-quarter view. She gradually brings her gaze forward, then looks directly toward the lens. Her expression begins to soften. Maintain natural foot placement, subtle torso movement, and consistent hand positions. Keep the background active without pedestrians obstructing her face.\n\nFrom 6 to 8 seconds, her restrained expression develops into a warm smile. She maintains brief eye contact while continuing forward, then lowers her gaze slightly with a relaxed, spontaneous expression. The camera slows its retreat, allowing her to approach more closely. Begin shifting her path toward screen left while keeping the station corridor visible behind her.\n\nFrom 8 to 9.5 seconds, <Subject 1> passes close beside the lens and exits through screen left. Her near shoulder and part of her body briefly fill the left foreground before clearing the image. Let the departure follow her walking trajectory naturally rather than fading or cutting her away.\n\nFrom 9.5 to 10 seconds, hold on the unobstructed station concourse. Commuters continue walking beneath the receding ceiling lights, with columns, overhead signs, and the yellow guidance strip maintaining the scene's depth. End on this active environmental view after the protagonist has fully left the frame.\n\noverall_soundscape:\nN/A\n\nnon_diegetic_music:\nN/A"
+      ],
+      "widgets_values_named": {
+        "value": "subject_definitions:\n<Subject 1> is the character defined by the character sheet in <Picture 1>. The sheet provides her identity and wardrobe throughout the video.\n\nsummary:\n[reference generation] Create a 10-second photorealistic fashion-walk sequence featuring <Subject 1> approaching the camera through a busy railway-station concourse. She initially looks slightly aside with a composed expression, gradually meets the lens and smiles, then passes close to the camera and exits screen left. Finish on the station corridor with commuters continuing through the background.\n\nretention_analysis:\n<Subject 1> (appears in [Shot 1]): fully_preserved - consistently maintain the character identity and complete wardrobe established by <Picture 1>. Adapt the relaxed hand placement to the referenced outfit: hands inside available pockets, or resting naturally near the hips.\n\ndetailed_description:\nA photorealistic cinematic street-fashion scene, 10 seconds, 16:9 landscape framing. A busy modern railway-station concourse has polished grey floor tiles, repeating structural columns, ticket machines along one side, overhead directional signs, and rows of bright ceiling lights receding into the distance. Yellow tactile guidance strips lead through the hall. Commuters cross and walk through the background at varied distances. Use soft, even indoor lighting and natural reflections on the floor.\n\n[Shot 1] One uninterrupted tracking shot at approximately chest height, keeping vertical architectural lines stable.\n\nFrom 0 to 3 seconds, begin with a full-body frontal view of <Subject 1> walking toward the camera. She takes measured, lightly crossing steps with smooth weight transfer and relaxed shoulders. Her hands remain comfortably at pocket or hip level, following the structure of the referenced outfit. She looks slightly to one side of the lens with a calm, composed expression.\n\nThe camera retreats smoothly along the concourse, following her approach while allowing her to gain distance gradually. Keep her near the center of the wide frame and reveal the station environment on both sides. Nearby columns and ticket machines produce gentle parallax while commuters move independently behind her.\n\nFrom 3 to 6 seconds, continue the same walking rhythm as the framing tightens from full body toward a three-quarter view. She gradually brings her gaze forward, then looks directly toward the lens. Her expression begins to soften. Maintain natural foot placement, subtle torso movement, and consistent hand positions. Keep the background active without pedestrians obstructing her face.\n\nFrom 6 to 8 seconds, her restrained expression develops into a warm smile. She maintains brief eye contact while continuing forward, then lowers her gaze slightly with a relaxed, spontaneous expression. The camera slows its retreat, allowing her to approach more closely. Begin shifting her path toward screen left while keeping the station corridor visible behind her.\n\nFrom 8 to 9.5 seconds, <Subject 1> passes close beside the lens and exits through screen left. Her near shoulder and part of her body briefly fill the left foreground before clearing the image. Let the departure follow her walking trajectory naturally rather than fading or cutting her away.\n\nFrom 9.5 to 10 seconds, hold on the unobstructed station concourse. Commuters continue walking beneath the receding ceiling lights, with columns, overhead signs, and the yellow guidance strip maintaining the scene's depth. End on this active environmental view after the protagonist has fully left the frame.\n\noverall_soundscape:\nN/A\n\nnon_diegetic_music:\nN/A"
+      }
+    },
+    {
+      "id": 28,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1653.571782725809,
+        70.12826505320297
+      ],
+      "size": [
+        571.3998726385339,
+        655.7580684494143
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 28
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 29
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00258-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00258.png",
+            "fullpath": "/root/ComfyUI/output/AnimateDiff_00258-audio.mp4",
+            "metadata": {
+              "kind": "video",
+              "width": 1376,
+              "height": 768,
+              "duration": 10.125,
+              "fps": 24,
+              "frame_count": 243
+            }
+          }
+        }
+      },
+      "widgets_values_named": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00258-audio.mp4",
+            "subfolder": "",
+            "type": "output",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "AnimateDiff_00258.png",
+            "fullpath": "/root/ComfyUI/output/AnimateDiff_00258-audio.mp4",
+            "metadata": {
+              "kind": "video",
+              "width": 1376,
+              "height": 768,
+              "duration": 10.125,
+              "fps": 24,
+              "frame_count": 243
+            }
+          }
+        }
+      }
+    }
+  ],
+  "links": [
+    [
+      8,
+      5,
+      0,
+      9,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      9,
+      8,
+      0,
+      10,
+      0,
+      "NOISE"
+    ],
+    [
+      10,
+      9,
+      0,
+      10,
+      1,
+      "GUIDER"
+    ],
+    [
+      11,
+      7,
+      0,
+      10,
+      2,
+      "SAMPLER"
+    ],
+    [
+      12,
+      6,
+      0,
+      10,
+      3,
+      "SIGMAS"
+    ],
+    [
+      13,
+      5,
+      1,
+      10,
+      4,
+      "LATENT"
+    ],
+    [
+      14,
+      10,
+      0,
+      11,
+      0,
+      "LATENT"
+    ],
+    [
+      15,
+      3,
+      0,
+      11,
+      1,
+      "VAE"
+    ],
+    [
+      16,
+      10,
+      0,
+      12,
+      0,
+      "LATENT"
+    ],
+    [
+      17,
+      4,
+      0,
+      12,
+      1,
+      "VAE"
+    ],
+    [
+      28,
+      11,
+      0,
+      28,
+      0,
+      "IMAGE"
+    ],
+    [
+      29,
+      12,
+      0,
+      28,
+      1,
+      "AUDIO"
+    ],
+    [
+      1,
+      2,
+      0,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      2,
+      3,
+      0,
+      5,
+      1,
+      "VAE"
+    ],
+    [
+      3,
+      4,
+      0,
+      5,
+      2,
+      "VAE"
+    ],
+    [
+      4,
+      20,
+      0,
+      5,
+      3,
+      "IMAGE"
+    ],
+    [
+      21,
+      24,
+      0,
+      25,
+      0,
+      "FLOAT"
+    ],
+    [
+      25,
+      26,
+      0,
+      5,
+      10,
+      "STRING"
+    ],
+    [
+      23,
+      23,
+      0,
+      5,
+      11,
+      "INT"
+    ],
+    [
+      24,
+      23,
+      1,
+      5,
+      12,
+      "INT"
+    ],
+    [
+      22,
+      25,
+      1,
+      5,
+      13,
+      "INT"
+    ],
+    [
+      35,
+      1,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      36,
+      1,
+      0,
+      9,
+      0,
+      "MODEL"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "1. Models: pick your files",
+      "bounding": [
+        -480,
+        -10,
+        420,
+        557
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "2. References, in prompt order",
+      "bounding": [
+        -465.86632975169255,
+        561.8821002161011,
+        421.93597045898446,
+        464.0561920166043
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "3. Prompt (<Picture N> tags), size, length",
+      "bounding": [
+        -27.030432495106563,
+        -10.740864990234481,
+        508.38402954101593,
+        519.607985229494
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "4. Sampling: change seed and steps only",
+      "bounding": [
+        552.969567504896,
+        -10.740864990234481,
+        720,
+        525
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "5. Output",
+      "bounding": [
+        1296.1805451660277,
+        -7.831735240589634,
+        940,
+        619
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.34150672768254414,
+      "offset": [
+        1583.3790034895653,
+        571.6226255612944
+      ]
+    },
+    "frontendVersion": "1.58.5",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
