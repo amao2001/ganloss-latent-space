@@ -1,0 +1,1725 @@
+{
+  "id": "6e5d96b7-1687-4e3d-8559-6c3e5468c193",
+  "revision": 0,
+  "last_node_id": 81,
+  "last_link_id": 159,
+  "nodes": [
+    {
+      "id": 9,
+      "type": "SaveImage",
+      "pos": [
+        428.5791153585288,
+        -18.278362302525707
+      ],
+      "size": [
+        1590.1926193673803,
+        1615.6726539852752
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 61
+        },
+        {
+          "label": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "image_urls",
+          "name": "image_urls",
+          "type": "STRING",
+          "links": []
+        },
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "image_minimax_h3_image_edit"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "image_minimax_h3_image_edit"
+      }
+    },
+    {
+      "id": 27,
+      "type": "MarkdownNote",
+      "pos": [
+        -3622.2447610687595,
+        709.6188774926476
+      ],
+      "size": [
+        470.98828842940316,
+        266.6669048205257
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Note: size and Referencen Images",
+      "properties": {
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "MiniMax H3 Image doesn't work well in low resolution, so this workflow upscale the input image to 4MP at first.\n\n## Recommended sizes (16MP)\n\nThe effective working range of MiniMax-H3-Image is about 4 MP to 20 MP, and it generally gives\nthe best results at around 16 MP. Common 16 MP sizes are listed below:\n\n| Aspect ratio | Size (width x height) |\n| --- | --- |\n| 1:1 | 4096x4096 |\n| 4:3 / 3:4 | 4736x3552 / 3552x4736 |\n| 3:2 / 2:3 | 5024x3360 / 3360x5024 |\n| 16:9 / 9:16 | 5472x3072 / 3072x5472 |\n| 21:9 | 6272x2688 |\n\n## Multiple image editing\n\nIf you want to use multiple image editing:\n- add extra `Load Image` nodes\n- plug the output to both `Generate Text` 👇 and `MiniMax H3 Image Conditioning`👆 nodes"
+      ],
+      "widgets_values_named": {
+        "text": "MiniMax H3 Image doesn't work well in low resolution, so this workflow upscale the input image to 4MP at first.\n\n## Recommended sizes (16MP)\n\nThe effective working range of MiniMax-H3-Image is about 4 MP to 20 MP, and it generally gives\nthe best results at around 16 MP. Common 16 MP sizes are listed below:\n\n| Aspect ratio | Size (width x height) |\n| --- | --- |\n| 1:1 | 4096x4096 |\n| 4:3 / 3:4 | 4736x3552 / 3552x4736 |\n| 3:2 / 2:3 | 5024x3360 / 3360x5024 |\n| 16:9 / 9:16 | 5472x3072 / 3072x5472 |\n| 21:9 | 6272x2688 |\n\n## Multiple image editing\n\nIf you want to use multiple image editing:\n- add extra `Load Image` nodes\n- plug the output to both `Generate Text` 👇 and `MiniMax H3 Image Conditioning`👆 nodes"
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 28,
+      "type": "MarkdownNote",
+      "pos": [
+        -3638.932538934887,
+        -55.84907368059284
+      ],
+      "size": [
+        490,
+        700
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Model Links",
+      "properties": {
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "## Input Asset\n\n- [vintage_yellow_taxi.png](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/vintage_yellow_taxi.png)\n\n## Model Links\n\n- [Hugging Face:Comfy-Org/MiniMax-H3-Image](https://huggingface.co/Comfy-Org/MiniMax-H3-Image)\n- [Hugging Face:Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n- [Hugging Face:Comfy-Org/Qwen3.5](https://huggingface.co/Comfy-Org/Qwen3.5)\n\n**diffusion_models**\n\n- [minimax_h3_image_pruned_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/diffusion_models/minimax_h3_image_pruned_int8_convrot.safetensors) (21 GB)\n\n**text_encoders**\n\n- [qwen3vl_32b_minimax_h3_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors) (25.28 GB)\n- [qwen3.5_9b_w4a8_gptq.safetensors](https://huggingface.co/Comfy-Org/Qwen3.5/resolve/main/text_encoders/qwen3.5_9b_w4a8_gptq.safetensors) (6.84 GB)\n\n**vae**\n\n- [minimax_h3_image_vae_fp16.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/vae/minimax_h3_image_vae_fp16.safetensors)\n\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 diffusion_models/\n│   │   └── minimax_h3_image_pruned_int8_convrot.safetensors\n│   ├── 📂 text_encoders/\n│   │   ├── qwen3vl_32b_minimax_h3_int8_convrot.safetensors\n│   │   └── qwen3.5_9b_w4a8_gptq.safetensors\n│   └── 📂 vae/\n│       └── minimax_h3_image_vae_fp16.safetensors\n```\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n"
+      ],
+      "widgets_values_named": {
+        "text": "## Input Asset\n\n- [vintage_yellow_taxi.png](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/vintage_yellow_taxi.png)\n\n## Model Links\n\n- [Hugging Face:Comfy-Org/MiniMax-H3-Image](https://huggingface.co/Comfy-Org/MiniMax-H3-Image)\n- [Hugging Face:Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n- [Hugging Face:Comfy-Org/Qwen3.5](https://huggingface.co/Comfy-Org/Qwen3.5)\n\n**diffusion_models**\n\n- [minimax_h3_image_pruned_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/diffusion_models/minimax_h3_image_pruned_int8_convrot.safetensors) (21 GB)\n\n**text_encoders**\n\n- [qwen3vl_32b_minimax_h3_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors) (25.28 GB)\n- [qwen3.5_9b_w4a8_gptq.safetensors](https://huggingface.co/Comfy-Org/Qwen3.5/resolve/main/text_encoders/qwen3.5_9b_w4a8_gptq.safetensors) (6.84 GB)\n\n**vae**\n\n- [minimax_h3_image_vae_fp16.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/vae/minimax_h3_image_vae_fp16.safetensors)\n\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 diffusion_models/\n│   │   └── minimax_h3_image_pruned_int8_convrot.safetensors\n│   ├── 📂 text_encoders/\n│   │   ├── qwen3vl_32b_minimax_h3_int8_convrot.safetensors\n│   │   └── qwen3.5_9b_w4a8_gptq.safetensors\n│   └── 📂 vae/\n│       └── minimax_h3_image_vae_fp16.safetensors\n```\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n"
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 29,
+      "type": "UNETLoader",
+      "pos": [
+        -460,
+        0
+      ],
+      "size": [
+        590,
+        90
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "unet_name",
+          "name": "unet_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "unet_name"
+          },
+          "link": null
+        },
+        {
+          "label": "weight_dtype",
+          "name": "weight_dtype",
+          "type": "COMBO",
+          "widget": {
+            "name": "weight_dtype"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            104
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "models": [
+          {
+            "name": "minimax_h3_image_pruned_int8_convrot.safetensors",
+            "directory": "diffusion_models",
+            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/diffusion_models/minimax_h3_image_pruned_int8_convrot.safetensors"
+          }
+        ],
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "minimax_h3_image_pruned_int8_convrot.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "minimax_h3_image_pruned_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    {
+      "id": 30,
+      "type": "CLIPLoader",
+      "pos": [
+        -460,
+        170
+      ],
+      "size": [
+        590,
+        120
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "clip_name",
+          "name": "clip_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "clip_name"
+          },
+          "link": null
+        },
+        {
+          "label": "type",
+          "name": "type",
+          "type": "COMBO",
+          "widget": {
+            "name": "type"
+          },
+          "link": null
+        },
+        {
+          "label": "device",
+          "name": "device",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            135
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "models": [
+          {
+            "name": "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+            "directory": "text_encoders",
+            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_int8_convrot.safetensors"
+          }
+        ],
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+        "minimax",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_32b_minimax_h3_int8_convrot.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    {
+      "id": 31,
+      "type": "VAELoader",
+      "pos": [
+        -460,
+        360
+      ],
+      "size": [
+        590,
+        70
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "vae_name",
+          "name": "vae_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            60,
+            136
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "models": [
+          {
+            "name": "minimax_h3_image_vae_fp16.safetensors",
+            "directory": "vae",
+            "url": "https://huggingface.co/Comfy-Org/MiniMax-H3-Image/resolve/main/vae/minimax_h3_image_vae_fp16.safetensors"
+          }
+        ],
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "minimax_h3_image_vae_fp16.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_image_vae_fp16.safetensors"
+      }
+    },
+    {
+      "id": 32,
+      "type": "MiniMaxH3ImageConditioning",
+      "pos": [
+        -429.7365068549579,
+        678.3060602439434
+      ],
+      "size": [
+        437.2631288621599,
+        336
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 135
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": 136
+        },
+        {
+          "label": "参考图 1 (Image-1)",
+          "name": "images.image_0",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 148
+        },
+        {
+          "label": "参考图 2 (Image-2)",
+          "name": "images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 149
+        },
+        {
+          "label": "参考图 3 (Image-3)",
+          "name": "images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 141
+        },
+        {
+          "label": "参考图 4 (Image-4)",
+          "name": "images.image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 142
+        },
+        {
+          "label": "参考图 5 (Image-5)",
+          "name": "images.image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 143
+        },
+        {
+          "label": "参考图 6 (Image-6)",
+          "name": "images.image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "参考图 7 (Image-7)",
+          "name": "images.image_6",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "参考图 8 (Image-8)",
+          "name": "images.image_7",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "参考图 9 (Image-9)",
+          "name": "images.image_8",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 156
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 146
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 147
+        }
+      ],
+      "outputs": [
+        {
+          "label": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            52,
+            103
+          ]
+        },
+        {
+          "label": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            101
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3ImageConditioning",
+        "widget_ue_connectable": {
+          "width": true,
+          "prompt": true,
+          "height": true
+        }
+      },
+      "widgets_values": [
+        "",
+        5472,
+        3072
+      ],
+      "widgets_values_named": {
+        "prompt": "",
+        "width": 5472,
+        "height": 3072
+      }
+    },
+    {
+      "id": 33,
+      "type": "ConditioningZeroOut",
+      "pos": [
+        -239.26278563786076,
+        1091.308746443969
+      ],
+      "size": [
+        300,
+        50
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "conditioning",
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 52
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut",
+        "widget_ue_connectable": {}
+      }
+    },
+    {
+      "id": 42,
+      "type": "VAEDecode",
+      "pos": [
+        235.57929171898513,
+        -8.445510698140936
+      ],
+      "size": [
+        230,
+        60
+      ],
+      "flags": {
+        "collapsed": true
+      },
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 102
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 60
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            61
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode",
+        "widget_ue_connectable": {}
+      }
+    },
+    {
+      "id": 48,
+      "type": "ResizeImageMaskNode",
+      "pos": [
+        -843.7431141377378,
+        178.47224144664452
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "input",
+          "name": "input",
+          "type": "IMAGE,MASK",
+          "link": 88
+        },
+        {
+          "label": "resize_type",
+          "name": "resize_type",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "resize_type"
+          },
+          "link": null
+        },
+        {
+          "label": "resize_type.multiple",
+          "name": "resize_type.multiple",
+          "type": "INT",
+          "widget": {
+            "name": "resize_type.multiple"
+          },
+          "link": null
+        },
+        {
+          "label": "scale_method",
+          "name": "scale_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "scale_method"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "resized",
+          "name": "resized",
+          "type": "*",
+          "links": [
+            145,
+            149
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResizeImageMaskNode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "scale to multiple",
+        32,
+        "area"
+      ],
+      "widgets_values_named": {
+        "resize_type": "scale to multiple",
+        "resize_type.multiple": 32,
+        "scale_method": "area"
+      }
+    },
+    {
+      "id": 56,
+      "type": "ResizeImageMaskNode",
+      "pos": [
+        -846.9191783561083,
+        13.272408186823853
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "input",
+          "name": "input",
+          "type": "IMAGE,MASK",
+          "link": 122
+        },
+        {
+          "label": "resize_type",
+          "name": "resize_type",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "resize_type"
+          },
+          "link": null
+        },
+        {
+          "label": "resize_type.megapixels",
+          "name": "resize_type.megapixels",
+          "type": "FLOAT",
+          "widget": {
+            "name": "resize_type.megapixels"
+          },
+          "link": null
+        },
+        {
+          "label": "scale_method",
+          "name": "scale_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "scale_method"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "resized",
+          "name": "resized",
+          "type": "*",
+          "links": [
+            88
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResizeImageMaskNode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "scale total pixels",
+        4,
+        "area"
+      ],
+      "widgets_values_named": {
+        "resize_type": "scale total pixels",
+        "resize_type.megapixels": 4,
+        "scale_method": "area"
+      }
+    },
+    {
+      "id": 63,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        -128.2803909674405,
+        1339.9512853187655
+      ],
+      "size": [
+        212.3638671875,
+        106
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "noise",
+          "name": "noise",
+          "type": "NOISE",
+          "link": 97
+        },
+        {
+          "label": "guider",
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 98
+        },
+        {
+          "label": "sampler",
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 99
+        },
+        {
+          "label": "sigmas",
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 100
+        },
+        {
+          "label": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 101
+        }
+      ],
+      "outputs": [
+        {
+          "label": "output",
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            102
+          ]
+        },
+        {
+          "label": "denoised_output",
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustomAdvanced",
+        "widget_ue_connectable": {}
+      }
+    },
+    {
+      "id": 64,
+      "type": "ManualSigmas",
+      "pos": [
+        -458.22781651441835,
+        1588.5228730641902
+      ],
+      "size": [
+        210,
+        58
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "sigmas",
+          "name": "sigmas",
+          "type": "STRING",
+          "widget": {
+            "name": "sigmas"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "SIGMAS",
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            100
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ManualSigmas",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "1.0,0.9675236940383911,0.8875485062599182,0.75,0.5327739119529724,0.23200887441635132,0.0"
+      ],
+      "widgets_values_named": {
+        "sigmas": "1.0,0.9675236940383911,0.8875485062599182,0.75,0.5327739119529724,0.23200887441635132,0.0"
+      }
+    },
+    {
+      "id": 65,
+      "type": "KSamplerSelect",
+      "pos": [
+        -458.8435697484349,
+        1462.9586192035463
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "SAMPLER",
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            99
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "euler"
+      ],
+      "widgets_values_named": {
+        "sampler_name": "euler"
+      }
+    },
+    {
+      "id": 66,
+      "type": "RandomNoise",
+      "pos": [
+        -453.04962349936443,
+        1315.9303642746443
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "noise_seed",
+          "name": "noise_seed",
+          "type": "INT",
+          "widget": {
+            "name": "noise_seed"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "NOISE",
+          "name": "NOISE",
+          "type": "NOISE",
+          "links": [
+            97
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RandomNoise",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        41612280371541,
+        "randomize"
+      ],
+      "widgets_values_named": {
+        "noise_seed": 41612280371541,
+        "control_after_generate": "randomize"
+      }
+    },
+    {
+      "id": 67,
+      "type": "BasicGuider",
+      "pos": [
+        -466.3376783780819,
+        1778.9656498974052
+      ],
+      "size": [
+        159.568359375,
+        46
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 104
+        },
+        {
+          "label": "conditioning",
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 103
+        }
+      ],
+      "outputs": [
+        {
+          "label": "GUIDER",
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "links": [
+            98
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicGuider",
+        "widget_ue_connectable": {}
+      }
+    },
+    {
+      "id": 68,
+      "type": "H3CharacterSheetDesignerReferenceV13",
+      "pos": [
+        -2136.1115814418163,
+        -5.004641215782965
+      ],
+      "size": [
+        1217.2443765016765,
+        1726.2422745186966
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "character_image",
+          "name": "character_image",
+          "type": "IMAGE",
+          "link": 107
+        },
+        {
+          "label": "reference_image_1",
+          "name": "reference_image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "reference_image_2",
+          "name": "reference_image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "reference_image_3",
+          "name": "reference_image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "label": "state_json",
+          "name": "state_json",
+          "type": "STRING",
+          "widget": {
+            "name": "state_json"
+          },
+          "link": null
+        },
+        {
+          "label": "use_layout_image",
+          "name": "use_layout_image",
+          "shape": 7,
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "use_layout_image"
+          },
+          "link": null
+        },
+        {
+          "label": "style",
+          "name": "style",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "style"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "links": [
+            150
+          ]
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "links": []
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "links": []
+        },
+        {
+          "label": "layout_image",
+          "name": "layout_image",
+          "type": "IMAGE",
+          "links": [
+            122
+          ]
+        },
+        {
+          "label": "character_image",
+          "name": "character_image",
+          "type": "IMAGE",
+          "links": [
+            125
+          ]
+        },
+        {
+          "label": "reference_image_1",
+          "name": "reference_image_1",
+          "type": "IMAGE",
+          "links": [
+            141
+          ]
+        },
+        {
+          "label": "reference_image_2",
+          "name": "reference_image_2",
+          "type": "IMAGE",
+          "links": [
+            142
+          ]
+        },
+        {
+          "label": "reference_image_3",
+          "name": "reference_image_3",
+          "type": "IMAGE",
+          "links": [
+            143
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "H3CharacterSheetDesignerReferenceV13",
+        "cnr_id": "h3-character-sheet-designer",
+        "ver": "1.3.0",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "{\"hand_state\":\"bare\",\"clothing_mode\":\"garment\",\"clothing_type\":\"reference\",\"footwear_state\":\"shod\",\"schema_version\":3,\"views\":[\"face_front\",\"face_left\",\"face_right\",\"face_3q_left\",\"body_front\",\"body_back\"],\"size\":{\"mode\":\"auto\",\"body_height\":1120,\"manual_width\":3168,\"manual_height\":1280},\"part_prompts\":{}}",
+        true,
+        "none"
+      ],
+      "widgets_values_named": {
+        "state_json": "{\"hand_state\":\"bare\",\"clothing_mode\":\"garment\",\"clothing_type\":\"reference\",\"footwear_state\":\"shod\",\"schema_version\":3,\"views\":[\"face_front\",\"face_left\",\"face_right\",\"face_3q_left\",\"body_front\",\"body_back\"],\"size\":{\"mode\":\"auto\",\"body_height\":1120,\"manual_width\":3168,\"manual_height\":1280},\"part_prompts\":{}}",
+        "use_layout_image": true,
+        "style": "none"
+      }
+    },
+    {
+      "id": 69,
+      "type": "LoadImage",
+      "pos": [
+        -3114.956298662598,
+        -5.7999577530131825
+      ],
+      "size": [
+        941.9330917801872,
+        1749.3200724583749
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "label": "upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            107
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "title": "Character Image",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.38.0",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "97a50329297dd3bca53a587763bfce2d14488d01d0cfc6aaf5526fe3e5b35562.jpg",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "97a50329297dd3bca53a587763bfce2d14488d01d0cfc6aaf5526fe3e5b35562.jpg",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 75,
+      "type": "ResizeImageMaskNode",
+      "pos": [
+        -851.2834740603909,
+        342.9561015014366
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "input",
+          "name": "input",
+          "type": "IMAGE,MASK",
+          "link": 125
+        },
+        {
+          "label": "resize_type",
+          "name": "resize_type",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "resize_type"
+          },
+          "link": null
+        },
+        {
+          "label": "resize_type.megapixels",
+          "name": "resize_type.megapixels",
+          "type": "FLOAT",
+          "widget": {
+            "name": "resize_type.megapixels"
+          },
+          "link": null
+        },
+        {
+          "label": "scale_method",
+          "name": "scale_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "scale_method"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "resized",
+          "name": "resized",
+          "type": "*",
+          "links": [
+            124
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResizeImageMaskNode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "scale total pixels",
+        4,
+        "area"
+      ],
+      "widgets_values_named": {
+        "resize_type": "scale total pixels",
+        "resize_type.megapixels": 4,
+        "scale_method": "area"
+      }
+    },
+    {
+      "id": 76,
+      "type": "ResizeImageMaskNode",
+      "pos": [
+        -847.1377771759886,
+        510.0162612467819
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "input",
+          "name": "input",
+          "type": "IMAGE,MASK",
+          "link": 124
+        },
+        {
+          "label": "resize_type",
+          "name": "resize_type",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "resize_type"
+          },
+          "link": null
+        },
+        {
+          "label": "resize_type.multiple",
+          "name": "resize_type.multiple",
+          "type": "INT",
+          "widget": {
+            "name": "resize_type.multiple"
+          },
+          "link": null
+        },
+        {
+          "label": "scale_method",
+          "name": "scale_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "scale_method"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "resized",
+          "name": "resized",
+          "type": "*",
+          "links": [
+            148
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResizeImageMaskNode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "scale to multiple",
+        32,
+        "area"
+      ],
+      "widgets_values_named": {
+        "resize_type": "scale to multiple",
+        "resize_type.multiple": 32,
+        "scale_method": "area"
+      }
+    },
+    {
+      "id": 78,
+      "type": "GetImageSize",
+      "pos": [
+        -844.5672860458167,
+        659.2117072611226
+      ],
+      "size": [
+        140,
+        124.00000000000006
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 145
+        }
+      ],
+      "outputs": [
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "links": [
+            146
+          ]
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "links": [
+            147
+          ]
+        },
+        {
+          "label": "batch_size",
+          "name": "batch_size",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetImageSize",
+        "widget_ue_connectable": {}
+      }
+    },
+    {
+      "id": 79,
+      "type": "Reroute",
+      "pos": [
+        -1227.9773616964237,
+        567.9245767021105
+      ],
+      "size": [
+        75,
+        26
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "",
+          "name": "",
+          "type": "*",
+          "widget": {
+            "name": "value"
+          },
+          "link": 150
+        }
+      ],
+      "outputs": [
+        {
+          "label": "",
+          "name": "",
+          "type": "STRING",
+          "links": [
+            156
+          ]
+        }
+      ],
+      "properties": {
+        "showOutputText": false,
+        "horizontal": false,
+        "widget_ue_connectable": {}
+      }
+    }
+  ],
+  "links": [
+    [
+      52,
+      32,
+      0,
+      33,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      60,
+      31,
+      0,
+      42,
+      1,
+      "VAE"
+    ],
+    [
+      61,
+      42,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      97,
+      66,
+      0,
+      63,
+      0,
+      "NOISE"
+    ],
+    [
+      98,
+      67,
+      0,
+      63,
+      1,
+      "GUIDER"
+    ],
+    [
+      99,
+      65,
+      0,
+      63,
+      2,
+      "SAMPLER"
+    ],
+    [
+      100,
+      64,
+      0,
+      63,
+      3,
+      "SIGMAS"
+    ],
+    [
+      101,
+      32,
+      1,
+      63,
+      4,
+      "LATENT"
+    ],
+    [
+      102,
+      63,
+      0,
+      42,
+      0,
+      "LATENT"
+    ],
+    [
+      103,
+      32,
+      0,
+      67,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      104,
+      29,
+      0,
+      67,
+      0,
+      "MODEL"
+    ],
+    [
+      107,
+      69,
+      0,
+      68,
+      0,
+      "IMAGE"
+    ],
+    [
+      145,
+      48,
+      0,
+      78,
+      0,
+      "IMAGE"
+    ],
+    [
+      150,
+      68,
+      0,
+      79,
+      0,
+      "STRING"
+    ],
+    [
+      135,
+      30,
+      0,
+      32,
+      0,
+      "CLIP"
+    ],
+    [
+      136,
+      31,
+      0,
+      32,
+      1,
+      "VAE"
+    ],
+    [
+      148,
+      76,
+      0,
+      32,
+      2,
+      "IMAGE"
+    ],
+    [
+      149,
+      48,
+      0,
+      32,
+      3,
+      "IMAGE"
+    ],
+    [
+      141,
+      68,
+      5,
+      32,
+      4,
+      "IMAGE"
+    ],
+    [
+      142,
+      68,
+      6,
+      32,
+      5,
+      "IMAGE"
+    ],
+    [
+      143,
+      68,
+      7,
+      32,
+      6,
+      "IMAGE"
+    ],
+    [
+      156,
+      79,
+      0,
+      32,
+      11,
+      "STRING"
+    ],
+    [
+      146,
+      78,
+      0,
+      32,
+      12,
+      "INT"
+    ],
+    [
+      147,
+      78,
+      1,
+      32,
+      13,
+      "INT"
+    ],
+    [
+      88,
+      56,
+      0,
+      48,
+      0,
+      "*"
+    ],
+    [
+      122,
+      68,
+      3,
+      56,
+      0,
+      "IMAGE"
+    ],
+    [
+      125,
+      68,
+      4,
+      75,
+      0,
+      "IMAGE"
+    ],
+    [
+      124,
+      75,
+      0,
+      76,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 6,
+      "title": "Models",
+      "bounding": [
+        -490,
+        -90,
+        650,
+        620
+      ],
+      "color": "#A88",
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "Conditioning",
+      "bounding": [
+        -489.262785637861,
+        571.3087464439691,
+        646.8884163782554,
+        620
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 8,
+      "title": "Sampling & Decoding",
+      "bounding": [
+        -490.3003821475289,
+        1229.9245468174506,
+        670,
+        620
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 11,
+      "title": "Output",
+      "bounding": [
+        216.33909042387717,
+        -90,
+        1934.4804795205418,
+        1925.480138389711
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 12,
+      "title": "character designer",
+      "bounding": [
+        -3124.956298662598,
+        -84.87933138144908,
+        2585.6956103441944,
+        1950.6641660238172
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "links_added_by_ue": [],
+    "ue_links": [],
+    "pixaromaGroups": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "frontendVersion": "1.58.5",
+    "ds": {
+      "scale": 0.15772225476662774,
+      "offset": [
+        4868.655953873863,
+        707.7598007695526
+      ]
+    },
+    "KKvideo_latentpreview": false,
+    "KKvideo_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0
+  },
+  "version": 0.4
+}
