@@ -1,0 +1,3103 @@
+{
+  "id": "e46adf73-48a4-4a6c-ab9e-c9aecd2d4416",
+  "revision": 0,
+  "last_node_id": 54,
+  "last_link_id": 92,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UNETLoader",
+      "pos": [
+        30,
+        30
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "unet_name",
+          "name": "unet_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "unet_name"
+          },
+          "link": null
+        },
+        {
+          "label": "weight_dtype",
+          "name": "weight_dtype",
+          "type": "COMBO",
+          "widget": {
+            "name": "weight_dtype"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "widget_ue_connectable": {
+          "weight_dtype": true,
+          "unet_name": true
+        }
+      },
+      "widgets_values": [
+        "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+        "default"
+      ],
+      "widgets_values_named": {
+        "unet_name": "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    {
+      "id": 3,
+      "type": "CLIPLoader",
+      "pos": [
+        30,
+        558
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "clip_name",
+          "name": "clip_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "clip_name"
+          },
+          "link": null
+        },
+        {
+          "label": "type",
+          "name": "type",
+          "type": "COMBO",
+          "widget": {
+            "name": "type"
+          },
+          "link": null
+        },
+        {
+          "label": "device",
+          "name": "device",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CLIP",
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "widget_ue_connectable": {
+          "clip_name": true,
+          "type": true,
+          "device": true
+        }
+      },
+      "widgets_values": [
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "minimax",
+        "default"
+      ],
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    {
+      "id": 4,
+      "type": "VAELoader",
+      "pos": [
+        21.410635177273235,
+        734.0000000000001
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "vae_name",
+          "name": "vae_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            3,
+            61
+          ]
+        }
+      ],
+      "title": "Load VAE (video)",
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "widget_ue_connectable": {
+          "vae_name": true
+        }
+      },
+      "widgets_values": [
+        "minimax_h3_video_vae_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+      }
+    },
+    {
+      "id": 5,
+      "type": "VAELoader",
+      "pos": [
+        30,
+        862
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "vae_name",
+          "name": "vae_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "VAE",
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "title": "Load VAE (audio)",
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "widget_ue_connectable": {
+          "vae_name": true
+        }
+      },
+      "widgets_values": [
+        "minimax_h3_audio_vae_fp32.safetensors"
+      ],
+      "widgets_values_named": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    {
+      "id": 6,
+      "type": "MiniMaxH3ImageToVideo",
+      "pos": [
+        470,
+        448
+      ],
+      "size": [
+        420,
+        460
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "clip",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 3
+        },
+        {
+          "label": "first_frame",
+          "name": "first_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 7
+        },
+        {
+          "label": "last_frame",
+          "name": "last_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 8
+        },
+        {
+          "label": "prompt",
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 4
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 5
+        },
+        {
+          "label": "length",
+          "name": "length",
+          "type": "INT",
+          "widget": {
+            "name": "length"
+          },
+          "link": 50
+        }
+      ],
+      "outputs": [
+        {
+          "label": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            58,
+            59
+          ]
+        },
+        {
+          "label": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            62
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3ImageToVideo",
+        "widget_ue_connectable": {
+          "width": true,
+          "length": true,
+          "prompt": true,
+          "height": true
+        }
+      },
+      "widgets_values": [
+        "integrated_multimodal_description:\nCreate a 10-second, 16:9 live-action wuxia fantasy sequence set inside a two-story Chinese timber inn. An adult swordswoman in pale blue is surrounded by crimson-hooded guards. The action moves from a dining table to the upper gallery and back down to the main hall, ending on a brief wide shot of the swordswoman alone on her feet.\n\nThe swordswoman is an adult East Asian woman with a softly tapered face, dark almond-shaped eyes, straight dark brows, and a focused, composed expression. Her long black hair falls past her waist, with wispy bangs and a partially pinned crown decorated with small silver floral ornaments and narrow pale-blue ribbons. She wears an ice-blue and ivory wuxia gown with layered skirt panels, flowing detached sleeves, a dark structured waist cincher with silver detailing, one dark ornamental shoulder guard, dark forearm guards, and black boots. The skirt is lined and opaque; the lightweight sleeves and outer panels flare sharply with each turn. She carries a straight silver sword with a dark hilt.\n\nThe guards wear deep crimson hoods and heavy cloaks over dark bronze armor, with dark trousers and boots. Their curved blades briefly catch the lantern light. Several stand behind the swordswoman at the start, while a red-cloaked figure partly frames the near foreground.\n\nThe inn has thick dark timber pillars, exposed beams, and a wooden upper gallery overlooking the central hall. Cylindrical amber lanterns hang at both levels. Cool blue light enters through square lattice windows and cuts through a faint haze. Rough wooden tables and benches sit on a polished plank floor. The nearest table holds a black wine jar with a red label, a pale celadon ewer, dark bowls, and a plate of food. Shelves of red jars line the back wall. Keep the warm lanterns, blue window light, pale clothing, and crimson cloaks visually distinct.\n\n[Shot 1 | 00:00–00:01.4]\nStart in a medium-wide view across the dining table. The swordswoman sits calmly with one hand near the wine jar, surrounded by the hooded guards. A brief white splash catches the light against a guard's hood behind her. Blades flash into frame as she rises sharply. Cut on the movement.\n\n[Shot 2 | 00:01.4–00:03.4]\nFrom a low three-quarter angle, she springs onto the tabletop and immediately turns through the air. Pale sleeves and skirt panels whip around her against the red cloaks. Cut with the turn to floor level as she lands between the tables and the guards recoil. Use short tracking moves and keep her pale silhouette readable through the fast exchange.\n\n[Shot 3 | 00:03.4–00:05.8]\nShe races past a bench and launches toward the second-floor gallery in a stylized wire-fu leap. Tilt up fast from the main hall. Amber lanterns and the railing sweep past as she reaches gallery height and spins through a brief exchange with two red-cloaked figures. Follow her immediately back down toward the floor, with the fabric trailing above her for an instant before settling.\n\n[Shot 4 | 00:05.8–00:08.7]\nReturn to a moving wide shot in the main hall. Crimson cloaks rush in from both sides as she moves through the open space between the tables. Use brief blade flashes and sparks to punctuate the exchange. She dips low and rises into a quick airborne turn. A single bright silver-white crescent traces the turn and fades almost immediately. The surrounding guards reel away and drop to the floor in broad, stylized motion.\n\n[Shot 5 | 00:08.7–00:10.0]\nFinish in a frontal wide view. The swordswoman stands in the center of the hall with her sword lowered at her side. Her sleeves and layered skirt settle as the camera eases back, revealing fallen guards, discarded blades, scattered tableware, and the lantern-lit gallery above. End before she makes another move.\n\nPlay every movement at full speed. Use immediate takeoffs and landings, quick changes of direction, whip pans, and sharp cuts on movement. Let hair, fabric, sparks, and the silver arc emphasize speed. No slow motion, speed ramps, freeze frames, or suspended midair poses. Keep the action stylized and bloodless.\n\noverall_soundscape:\nN/A\n\nnon_diegetic_music:\nN/A",
+        1344,
+        768,
+        124
+      ],
+      "widgets_values_named": {
+        "prompt": "integrated_multimodal_description:\nCreate a 10-second, 16:9 live-action wuxia fantasy sequence set inside a two-story Chinese timber inn. An adult swordswoman in pale blue is surrounded by crimson-hooded guards. The action moves from a dining table to the upper gallery and back down to the main hall, ending on a brief wide shot of the swordswoman alone on her feet.\n\nThe swordswoman is an adult East Asian woman with a softly tapered face, dark almond-shaped eyes, straight dark brows, and a focused, composed expression. Her long black hair falls past her waist, with wispy bangs and a partially pinned crown decorated with small silver floral ornaments and narrow pale-blue ribbons. She wears an ice-blue and ivory wuxia gown with layered skirt panels, flowing detached sleeves, a dark structured waist cincher with silver detailing, one dark ornamental shoulder guard, dark forearm guards, and black boots. The skirt is lined and opaque; the lightweight sleeves and outer panels flare sharply with each turn. She carries a straight silver sword with a dark hilt.\n\nThe guards wear deep crimson hoods and heavy cloaks over dark bronze armor, with dark trousers and boots. Their curved blades briefly catch the lantern light. Several stand behind the swordswoman at the start, while a red-cloaked figure partly frames the near foreground.\n\nThe inn has thick dark timber pillars, exposed beams, and a wooden upper gallery overlooking the central hall. Cylindrical amber lanterns hang at both levels. Cool blue light enters through square lattice windows and cuts through a faint haze. Rough wooden tables and benches sit on a polished plank floor. The nearest table holds a black wine jar with a red label, a pale celadon ewer, dark bowls, and a plate of food. Shelves of red jars line the back wall. Keep the warm lanterns, blue window light, pale clothing, and crimson cloaks visually distinct.\n\n[Shot 1 | 00:00–00:01.4]\nStart in a medium-wide view across the dining table. The swordswoman sits calmly with one hand near the wine jar, surrounded by the hooded guards. A brief white splash catches the light against a guard's hood behind her. Blades flash into frame as she rises sharply. Cut on the movement.\n\n[Shot 2 | 00:01.4–00:03.4]\nFrom a low three-quarter angle, she springs onto the tabletop and immediately turns through the air. Pale sleeves and skirt panels whip around her against the red cloaks. Cut with the turn to floor level as she lands between the tables and the guards recoil. Use short tracking moves and keep her pale silhouette readable through the fast exchange.\n\n[Shot 3 | 00:03.4–00:05.8]\nShe races past a bench and launches toward the second-floor gallery in a stylized wire-fu leap. Tilt up fast from the main hall. Amber lanterns and the railing sweep past as she reaches gallery height and spins through a brief exchange with two red-cloaked figures. Follow her immediately back down toward the floor, with the fabric trailing above her for an instant before settling.\n\n[Shot 4 | 00:05.8–00:08.7]\nReturn to a moving wide shot in the main hall. Crimson cloaks rush in from both sides as she moves through the open space between the tables. Use brief blade flashes and sparks to punctuate the exchange. She dips low and rises into a quick airborne turn. A single bright silver-white crescent traces the turn and fades almost immediately. The surrounding guards reel away and drop to the floor in broad, stylized motion.\n\n[Shot 5 | 00:08.7–00:10.0]\nFinish in a frontal wide view. The swordswoman stands in the center of the hall with her sword lowered at her side. Her sleeves and layered skirt settle as the camera eases back, revealing fallen guards, discarded blades, scattered tableware, and the lantern-lit gallery above. End before she makes another move.\n\nPlay every movement at full speed. Use immediate takeoffs and landings, quick changes of direction, whip pans, and sharp cuts on movement. Let hair, fabric, sparks, and the silver arc emphasize speed. No slow motion, speed ramps, freeze frames, or suspended midair poses. Keep the action stylized and bloodless.\n\noverall_soundscape:\nN/A\n\nnon_diegetic_music:\nN/A",
+        "width": 1344,
+        "height": 768,
+        "length": 124
+      }
+    },
+    {
+      "id": 7,
+      "type": "KSamplerSelect",
+      "pos": [
+        970,
+        812
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "sampler_name",
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "SAMPLER",
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "links": [
+            63
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect",
+        "widget_ue_connectable": {
+          "sampler_name": true
+        }
+      },
+      "widgets_values": [
+        "euler"
+      ],
+      "widgets_values_named": {
+        "sampler_name": "euler"
+      }
+    },
+    {
+      "id": 8,
+      "type": "pi-Flow Scheduler",
+      "pos": [
+        976.8508282764648,
+        617.4660605713137
+      ],
+      "size": [
+        281.62109375,
+        130
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 55
+        },
+        {
+          "label": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 90
+        },
+        {
+          "label": "min_raw_t",
+          "name": "min_raw_t",
+          "type": "FLOAT",
+          "widget": {
+            "name": "min_raw_t"
+          },
+          "link": null
+        },
+        {
+          "label": "max_raw_t",
+          "name": "max_raw_t",
+          "type": "FLOAT",
+          "widget": {
+            "name": "max_raw_t"
+          },
+          "link": 91
+        },
+        {
+          "label": "final_step_size_scale",
+          "name": "final_step_size_scale",
+          "type": "FLOAT",
+          "widget": {
+            "name": "final_step_size_scale"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "SIGMAS",
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "links": [
+            64
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "pi-Flow Scheduler",
+        "widget_ue_connectable": {
+          "final_step_size_scale": true,
+          "max_raw_t": true,
+          "min_raw_t": true,
+          "steps": true
+        }
+      },
+      "widgets_values": [
+        2,
+        0,
+        0.93,
+        0.6
+      ],
+      "widgets_values_named": {
+        "steps": 2,
+        "min_raw_t": 0,
+        "max_raw_t": 0.93,
+        "final_step_size_scale": 0.6
+      }
+    },
+    {
+      "id": 13,
+      "type": "VAEDecodeAudio",
+      "pos": [
+        1400,
+        736
+      ],
+      "size": [
+        164.2388671875,
+        46
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 68
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "label": "AUDIO",
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            53
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecodeAudio",
+        "widget_ue_connectable": {}
+      }
+    },
+    {
+      "id": 17,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        30,
+        182
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 4,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 24
+        },
+        {
+          "label": "lora_name",
+          "name": "lora_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "lora_name"
+          },
+          "link": null
+        },
+        {
+          "label": "strength_model",
+          "name": "strength_model",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength_model"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            89
+          ]
+        }
+      ],
+      "title": "Load LoRA (optional)",
+      "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly",
+        "widget_ue_connectable": {
+          "lora_name": true,
+          "strength_model": true
+        }
+      },
+      "widgets_values": [
+        "your_h3_lora.safetensors",
+        1
+      ],
+      "widgets_values_named": {
+        "lora_name": "your_h3_lora.safetensors",
+        "strength_model": 1
+      }
+    },
+    {
+      "id": 19,
+      "type": "MiniMaxH3SigmaShift",
+      "pos": [
+        970,
+        30
+      ],
+      "size": [
+        277.2857421875,
+        82
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 92
+        },
+        {
+          "label": "shift_video",
+          "name": "shift_video",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift_video"
+          },
+          "link": null
+        },
+        {
+          "label": "shift_audio",
+          "name": "shift_audio",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift_audio"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "MODEL",
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            54
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3SigmaShift",
+        "widget_ue_connectable": {
+          "shift_audio": true,
+          "shift_video": true
+        }
+      },
+      "widgets_values": [
+        12,
+        3
+      ],
+      "widgets_values_named": {
+        "shift_video": 12,
+        "shift_audio": 3
+      }
+    },
+    {
+      "id": 21,
+      "type": "LoadImage",
+      "pos": [
+        404.22227647569497,
+        1072.8890516493052
+      ],
+      "size": [
+        222.798828125,
+        320
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 4,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "label": "upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            27
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "First frame",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "widget_ue_connectable": {
+          "image": true,
+          "upload": true
+        },
+        "guhaiImageValue": "example.png"
+      },
+      "widgets_values": [
+        "example.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "example.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 22,
+      "type": "LoadImage",
+      "pos": [
+        634.2222764756947,
+        1072.8890516493052
+      ],
+      "size": [
+        222.798828125,
+        320
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 4,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "COMBO",
+          "widget": {
+            "name": "image"
+          },
+          "link": null
+        },
+        {
+          "label": "upload",
+          "name": "upload",
+          "type": "IMAGEUPLOAD",
+          "widget": {
+            "name": "upload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            30
+          ]
+        },
+        {
+          "label": "MASK",
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "title": "Last frame",
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "widget_ue_connectable": {
+          "image": true,
+          "upload": true
+        },
+        "guhaiImageValue": "example.png"
+      },
+      "widgets_values": [
+        "example.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "example.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 23,
+      "type": "ImageScale",
+      "pos": [
+        404.22227647569497,
+        1462.8890516493052
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 4,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 27
+        },
+        {
+          "label": "upscale_method",
+          "name": "upscale_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "upscale_method"
+          },
+          "link": null
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 28
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 29
+        },
+        {
+          "label": "crop",
+          "name": "crop",
+          "type": "COMBO",
+          "widget": {
+            "name": "crop"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "title": "Resize first frame",
+      "properties": {
+        "Node name for S&R": "ImageScale",
+        "widget_ue_connectable": {
+          "width": true,
+          "upscale_method": true,
+          "crop": true,
+          "height": true
+        }
+      },
+      "widgets_values": [
+        "lanczos",
+        512,
+        512,
+        "center"
+      ],
+      "widgets_values_named": {
+        "upscale_method": "lanczos",
+        "width": 512,
+        "height": 512,
+        "crop": "center"
+      }
+    },
+    {
+      "id": 24,
+      "type": "ImageScale",
+      "pos": [
+        634.2222764756947,
+        1462.8890516493052
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 4,
+      "inputs": [
+        {
+          "label": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 30
+        },
+        {
+          "label": "upscale_method",
+          "name": "upscale_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "upscale_method"
+          },
+          "link": null
+        },
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 31
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 32
+        },
+        {
+          "label": "crop",
+          "name": "crop",
+          "type": "COMBO",
+          "widget": {
+            "name": "crop"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "title": "Resize last frame",
+      "properties": {
+        "Node name for S&R": "ImageScale",
+        "widget_ue_connectable": {
+          "width": true,
+          "upscale_method": true,
+          "crop": true,
+          "height": true
+        }
+      },
+      "widgets_values": [
+        "lanczos",
+        512,
+        512,
+        "center"
+      ],
+      "widgets_values_named": {
+        "upscale_method": "lanczos",
+        "width": 512,
+        "height": 512,
+        "crop": "center"
+      }
+    },
+    {
+      "id": 30,
+      "type": "ResolutionSelector",
+      "pos": [
+        470,
+        30
+      ],
+      "size": [
+        270,
+        150
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "aspect_ratio",
+          "name": "aspect_ratio",
+          "type": "COMBO",
+          "widget": {
+            "name": "aspect_ratio"
+          },
+          "link": null
+        },
+        {
+          "label": "megapixels",
+          "name": "megapixels",
+          "type": "FLOAT",
+          "widget": {
+            "name": "megapixels"
+          },
+          "link": null
+        },
+        {
+          "label": "multiple",
+          "name": "multiple",
+          "type": "INT",
+          "widget": {
+            "name": "multiple"
+          },
+          "link": null
+        },
+        {
+          "label": "preview",
+          "name": "preview",
+          "shape": 7,
+          "type": "RESOLUTION_PREVIEW",
+          "widget": {
+            "name": "preview"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "width",
+          "name": "width",
+          "type": "INT",
+          "links": [
+            4,
+            28,
+            31
+          ]
+        },
+        {
+          "label": "height",
+          "name": "height",
+          "type": "INT",
+          "links": [
+            5,
+            29,
+            32
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ResolutionSelector",
+        "widget_ue_connectable": {
+          "preview": true,
+          "aspect_ratio": true,
+          "megapixels": true,
+          "multiple": true
+        }
+      },
+      "widgets_values": [
+        "16:9 (Widescreen)",
+        0.97,
+        32
+      ],
+      "widgets_values_named": {
+        "aspect_ratio": "16:9 (Widescreen)",
+        "megapixels": 0.97,
+        "multiple": 32
+      }
+    },
+    {
+      "id": 33,
+      "type": "MarkdownNote",
+      "pos": [
+        -620,
+        0
+      ],
+      "size": [
+        600,
+        1298
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Model links",
+      "properties": {
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "## pi-H3 FL2VA\n\nThis is an FL2VA (first-last-frame to video and audio) workflow. It generates a video with synchronized audio from a text prompt, optionally conditioned on a first frame, a last frame, or both.\n\n## Model links\n\n**Base model**\n\n- Download [minimax_h3_fl2va_pruned_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors) and save it to\n<br>`models/diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors`\n\n**pi-H3 adapters**\n\n- Download [pi_h3_2step_adapter/diffusion_pytorch_model.safetensors](https://huggingface.co/Lakonik/pi-H3/resolve/main/pi_h3_2step_adapter/diffusion_pytorch_model.safetensors) and save it to \n<br>`models/loras/pi_h3_2step_adapter.safetensors`\n\n- Download [pi_h3_4step_adapter/diffusion_pytorch_model.safetensors](https://huggingface.co/Lakonik/pi-H3/resolve/main/pi_h3_4step_adapter/diffusion_pytorch_model.safetensors) and save it to \n<br>`models/loras/pi_h3_4step_adapter.safetensors`\n\n**Text encoder**\n\n- Download [qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors) and save it to\n<br>`models/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors`\n\n**VAE**\n\n- Download [minimax_h3_video_vae_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors) and save it to\n<br>`models/vae/minimax_h3_video_vae_int8_convrot.safetensors`\n\n  The video VAE only encodes the first and last frames, and decodes the video in the workflow without DWD.\n\n- Download [minimax_h3_audio_vae_fp32.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors) and save it to\n<br>`models/vae/minimax_h3_audio_vae_fp32.safetensors`\n\n**Model Storage Location**\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 diffusion_models/\n│   │   └── minimax_h3_fl2va_pruned_int8_convrot.safetensors\n│   ├── 📂 loras/\n│   │   ├── pi_h3_2step_adapter.safetensors\n│   │   └── pi_h3_4step_adapter.safetensors\n│   ├── 📂 vae/\n│   │   ├── minimax_h3_video_vae_int8_convrot.safetensors\n│   │   └── minimax_h3_audio_vae_fp32.safetensors\n│   └── 📂 text_encoders/\n│       └── qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors\n```\n\n## Sampler steps\n\n`steps` on `pi-H3 Adapter (2 or 4 steps)` selects the adapter and its recommended `max_raw_t` (0.93 for 2 steps, 0.96 for 4 steps). `final_step_size_scale` is 0.6. `ModelSamplingMiniMaxH3` sets the video and audio shifts (12 and 3 by default).\n\n## Sparse attention\n\n`Patch Sol-Attn` (Kijai's BF16 Sol-Attn) speeds up sampling. It comes from [ComfyUI-SolAttn_triton](https://github.com/kijai/ComfyUI-SolAttn_triton): clone it into `custom_nodes` (it needs Triton; on Windows, `triton-windows`). Bypass it to use dense attention."
+      ],
+      "widgets_values_named": {
+        "text": "## pi-H3 FL2VA\n\nThis is an FL2VA (first-last-frame to video and audio) workflow. It generates a video with synchronized audio from a text prompt, optionally conditioned on a first frame, a last frame, or both.\n\n## Model links\n\n**Base model**\n\n- Download [minimax_h3_fl2va_pruned_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors) and save it to\n<br>`models/diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors`\n\n**pi-H3 adapters**\n\n- Download [pi_h3_2step_adapter/diffusion_pytorch_model.safetensors](https://huggingface.co/Lakonik/pi-H3/resolve/main/pi_h3_2step_adapter/diffusion_pytorch_model.safetensors) and save it to \n<br>`models/loras/pi_h3_2step_adapter.safetensors`\n\n- Download [pi_h3_4step_adapter/diffusion_pytorch_model.safetensors](https://huggingface.co/Lakonik/pi-H3/resolve/main/pi_h3_4step_adapter/diffusion_pytorch_model.safetensors) and save it to \n<br>`models/loras/pi_h3_4step_adapter.safetensors`\n\n**Text encoder**\n\n- Download [qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors) and save it to\n<br>`models/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors`\n\n**VAE**\n\n- Download [minimax_h3_video_vae_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors) and save it to\n<br>`models/vae/minimax_h3_video_vae_int8_convrot.safetensors`\n\n  The video VAE only encodes the first and last frames, and decodes the video in the workflow without DWD.\n\n- Download [minimax_h3_audio_vae_fp32.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors) and save it to\n<br>`models/vae/minimax_h3_audio_vae_fp32.safetensors`\n\n**Model Storage Location**\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 diffusion_models/\n│   │   └── minimax_h3_fl2va_pruned_int8_convrot.safetensors\n│   ├── 📂 loras/\n│   │   ├── pi_h3_2step_adapter.safetensors\n│   │   └── pi_h3_4step_adapter.safetensors\n│   ├── 📂 vae/\n│   │   ├── minimax_h3_video_vae_int8_convrot.safetensors\n│   │   └── minimax_h3_audio_vae_fp32.safetensors\n│   └── 📂 text_encoders/\n│       └── qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors\n```\n\n## Sampler steps\n\n`steps` on `pi-H3 Adapter (2 or 4 steps)` selects the adapter and its recommended `max_raw_t` (0.93 for 2 steps, 0.96 for 4 steps). `final_step_size_scale` is 0.6. `ModelSamplingMiniMaxH3` sets the video and audio shifts (12 and 3 by default).\n\n## Sparse attention\n\n`Patch Sol-Attn` (Kijai's BF16 Sol-Attn) speeds up sampling. It comes from [ComfyUI-SolAttn_triton](https://github.com/kijai/ComfyUI-SolAttn_triton): clone it into `custom_nodes` (it needs Triton; on Windows, `triton-windows`). Bypass it to use dense attention."
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 40,
+      "type": "32703626-ab0e-4f0f-9562-0368de82a11d",
+      "pos": [
+        470,
+        250
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "seconds",
+          "name": "seconds",
+          "type": "FLOAT",
+          "widget": {
+            "name": "seconds"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            50
+          ]
+        }
+      ],
+      "title": "Duration",
+      "properties": {
+        "previewExposures": [],
+        "widget_ue_connectable": {
+          "seconds": true
+        }
+      },
+      "widgets_values": [
+        10
+      ],
+      "widgets_values_named": {
+        "seconds": 10
+      }
+    },
+    {
+      "id": 42,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1871.8149185537568,
+        -5.10813641319058
+      ],
+      "size": [
+        540.4402451197134,
+        669.3944257826934
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "images",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 87
+        },
+        {
+          "label": "audio",
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 53
+        },
+        {
+          "label": "meta_batch",
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        },
+        {
+          "label": "frame_rate",
+          "name": "frame_rate",
+          "type": "FLOAT",
+          "widget": {
+            "name": "frame_rate"
+          },
+          "link": null
+        },
+        {
+          "label": "loop_count",
+          "name": "loop_count",
+          "type": "INT",
+          "widget": {
+            "name": "loop_count"
+          },
+          "link": null
+        },
+        {
+          "label": "filename_prefix",
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        },
+        {
+          "label": "format",
+          "name": "format",
+          "type": "COMBO",
+          "widget": {
+            "name": "format"
+          },
+          "link": null
+        },
+        {
+          "label": "pingpong",
+          "name": "pingpong",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "pingpong"
+          },
+          "link": null
+        },
+        {
+          "label": "save_output",
+          "name": "save_output",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "save_output"
+          },
+          "link": null
+        },
+        {
+          "label": "no_preview",
+          "name": "no_preview",
+          "shape": 7,
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "no_preview"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Filenames",
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "no_preview": false,
+        "videopreview": {
+          "paused": false,
+          "hidden": false,
+          "params": {
+            "storageProvider": "cos",
+            "metadata": {
+              "duration": 10.125,
+              "kind": "video",
+              "frame_count": 243,
+              "width": 1344,
+              "fps": 24,
+              "height": 768
+            },
+            "cos_url": "https://rh-hk-images.xiaoyaoyou.com//5630324007234edbbffe3c02cf0a72ba/output/AnimateDiff_00003_p83-audio_ervlx_1795496611.mp4",
+            "workflow": "AnimateDiff_00003_p83.png",
+            "format": "video/h264-mp4",
+            "subfolder": "",
+            "label": "Normal",
+            "type": "output",
+            "frame_rate": 24,
+            "bucket": "rh-hk-images-1252422369",
+            "score": 27,
+            "filename": "AnimateDiff_00003_p83-audio_ervlx_1795496611.mp4",
+            "fullpath": "/data/ComfyUI/personal/5630324007234edbbffe3c02cf0a72ba/output/AnimateDiff_00003_p83-audio.mp4",
+            "objectKey": "5630324007234edbbffe3c02cf0a72ba/output/AnimateDiff_00003_p83-audio_ervlx_1795496611.mp4"
+          }
+        }
+      },
+      "widgets_values_named": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true,
+        "no_preview": false,
+        "videopreview": {
+          "paused": false,
+          "hidden": false,
+          "params": {
+            "storageProvider": "cos",
+            "metadata": {
+              "duration": 10.125,
+              "kind": "video",
+              "frame_count": 243,
+              "width": 1344,
+              "fps": 24,
+              "height": 768
+            },
+            "cos_url": "https://rh-hk-images.xiaoyaoyou.com//5630324007234edbbffe3c02cf0a72ba/output/AnimateDiff_00003_p83-audio_ervlx_1795496611.mp4",
+            "workflow": "AnimateDiff_00003_p83.png",
+            "format": "video/h264-mp4",
+            "subfolder": "",
+            "label": "Normal",
+            "type": "output",
+            "frame_rate": 24,
+            "bucket": "rh-hk-images-1252422369",
+            "score": 27,
+            "filename": "AnimateDiff_00003_p83-audio_ervlx_1795496611.mp4",
+            "fullpath": "/data/ComfyUI/personal/5630324007234edbbffe3c02cf0a72ba/output/AnimateDiff_00003_p83-audio.mp4",
+            "objectKey": "5630324007234edbbffe3c02cf0a72ba/output/AnimateDiff_00003_p83-audio_ervlx_1795496611.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 43,
+      "type": "BlockSparseAttention",
+      "pos": [
+        968.9419960868337,
+        222.0846603007936
+      ],
+      "size": [
+        270,
+        250
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 54
+        },
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "COMFY_DYNAMICCOMBO_V3",
+          "widget": {
+            "name": "selection"
+          },
+          "link": null
+        },
+        {
+          "label": "selection.keep_percent",
+          "name": "selection.keep_percent",
+          "type": "FLOAT",
+          "widget": {
+            "name": "selection.keep_percent"
+          },
+          "link": null
+        },
+        {
+          "label": "start_percent",
+          "name": "start_percent",
+          "type": "FLOAT",
+          "widget": {
+            "name": "start_percent"
+          },
+          "link": null
+        },
+        {
+          "label": "end_percent",
+          "name": "end_percent",
+          "type": "FLOAT",
+          "widget": {
+            "name": "end_percent"
+          },
+          "link": null
+        },
+        {
+          "label": "dense_blocks",
+          "name": "dense_blocks",
+          "type": "STRING",
+          "widget": {
+            "name": "dense_blocks"
+          },
+          "link": null
+        },
+        {
+          "label": "min_tokens",
+          "name": "min_tokens",
+          "type": "INT",
+          "widget": {
+            "name": "min_tokens"
+          },
+          "link": null
+        },
+        {
+          "label": "extra_tokens",
+          "name": "extra_tokens",
+          "type": "INT",
+          "widget": {
+            "name": "extra_tokens"
+          },
+          "link": null
+        },
+        {
+          "label": "sink_conditioning",
+          "name": "sink_conditioning",
+          "type": "COMBO",
+          "widget": {
+            "name": "sink_conditioning"
+          },
+          "link": null
+        },
+        {
+          "label": "verbose",
+          "name": "verbose",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "verbose"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            55,
+            57
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BlockSparseAttention",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "vsa",
+        10,
+        0.2,
+        1,
+        "",
+        12288,
+        256,
+        "exact_kv_and_rows",
+        false
+      ],
+      "widgets_values_named": {
+        "selection": "vsa",
+        "selection.keep_percent": 10,
+        "start_percent": 0.2,
+        "end_percent": 1,
+        "dense_blocks": "",
+        "min_tokens": 12288,
+        "extra_tokens": 256,
+        "sink_conditioning": "exact_kv_and_rows",
+        "verbose": false
+      }
+    },
+    {
+      "id": 44,
+      "type": "SelfLiftH3Sampler",
+      "pos": [
+        1358.829285781425,
+        44.52893337532085
+      ],
+      "size": [
+        379.6607421875,
+        438
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 57
+        },
+        {
+          "label": "positive",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 58
+        },
+        {
+          "label": "negative",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 60
+        },
+        {
+          "label": "vae",
+          "name": "vae",
+          "type": "VAE",
+          "link": 61
+        },
+        {
+          "label": "latent_image",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 62
+        },
+        {
+          "label": "sampler",
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 63
+        },
+        {
+          "label": "sigmas",
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 64
+        },
+        {
+          "label": "model_hires",
+          "name": "model_hires",
+          "shape": 7,
+          "type": "MODEL",
+          "link": null
+        },
+        {
+          "label": "seed",
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "label": "cfg",
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "label": "transition_step",
+          "name": "transition_step",
+          "type": "INT",
+          "widget": {
+            "name": "transition_step"
+          },
+          "link": null
+        },
+        {
+          "label": "lowres_scale",
+          "name": "lowres_scale",
+          "type": "FLOAT",
+          "widget": {
+            "name": "lowres_scale"
+          },
+          "link": null
+        },
+        {
+          "label": "rho",
+          "name": "rho",
+          "type": "FLOAT",
+          "widget": {
+            "name": "rho"
+          },
+          "link": null
+        },
+        {
+          "label": "w_min",
+          "name": "w_min",
+          "type": "FLOAT",
+          "widget": {
+            "name": "w_min"
+          },
+          "link": null
+        },
+        {
+          "label": "w_max",
+          "name": "w_max",
+          "type": "FLOAT",
+          "widget": {
+            "name": "w_max"
+          },
+          "link": null
+        },
+        {
+          "label": "upscaler_model",
+          "name": "upscaler_model",
+          "type": "COMBO",
+          "widget": {
+            "name": "upscaler_model"
+          },
+          "link": null
+        },
+        {
+          "label": "highres_tiling",
+          "name": "highres_tiling",
+          "shape": 7,
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "highres_tiling"
+          },
+          "link": null
+        },
+        {
+          "label": "upscaler_unload",
+          "name": "upscaler_unload",
+          "shape": 7,
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "upscaler_unload"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "LATENT",
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            68,
+            86
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SelfLiftH3Sampler",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        1071078209881826,
+        "randomize",
+        1,
+        2,
+        0.5,
+        0,
+        0.5,
+        1,
+        "minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors",
+        false,
+        true
+      ],
+      "widgets_values_named": {
+        "seed": 1071078209881826,
+        "control_after_generate": "randomize",
+        "cfg": 1,
+        "transition_step": 2,
+        "lowres_scale": 0.5,
+        "rho": 0,
+        "w_min": 0.5,
+        "w_max": 1,
+        "upscaler_model": "minimax_h3_latent_upscaler_3d_conv_v1_fp16.safetensors",
+        "highres_tiling": false,
+        "upscaler_unload": true
+      }
+    },
+    {
+      "id": 45,
+      "type": "ConditioningZeroOut",
+      "pos": [
+        982.6972013525354,
+        544.2890801817077
+      ],
+      "size": [
+        204.134765625,
+        26
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "conditioning",
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 59
+        }
+      ],
+      "outputs": [
+        {
+          "label": "CONDITIONING",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            60
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut",
+        "widget_ue_connectable": {}
+      }
+    },
+    {
+      "id": 53,
+      "type": "DWD Decode",
+      "pos": [
+        1411.8953267238578,
+        615.9185083913692
+      ],
+      "size": [
+        140,
+        26
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "samples",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 86
+        }
+      ],
+      "outputs": [
+        {
+          "label": "IMAGE",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            87
+          ]
+        }
+      ],
+      "properties": {
+        "widget_ue_connectable": {},
+        "Node name for S&R": "DWD Decode"
+      }
+    },
+    {
+      "id": 54,
+      "type": "47232f40-a6ea-42e7-b106-48b0b5bd2201",
+      "pos": [
+        40.238389706861994,
+        334.48663957579924
+      ],
+      "size": [
+        229.37751656303743,
+        153.02457211905914
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "model",
+          "name": "model",
+          "type": "MODEL",
+          "link": 89
+        },
+        {
+          "label": "steps",
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "label": "2-step adapter",
+          "name": "2-step adapter",
+          "type": "COMBO",
+          "widget": {
+            "name": "2-step adapter"
+          },
+          "link": null
+        },
+        {
+          "label": "4-step adapter",
+          "name": "4-step adapter",
+          "type": "COMBO",
+          "widget": {
+            "name": "4-step adapter"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "label": "INT",
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            90
+          ]
+        },
+        {
+          "label": "FLOAT",
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            91
+          ]
+        },
+        {
+          "label": "output",
+          "name": "output",
+          "type": "MODEL",
+          "links": [
+            92
+          ]
+        }
+      ],
+      "title": "pi-H3 Adapter (2 or 4 steps)",
+      "properties": {
+        "widget_ue_connectable": {
+          "2-step adapter": true,
+          "4-step adapter": true,
+          "steps": true
+        },
+        "previewExposures": []
+      },
+      "widgets_values": [
+        4,
+        "pi_h3_2step_dwd_adapter_int8_convrot.safetensors",
+        "pi_h3_4step_dwd_adapter_int8_convrot.safetensors"
+      ],
+      "widgets_values_named": {
+        "steps": 4,
+        "2-step adapter": "pi_h3_2step_dwd_adapter_int8_convrot.safetensors",
+        "4-step adapter": "pi_h3_4step_dwd_adapter_int8_convrot.safetensors"
+      }
+    }
+  ],
+  "links": [
+    [
+      2,
+      3,
+      0,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      4,
+      0,
+      6,
+      1,
+      "VAE"
+    ],
+    [
+      4,
+      30,
+      0,
+      6,
+      5,
+      "INT"
+    ],
+    [
+      5,
+      30,
+      1,
+      6,
+      6,
+      "INT"
+    ],
+    [
+      7,
+      23,
+      0,
+      6,
+      2,
+      "IMAGE"
+    ],
+    [
+      8,
+      24,
+      0,
+      6,
+      3,
+      "IMAGE"
+    ],
+    [
+      20,
+      5,
+      0,
+      13,
+      1,
+      "VAE"
+    ],
+    [
+      24,
+      1,
+      0,
+      17,
+      0,
+      "MODEL"
+    ],
+    [
+      27,
+      21,
+      0,
+      23,
+      0,
+      "IMAGE"
+    ],
+    [
+      28,
+      30,
+      0,
+      23,
+      2,
+      "INT"
+    ],
+    [
+      29,
+      30,
+      1,
+      23,
+      3,
+      "INT"
+    ],
+    [
+      30,
+      22,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ],
+    [
+      31,
+      30,
+      0,
+      24,
+      2,
+      "INT"
+    ],
+    [
+      32,
+      30,
+      1,
+      24,
+      3,
+      "INT"
+    ],
+    [
+      50,
+      40,
+      0,
+      6,
+      7,
+      "INT"
+    ],
+    [
+      53,
+      13,
+      0,
+      42,
+      1,
+      "AUDIO"
+    ],
+    [
+      55,
+      43,
+      0,
+      8,
+      0,
+      "MODEL"
+    ],
+    [
+      57,
+      43,
+      0,
+      44,
+      0,
+      "MODEL"
+    ],
+    [
+      58,
+      6,
+      0,
+      44,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      59,
+      6,
+      0,
+      45,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      60,
+      45,
+      0,
+      44,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      61,
+      4,
+      0,
+      44,
+      3,
+      "VAE"
+    ],
+    [
+      62,
+      6,
+      1,
+      44,
+      4,
+      "LATENT"
+    ],
+    [
+      63,
+      7,
+      0,
+      44,
+      5,
+      "SAMPLER"
+    ],
+    [
+      64,
+      8,
+      0,
+      44,
+      6,
+      "SIGMAS"
+    ],
+    [
+      68,
+      44,
+      0,
+      13,
+      0,
+      "LATENT"
+    ],
+    [
+      54,
+      19,
+      0,
+      43,
+      0,
+      "MODEL"
+    ],
+    [
+      86,
+      44,
+      0,
+      53,
+      0,
+      "LATENT"
+    ],
+    [
+      87,
+      53,
+      0,
+      42,
+      0,
+      "IMAGE"
+    ],
+    [
+      89,
+      17,
+      0,
+      54,
+      0,
+      "MODEL"
+    ],
+    [
+      90,
+      54,
+      0,
+      8,
+      1,
+      "INT"
+    ],
+    [
+      91,
+      54,
+      1,
+      8,
+      3,
+      "FLOAT"
+    ],
+    [
+      92,
+      54,
+      2,
+      19,
+      0,
+      "MODEL"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Step1 - Load models",
+      "bounding": [
+        10,
+        -50,
+        310,
+        1040
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "Step2 - Video size and duration",
+      "bounding": [
+        450,
+        -50,
+        440,
+        418
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "Step3 - Prompt",
+      "bounding": [
+        450,
+        368,
+        460,
+        560
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "Optional - First and last frames",
+      "bounding": [
+        384.22227647569497,
+        992.8890516493053,
+        540,
+        620
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "Step4 - Sampling",
+      "bounding": [
+        950,
+        -50,
+        330,
+        1208
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    }
+  ],
+  "definitions": {
+    "subgraphs": [
+      {
+        "id": "32703626-ab0e-4f0f-9562-0368de82a11d",
+        "version": 1,
+        "state": {
+          "lastGroupId": 5,
+          "lastNodeId": 54,
+          "lastLinkId": 92,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "Frame Count",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            282,
+            375,
+            128,
+            48
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            930,
+            365,
+            128,
+            68
+          ]
+        },
+        "inputs": [
+          {
+            "id": "b1f6965f-994d-4004-966f-3582409ec995",
+            "name": "seconds",
+            "type": "FLOAT",
+            "linkIds": [
+              51
+            ],
+            "pos": [
+              0,
+              0
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "68f79b07-c244-478b-a5ac-c1e26925b8d8",
+            "name": "INT",
+            "type": "INT",
+            "linkIds": [
+              6
+            ],
+            "localized_name": "INT",
+            "label": "length",
+            "pos": [
+              24,
+              24
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 31,
+            "type": "PrimitiveFloat",
+            "pos": [
+              470,
+              250
+            ],
+            "size": [
+              270,
+              58
+            ],
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "value",
+                "localized_name": "value",
+                "name": "value",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "value"
+                },
+                "link": 51
+              }
+            ],
+            "outputs": [
+              {
+                "label": "FLOAT",
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": [
+                  33
+                ]
+              }
+            ],
+            "title": "Duration (seconds)",
+            "properties": {
+              "Node name for S&R": "PrimitiveFloat",
+              "widget_ue_connectable": {}
+            },
+            "widgets_values": [
+              5
+            ],
+            "widgets_values_named": {
+              "value": 5
+            }
+          },
+          {
+            "id": 32,
+            "type": "ComfyMathExpression",
+            "pos": [
+              470,
+              378
+            ],
+            "size": [
+              400,
+              200
+            ],
+            "flags": {},
+            "order": 1,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "values.a",
+                "localized_name": "a",
+                "name": "values.a",
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": 33
+              },
+              {
+                "label": "values.b",
+                "localized_name": "b",
+                "name": "values.b",
+                "shape": 7,
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": null
+              },
+              {
+                "label": "expression",
+                "localized_name": "expression",
+                "name": "expression",
+                "type": "STRING",
+                "widget": {
+                  "name": "expression"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "label": "FLOAT",
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": null
+              },
+              {
+                "label": "INT",
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  6
+                ]
+              },
+              {
+                "label": "BOOL",
+                "localized_name": "BOOL",
+                "name": "BOOL",
+                "type": "BOOLEAN",
+                "links": null
+              }
+            ],
+            "title": "Frame count",
+            "properties": {
+              "Node name for S&R": "ComfyMathExpression",
+              "widget_ue_connectable": {}
+            },
+            "widgets_values": [
+              "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+            ],
+            "widgets_values_named": {
+              "expression": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17"
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 6,
+            "origin_id": 32,
+            "origin_slot": 1,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 51,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 31,
+            "target_slot": 0,
+            "type": "FLOAT"
+          },
+          {
+            "id": 33,
+            "origin_id": 31,
+            "origin_slot": 0,
+            "target_id": 32,
+            "target_slot": 0,
+            "type": "FLOAT"
+          }
+        ],
+        "extra": {
+          "pixaromaGroups": []
+        }
+      },
+      {
+        "id": "47232f40-a6ea-42e7-b106-48b0b5bd2201",
+        "version": 1,
+        "state": {
+          "lastGroupId": 5,
+          "lastNodeId": 54,
+          "lastLinkId": 92,
+          "lastRerouteId": 0
+        },
+        "revision": 0,
+        "config": {},
+        "name": "pi-H3 Adapter",
+        "inputNode": {
+          "id": -10,
+          "bounding": [
+            -158,
+            324,
+            132.626953125,
+            128
+          ]
+        },
+        "outputNode": {
+          "id": -20,
+          "bounding": [
+            1300,
+            304,
+            128,
+            108
+          ]
+        },
+        "inputs": [
+          {
+            "id": "d52733e2-7307-4848-9bc1-edd76cc707b8",
+            "name": "model",
+            "type": "MODEL",
+            "linkIds": [
+              1,
+              88
+            ],
+            "localized_name": "model",
+            "pos": [
+              -49.373046875,
+              348
+            ]
+          },
+          {
+            "id": "81c97db4-92f6-427a-9bb5-db34e3a442bb",
+            "name": "steps",
+            "type": "INT",
+            "linkIds": [
+              46
+            ],
+            "pos": [
+              -49.373046875,
+              368
+            ]
+          },
+          {
+            "id": "58ecdcd5-06af-4ca2-912c-2c60ae266bcf",
+            "name": "2-step adapter",
+            "type": "COMBO",
+            "linkIds": [
+              47
+            ],
+            "pos": [
+              -49.373046875,
+              388
+            ]
+          },
+          {
+            "id": "50f10d64-a0e9-4d82-ad1d-0a6fba648624",
+            "name": "4-step adapter",
+            "type": "COMBO",
+            "linkIds": [
+              48
+            ],
+            "pos": [
+              -49.373046875,
+              408
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "id": "2e5486c0-35fc-4606-936b-533f2a6c0a78",
+            "name": "INT",
+            "type": "INT",
+            "linkIds": [
+              40
+            ],
+            "localized_name": "INT",
+            "label": "steps",
+            "pos": [
+              1324,
+              328
+            ]
+          },
+          {
+            "id": "08b25231-24df-4cd0-a94a-663209cea5c6",
+            "name": "FLOAT",
+            "type": "FLOAT",
+            "linkIds": [
+              41
+            ],
+            "localized_name": "FLOAT",
+            "label": "max_raw_t",
+            "pos": [
+              1324,
+              348
+            ]
+          },
+          {
+            "id": "6635e991-4bb5-43d0-89b5-d56f02dfeda4",
+            "name": "output",
+            "type": "MODEL",
+            "linkIds": [
+              36
+            ],
+            "localized_name": "output",
+            "label": "model",
+            "pos": [
+              1324,
+              368
+            ]
+          }
+        ],
+        "widgets": [],
+        "nodes": [
+          {
+            "id": 36,
+            "type": "PrimitiveInt",
+            "pos": [
+              970,
+              30
+            ],
+            "size": [
+              270,
+              82
+            ],
+            "flags": {},
+            "order": 3,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "value",
+                "localized_name": "value",
+                "name": "value",
+                "type": "INT",
+                "widget": {
+                  "name": "value"
+                },
+                "link": 46
+              }
+            ],
+            "outputs": [
+              {
+                "label": "INT",
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": [
+                  37,
+                  38,
+                  40
+                ]
+              }
+            ],
+            "title": "Steps (2 or 4)",
+            "properties": {
+              "widget_ue_connectable": {},
+              "Node name for S&R": "PrimitiveInt"
+            },
+            "widgets_values": [
+              2,
+              "fixed"
+            ],
+            "widgets_values_named": {
+              "value": 2,
+              "control_after_generate": "fixed"
+            }
+          },
+          {
+            "id": 37,
+            "type": "ComfyMathExpression",
+            "pos": [
+              970,
+              182
+            ],
+            "size": [
+              270,
+              150
+            ],
+            "flags": {},
+            "order": 4,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "values.a",
+                "localized_name": "a",
+                "name": "values.a",
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": 37
+              },
+              {
+                "label": "values.b",
+                "localized_name": "b",
+                "name": "values.b",
+                "shape": 7,
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": null
+              },
+              {
+                "label": "expression",
+                "localized_name": "expression",
+                "name": "expression",
+                "type": "STRING",
+                "widget": {
+                  "name": "expression"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "label": "FLOAT",
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": null
+              },
+              {
+                "label": "INT",
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": null
+              },
+              {
+                "label": "BOOL",
+                "localized_name": "BOOL",
+                "name": "BOOL",
+                "type": "BOOLEAN",
+                "links": [
+                  39
+                ]
+              }
+            ],
+            "title": "4-step adapter?",
+            "properties": {
+              "widget_ue_connectable": {},
+              "Node name for S&R": "ComfyMathExpression"
+            },
+            "widgets_values": [
+              "a > 2"
+            ],
+            "widgets_values_named": {
+              "expression": "a > 2"
+            }
+          },
+          {
+            "id": 38,
+            "type": "ComfyMathExpression",
+            "pos": [
+              970,
+              402
+            ],
+            "size": [
+              270,
+              150
+            ],
+            "flags": {},
+            "order": 5,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "values.a",
+                "localized_name": "a",
+                "name": "values.a",
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": 38
+              },
+              {
+                "label": "values.b",
+                "localized_name": "b",
+                "name": "values.b",
+                "shape": 7,
+                "type": "FLOAT,INT,BOOLEAN",
+                "link": null
+              },
+              {
+                "label": "expression",
+                "localized_name": "expression",
+                "name": "expression",
+                "type": "STRING",
+                "widget": {
+                  "name": "expression"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "label": "FLOAT",
+                "localized_name": "FLOAT",
+                "name": "FLOAT",
+                "type": "FLOAT",
+                "links": [
+                  41
+                ]
+              },
+              {
+                "label": "INT",
+                "localized_name": "INT",
+                "name": "INT",
+                "type": "INT",
+                "links": null
+              },
+              {
+                "label": "BOOL",
+                "localized_name": "BOOL",
+                "name": "BOOL",
+                "type": "BOOLEAN",
+                "links": null
+              }
+            ],
+            "title": "max_raw_t",
+            "properties": {
+              "widget_ue_connectable": {},
+              "Node name for S&R": "ComfyMathExpression"
+            },
+            "widgets_values": [
+              "0.96 if a > 2 else 0.93"
+            ],
+            "widgets_values_named": {
+              "expression": "0.96 if a > 2 else 0.93"
+            }
+          },
+          {
+            "id": 2,
+            "type": "Load LakonLab Adapter",
+            "pos": [
+              30,
+              334
+            ],
+            "size": [
+              270,
+              82
+            ],
+            "flags": {},
+            "order": 0,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "model",
+                "localized_name": "model",
+                "name": "model",
+                "type": "MODEL",
+                "link": 1
+              },
+              {
+                "label": "adapter_name",
+                "localized_name": "adapter_name",
+                "name": "adapter_name",
+                "type": "COMBO",
+                "widget": {
+                  "name": "adapter_name"
+                },
+                "link": 47
+              },
+              {
+                "label": "adapter_strength",
+                "localized_name": "adapter_strength",
+                "name": "adapter_strength",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "adapter_strength"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "label": "MODEL",
+                "localized_name": "MODEL",
+                "name": "MODEL",
+                "type": "MODEL",
+                "links": [
+                  34
+                ]
+              }
+            ],
+            "title": "Load 2-step adapter",
+            "properties": {
+              "widget_ue_connectable": {},
+              "Node name for S&R": "Load LakonLab Adapter"
+            },
+            "widgets_values": [
+              "pi_h3_2step_dwd_adapter_int8_convrot.safetensors",
+              1
+            ],
+            "widgets_values_named": {
+              "adapter_name": "pi_h3_2step_dwd_adapter_int8_convrot.safetensors",
+              "adapter_strength": 1
+            }
+          },
+          {
+            "id": 34,
+            "type": "Load LakonLab Adapter",
+            "pos": [
+              30,
+              486
+            ],
+            "size": [
+              270,
+              82
+            ],
+            "flags": {},
+            "order": 1,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "model",
+                "localized_name": "model",
+                "name": "model",
+                "type": "MODEL",
+                "link": 88
+              },
+              {
+                "label": "adapter_name",
+                "localized_name": "adapter_name",
+                "name": "adapter_name",
+                "type": "COMBO",
+                "widget": {
+                  "name": "adapter_name"
+                },
+                "link": 48
+              },
+              {
+                "label": "adapter_strength",
+                "localized_name": "adapter_strength",
+                "name": "adapter_strength",
+                "type": "FLOAT",
+                "widget": {
+                  "name": "adapter_strength"
+                },
+                "link": null
+              }
+            ],
+            "outputs": [
+              {
+                "label": "MODEL",
+                "localized_name": "MODEL",
+                "name": "MODEL",
+                "type": "MODEL",
+                "links": [
+                  35
+                ]
+              }
+            ],
+            "title": "Load 4-step adapter",
+            "properties": {
+              "widget_ue_connectable": {},
+              "Node name for S&R": "Load LakonLab Adapter"
+            },
+            "widgets_values": [
+              "pi_h3_4step_dwd_adapter_int8_convrot.safetensors",
+              1
+            ],
+            "widgets_values_named": {
+              "adapter_name": "pi_h3_4step_dwd_adapter_int8_convrot.safetensors",
+              "adapter_strength": 1
+            }
+          },
+          {
+            "id": 35,
+            "type": "ComfySwitchNode",
+            "pos": [
+              30,
+              638
+            ],
+            "size": [
+              270,
+              78
+            ],
+            "flags": {},
+            "order": 2,
+            "mode": 0,
+            "inputs": [
+              {
+                "label": "on_false",
+                "localized_name": "on_false",
+                "name": "on_false",
+                "shape": 7,
+                "type": "MODEL",
+                "link": 34
+              },
+              {
+                "label": "on_true",
+                "localized_name": "on_true",
+                "name": "on_true",
+                "shape": 7,
+                "type": "MODEL",
+                "link": 35
+              },
+              {
+                "label": "switch",
+                "localized_name": "switch",
+                "name": "switch",
+                "type": "BOOLEAN",
+                "widget": {
+                  "name": "switch"
+                },
+                "link": 39
+              }
+            ],
+            "outputs": [
+              {
+                "label": "output",
+                "localized_name": "output",
+                "name": "output",
+                "type": "*",
+                "links": [
+                  36
+                ]
+              }
+            ],
+            "title": "Adapter for the steps",
+            "properties": {
+              "widget_ue_connectable": {},
+              "Node name for S&R": "ComfySwitchNode"
+            },
+            "widgets_values": [
+              false
+            ],
+            "widgets_values_named": {
+              "switch": false
+            }
+          }
+        ],
+        "groups": [],
+        "links": [
+          {
+            "id": 34,
+            "origin_id": 2,
+            "origin_slot": 0,
+            "target_id": 35,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 35,
+            "origin_id": 34,
+            "origin_slot": 0,
+            "target_id": 35,
+            "target_slot": 1,
+            "type": "MODEL"
+          },
+          {
+            "id": 39,
+            "origin_id": 37,
+            "origin_slot": 2,
+            "target_id": 35,
+            "target_slot": 2,
+            "type": "BOOLEAN"
+          },
+          {
+            "id": 1,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 2,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 88,
+            "origin_id": -10,
+            "origin_slot": 0,
+            "target_id": 34,
+            "target_slot": 0,
+            "type": "MODEL"
+          },
+          {
+            "id": 40,
+            "origin_id": 36,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 41,
+            "origin_id": 38,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 1,
+            "type": "FLOAT"
+          },
+          {
+            "id": 36,
+            "origin_id": 35,
+            "origin_slot": 0,
+            "target_id": -20,
+            "target_slot": 2,
+            "type": "MODEL"
+          },
+          {
+            "id": 46,
+            "origin_id": -10,
+            "origin_slot": 1,
+            "target_id": 36,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 47,
+            "origin_id": -10,
+            "origin_slot": 2,
+            "target_id": 2,
+            "target_slot": 1,
+            "type": "COMBO"
+          },
+          {
+            "id": 48,
+            "origin_id": -10,
+            "origin_slot": 3,
+            "target_id": 34,
+            "target_slot": 1,
+            "type": "COMBO"
+          },
+          {
+            "id": 37,
+            "origin_id": 36,
+            "origin_slot": 0,
+            "target_id": 37,
+            "target_slot": 0,
+            "type": "INT"
+          },
+          {
+            "id": 38,
+            "origin_id": 36,
+            "origin_slot": 0,
+            "target_id": 38,
+            "target_slot": 0,
+            "type": "INT"
+          }
+        ],
+        "extra": {
+          "pixaromaGroups": []
+        }
+      }
+    ]
+  },
+  "config": {},
+  "extra": {
+    "links_added_by_ue": [],
+    "ue_links": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "ds": {
+      "scale": 0.338091660405711,
+      "offset": [
+        1024.2096668507265,
+        626.5002870808295
+      ]
+    },
+    "pixaromaGroups": [],
+    "xzgGroups": {},
+    "frontendVersion": "1.59.4",
+    "KKvideo_latentpreview": false,
+    "KKvideo_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0
+  },
+  "version": 0.4
+}
